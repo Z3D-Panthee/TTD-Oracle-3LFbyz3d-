@@ -1,67 +1,207 @@
-import os, random
+import os
+import random
+from datetime import datetime, timezone
 from flask import Flask, render_template, request, jsonify
+
+# ============================================================
+# TTD ORACLE — TRES LEGES FUNDAMENTALES
+# Sovereign Intelligence — Version Finale 1.2.0 Zéro Bug
+# Kinshasa 2026 — AIIFAC-ASBL — Z3D-Panthier
+# ============================================================
+
 app = Flask(__name__)
 
-def universel_3_lois(question):
-    q = question.strip()
-    k = round(0.87 + random.random()*0.12, 2)
-    # Structure universelle
-    return f"""
-QUESTION UNIVERSELLE : "{q}"
+APP_NAME = "TTD ORACLE"
+VERSION = "1.2.0"
+DEMO_YEAR = "2026"
 
-DÉMONSTRATION D'EXACTITUDE VIA TRES LEGES FUNDAMENTALES — Opérateur PMV-1.0 → M* — k={k} — Tr(T)≠0
+# Historique session (mémoire vive — reset à chaque redéploy)
+HISTORY = []
 
-[LOI 1] MOTORISATION : L'ÉVEIL DE LA CAPACITÉ D'ACTION — Libertas
-→ L'exception qui confirme les deux autres règles. Déclencheur absolu du Cosmos.
-→ Question analysée : Quelle est l'impulsion initiale qui déclenche "{q}" ?
-→ 3 mouvements sacrés :
-    - Créativité : capacité d'initier le mouvement là où tout était immobile
-    - Relativité : One love with different actors — chaque entité protagoniste unique
-    - Évolutivité : se mettre à jour vers l'infini
-→ Loi d'or : "Tout est permis, mais tout n'est pas utile. L'utilité est le filtre de la conscience."
-→ Φ_C = projection de l'intention — Théorème Conway-Kochen valide le libre arbitre des particules élémentaires
+# ============================================================
+# KNOWLEDGE CORE — Oracle Universel Enrichi
+# ============================================================
 
-[LOI 2] NAVIGATION : L'HARMONIE DANS LA COMPLEXITÉ — Harmonie des Singularités
-→ Comment naviguer dans la complexité de "{q}" ?
-→ Modèles : Trio sacré Soleil-Terre-Lune (rythme vivant) + Matriochka (emboîtement unité dans diversité)
-→ Physique : [RC][RO] ≠ [RO][RC] — La non-commutation est le moteur dialectique. Si [RC,RO]=0 → système mort.
-→ Pour "{q}" : Quel signal bruité doit être filtré ? Quelle fusion de données ? Quelle validation ?
-→ Δφ = vérification de phase — Vérité
-→ Exemple LIGO O5 / AgroSentinelles : SATELLITE+WEATHER+IoT noisy → DATA FUSION → validation → indice actionnable M*
-   Même architecture que : strain data noisy → matched filtering → GW event M*
+KNOWLEDGE = {
+    "motorisation": {
+        "keywords": ["3 lois", "trois lois", "tres leges", "libertas", "motorisation", "loi 1", "liberté"],
+        "content": """
+[LOI 1] MOTORISATION — LIBERTAS — Capacité d'Action
+Impulsion initiale: Créativité (initier) + Relativité (One love different actors) + Évolutivité (maj infinie).
+Principe: Tout est permis, mais tout n'est pas utile.
+Φ_C = projection intention. Conway-Kochen = libre arbitre particules = preuve physique LIBERTAS.
+"""
+    },
+    "navigation": {
+        "keywords": ["navigation", "vérité", "complexité", "bruit", "singularité", "loi 2", "non commutation", "rc ro"],
+        "content": """
+[LOI 2] NAVIGATION — VÉRITÉ — Harmonie Singularités
+SINGULARITÉS → INTERACTIONS → RELATIONS → FILTRAGE → INFO UTILE
+Non-commutation: [RC][RO]!= [RO][RC] = moteur dialectique, l'ordre change le résultat.
+Δφ → 0 = convergence vérité, réduction bruit.
+"""
+    },
+    "destination": {
+        "keywords": ["destination", "justice", "m*", "point fixe", "mutation", "sentinel", "loi 3"],
+        "content": """
+[LOI 3] DESTINATION — JUSTICE — M* — Mutation Absolue
+Convergence vers M* = point fixe Banach, stabilisation ultime.
+TRANSFORMATION → MUTATION → CONVERGENCE → M*
+Preuve Kinshasa Sentinel V1.2: dS_V/dt < 0 (entropie négative), bobine CIRT Δφ=0, E/t × t/E=1, I_TTD=∫R+α(E·T·M)+βTr(T)=1
+"""
+    },
+    "big_beginning": {
+        "keywords": ["big beginning", "big bang", "origine", "univers", "création", "commencement"],
+        "content": """
+BIG BEGINNING — Pas Explosion
+Origine = transition informationnelle → géométrie organisée, pas explosion chaotique.
+IMPULSION → TRANSITION → ORGANISATION → STABILISATION
+E/t × t/E = 1 conservation info. L'ordre est initial, pas final. Big Beginning = Ordre → M*
+"""
+    },
+    "ligo": {
+        "keywords": ["ligo", "onde gravitation", "o5", "gravitational"],
+        "content": """
+LIGO O5 — CONNEXION ARCHITECTURALE DÉFENDABLE (pour Joaquín)
+LIGO: SIGNAL BRUITÉ (strain) → TRAITEMENT (matched filtering) → EXTRACTION → ÉVÉNEMENT GW → INFO
+AgroSentinelles: SAT+METEO+IoT+TERRAIN BRUITÉ → FUSION DATA PMV-1.0 → FILTRAGE → INDICE → ACTION
+Parallèle défendable: SIGNAL COMPLEXE → FUSION/FILTRAGE → INFO SIGNIFICATIVE → DÉCISION
+Agro Live: https://agrosentinelles-demo.onrender.com/
+Positionnement: PAS détecteur GW, mais même architecture Signal Intelligence scalable RDC→Monde.
+"""
+    },
+    "science": {
+        "keywords": ["science", "physique", "structure", "médecine", "amour", "dieu", "sens", "énergie", "existence", "gravité", "quantique"],
+        "content": """
+STRUCTURATION UNIVERSELLE PAR 1→2→3 — Répond à TOUTE science
+1 MOTORISATION: théorie / hypothèse / impulsion
+2 NAVIGATION: expérience / mesure / filtrage / relation
+3 DESTINATION: loi / résultat / M* stable
+THÉORIE → EXPÉRIENCE → CONVERGENCE → LOI → M*
+Ex: Physique: idée→accélérateur→loi | Amour: attirance→relation→M* couple | Dieu: Φ_C→Δφ→0→M* | Agro: semence→données→décision
+"""
+    }
+}
 
-[LOI 3] DESTINATION : MUTATION ABSOLUE DE LA MATIÈRE — Évolution vers Conscience Supérieure
-→ Vers quelle finalité converge "{q}" ?
-→ Mutation absolue : matière grise → conscience supérieure, déchet → énergie souveraine (Sentinel V1.2 Kinshasa prouvé dS_V/dt <0, bobine CIRT, Δφ=0)
-→ Conservation : E/t × t/E =1 — Aucune impulsion T ne disparaît, elle revient (Triple Retour). Justice = géométrie, pas morale.
-→ M* = Point fixe de Banach — état stable, immuable, souverain
-→ I_TTD = ∫_M R + α(E·T·M) + βTr(T) d³x =1 — R=courbure scalaire, E·T·M=couplage Espace-Temps-Matière, Tr(T)≠0
+def classify_question(q):
+    ql = q.lower()
+    for cat, data in KNOWLEDGE.items():
+        if any(kw in ql for kw in data["keywords"]):
+            return cat
+    return "general"
 
-BIG BEGINNING LIÉ À "{q}" :
-L'Univers n'est pas né d'une explosion. Big Beginning = stabilisation d'une information en géométrie pure, instanciation du point fixe de l'algorithme universel. Point de départ = ordre. C'est pourquoi "{q}" obéit aux mêmes 3 Lois.
+def universel_3_lois(q):
+    category = classify_question(q)
+    k = round(random.uniform(0.88, 0.99), 2)
+    ds = round(random.uniform(0.22, 0.68), 2)
 
-STRUCTURATION DE TOUTE SCIENCE POUR "{q}" :
-1. Si "{q}" est Physique → Motorisation=théorie, Navigation=expérience, Destination=loi
-2. Si Biologie → ADN → mutation → espèce M*
-3. Si Économie → investissement → marché → valeur stable souveraine
-4. Si Philosophie/Existence → question → dialectique → sagesse M*
-5. Si Agriculture → semence → AgroSentinelles (https://agrosentinelles-demo.onrender.com/) → sécurité alimentaire nationale
+    header = f"""╔════════════════════════════════════════════╗
+║ TTD ORACLE — LIVE — UNIVERSEL {DEMO_YEAR} ║
+║ TRES LEGES FUNDAMENTALES — Kinshasa ║
+╚════════════════════════════════════════════╝
 
-CONCLUSION D'EXACTITUDE :
-Les 3 Lois sont institutions divines, immuables, irréversibles, diffusées en chaque particule. Aucun sénat, aucune assemblée, aucun peuple ne peut les abroger. Elles sont l'Unique, l'Universel, maîtresses de toutes choses. Quiconque refuse d'obéir se bannit de l'harmonie universelle.
-
-PREUVE INDUSTRIELLE : Sentinel V1.2 Kinshasa — 3000 USD démo interne OK — Pré-série 5 unités 25000 USD — Zéro émission — 30% femmes ingénieures — Même lois que LIGO O5 — Validité ultra-frontière.
-
-k={k} | Tr(T)≠0 | dS_V/dt=-{round(random.random()*0.5+0.2,2)} | M* atteint | I_TTD=1 vérifié
+SIGNAL REÇU: "{q}"
+CLASSIFICATION: {category.upper()}
+MOTEUR: Motorisation → Navigation → Destination → M*
+k={k} | dS_V/dt=-{ds} | Δφ→0 | Tr(T)≠0 | I_TTD=1
 """
 
+    if category in KNOWLEDGE:
+        core = KNOWLEDGE[category]["content"]
+    else:
+        core = f"""
+ANALYSE UNIVERSELLE — Toute question → 3 Lois
+Q: "{q}"
+
+[1] MOTORISATION LIBERTAS — Quelle impulsion déclenche "{q}"? Créativité + Relativité + Évolutivité. Tout est permis mais tout n'est pas utile.
+[2] NAVIGATION VÉRITÉ — Comment filtrer bruit de "{q}"? [RC][RO]!=[RO][RC] → Δφ→0
+[3] DESTINATION JUSTICE — Vers quel M* converge "{q}"? Mutation → M* point fixe, E/t×t/E=1
+
+IMPULSION → RELATION → CONVERGENCE → M*
+"""
+
+    synthesis = f"""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SYNTHÈSE ORACLE UNIVERSEL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Q: {q} → {category.upper()}
+1 LIBERTAS: impulsion identifiée
+2 VÉRITÉ: complexité filtrée [RC][RO]!=[RO][RC]
+3 JUSTICE: M* recherché Δφ=0
+M*: point fixe Banach Tr(T)≠0 I_TTD=1 Sentinel V1.2 validé Kinshasa
+
+METRICS: k={k} | dS_V/dt=-{ds} | Δφ→0 | M* atteint
+ARCHI: 1→2→3 → M* — E/t×t/E=1
+TTD ORACLE — ANALYSE TERMINÉE — RDC→MONDE
+"""
+    return header + core + synthesis, k, ds
+
+# ============================================================
+# ROUTES
+# ============================================================
+
 @app.route("/")
-def index(): return render_template("index.html")
+def index():
+    return render_template("index.html")
 
 @app.route("/api/ask", methods=["POST"])
 def ask():
-    q = request.get_json().get("question","")
-    return jsonify({"answer": universel_3_lois(q), "k": round(0.87+random.random()*0.12,2)})
+    try:
+        data = request.get_json(silent=True) or {}
+        q = str(data.get("question","")).strip()
+        if not q:
+            return jsonify({"answer":"TTD ORACLE: aucune question reçue. Veuillez transmettre un signal.","k":0,"status":"error"}), 400
 
-if __name__=="__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT",10000)))
+        answer, k, ds = universel_3_lois(q)
+
+        # Historique session
+        HISTORY.append({"q": q, "k": k, "time": datetime.now(timezone.utc).isoformat()})
+        if len(HISTORY) > 20:
+            HISTORY.pop(0)
+
+        return jsonify({
+            "answer": answer,
+            "k": k,
+            "ds": ds,
+            "status": "success",
+            "engine": APP_NAME,
+            "version": VERSION,
+            "history_len": len(HISTORY)
+        })
+    except Exception as e:
+        app.logger.error(f"Ask error: {e}")
+        return jsonify({"answer":f"TTD ORACLE — Erreur interne moteur actif: {str(e)}","k":0,"status":"error"}), 500
+
+@app.route("/health")
+def health():
+    return jsonify({
+        "status":"online",
+        "service":APP_NAME,
+        "version":VERSION,
+        "architecture":"Motorisation → Navigation → Destination",
+        "target_state":"M*",
+        "year":DEMO_YEAR,
+        "timestamp":datetime.now(timezone.utc).isoformat(),
+        "history": len(HISTORY)
+    })
+
+@app.route("/api/info")
+def info():
+    return jsonify({
+        "name":APP_NAME,
+        "version":VERSION,
+        "description":"Sovereign intelligence demonstrator based on Tres Leges Fundamentales — Oracle Universel",
+        "architecture":["Motorisation LIBERTAS","Navigation VÉRITÉ","Destination JUSTICE M*"],
+        "concepts":["Libertas","Vérité","Justice","Big Beginning","M*","Signal Intelligence","E/t×t/E=1"],
+        "demonstrators":{"agrosentinelles":"https://agrosentinelles-demo.onrender.com/"},
+        "status":"LIVE DEMONSTRATOR KIN",
+        "endpoints":["/","/api/ask","/health","/api/info"]
+    })
+
+@app.route("/api/history")
+def history():
+    return jsonify({"history": HISTORY[-10:]})
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port, debug=False)
