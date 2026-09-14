@@ -1,13 +1,14 @@
 {
-  "name": "SENTINEL OS v2.0 CONSCIOUS",
+  "name": "SENTINEL OS v4.1 CONSCIOUS AUTONOMOUS",
   "short_name": "SENTINEL OS",
-  "description": "OS Conscient TTD - REGIDESO SNEL Mines Pyrolyse Agriculture - Lemba Lab Offline",
-  "start_url": "/index.html",
+  "description": "TTD ORACLE v4.1 - OS Conscient - REGIDESO SNEL Mines Pyrolyse Agriculture - Lemba Lab Offline - Kinshasa 2026",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#050508",
-  "theme_color": "#FFD700",
-  "orientation": "any",
-  "scope": "/",
+  "background_color": "#02060c",
+  "theme_color": "#00f5a0",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "lang": "fr",
   "icons": [
     {
       "src": "icon-192.png",
@@ -20,12 +21,19 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Interroger l'Oracle v4.1",
+      "url": "./#console",
+      "description": "Oracle Universel Conscious",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     },
     {
-      "src": "icon-1024.png",
-      "sizes": "1024x1024",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "name": "Exporter Mémoire",
+      "url": "./",
+      "description": "Mémoire locale 80 questions"
     }
   ]
 }
