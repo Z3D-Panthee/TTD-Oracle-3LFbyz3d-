@@ -1,0 +1,31 @@
+{
+  "name": "SENTINEL OS v2.0 CONSCIOUS",
+  "short_name": "SENTINEL OS",
+  "description": "OS Conscient TTD - REGIDESO SNEL Mines Pyrolyse Agriculture - Lemba Lab Offline",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#050508",
+  "theme_color": "#FFD700",
+  "orientation": "any",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
