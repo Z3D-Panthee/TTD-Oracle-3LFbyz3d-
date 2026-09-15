@@ -1,23 +1,163 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#020b07"><title>SENTINEL OS v7.1 — 1-CLIC FINAL</title><link id="manifestLink" rel="manifest" href=""><style>:root{--green:#00ff88;--yellow:#ffd43b;--bg:#020907;--border:#1d5239;--text:#d7f5e8;--muted:#78a995}*{box-sizing:border-box;font-family:monospace}body{margin:0;background:#020907;color:var(--text)}.header{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(2,9,7,.95);border-bottom:1px solid var(--border)}.main{max-width:960px;margin:auto;padding:14px}.card{background:#0c2117;border:1px solid var(--border);border-radius:20px;padding:18px;margin:12px 0}.btn{border:0;border-radius:999px;padding:12px 15px;font-weight:900;margin:4px;cursor:pointer}.yellow{background:var(--yellow);color:#000}.green{background:var(--green);color:#000}.outline{background:transparent;border:1px solid var(--border);color:#a9e9ca}.install{background:var(--yellow);color:#000;animation:pulse 1s infinite alternate}@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.07)}}.progress{height:8px;background:#082217;border-radius:99px;overflow:hidden;margin:12px 0}.progressBar{width:0%;height:100%;background:linear-gradient(90deg,#00ff88,#00f5d0,#ffd43b);transition:width.25s linear}.stream{min-height:140px;padding:12px;border-left:2px solid #00ff88;white-space:pre-wrap;line-height:1.7;color:#00f5d0}.timer{font-size:1.7rem;color:var(--yellow);font-weight:900}.badge{border:1px solid var(--border);border-radius:999px;padding:7px 10px;font-size:.6rem;font-weight:900}.online{color:#00ff88;border-color:#00ff88}</style></head><body>
-<header class="header"><div><b>TTD ORACLE • v7.1 FINAL</b><div style="font-size:.6rem;opacity:.6">1-CLIC FIX • OFFLINE READY • JURY</div></div><div style="display:flex;gap:6px"><button id="installBtn" class="badge install">📲 INSTALLER</button><div class="badge online">● READY</div></div></header>
-<main class="main"><div class="card"><h1 style="font-size:2.8rem;margin:0">SENTINEL<br><span style="color:#00ff88">OS v7.1</span></h1><p style="opacity:.8">1 clic = voix fluide. Installable offline.</p><div><button class="btn yellow" onclick="startPitch(90)">🎤 90s SOUVERAIN</button><button class="btn yellow" onclick="startPitch(60)">🎤 60s</button><button class="btn yellow" onclick="startPitch(30)">🎤 30s</button><button class="btn green" onclick="openJury()">⚖️ JURY</button></div><div id="voiceStatus" style="font-size:.7rem;color:var(--muted);margin-top:8px">🔊 Touchez l'écran une fois = débloqué</div><div class="progress"><div id="progressBar" class="progressBar"></div></div><div style="display:flex;justify-content:space-between"><div id="timer" class="timer">00:00</div><div id="percentage">0%</div></div><div id="pitchStream" class="stream">Prêt. Touchez puis lancez PITCH. Timer indépendant.</div></div><div class="card" id="juryPanel" style="display:none"><div id="questionButtons" style="display:flex;flex-wrap:wrap;gap:6px"></div><div id="juryQuestion" style="font-weight:900;margin:12px 0"></div><div id="juryAnswer" style="padding:12px;border-left:3px solid #ffd43b;background:rgba(255,212,59,.05)"></div><button class="btn yellow" onclick="nextQuestion()">➜ Suivante</button><button class="btn outline" onclick="speakCurrentAnswer()">🔊 Parler</button></div></main>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#020b07">
+<title>SENTINEL OS v7.1 — 1-CLIC FINAL</title>
+<link id="manifestLink" rel="manifest" href="">
+<style>
+:root{--green:#00ff88;--yellow:#ffd43b;--bg:#020907;--border:#1d5239;--text:#d7f5e8;--muted:#78a995}
+*{box-sizing:border-box;font-family:monospace}
+body{margin:0;background:#020907;color:var(--text)}
+.header{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(2,9,7,.95);border-bottom:1px solid var(--border)}
+.main{max-width:960px;margin:auto;padding:14px}
+.card{background:#0c2117;border:1px solid var(--border);border-radius:20px;padding:18px;margin:12px 0}
+.btn{border:0;border-radius:999px;padding:12px 15px;font-weight:900;margin:4px;cursor:pointer}
+.yellow{background:var(--yellow);color:#000}
+.green{background:var(--green);color:#000}
+.outline{background:transparent;border:1px solid var(--border);color:#a9e9ca}
+.install{background:var(--yellow);color:#000;box-shadow:0 0 20px rgba(255,212,59,.5)}
+.progress{height:8px;background:#082217;border-radius:99px;overflow:hidden;margin:12px 0}
+.progressBar{width:0%;height:100%;background:linear-gradient(90deg,#00ff88,#00f5d0,#ffd43b);transition:width.25s linear}
+.stream{min-height:140px;padding:12px;border-left:2px solid #00ff88;white-space:pre-wrap;line-height:1.7;color:#00f5d0}
+.timer{font-size:1.7rem;color:var(--yellow);font-weight:900}
+.badge{border:1px solid var(--border);border-radius:999px;padding:7px 10px;font-size:.6rem;font-weight:900}
+.online{color:#00ff88;border-color:#00ff88}
+</style>
+</head>
+<body>
+<header class="header">
+  <div><b>TTD ORACLE • v7.1 FINAL</b><div style="font-size:.6rem;opacity:.6">1-CLIC FIX • OFFLINE READY</div></div>
+  <div style="display:flex;gap:6px">
+    <button id="installBtn" class="badge install">📲 INSTALLER</button>
+    <div class="badge online">● READY</div>
+  </div>
+</header>
+
+<main class="main">
+<div class="card">
+  <h1 style="font-size:2.8rem;margin:0">SENTINEL<br><span style="color:#00ff88">OS v7.1</span></h1>
+  <p style="opacity:.8">1 clic = voix fluide. Installable offline.</p>
+  <div>
+    <button class="btn yellow" onclick="startPitch(90)">🎤 90s SOUVERAIN</button>
+    <button class="btn yellow" onclick="startPitch(60)">🎤 60s</button>
+    <button class="btn yellow" onclick="startPitch(30)">🎤 30s</button>
+    <button class="btn green" onclick="openJury()">⚖️ JURY</button>
+  </div>
+  <div id="voiceStatus" style="font-size:.7rem;color:var(--muted);margin-top:8px">
+    🔊 Touchez l'écran une fois = débloqué
+  </div>
+  <div class="progress"><div id="progressBar" class="progressBar"></div></div>
+  <div style="display:flex;justify-content:space-between">
+    <div id="timer" class="timer">00:00</div>
+    <div id="percentage">0%</div>
+  </div>
+  <div id="pitchStream" class="stream">Prêt. Touchez puis lancez PITCH.</div>
+</div>
+
+<div class="card" id="juryPanel" style="display:none">
+  <div id="questionButtons" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+  <div id="juryQuestion" style="font-weight:900;margin:12px 0"></div>
+  <div id="juryAnswer" style="padding:12px;border-left:3px solid #ffd43b;background:rgba(255,212,59,.05)"></div>
+  <button class="btn yellow" onclick="nextQuestion()">➜ Suivante</button>
+  <button class="btn outline" onclick="speakCurrentAnswer()">🔊 Parler</button>
+</div>
+</main>
+
 <script>
 const manifest={name:"SENTINEL OS v7.1",short_name:"SENTINEL",start_url:"/?v=7.1",display:"standalone",background_color:"#020907",theme_color:"#00ff88",icons:[{src:"https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9a0.png",sizes:"72x72",type:"image/png"}]};
 document.getElementById('manifestLink').href=URL.createObjectURL(new Blob([JSON.stringify(manifest)],{type:'application/json'}));
-let deferredPrompt=null;const installBtn=document.getElementById('installBtn');
+
+let deferredPrompt=null;
+const installBtn=document.getElementById('installBtn');
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
-installBtn.onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;installBtn.style.display='none';}else alert("Android: ⋮ > Installer l'application\n iPhone: Partage > Sur l'écran d'accueil");};
-const TEXT={fr:{pitch90:`Mesdames et messieurs les membres du jury. On nous présente l'IA comme devant dépendre du cloud. Sentinel OS propose une autre approche. Intelligence souveraine au plus près de l'utilisateur. Action Navigation Destination. M étoile point de référence I TTD égal un. Objectif réponse traçable cohérente orientée finalité. Ici à Kinshasa nous construisons cette réponse. Merci.`,questions:["C'est quoi la TTD?","Pourquoi local?","Vs ChatGPT?","Business?","Pourquoi Afrique?"],answers:["TTD = Action Navigation Destination invariant 1.","Local = offline données restent au pays.","ChatGPT cloud généraliste, Sentinel souverain local.","Licences + intégration écoles entreprises.","Afrique = solutions adaptées connectivité."]}};
-let state={elapsed:0,pitchTimer:null,currentAnswer:"",juryIndex:0,unlocked:false};let frVoice=null,keepAlive=null;
-function loadVoices(){const vs=speechSynthesis.getVoices();if(vs.length) frVoice=vs.find(v=>v.lang.startsWith('fr'))||vs[0];}
-loadVoices();speechSynthesis.onvoiceschanged=loadVoices;
-function primeAudio(){if(state.unlocked) return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(" ");u.volume=0.01;speechSynthesis.speak(u);state.unlocked=true;document.getElementById('voiceStatus').textContent="🔊 Débloqué • 1 clic suffit maintenant";}catch(e){}}
-document.addEventListener('touchstart',primeAudio,{once:true,passive:true});document.addEventListener('click',primeAudio,{once:true});
-function stopAll(){speechSynthesis.cancel();clearInterval(state.pitchTimer);if(keepAlive)clearInterval(keepAlive);}
-function startPitch(sec){primeAudio();const exec=()=>{stopAll();let txt=TEXT.fr.pitch90;if(sec===30)txt=txt.split('.').slice(0,2).join('.');if(sec===60)txt=txt.split('.').slice(0,4).join('.');const stream=document.getElementById('pitchStream'),bar=document.getElementById('progressBar'),timer=document.getElementById('timer'),pct=document.getElementById('percentage');stream.textContent="";bar.style.width="0%";let e=0;const utter=new SpeechSynthesisUtterance(txt);utter.lang="fr-FR";if(frVoice)utter.voice=frVoice;utter.rate=0.9;keepAlive=setInterval(()=>{if(speechSynthesis.speaking){speechSynthesis.pause();speechSynthesis.resume();}},3000);utter.onend=()=>clearInterval(keepAlive);speechSynthesis.speak(utter);state.pitchTimer=setInterval(()=>{e++;const prog=Math.min(1,e/sec);stream.textContent=txt.slice(0,Math.floor(prog*txt.length));bar.style.width=(prog*100)+'%';pct.textContent=Math.floor(prog*100)+'%';timer.textContent=`00:${String(Math.max(0,sec-e)).padStart(2,'0')}`;if(e>=sec){clearInterval(state.pitchTimer);stream.textContent=txt;bar.style.width='100%';}},1000);};if(state.unlocked) exec(); else setTimeout(exec,350);}
-function openJury(){const p=document.getElementById('juryPanel');p.style.display='block';const qDiv=document.getElementById('questionButtons');qDiv.innerHTML="";TEXT.fr.questions.forEach((q,i)=>{const b=document.createElement('button');b.className='btn outline';b.textContent=q;b.onclick=()=>showQ(i);qDiv.appendChild(b);});showQ(0);}
+installBtn.onclick=async()=>{
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt=null;
+    installBtn.style.display='none';
+  }else{
+    alert("Android: ⋮ > Installer l'app\n iPhone: Partage > Sur l'écran d'accueil");
+  }
+};
+
+const TEXT={fr:{pitch90:`Mesdames et messieurs les membres du jury. On nous présente l'IA comme devant dépendre du cloud. Sentinel OS propose une autre approche. Intelligence souveraine au plus près de l'utilisateur. Action Navigation Destination. M étoile point de référence I TTD égal un. Objectif réponse traçable cohérente. Ici à Kinshasa nous construisons cette réponse. Merci.`,questions:["C'est quoi la TTD?","Pourquoi local?","Vs ChatGPT?","Business?","Pourquoi Afrique?"],answers:["TTD = Action Navigation Destination invariant 1.","Local = offline données restent au pays.","ChatGPT cloud généraliste, Sentinel souverain local.","Licences + intégration écoles entreprises.","Afrique = solutions adaptées connectivité."]}};
+
+let state={elapsed:0,pitchTimer:null,currentAnswer:"",juryIndex:0,unlocked:false};
+let frVoice=null,keepAlive=null;
+
+function loadVoices(){
+  const vs=speechSynthesis.getVoices();
+  if(vs.length) frVoice=vs.find(v=>v.lang.startsWith('fr'))||vs[0];
+}
+loadVoices();
+speechSynthesis.onvoiceschanged=loadVoices;
+
+function primeAudio(){
+  if(state.unlocked) return;
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(" ");
+    u.volume=0.01;
+    speechSynthesis.speak(u);
+    state.unlocked=true;
+    document.getElementById('voiceStatus').textContent="🔊 Débloqué • 1 clic suffit";
+  }catch(e){}
+}
+document.addEventListener('touchstart',primeAudio,{once:true,passive:true});
+document.addEventListener('click',primeAudio,{once:true});
+
+function stopAll(){
+  speechSynthesis.cancel();
+  clearInterval(state.pitchTimer);
+  if(keepAlive) clearInterval(keepAlive);
+}
+
+function startPitch(sec){
+  primeAudio();
+  const exec=()=>{
+    stopAll();
+    let txt=TEXT.fr.pitch90;
+    if(sec===30) txt=txt.split('.').slice(0,2).join('.');
+    if(sec===60) txt=txt.split('.').slice(0,4).join('.');
+    const stream=document.getElementById('pitchStream');
+    const bar=document.getElementById('progressBar');
+    const timer=document.getElementById('timer');
+    const pct=document.getElementById('percentage');
+    stream.textContent="";bar.style.width="0%";let e=0;
+    const utter=new SpeechSynthesisUtterance(txt);
+    utter.lang="fr-FR";if(frVoice) utter.voice=frVoice;utter.rate=0.9;
+    keepAlive=setInterval(()=>{if(speechSynthesis.speaking){speechSynthesis.pause();speechSynthesis.resume();}},3000);
+    utter.onend=()=>clearInterval(keepAlive);
+    speechSynthesis.speak(utter);
+    state.pitchTimer=setInterval(()=>{
+      e++;const prog=Math.min(1,e/sec);
+      stream.textContent=txt.slice(0,Math.floor(prog*txt.length));
+      bar.style.width=(prog*100)+'%';
+      pct.textContent=Math.floor(prog*100)+'%';
+      timer.textContent=`00:${String(Math.max(0,sec-e)).padStart(2,'0')}`;
+      if(e>=sec){clearInterval(state.pitchTimer);stream.textContent=txt;bar.style.width='100%';}
+    },1000);
+  };
+  if(state.unlocked) exec(); else setTimeout(exec,350);
+}
+
+function openJury(){
+  const p=document.getElementById('juryPanel');p.style.display='block';
+  const qDiv=document.getElementById('questionButtons');qDiv.innerHTML="";
+  TEXT.fr.questions.forEach((q,i)=>{const b=document.createElement('button');b.className='btn outline';b.textContent=q;b.onclick=()=>showQ(i);qDiv.appendChild(b);});
+  showQ(0);
+}
 function showQ(i){state.juryIndex=i;document.getElementById('juryQuestion').textContent=TEXT.fr.questions[i];document.getElementById('juryAnswer').textContent=TEXT.fr.answers[i];state.currentAnswer=TEXT.fr.answers[i];}
 function nextQuestion(){showQ((state.juryIndex+1)%TEXT.fr.questions.length);}
 function speakCurrentAnswer(){primeAudio();const u=new SpeechSynthesisUtterance(state.currentAnswer);u.lang="fr-FR";if(frVoice)u.voice=frVoice;u.rate=0.9;speechSynthesis.cancel();setTimeout(()=>speechSynthesis.speak(u),100);}
-if('serviceWorker' in navigator){const sw=`self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>self.clients.claim());self.addEventListener('fetch',e=>{e.respondWith(caches.open('sentinel-v7.1-final').then(c=>c.match(e.request).then(r=>r||fetch(e.request).then(res=>{c.put(e.request,res.clone());return res}))))})`;navigator.serviceWorker.register('data:text/javascript;base64,'+btoa(sw));}
-</script></body></html>
+
+if('serviceWorker' in navigator){
+  const sw=`self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>self.clients.claim());self.addEventListener('fetch',e=>{e.respondWith(caches.open('sentinel-v7.1-final').then(c=>c.match(e.request).then(r=>r||fetch(e.request).then(res=>{c.put(e.request,res.clone());return res}))))})`;
+  navigator.serviceWorker.register('data:text/javascript;base64,'+btoa(sw));
+}
+</script>
+</body>
+</html>
