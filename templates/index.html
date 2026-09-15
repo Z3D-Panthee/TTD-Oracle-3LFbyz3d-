@@ -3,128 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SENTINEL OS v5.8 - AUDIO MP3 - Lemba Lab</title>
+<title>SENTINEL OS v5.9 - FINAL</title>
 <meta name="theme-color" content="#00ff88">
-<link id="manifestLink" rel="manifest" href="">
 <style>
-:root{--green:#00ff88;--yellow:#ffcc00;--bg:#000b08;--cyan:#00f5d0}
 *{box-sizing:border-box;font-family:monospace}
-body{margin:0;background:#000b08;color:#cde9de;min-height:100vh}
-.header{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#000b08;border-bottom:1px solid #143d2a}
-.badge{padding:8px 14px;border-radius:999px;font-size:.7rem;font-weight:900;border:1px solid #143d2a}
-.install{background:var(--yellow);color:#000;box-shadow:0 0 20px rgba(255,204,0,.6);animation:pulse 1s infinite alternate}
-@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.06)}}
-.online{background:rgba(0,255,136,.12);color:var(--green);border-color:var(--green)}
-.main{max-width:900px;margin:0 auto;padding:14px}
-.card{background:#0a1f18;border:1px solid #16412e;border-radius:20px;padding:18px;margin:12px 0}
-.btn{border:0;border-radius:999px;padding:12px 16px;font-weight:900;margin:5px;cursor:pointer}
-.btn-yellow{background:var(--yellow);color:#000}
-.btn-green{background:var(--green);color:#000}
-.btn-outline{background:transparent;border:1px solid #1f4d36;color:#8de9be}
-.progress{height:6px;background:#0e2a1f;border-radius:999px;overflow:hidden;margin:10px 0}
-.progress div{height:100%;width:0%;background:linear-gradient(90deg,var(--green),var(--yellow))}
-.timer{font-size:1.8rem;color:var(--yellow);font-weight:900}
-.stream{min-height:140px;white-space:pre-wrap;line-height:1.7;font-size:1.05rem;color:var(--cyan);margin-top:10px}
+body{margin:0;background:#000;color:#cde9de;padding:12px}
+.card{background:#0a1f18;border:1px solid #16412e;border-radius:16px;padding:16px;margin:10px 0}
+.btn{border:0;border-radius:999px;padding:12px 16px;font-weight:900;margin:4px;cursor:pointer}
+.btn-yellow{background:#ffcc00;color:#000}
+.btn-green{background:#00ff88;color:#000}
+.progress{height:6px;background:#0e2a1f;border-radius:999px;overflow:hidden;margin:8px 0}
+.progress div{height:100%;width:0%;background:#00ff88;transition:width.3s linear}
+.timer{font-size:1.6rem;color:#ffcc00;font-weight:900}
+.stream{white-space:pre-wrap;line-height:1.6;color:#00f5d0;min-height:100px;margin-top:8px}
 </style>
 </head>
 <body>
-<div class="header">
-<div><div style="font-weight:900">TTD ORACLE • v5.8 AUDIO MP3</div><div style="font-size:.6rem;opacity:.6">SYS: AUDIO ENGINE SAME AS AGROSENTINELLES-DEMO</div></div>
-<div style="display:flex;gap:6px"><button id="installBtn" class="badge install">📲 INSTALLER</button><div class="badge online">● ONLINE</div></div>
-</div>
-<div class="main">
 <div class="card">
-<div style="color:var(--green);font-size:.65rem">v5.8 FIX - MÊME SON QUE AGROSENTINELLES-DEMO - BALISE AUDIO MP3 - ZERO COUPURE</div>
-<h1>SENTINEL<br><span style="color:var(--green)">OS v5.8</span></h1>
-<p style="opacity:.8">Moteur Audio MP3 comme agrosentinelles-demo.onrender.com - Pas de speechSynthesis</p>
+<h2 style="margin:0">SENTINEL OS v5.9 <span style="color:#00ff88">FINAL AUDIO</span></h2>
+<div style="font-size:.7rem;opacity:.6">Même moteur que agrosentinelles-demo - MP3 direct - Timer indépendant</div>
 <div style="margin:10px 0">
-<button class="btn btn-yellow" onclick="startPitch(30)">🎤 30s CHOC</button>
-<button class="btn btn-yellow" onclick="startPitch(60)">🎤 60s PREUVE</button>
-<button class="btn btn-yellow" onclick="startPitch(90)">🎤 90s SOUVERAIN</button>
-<button class="btn btn-green" onclick="openJury()">⚖️ JURY</button>
-<button class="btn btn-outline" onclick="stopAll()">■ STOP</button>
+<button class="btn btn-yellow" onclick="start(30)">🎤 30s CHOC</button>
+<button class="btn btn-yellow" onclick="start(60)">🎤 60s PREUVE</button>
+<button class="btn btn-yellow" onclick="start(90)">🎤 90s SOUVERAIN</button>
+<button class="btn btn-green" onclick="stopAll()">■ STOP</button>
 </div>
 <div class="progress"><div id="bar"></div></div>
 <div style="display:flex;justify-content:space-between"><span class="timer" id="timer">00:00</span><span id="pct">0%</span></div>
-<div class="stream" id="stream">Même moteur audio que agrosentinelles-demo. Clique PITCH, ça joue en MP3 continu, sans coupure 1s.</div>
-<audio id="mainAudio" style="display:none"></audio>
-</div>
-<div class="card" id="juryCard" style="display:none"><h3>JURY</h3><div id="juryQ" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"></div><div id="juryA" style="margin-top:12px"></div></div>
-<div class="card" id="finaleCard" style="display:none;background:#000;border:2px solid var(--yellow);text-align:center"><h2 style="color:var(--yellow)">M* Atteint</h2><p>VEROLIS SARL • v5.8 AUDIO</p></div>
+<div class="stream" id="stream">Clique 30s CHOC. Timer doit tourner même sans son. Si timer tourne, audio va suivre.</div>
+<audio id="a" controls style="width:100%;margin-top:8px"></audio>
 </div>
 <script>
-const manifest={name:"SENTINEL OS v5.8",short_name:"SENTINEL",start_url:"/?v=5.8",display:"standalone",background_color:"#000b08",theme_color:"#00ff88",icons:[{src:"https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9a0.png",sizes:"72x72",type:"image/png"}]};
-document.getElementById('manifestLink').href=URL.createObjectURL(new Blob([JSON.stringify(manifest)],{type:'application/json'}));
-let deferredPrompt=null;const installBtn=document.getElementById('installBtn');
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
-installBtn.onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;installBtn.style.display='none';}else alert("Menu ⋮ > Installer l'application");};
-
-const PITCH={
-30:`Chers membres du jury. A Lemba quand internet coupe tout s arrete. J ai refuse ca. Je suis Sentinel OS. Je vis dans votre poche. Offline. Souverain. Ne a Kinshasa. Verolis.`,
-60:`A Lemba on m a dit pas d internet pas d IA. J ai repondu faux. J ai cree Sentinel OS. Secret Theorie de la Triade Dynamique. Action energie. Navigation boussole. Destination M etoile point fixe ou I TTD egale un. Offline. Autonome. Kinshasa invente le futur.`,
-90:`Monsieur le President membres du jury FUSI. On nous vend la dependance. A Lemba nous avons choisi la souverainete. Je suis Sentinel OS ne de la Theorie de la Triade Dynamique. Pour Regideso Snel ou universite loi identique. Un Action impulsion. Deux Navigation filtrage rigoureux. Trois Destination M etoile point fixe ou entropie s annule ou I TTD egale un. Resultat offline sur simple terminal. Pendant que d autres bavardent dans le cloud Sentinel agit et stabilise. Verolis Sarl intelligence congolaise pour le monde. Merci.`
+const TEXTS={
+30:`Chers membres du jury. A Lemba quand internet coupe tout s arrete. J ai refuse ca. Je suis Sentinel OS. Dans votre poche. Offline. Souverain. Verolis Kinshasa.`,
+60:`A Lemba on m a dit pas d internet pas d IA. Faux. J ai cree Sentinel OS. Triade Dynamique. Action energie. Navigation boussole. Destination M etoile point fixe I TTD egale un. Offline. Kinshasa invente le futur.`,
+90:`Monsieur le President jury FUSI. On vend la dependance. A Lemba nous choisissons la souverainete. Je suis Sentinel OS Theorie Triade Dynamique. Pour Regideso Snel universite meme loi. Un Action. Deux Navigation. Trois Destination M etoile point fixe entropie nulle I TTD egale un. Offline sur terminal simple. Sentinel agit et stabilise. Verolis Sarl intelligence congolaise pour le monde. Merci.`
 };
-const JURY_Q=["TTD?","M etoile?","Offline?","Business?","Vs Cloud?"];
-const JURY_A={"TTD?":"Triade Dynamique Action Navigation Destination I TTD egal un.","M etoile?":"Point fixe parfait entropie nulle.","Offline?":"Souverainete Kinshasa reseau coupe Sentinel continue.","Business?":"Licence Verolis ecole entreprise possede son IA locale.","Vs Cloud?":"Cloud devine et hallucine Sentinel navigue vers M etoile."};
-
-let timerInt=null;let audio=document.getElementById('mainAudio');let isPlaying=false;
-
-function stopAll(){clearInterval(timerInt);audio.pause();audio.currentTime=0;isPlaying=false;document.getElementById('mode')?.remove();}
-
-// MÊME MOTEUR QUE AGROSENTINELLES-DEMO : Audio MP3 Google TTS
-function playMP3(text,onEnd){
+let t=null;let audio=document.getElementById('a');
+function stopAll(){clearInterval(t);audio.pause();document.getElementById('bar').style.width='0%';document.getElementById('timer').textContent='00:00';document.getElementById('pct').textContent='0%';}
+function start(sec){
  stopAll();
- // Découpe en phrases <200 chars pour Google TTS
- const chunks=text.match(/[^.!?]+[.!?]+/g)||[text];
- let idx=0;
- function playChunk(){
-  if(idx>=chunks.length){if(onEnd) onEnd();return;}
-  const chunk=chunks[idx].trim();
-  // Utilise le même endpoint que agrosentinelles-demo
-  const url=`https://translate.google.com/translate_tts?ie=UTF-8&tl=fr-FR&client=tw-ob&q=${encodeURIComponent(chunk)}`;
-  audio.src=url;
-  audio.onended=()=>{idx++;playChunk();};
-  audio.onerror=()=>{idx++;playChunk();};
-  audio.play().catch(()=>{idx++;playChunk();});
- }
- playChunk();
-}
-
-function startPitch(sec){
- const text=PITCH[sec];
+ const txt=TEXTS[sec];
  const stream=document.getElementById('stream');
  const bar=document.getElementById('bar');
  const timer=document.getElementById('timer');
- const pctEl=document.getElementById('pct');
- const finale=document.getElementById('finaleCard');
- stream.textContent='';bar.style.width='0%';finale.style.display='none';
- let elapsed=0;
- timerInt=setInterval(()=>{
-  elapsed++;const prog=Math.min(1,elapsed/sec);
-  stream.textContent=text.slice(0,Math.floor(prog*text.length));
-  bar.style.width=(prog*100)+'%';pctEl.textContent=Math.floor(prog*100)+'%';
-  const remain=Math.max(0,sec-elapsed);
-  timer.textContent=`00:${String(remain).padStart(2,'0')}`;
-  if(elapsed>=sec){clearInterval(timerInt);stream.textContent=text;bar.style.width='100%';pctEl.textContent='100%';finale.style.display='block';}
+ const pct=document.getElementById('pct');
+ let e=0;
+ // TIMER INDEPENDANT - tourne même si audio bloque
+ t=setInterval(()=>{
+  e++;const p=Math.min(1,e/sec);
+  stream.textContent=txt.slice(0,Math.floor(p*txt.length));
+  bar.style.width=(p*100)+'%';
+  pct.textContent=Math.floor(p*100)+'%';
+  timer.textContent=`00:${String(Math.max(0,sec-e)).padStart(2,'0')}`;
+  if(e>=sec){clearInterval(t);stream.textContent=txt;}
  },1000);
- playMP3(text);
-}
-
-function openJury(){
- document.getElementById('juryCard').style.display='block';
- const qDiv=document.getElementById('juryQ');qDiv.innerHTML='';
- JURY_Q.forEach(q=>{
-  const b=document.createElement('button');b.className='btn btn-outline';b.textContent=q;
-  b.onclick=()=>{
-   document.getElementById('juryA').innerHTML=`<b>${q}</b><br>${JURY_A[q]}`;
-   playMP3(JURY_A[q]);
-  };
-  qDiv.appendChild(b);
+ // AUDIO MP3 - même technique que agrosentinelles-demo.onrender.com
+ const url=`https://translate.google.com/translate_tts?ie=UTF-8&tl=fr-FR&client=tw-ob&q=${encodeURIComponent(txt)}`;
+ audio.src=url;
+ audio.play().catch(()=>{
+  // Fallback si Google bloque: speechSynthesis direct
+  const u=new SpeechSynthesisUtterance(txt);u.lang='fr-FR';u.rate=0.9;speechSynthesis.cancel();speechSynthesis.speak(u);
  });
-}
-
-if('serviceWorker' in navigator){
- navigator.serviceWorker.register('data:text/javascript;base64,'+btoa(`self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>self.clients.claim());self.addEventListener('fetch',e=>{e.respondWith(caches.open('sentinel-v5.8').then(c=>c.match(e.request).then(r=>r||fetch(e.request).then(res=>{c.put(e.request,res.clone());return res}))))})`));
 }
 </script>
 </body>
