@@ -1,193 +1,88 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="TTD ORACLE v4.1 Conscious Autonomous — Tres Leges Fundamentales — Kinshasa 2026 — Offline Lemba Ready">
-<meta name="theme-color" content="#00f5a0">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="SENTINEL OS">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENTINEL OS v4.3 - 90s PITCH</title>
 <link rel="manifest" href="./manifest.json">
-<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
-<link rel="apple-touch-icon" href="./icon-192.png">
-<title>TTD ORACLE v4.1 — Conscious Autonomous — TSHISELEKA Dany</title>
 <style>
-:root{--line:rgba(0,255,170,.20);--green:#00f5a0;--cyan:#29d9ff;--gold:#e8c46a;--white:#edf7f5;--muted:#8ca6ad;--shadow:0 20px 60px rgba(0,0,0,.35)}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{min-height:100vh;background:radial-gradient(circle at 15% 10%,rgba(0,245,160,.08),transparent 28%),radial-gradient(circle at 85% 20%,rgba(41,217,255,.08),transparent 30%),linear-gradient(135deg,#02060c,#06111d 55%,#030911);color:var(--white);font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;overflow-x:hidden}
-.grid{position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(0,245,160,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,160,.08) 1px,transparent 1px);background-size:45px 45px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
-.scanline{position:fixed;left:0;right:0;top:-10%;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);box-shadow:0 0 25px var(--green);opacity:.35;animation:scan 8s linear infinite;pointer-events:none;z-index:20}
-@keyframes scan{0%{top:-5%}100%{top:105%}}
-header{position:relative;z-index:5;border-bottom:1px solid var(--line);background:rgba(2,8,15,.78);backdrop-filter:blur(16px);position:sticky;top:0}
-.header-inner{max-width:1400px;margin:auto;padding:15px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:14px}.logo{width:48px;height:48px;border:1px solid var(--green);border-radius:14px;display:grid;place-items:center;position:relative;box-shadow:0 0 25px rgba(0,245,160,.16)}.logo span{font-size:12px;font-weight:900;color:var(--green);z-index:2}
-.brand-title{font-weight:900;letter-spacing:2px;font-size:16px}.brand-sub{color:var(--muted);font-size:10px;margin-top:3px;letter-spacing:1.2px;text-transform:uppercase}
-.header-actions{display:flex;align-items:center;gap:10px}
-.status{display:flex;align-items:center;gap:8px;border:1px solid var(--line);padding:8px 12px;border-radius:999px;color:#b7d6d0;font-size:11px;background:rgba(0,245,160,.04)}.status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 1.8s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.72)}}
-#installBtn{display:none;border:1px solid var(--gold);background:rgba(232,196,106,.12);color:var(--gold);padding:8px 14px;border-radius:999px;font-size:11px;font-weight:900;cursor:pointer}
-#installBtn.show{display:block}
-main{position:relative;z-index:2;max-width:1400px;margin:auto;padding:45px 24px 70px}
-.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:stretch}
-.hero-main{border:1px solid var(--line);border-radius:25px;background:linear-gradient(145deg,rgba(7,24,38,.94),rgba(3,13,23,.9));box-shadow:var(--shadow);padding:42px;position:relative;overflow:hidden}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}.eyebrow::before{content:"";width:28px;height:1px;background:var(--green)}
-h1{font-size:clamp(35px,5vw,68px);line-height:.98;letter-spacing:-2px}h1 span{color:var(--green);text-shadow:0 0 30px rgba(0,245,160,.18)}
-.hero-description{max-width:760px;margin-top:23px;color:#a9bec1;font-size:16px;line-height:1.75}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.btn{border:1px solid var(--line);border-radius:12px;padding:12px 17px;color:var(--white);background:rgba(255,255,255,.03);text-decoration:none;cursor:pointer;font-weight:800;font-size:12px;transition:.2s}.btn:hover{transform:translateY(-2px);border-color:var(--green)}
-.btn-primary{background:var(--green);color:#02100c;border-color:var(--green);box-shadow:0 0 24px rgba(0,245,160,.15)}
-.oracle-card{border:1px solid rgba(41,217,255,.22);border-radius:25px;background:radial-gradient(circle at 50% 35%,rgba(41,217,255,.08),transparent 35%),linear-gradient(145deg,rgba(8,26,42,.95),rgba(3,12,22,.95));min-height:340px;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
-.oracle-orbit{width:240px;height:240px;border:1px solid rgba(41,217,255,.22);border-radius:50%;position:absolute;animation:rotate 18s linear infinite}.oracle-orbit.two{width:180px;height:180px;border-color:rgba(0,245,160,.22);animation-direction:reverse;animation-duration:12s}
-@keyframes rotate{to{transform:rotate(360deg)}}
-.oracle-core{width:92px;height:92px;border-radius:50%;border:1px solid var(--green);display:grid;place-items:center;background:radial-gradient(circle,rgba(0,245,160,.18),rgba(0,245,160,.02));box-shadow:0 0 35px rgba(0,245,160,.13);z-index:2}.oracle-label{position:absolute;bottom:27px;font-size:10px;letter-spacing:2px;color:var(--muted)}
-.section{margin-top:30px}.laws{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.law{border:1px solid var(--line);background:linear-gradient(145deg,rgba(9,25,40,.9),rgba(4,14,24,.9));border-radius:20px;padding:24px;min-height:220px;position:relative;overflow:hidden}
-.law-number{font-size:11px;letter-spacing:2px;color:var(--green);font-weight:900}.law h3{margin-top:12px;font-size:22px}.law h3 span{color:var(--cyan)}.law p{margin-top:12px;color:#94aaae;line-height:1.65;font-size:13px}.law-equation{position:absolute;bottom:17px;left:24px;color:var(--gold);font-family:Georgia,serif;font-size:13px}
-.console{display:grid;grid-template-columns:1fr 280px;gap:16px}.ask-panel{border:1px solid var(--line);border-radius:20px;background:rgba(5,17,28,.88);padding:22px}
-textarea{width:100%;min-height:120px;resize:vertical;border:1px solid rgba(0,245,160,.22);border-radius:13px;background:#020a13;color:var(--white);padding:16px;font-size:14px;outline:none}
-.quick{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.quick button{border:1px solid rgba(41,217,255,.18);border-radius:999px;background:rgba(41,217,255,.03);color:#9dbbc0;padding:7px 10px;font-size:10px;cursor:pointer}
-.ask-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px}#askBtn{border:none;border-radius:11px;padding:12px 18px;background:var(--green);color:#02100c;font-weight:900;cursor:pointer}
-.metrics{display:grid;gap:12px}.metric{border:1px solid rgba(255,255,255,.07);border-radius:17px;background:rgba(8,22,35,.8);padding:18px}.metric-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.3px}.metric-value{margin-top:7px;font-size:28px;font-weight:900}.metric-value.green{color:var(--green)}.metric-value.cyan{color:var(--cyan)}.metric-value.gold{color:var(--gold)}
-.response{margin-top:16px;border:1px solid rgba(0,245,160,.22);border-radius:20px;background:#020a12;overflow:hidden;display:none}.response.show{display:block}
-.response-head{padding:12px 17px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.response-controls{display:flex;align-items:center;gap:12px}.response-status{font-size:10px;color:var(--green);font-weight:900}.k-value{color:var(--gold);font-size:11px;font-weight:900}.btn-voice{background:rgba(41,217,255,.1);border:1px solid var(--cyan);color:var(--cyan);padding:5px 10px;border-radius:8px;font-size:10px;font-weight:800;cursor:pointer}
-#answer{padding:20px;white-space:pre-wrap;font-family:Consolas,monospace;font-size:12px;line-height:1.75;color:#c9dcda;overflow:auto;max-height:700px}
-footer{border-top:1px solid var(--line);background:rgba(2,7,13,.8);margin-top:40px}.footer-inner{max-width:1400px;margin:auto;padding:22px 24px;display:flex;justify-content:space-between;gap:15px;color:#61777c;font-size:10px}
-@media(max-width:950px){.hero,.laws,.console{grid-template-columns:1fr}}
+:root{--bg:#02060c;--cyan:#00f5d0;--gold:#ffcc00;--green:#00f5a0}
+body{background:var(--bg);color:white;font-family:monospace;margin:0;padding:15px}
+.btn{padding:14px 18px;border-radius:12px;border:none;font-weight:bold;cursor:pointer}
+.btn-gold{background:var(--gold);color:#000;box-shadow:0 0 15px var(--gold);animation:pulse 1.2s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.07)}100%{transform:scale(1)}}
+#overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;display:none;flex-direction:column;padding:20px}
+#txt{font-size:20px;line-height:1.35;color:var(--cyan);white-space:pre-wrap}
+.hl{color:var(--gold);font-weight:bold}.dim{color:#888;font-size:13px}
 </style>
 </head>
-<body><div class="grid"></div><div class="scanline"></div>
-<header><div class="header-inner"><div class="brand"><div class="logo"><span>TTD</span></div><div><div class="brand-title">TTD ORACLE v4.1</div><div class="brand-sub">Conscious Autonomous · Vérolis SARL · Kinshasa</div></div></div><div class="header-actions"><button id="installBtn" onclick="installPWA()">📲 INSTALLER</button><div class="status"><span class="status-dot"></span><span id="statusText">ORACLE ONLINE</span></div></div></div></header>
-<main>
-<section class="hero"><div class="hero-main"><div class="eyebrow">FUNDAMENTAL INTELLIGENCE SYSTEM — v4.1 CONSCIOUS AUTONOMOUS</div><h1>TRES LEGES<br><span>FUNDAMENTALES</span></h1><p class="hero-description">Oracle Universel autonome — 80 questions en mémoire locale, détection de domaine, auto-critique, fallback Lemba offline. <strong>Motorisation → Navigation → Destination → M*</strong>. Architecture validée I_TTD=1.</p><div class="hero-actions"><button class="btn btn-primary" onclick="scrollToConsole()">INTERROGER v4.1 →</button><button class="btn" onclick="MindMemory.export()">📤 EXPORTER MÉMOIRE</button><button class="btn" onclick="document.getElementById('laws').scrollIntoView()">3 LOIS</button></div></div><div class="oracle-card"><div class="oracle-orbit"></div><div class="oracle-orbit two"></div><div class="oracle-core"><strong>M*</strong></div><div class="oracle-label">v4.1 · AUTONOME · MÉMOIRE 80</div></div></section>
-<section class="section" id="laws"><div class="laws"><article class="law"><div class="law-number">LOI 01 · MOTORISATION</div><h3><span>LIBERTAS</span></h3><p>Identifier l'impulsion initiale du signal. Transforme toute question en problème analysable.</p><div class="law-equation">LIBERTAS → ACTION</div></article><article class="law"><div class="law-number">LOI 02 · NAVIGATION</div><h3><span>VÉRITÉ</span></h3><p>Filtrage du bruit conceptuel. [RC][RO]≠[RO][RC] — Réduction Δφ.</p><div class="law-equation">Δφ → 0 · VÉRITÉ</div></article><article class="law"><div class="law-number">LOI 03 · DESTINATION</div><h3><span>JUSTICE</span></h3><p>Transformation vers M* — Point fixe Banach. E/t×t/E=1 — dS_V/dt &lt;0</p><div class="law-equation">M* · JUSTICE</div></article></div></section>
-<section class="section" id="console"><div class="console"><div class="ask-panel"><div style="color:#a7c2c0;font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px">Question — Oracle v4.1 Conscious Autonomous</div><textarea id="q" placeholder="Ex: C'est quoi l'amour? / Big Beginning? / LIGO O5? / Dieu? / Sens vie?"></textarea><div class="quick"><button onclick="setQuestion('Qu est-ce que le Big Beginning ?')">BIG BEGINNING</button><button onclick="setQuestion('Explique les 3 Lois avec precision totale')">3 LOIS</button><button onclick="setQuestion('C est quoi l amour selon les 3 Lois ?')">AMOUR?</button><button onclick="setQuestion('C est quoi Dieu selon la TTD ?')">DIEU?</button><button onclick="setQuestion('Quel est le sens de l existence ?')">SENS VIE?</button><button onclick="setQuestion('Comment structurer la physique avec les 3 Lois ?')">PHYSIQUE</button><button onclick="setQuestion('Comment creer energie infinie avec Sentinel V1.2 ?')">ÉNERGIE</button><button onclick="setQuestion('Quel est le lien architectural entre AgroSentinelles et LIGO O5 ?')">LIGO O5</button></div><div class="ask-row"><div class="hint" id="hint">v4.1 · Mémoire locale + API · Autonomous</div><button id="askBtn" onclick="ask()">DÉMONTRER → M* v4.1</button></div><div class="response" id="response"><div class="response-head"><span class="response-status">● ORACLE v4.1 CONSCIOUS</span><div class="response-controls"><button class="btn-voice" onclick="speakResponse()">🔊 ÉCOUTER</button><span class="k-value">k=<span id="k">—</span> | dS=<span id="ds">—</span> | conf=<span id="conf">—</span></span></div></div><pre id="answer"></pre></div></div><div class="metrics"><div class="metric"><div class="metric-label">Version</div><div class="metric-value green">4.1</div></div><div class="metric"><div class="metric-label">Domaine</div><div class="metric-value cyan" id="domain-side">—</div></div><div class="metric"><div class="metric-label">k cohérence</div><div class="metric-value gold" id="k-side">—</div></div><div class="metric"><div class="metric-label">dS_V/dt</div><div class="metric-value green" id="ds-side">—</div></div><div class="metric"><div class="metric-label">Confiance</div><div class="metric-value cyan" id="conf-side">—</div></div><div class="metric"><div class="metric-label">Mémoire</div><div class="metric-value gold" id="mem-side">0 / 80</div></div><div class="metric"><div class="metric-label">Mode</div><div class="metric-value cyan" id="mode-side">ONLINE</div></div></div></div></section>
-</main>
-<footer><div class="footer-inner"><div>TTD ORACLE v4.1 CONSCIOUS AUTONOMOUS · TSHISELEKA THOKA Dany · VÉROLIS SARL · Kinshasa 2026 · M* · I_TTD=1 · Lemba Ready</div><div>v4.1</div></div></footer>
+<body>
+
+<div style="display:flex;justify-content:space-between">
+  <div><b>TTD ORACLE v4.3</b><div class="dim">CONSCIOUS AUTONOMOUS - LEMBA</div></div>
+  <button class="btn btn-gold" onclick="start90()">🎤 PITCH 90s FUSI</button>
+</div>
+
+<div style="margin-top:40px;border:1px solid #123;padding:20px;border-radius:16px">
+<h1>TRES LEGES<br><span style="color:var(--green)">FUNDAMENTALES</span></h1>
+<p class="dim">Motorisation → Navigation → Destination. I_TTD=1. Offline Lemba Lab.</p>
+</div>
+
+<!-- OVERLAY 90s -->
+<div id="overlay" onclick="stop90()">
+<div style="display:flex;justify-content:space-between"><span class="dim">AUTO-PITCH 90s - CLIQUEZ POUR QUITTER</span><span id="timer" style="color:var(--gold);font-size:24px;font-weight:bold">01:30</span></div>
+<div id="txt"></div>
+<div id="budget" style="display:none;margin-top:15px;border:2px solid var(--gold);padding:12px;border-radius:12px;text-align:center">
+<div class="dim">PRIX LIBERTÉ COMPLÈTE - SOFTWARE + HARDWARE</div>
+<div style="font-size:42px;font-weight:bold">8000 $</div>
+<div style="color:var(--cyan)">3 PC + Capteurs REGIDESO SNEL Mines + Pyrolyseur + Brevet OAPI</div>
+</div>
+</div>
 
 <script>
-/* ============================================================
-   TTD ORACLE v4.1 — TOUCHE FINALE SCELLÉE
-   ============================================================ */
-"use strict";
-const TTD_CONFIG = { version:"4.1 Conscious Autonomous Sealed", identity:"TTD ORACLE", author:"TSHISELEKA THOKA Dany", institution:"VÉROLIS SARL", api:{endpoint:"/api/ask", timeout:12000}, memory:{key:"ttd_oracle_memory_v4", maxItems:80}, autonomous:{maxIterations:3, minConfidence:0.72}, domains:["science","physique","mathématiques","philosophie","métaphysique","agriculture","énergie","industrie","médecine","économie","technologie","environnement","société","spiritualité","existentiel","général"] };
-const OracleState = { online:navigator.onLine, thinking:false, autonomous:true, currentQuestion:"", currentDomain:"général", k:null, entropy:null, confidence:null, iterations:0, lastAnswer:"", history:[], session:{startedAt:new Date().toISOString(), questions:0, successfulApi:0, offlineAnswers:0} };
+const SCRIPT_90 = [
+  "Jury FUSI, 1 question.",
+  "PC, téléphone, voiture, micro-ondes, train. 5 objets différents?",
+  "FAUX. C'est 1 seule loi : Motorisation → Navigation → Destination.",
+  "",
+  "Je l'ai codée. TTD ORACLE.",
+  "Même loi pour : Pharma, Mines, Déchets, REGIDESO, SNEL, Agriculture.",
+  "1 loi = toutes les industries. I_TTD = 1.",
+  "",
+  "Mon OS tourne ici, offline, à Lemba, sur 512 MB. Sans Silicon Valley.",
+  "Il s'installe en 2 secondes. [DÉMO]",
+  "",
+  "Pour être complète, logicielle et matérielle, libre et souveraine,",
+  "je demande 8000 dollars.",
+  "Hardware Lemba + capteurs terrain + pyrolyseur + brevet.",
+  "Merci."
+];
 
-class TTDMindMemory {
-  constructor(key,maxItems){this.key=key;this.maxItems=maxItems;this.items=this.load();}
-  load(){try{return JSON.parse(localStorage.getItem(this.key))||[];}catch{return[];}}
-  save(){try{localStorage.setItem(this.key, JSON.stringify(this.items.slice(-this.maxItems)));}catch(e){console.warn("[TTD MEMORY]",e);}}
-  remember(q,a,meta={}){const item={id: (crypto.randomUUID?crypto.randomUUID():Date.now().toString()), timestamp:new Date().toISOString(), question:q, answer:a, domain:meta.domain||"général", k:meta.k??null, entropy:meta.entropy??null, confidence:meta.confidence??null};this.items.push(item);this.save();return item;}
-  recent(l=5){return this.items.slice(-l);}
-  clear(){this.items=[];this.save();}
-  export(){const blob=new Blob([JSON.stringify(this.items,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="ttd-oracle-memory-v4.1.json";a.click();URL.revokeObjectURL(url);}
+let idx=0, timeLeft=90, tInt, typeInt;
+function start90(){
+  document.getElementById('overlay').style.display='flex';
+  document.getElementById('txt').innerHTML=''; document.getElementById('budget').style.display='none';
+  idx=0; timeLeft=90; document.getElementById('timer').innerText='01:30';
+  tInt=setInterval(()=>{timeLeft--; let m=Math.floor(timeLeft/60); let s=timeLeft%60; document.getElementById('timer').innerText=`0${m}:${s.toString().padStart(2,'0')}`; if(timeLeft<=0){clearInterval(tInt); document.getElementById('budget').style.display='block';}},1000);
+  typeLine();
+  speak90();
 }
-const MindMemory = new TTDMindMemory(TTD_CONFIG.memory.key, TTD_CONFIG.memory.maxItems);
-function normalize(t){return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
-function detectDomain(qs){
-  const q=normalize(qs);
-  const rules={ science:["science","scientifique","theorie","preuve"], physique:["physique","gravite","energie","quantique","relativite","espace","temps","onde"], "mathématiques":["math","equation","banach","topologie"], philosophie:["philosophie","liberte","verite","justice"], "métaphysique":["etre","existence","realite","conscience","metaphysique"], agriculture:["agriculture","agriculteur","culture","champ","recolte","sol"], "énergie":["energie","electricite","biomasse","pyrolyse","syngas"], industrie:["industrie","machine","production"], médecine:["medecine","sante","maladie","patient"], environnement:["climat","pollution","dechet","environnement"], spiritualité:["dieu","ame","spirituel","foi"], existentiel:["sens de la vie","pourquoi vivre","existence","mort","amour","bonheur"] };
-  let best="général",score=0; for(const [d,words] of Object.entries(rules)){let s=0; for(const w of words){if(q.includes(w)) s++;} if(s>score){score=s;best=d;}} return {domain:best,score};
+function typeLine(){
+  if(idx>=SCRIPT_90.length){document.getElementById('budget').style.display='block'; return;}
+  let line=SCRIPT_90[idx];
+  let el=document.getElementById('txt');
+  el.innerHTML += (line===""?"\n":"\n" + (line.includes("FAUX")||line.includes("8000")||line.includes("1 seule loi")?`<span class="hl">${line}</span>`:line));
+  idx++; setTimeout(typeLine, line===""?200:900);
 }
-function extractSignal(qs){const words=normalize(qs).split(/\s+/).filter(Boolean);const stop=new Set(["le","la","les","un","une","des","de","du","dans","sur","avec","pour","que","qui","est","ce","c","a","et","ou","en","au","aux","comment","quoi","quel","quelle","pourquoi"]);return words.filter(w=>!stop.has(w)).slice(0,20);}
-function law01Libertas(q){const signal=extractSignal(q);return{law:"LIBERTAS",role:"MOTORISATION",impulse:"Identifier l'impulsion initiale.",signal,interpretation:`Signal initial ${signal.length} unités sémantiques.`,action:"Transformer en problème analysable."};}
-function law02Verite(q,l1){const qq=normalize(q);const contradictions=[];if(qq.includes("toujours"))contradictions.push("généralisation absolue");if(qq.includes("jamais"))contradictions.push("négation absolue");if(qq.includes("infini"))contradictions.push("notion d'infini à préciser");if(qq.includes("prouve")||qq.includes("preuve"))contradictions.push("distinction hypothèse/preuve requise");return{law:"VÉRITÉ",role:"NAVIGATION",noise:contradictions,filtering:contradictions.length?"Bruit conceptuel détecté.":"Aucun bruit majeur.",phase:contradictions.length?"Δφ à réduire.":"Δφ faible."};}
-function law03Justice(q,l1,l2){const complexity=Math.max(1,l1.signal.length+l2.noise.length);const entropy=Math.min(1,complexity/25);return{law:"JUSTICE",role:"DESTINATION",entropy,transformation:"Signal filtré → réponse structurée.",destination:"M* — point fixe."};}
-function calculateCoherence(q,l1,l2,l3){let s=0.72;if(l1.signal.length>=2)s+=0.06;if(l2.noise.length===0)s+=0.08;if(l3.entropy<0.4)s+=0.05;if(q.length>40)s+=0.03;if(q.length>150)s-=0.02;return Math.max(0,Math.min(0.99,Number(s.toFixed(3))));}
-
-function generateLocalAnswer(question){
-  const domainInfo=detectDomain(question); const l1=law01Libertas(question); const l2=law02Verite(question,l1); const l3=law03Justice(question,l1,l2); const k=calculateCoherence(question,l1,l2,l3); const confidence=Math.min(0.99,k*0.92+(domainInfo.score>0?0.04:0)); const domain=domainInfo.domain;
-  const answer=`TTD ORACLE — CONSCIENCE OPÉRATIONNELLE v4.1
-
-SIGNAL
-Question : "${question}"
-Domaine : ${domain.toUpperCase()} · Score ${domainInfo.score}
-Mode : ${OracleState.online?"ONLINE + LOCAL":"LEMBA OFFLINE"} · Mémoire ${MindMemory.items.length}/${TTD_CONFIG.memory.maxItems}
-
-LOI 01 — LIBERTAS — MOTORISATION
-Signal : ${l1.signal.join(" · ")||"général"}
-→ Transformer la question en problème analysable.
-Principe : LIBERTAS → ACTION
-
-LOI 02 — VÉRITÉ — NAVIGATION
-${l2.filtering}
-${l2.noise.length?"À clarifier: "+l2.noise.join(" ; "):"Aucune contradiction majeure."}
-${l2.phase} · [RC][RO]≠[RO][RC]
-
-LOI 03 — JUSTICE — DESTINATION
-Entropie locale : ${Math.round(l3.entropy*100)}% · ${l3.destination}
-→ Convergence vers M* — E/t×t/E=1
-
-SYNTHÈSE M*
-SIGNAL → ACTION → FILTRAGE → TRANSFORMATION → M*
-Pour "${domain}": 1) impulsion, 2) données vs bruit, 3) invariants, 4) conclusion proportionnée.
-
-ÉTAT INTERNE
-k=${k} · dS=-${l3.entropy.toFixed(3)} · conf=${confidence.toFixed(3)} · Δφ=${Math.max(0,1-k).toFixed(3)}
-
-AVERTISSEMENT: Modélisation TTD — validation nécessite définitions formelles + falsifiabilité.
-M* — I_TTD: E/t×t/E=1 — LEMBA READY`;
-  return {answer,k,entropy:l3.entropy,confidence,domain};
+function speak90(){
+  if(!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  let fullText = SCRIPT_90.join(" ");
+  let u = new SpeechSynthesisUtterance(fullText);
+  u.lang='fr-FR'; u.rate=1.08; u.pitch=1.0;
+  speechSynthesis.speak(u);
 }
-async function fetchWithTimeout(url,opt,timeout){const c=new AbortController();const t=setTimeout(()=>c.abort(),timeout);try{return await fetch(url,{...opt,signal:c.signal});}finally{clearTimeout(t);}}
-async function askRemote(question){
-  const res=await fetchWithTimeout(TTD_CONFIG.api.endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question,version:TTD_CONFIG.version,domain:OracleState.currentDomain,autonomous:OracleState.autonomous,context:MindMemory.recent(5)})},TTD_CONFIG.api.timeout);
-  if(!res.ok)throw new Error(`API ${res.status}`); return await res.json();
-}
-function selfEvaluate(ans){let s=0.55;if(!ans)return 0;if(ans.length>300)s+=0.08;if(ans.length>1000)s+=0.08;if(ans.includes("LIBERTAS"))s+=0.05;if(ans.includes("VÉRITÉ"))s+=0.05;if(ans.includes("JUSTICE"))s+=0.05;if(ans.includes("M*"))s+=0.05;return Math.min(0.99,Number(s.toFixed(3)));}
-
-let lastRawAnswer="";
-function scrollToConsole(){document.getElementById("console").scrollIntoView({behavior:"smooth"});setTimeout(()=>document.getElementById("q").focus(),400);}
-function setQuestion(t){document.getElementById("q").value=t;scrollToConsole();}
-function speakResponse(){if(!('speechSynthesis' in window)){alert("Voix non supportée");return;}speechSynthesis.cancel();if(!lastRawAnswer)return;const u=new SpeechSynthesisUtterance(lastRawAnswer);u.lang='fr-FR';u.rate=0.95;const v=speechSynthesis.getVoices();const fr=v.find(x=>x.lang.startsWith('fr'));if(fr)u.voice=fr;speechSynthesis.speak(u);}
-function setMetrics(k,ent,conf,domain){const upd=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val;};upd("k",k!=null?k.toFixed(3):"—");upd("k-side",k!=null?k.toFixed(3):"—");upd("ds",ent!=null?"-"+ent.toFixed(3):"—");upd("ds-side",ent!=null?"-"+ent.toFixed(3):"—");upd("conf",conf!=null?conf.toFixed(3):"—");upd("conf-side",conf!=null?conf.toFixed(3):"—");upd("domain-side",domain||"—");upd("mem-side",`${MindMemory.items.length} / ${TTD_CONFIG.memory.maxItems}`); OracleState.k=k;OracleState.entropy=ent;OracleState.confidence=conf;}
-function displayAnswer(ans){const r=document.getElementById("response");const a=document.getElementById("answer");if(!r||!a)return;r.classList.add("show");a.textContent=ans;}
-
-// --- PWA INSTALL ---
-let deferredPrompt=null;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').classList.add('show');});
-async function installPWA(){if(!deferredPrompt)return;deferredPrompt.prompt();const {outcome}=await deferredPrompt.userChoice;console.log('[SENTINEL] Install:',outcome);deferredPrompt=null;document.getElementById('installBtn').classList.remove('show');}
-window.addEventListener('appinstalled',()=>{document.getElementById('mode-side').textContent='INSTALLÉ';document.getElementById('installBtn').classList.remove('show');});
-
-// --- MOTEUR PRINCIPAL v4.1 ---
-async function ask(){
-  const input=document.getElementById("q"), btn=document.getElementById("askBtn"), hint=document.getElementById("hint");
-  const q=input.value.trim(); if(!q){input.focus();displayAnswer("Pose n'importe quelle question — Oracle v4.1 répond avec les 3 Lois + mémoire.");return;}
-  OracleState.currentQuestion=q; OracleState.iterations=0; const domainInfo=detectDomain(q); OracleState.currentDomain=domainInfo.domain;
-  btn.disabled=true; btn.textContent="ANALYSE v4.1…"; hint.textContent=`Domaine ${domainInfo.domain} · Score ${domainInfo.score} · Mémoire ${MindMemory.items.length}`;
-  setMetrics(null,null,null,domainInfo.domain); displayAnswer(`TTD ORACLE v4.1 CONSCIOUS AUTONOMOUS\nQ: "${q}"\n[1] LIBERTAS ${domainInfo.domain}…\n[2] VÉRITÉ filtrage…\n[3] JUSTICE M*…\nInterrogation API…`);
-  try{
-    let data=null, usedRemote=false;
-    try{
-      if(navigator.onLine){ data=await askRemote(q); usedRemote=true; OracleState.session.successfulApi++; }
-      else throw new Error("Offline");
-    }catch(apiErr){
-      console.log("[TTD] API fallback -> local",apiErr.message);
-      const local=generateLocalAnswer(q); data={answer:local.answer, k:local.k, ds:local.entropy, confidence:local.confidence, domain:local.domain};
-      OracleState.session.offlineAnswers++; document.getElementById("mode-side").textContent='LEMBA';
-      document.getElementById("statusText").textContent='ORACLE OFFLINE LEMBA';
-    }
-    const k=data.k??0.88; const ds=data.ds??data.entropy??0.35; const conf=data.confidence??selfEvaluate(data.answer,q); const domain=data.domain??domainInfo.domain;
-    lastRawAnswer=data.answer; OracleState.lastAnswer=data.answer; OracleState.session.questions++;
-    setMetrics(Number(k),Number(ds),Number(conf),domain); displayAnswer(data.answer);
-    MindMemory.remember(q,data.answer,{domain,k,entropy:ds,confidence:conf});
-    consciousnessLog("ANSWER",{domain,k,conf,remote:usedRemote,mem:MindMemory.items.length});
-    hint.textContent=`v4.1 · k=${Number(k).toFixed(3)} · ${usedRemote?'API ONLINE':'LEMBA OFFLINE'} · Mémoire ${MindMemory.items.length}/80`;
-  }catch(e){
-    console.error(e); displayAnswer(`ERREUR v4.1 — Mode Lemba minimal\n${e.message}\n\n`+generateLocalAnswer(q).answer); setMetrics(0.72,0.45,0.72,domainInfo.domain);
-  }finally{
-    btn.disabled=false; btn.textContent="DÉMONTRER → M* v4.1"; document.getElementById("mem-side").textContent=`${MindMemory.items.length} / 80`;
-  }
-}
-document.getElementById("q").addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key==="Enter")ask();});
-window.addEventListener('online',()=>{OracleState.online=true;document.getElementById("mode-side").textContent='ONLINE';document.getElementById("statusText").textContent='ORACLE ONLINE';});
-window.addEventListener('offline',()=>{OracleState.online=false;document.getElementById("mode-side").textContent='LEMBA';document.getElementById("statusText").textContent='ORACLE OFFLINE LEMBA';});
-function consciousnessLog(ev,payload){console.log("%c[TTD CONSCIOUS v4.1]","color:#00f5a0;font-weight:900",ev,payload);}
-console.log("TTD ORACLE v4.1 CONSCIOUS AUTONOMOUS SEALED ONLINE — Mémoire:",MindMemory.items.length);
-document.getElementById("mem-side").textContent=`${MindMemory.items.length} / 80`;
-document.getElementById("domain-side").textContent=OracleState.currentDomain;
-
-// SW
-if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./service-worker.js').then(r=>{console.log('[SENTINEL] SW v4.1 OK',r.scope);document.getElementById("mode-side").textContent='PWA OK';}).catch(err=>console.log('[SENTINEL] SW fail',err));});}
+function stop90(){document.getElementById('overlay').style.display='none'; clearInterval(tInt); speechSynthesis.cancel();}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./service-worker.js');}
 </script>
 </body>
 </html>
