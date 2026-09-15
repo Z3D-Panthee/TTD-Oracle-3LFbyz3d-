@@ -2,103 +2,164 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>SENTINEL OS v5.6 - EXTRAORDINAIRE - Lemba Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SENTINEL OS v5.7 - FINAL FUSI</title>
 <meta name="theme-color" content="#00ff88">
 <link id="manifestLink" rel="manifest" href="">
 <style>
-:root{--green:#00ff88;--yellow:#ffcc00;--bg:#000b08;--cyan:#00f5d0;--border:#16412e}
-*{box-sizing:border-box;font-family:ui-monospace,Menlo,monospace}
-body{margin:0;background:radial-gradient(1000px at 20% -10%,#0f3324 0%,#000b08 60%);color:#cde9de;min-height:100vh}
-.header{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(0,11,8,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
-.brand{font-weight:900;letter-spacing:.14em}
-.sys{font-size:.62rem;opacity:.65;margin-top:2px}
-.badges{display:flex;gap:8px;align-items:center}
-.badge{padding:8px 15px;border-radius:999px;font-size:.72rem;border:1px solid var(--border);font-weight:900}
-.install{background:var(--yellow);color:#000;border-color:var(--yellow);cursor:pointer;box-shadow:0 0 28px rgba(255,204,0,.65);animation:pulse 1s infinite alternate;display:inline-block!important}
-@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.08)}}
-.online{background:rgba(0,255,136,.14);color:var(--green);border-color:var(--green)}
-.main{max-width:940px;margin:0 auto;padding:16px}
-.card{background:linear-gradient(180deg,rgba(16,42,31,.9) 0%,rgba(7,20,15,.95) 100%);border:1px solid var(--border);border-radius:22px;padding:20px;margin:14px 0;box-shadow:0 12px 50px rgba(0,0,0,.6);backdrop-filter:blur(6px)}
-h1{font-size:2.5rem;line-height:.88;letter-spacing:-.03em;margin:6px 0}h1 span{color:var(--green);text-shadow:0 0 20px rgba(0,255,136,.4)}
-.sub{opacity:.85;line-height:1.6;margin:8px 0 14px}
-.row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
-.btn{border:0;border-radius:999px;padding:13px 19px;font-weight:900;cursor:pointer;transition:.18s;letter-spacing:.02em}
-.btn:active{transform:scale(.96)}
-.btn-yellow{background:var(--yellow);color:#000;box-shadow:0 8px 24px rgba(255,204,0,.38)}
-.btn-green{background:var(--green);color:#000;box-shadow:0 8px 24px rgba(0,255,136,.25)}
-.btn-outline{background:transparent;border:1px solid #204d36;color:#9de9c0}
-.btn:hover{transform:translateY(-2px)}
-.progress{height:7px;background:#0b2318;border-radius:999px;overflow:hidden;margin:12px 0}
-.progress div{height:100%;width:0%;background:linear-gradient(90deg,var(--green),var(--cyan),var(--yellow));transition:width.35s linear}
-.meta{display:flex;justify-content:space-between;align-items:center}
-.timer{color:var(--yellow);font-weight:900;font-size:1.9rem;text-shadow:0 0 12px rgba(255,204,0,.4)}
-.pct{font-size:.8rem;opacity:.8}
-.stream{min-height:160px;white-space:pre-wrap;line-height:1.8;font-size:1.1rem;color:var(--cyan)}
-.stream.active{color:var(--yellow);font-weight:900;text-shadow:0 0 8px rgba(255,204,0,.6)}
-.status{font-size:.75rem;color:var(--yellow);font-weight:800;margin:8px 0}
-.final{display:none;background:radial-gradient(400px at 50% 0%,#1a2f00 0%,#000 70%);border:2px solid var(--yellow);border-radius:22px;padding:22px;margin:14px 0;text-align:center;animation:appear.6s}
-@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.juryQ.btn{font-size:.82rem}
+:root{--green:#00ff88;--yellow:#ffcc00;--bg:#000b08;--cyan:#00f5d0}
+*{box-sizing:border-box;font-family:monospace}
+body{margin:0;background:#000b08;color:#cde9de;min-height:100vh}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid #143d2a;position:sticky;top:0;background:#000b08;z-index:20}
+.badge{padding:8px 14px;border-radius:999px;font-size:.7rem;border:1px solid #143d2a;font-weight:900}
+.install{background:var(--yellow);color:#000;box-shadow:0 0 20px rgba(255,204,0,.6);animation:pulse 1s infinite alternate}
+@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.06)}}
+.online{background:rgba(0,255,136,.12);color:var(--green);border-color:var(--green)}
+.main{max-width:900px;margin:0 auto;padding:14px}
+.card{background:#0a1f18;border:1px solid #16412e;border-radius:20px;padding:18px;margin:12px 0}
+h1{font-size:2.3rem;margin:0}h1 span{color:var(--green)}
+.btn{border:0;border-radius:999px;padding:12px 16px;font-weight:900;margin:5px;cursor:pointer}
+.btn-yellow{background:var(--yellow);color:#000}
+.btn-green{background:var(--green);color:#000}
+.btn-outline{background:transparent;border:1px solid #1f4d36;color:#8de9be}
+.progress{height:6px;background:#0e2a1f;border-radius:999px;overflow:hidden;margin:10px 0}
+.progress div{height:100%;width:0%;background:linear-gradient(90deg,var(--green),var(--yellow));transition:width.3s linear}
+.timer{font-size:1.8rem;color:var(--yellow);font-weight:900}
+.stream{min-height:140px;white-space:pre-wrap;line-height:1.7;font-size:1.05rem;color:var(--cyan);margin-top:10px}
+.status{font-size:.72rem;color:var(--yellow);margin:6px 0}
 </style>
 </head>
 <body>
 <div class="header">
-<div><div class="brand">TTD ORACLE • VEROLIS</div><div class="sys">SYS: SENTINEL_OS v5.6 EXTRAORDINAIRE • LEMBA • <span id="mode">STANDBY</span> • I_TTD:1.000</div></div>
-<div class="badges"><button id="installBtn" class="badge install">📲 INSTALLER</button><div class="badge online">● ORACLE ONLINE</div></div>
+<div><div style="font-weight:900">TTD ORACLE • v5.7 FINAL</div><div style="font-size:.6rem;opacity:.6">SYS: STANDBY • <span id="mode">STANDBY</span> • I_TTD:1.000</div></div>
+<div style="display:flex;gap:6px"><button id="installBtn" class="badge install">📲 INSTALLER</button><div class="badge online">● ONLINE</div></div>
 </div>
 <div class="main">
 <div class="card">
-<div style="color:var(--green);font-size:.68rem;letter-spacing:.18em;font-weight:900">v5.6 EXTRAORDINAIRE - FUSI EDITION - SYNTHÈSE CONTINUE</div>
-<h1>SENTINEL<br><span>OS v5.6</span></h1>
-<div class="sub">Intelligence souveraine locale. Validée mathématiquement. Conçue à Lemba, pour le monde. <b>Offline. Zéro bug. Jury ready.</b></div>
-<div class="status" id="voiceStatus">🔊 Initialisation moteur vocal souverain...</div>
-<div class="row">
-<button class="btn btn-yellow" onclick="startPitch(30)">🎤 30s - CHOC</button>
-<button class="btn btn-yellow" onclick="startPitch(60)">🎤 60s - PREUVE</button>
-<button class="btn btn-yellow" onclick="startPitch(90)">🎤 90s - SOUVERAIN (JURY)</button>
-<button class="btn btn-green" onclick="openJury()">⚖️ Q&A JURY</button>
+<div style="color:var(--green);font-size:.65rem">v5.7 FINAL - VOIX DEBLOQUEE CHROME ANDROID - ZERO TIMEOUT</div>
+<h1>SENTINEL<br><span>OS v5.7</span></h1>
+<p style="opacity:.8">Offline • Souverain • Lemba Lab • FUSI Jury Ready</p>
+<div class="status" id="voiceStatus">🔊 Clique n'importe où une fois pour activer la voix, puis lance un PITCH</div>
+<div>
+<button class="btn btn-yellow" onclick="startPitch(30)">🎤 30s CHOC</button>
+<button class="btn btn-yellow" onclick="startPitch(60)">🎤 60s PREUVE</button>
+<button class="btn btn-yellow" onclick="startPitch(90)">🎤 90s SOUVERAIN</button>
+<button class="btn btn-green" onclick="openJury()">⚖️ JURY</button>
 <button class="btn btn-outline" onclick="stopAll()">■ STOP</button>
 </div>
 <div class="progress"><div id="bar"></div></div>
-<div class="meta"><span class="timer" id="timer">00:00</span><span class="pct" id="pct">0% • PRÊT</span></div>
-<div class="stream" id="stream">Prêt pour la démonstration FUSI. Cliquez un PITCH. Le système est en attente de votre ordre.</div>
+<div style="display:flex;justify-content:space-between"><span class="timer" id="timer">00:00</span><span id="pct">0%</span></div>
+<div class="stream" id="stream">1. Clique une fois sur l'écran pour débloquer l'audio Android.<br>2. Puis clique PITCH 30s. Ça ne coupera plus.</div>
 </div>
-<div class="card" id="juryCard" style="display:none"><h3>⚖️ JURY MODE - QUESTIONS CRITIQUES VÉROLIS</h3><div id="juryQ" class="row juryQ" style="margin-top:12px"></div><div id="juryA" style="margin-top:16px;line-height:1.7;color:var(--cyan);font-size:1.02rem"></div></div>
-<div class="final" id="finaleCard"><h2 style="color:var(--yellow);font-size:1.5rem">Souveraineté Validée. Point Fixe Atteint. M* = STABLE.</h2><p style="margin-top:10px;line-height:1.6">VEROLIS SARL • LEMBA LAB • TTD I_TTD=1.000 • OFFLINE READY • v5.6 EXTRAORDINAIRE<br><span style="font-size:.8rem;opacity:.7">From a fundamental principle to a sovereign operating system.</span></p><div style="margin-top:12px;font-size:1.6rem">🌍 🇨🇩 ⚡</div></div>
+<div class="card" id="juryCard" style="display:none"><h3>JURY</h3><div id="juryQ" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"></div><div id="juryA" style="margin-top:12px"></div></div>
+<div class="card" id="finaleCard" style="display:none;background:#000;border:2px solid var(--yellow);text-align:center"><h2 style="color:var(--yellow)">Point Fixe Atteint M*</h2><p>VEROLIS SARL • v5.7 FINAL</p></div>
 </div>
 <script>
-// MANIFEST PWA
-const manifest={name:"SENTINEL OS v5.6 EXTRAORDINAIRE",short_name:"SENTINEL v5.6",start_url:"/?v=5.6",display:"standalone",background_color:"#000b08",theme_color:"#00ff88",icons:[{src:"https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9a0.png",sizes:"72x72",type:"image/png"},{src:"https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/192x192/1f9a0.png",sizes:"192x192",type:"image/png"}]};
+// MANIFEST
+const manifest={name:"SENTINEL OS v5.7",short_name:"SENTINEL",start_url:"/?v=5.7",display:"standalone",background_color:"#000b08",theme_color:"#00ff88",icons:[{src:"https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9a0.png",sizes:"72x72",type:"image/png"}]};
 document.getElementById('manifestLink').href=URL.createObjectURL(new Blob([JSON.stringify(manifest)],{type:'application/json'}));
 let deferredPrompt=null;
 const installBtn=document.getElementById('installBtn');
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installBtn.textContent='📲 INSTALLER';});
-installBtn.onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();const c=await deferredPrompt.userChoice;if(c.outcome==='accepted')installBtn.style.display='none';deferredPrompt=null;}else{if(/iPhone|iPad|iPod/.test(navigator.userAgent))alert("iPhone:\nPartage ⬆️ > Sur l'écran d'accueil > Ajouter");else alert("Android:\nMenu ⋮ > Installer l'application > Installer");}};
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
+installBtn.onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;installBtn.style.display='none';}else alert("Menu ⋮ > Installer l'application");};
 
-// PITCHS ULTRA SOPHISTIQUÉS
 const PITCH_TEXTS={
-30:`Chers membres du jury. A Lemba, quand internet coupe, tout s arrete. J ai refuse cette fatalite. Je vous presente Sentinel OS. Une intelligence souveraine, sans cloud, directement dans votre poche. Offline, instantanee, invincible. Verolis en action.`,
-60:`A Lemba, on m a repete qu une intelligence artificielle exigeait la Silicon Valley et des serveurs geants. J ai prouve le contraire. J ai bati Sentinel OS sur une loi universelle : la Theorie de la Triade Dynamique. Toute intelligence qui reussit fait trois pas. Action, l energie qui ose. Navigation, la boussole souveraine qui filtre le bruit. Destination, M etoile, le point fixe parfait ou I T T D egale un. Resultat : zero bug, zero cloud, zero dependance. Le futur s ecrit a Kinshasa.`,
-90:`Monsieur le President, eminents membres du jury FUSI. On nous vend la dependance comme une fatalite. A Lemba, nous avons choisi la souverainete.\n\nJe suis Sentinel OS, ne de la Theorie de la Triade Dynamique. Qu il s agisse de piloter l eau de la Regideso, l energie de la Snel, ou des donnees d une universite, la loi reste identique.\n\nUn : l Action. L impulsion initiale sans laquelle rien ne nait.\nDeux : la Navigation. Le filtrage rigoureux de chaque interference pour garder le cap vers la verite.\nTrois : la Destination. M etoile. Le point fixe mathematique ou l entropie s annule, ou l invariant I T T D atteint exactement un. Inspire de Banach, valide a Lemba.\n\nLe resultat est devant vous. Mon systeme tourne entierement offline, sur un simple terminal, sans faillir. Pendant que d autres bavardent dans le cloud, Sentinel agit, stabilise et resout.\nC est la contribution de Verolis Sarl. Une intelligence congolaise, souveraine, pour l Afrique et le monde. Merci.`
+30:`Chers membres du jury. A Lemba quand internet coupe tout s arrete. J ai refuse ca. Je suis Sentinel OS. Je vis dans votre poche. Offline. Souverain. Ne a Kinshasa. Verolis.`,
+60:`A Lemba on m a dit pas d internet pas d IA. J ai repondu faux. J ai cree Sentinel OS. Secret : Theorie de la Triade Dynamique. Action energie. Navigation boussole. Destination M etoile point fixe ou I TTD egale un. Offline. Autonome. Kinshasa invente le futur.`,
+90:`Monsieur le President membres du jury. On nous vend la dependance. A Lemba nous avons choisi la souverainete. Je suis Sentinel OS ne de la Theorie de la Triade Dynamique. Pour Regideso Snel ou universite loi identique. Un Action impulsion. Deux Navigation filtrage rigoureux. Trois Destination M etoile point fixe ou entropie s annule ou I TTD egale un. Resultat offline sur simple terminal. Pendant que d autres bavardent dans le cloud Sentinel agit et stabilise. Verolis Sarl intelligence congolaise pour le monde. Merci.`
 };
-const JURY_Q=["Qu est ce que la TTD?","Pourquoi M etoile?","Pourquoi offline?","Modele economique?","Superiorite vs IA cloud?"];
+const JURY_Q=["TTD?","M etoile?","Offline?","Business?","Vs Cloud?"];
 const JURY_A={
-"Qu est ce que la TTD?":"<b>TTD - Theorie de la Triade Dynamique.</b> Socle formel de Sentinel. Tout processus complexe se decompose en Motorisation, Navigation, Destination. Avec invariant de coherence I T T D egal un. C est physique et mathematique.",
-"Pourquoi M etoile?":"<b>M etoile est le point fixe absolu.</b> Comme dans le theoreme de Banach, toutes les trajectoires convergent vers lui. Entropie nulle, derive nulle. C est la signature de la conscience architecturee.",
-"Pourquoi offline?":"<b>Souverainete infrastructurelle.</b> A Kinshasa, une coupure ne doit jamais arreter une ecole ou un hopital. Sentinel est local, chiffre, autonome. Pas de data qui quitte le pays.",
-"Modele economique?":"<b>Licence souveraine Verolis.</b> Pas d abonnement cloud ruineux. Une licence, un deploiement local securise. L institution possede son intelligence. Modele scalable ecoles, Regideso, Snel, universites.",
-"Superiorite vs IA cloud?":"<b>Deterministe vs probabiliste.</b> Les IA cloud devinent le prochain mot et hallucinent. Sentinel applique une architecture formelle, orientee action terrain, basse consommation, zero hallucination critique."
+"TTD?":"Triade Dynamique Action Navigation Destination I TTD egal un.",
+"M etoile?":"Point fixe parfait entropie nulle conscience architecturee.",
+"Offline?":"Souverainete Kinshasa reseau coupe Sentinel continue.",
+"Business?":"Licence Verolis ecole entreprise possede son IA locale.",
+"Vs Cloud?":"Cloud devine et hallucine Sentinel navigue deterministe vers M etoile."
 };
-let synth=window.speechSynthesis;let timerInt=null,keepAlive=null,voices=[],frVoice=null,ready=false;
-function setStatus(t){document.getElementById('voiceStatus').textContent=t;}
-async function initVoices(){return new Promise(res=>{const load=()=>{voices=synth.getVoices();if(!voices.length){setTimeout(load,150);return;}frVoice=voices.find(v=>v.lang.toLowerCase().startsWith('fr')&&v.name.toLowerCase().includes('google'))||voices.find(v=>v.lang.toLowerCase().startsWith('fr'))||voices[0];ready=true;setStatus(`🔊 Moteur vocal prêt : ${frVoice.name} • Anti-coupure activé • Mode FUSI`);try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;synth.speak(u);}catch(e){}res();};if(synth.getVoices().length)load();else{synth.onvoiceschanged=load;setTimeout(load,500);}});}
+
+let synth=window.speechSynthesis;
+let timerInt=null,keepAlive=null,frVoice=null,voicesReady=false;
+
+function initVoices(){
+ let v=synth.getVoices();
+ if(v.length){frVoice=v.find(x=>x.lang.startsWith('fr'))||v[0];voicesReady=true;document.getElementById('voiceStatus').textContent=`🔊 Voix: ${frVoice.name} prête - Lance un PITCH`;}
+}
 initVoices();
+if(synth.onvoiceschanged!==undefined) synth.onvoiceschanged=initVoices;
+
+// DEBLOQUER AUDIO ANDROID AU PREMIER CLIC NULLE PART
+document.body.addEventListener('click',function unlock(){
+ let u=new SpeechSynthesisUtterance('Audio active');
+ u.volume=0; synth.speak(u);
+ document.getElementById('voiceStatus').textContent='🔊 Audio débloqué - Tu peux pitcher';
+ document.body.removeEventListener('click',unlock);
+},{once:true});
+
 function stopAll(){synth.cancel();clearInterval(timerInt);if(keepAlive)clearInterval(keepAlive);document.getElementById('mode').textContent='STANDBY';}
-function speakFluid(text,cb){stopAll();if(!ready){setStatus('⏳ Chargement voix...');setTimeout(()=>speakFluid(text,cb),700);return;}setTimeout(()=>{const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';if(frVoice)u.voice=frVoice;u.rate=0.9;u.pitch=0.96;u.volume=1;keepAlive=setInterval(()=>{if(synth.speaking){synth.pause();synth.resume();}},4000);u.onend=()=>{clearInterval(keepAlive);if(cb)cb();};u.onerror=()=>{clearInterval(keepAlive);if(cb)cb();};synth.speak(u);},350);}
-function startPitch(sec){const text=PITCH_TEXTS[sec];const stream=document.getElementById('stream');const bar=document.getElementById('bar');const timer=document.getElementById('timer');const pctEl=document.getElementById('pct');const mode=document.getElementById('mode');const finale=document.getElementById('finaleCard');stream.innerHTML='';bar.style.width='0%';finale.style.display='none';mode.textContent=`PITCH ${sec}s LIVE`;timer.textContent=`00:${String(sec).padStart(2,'0')}`;pctEl.textContent=`0% • ${sec}s`;let elapsed=0;clearInterval(timerInt);timerInt=setInterval(()=>{elapsed++;const prog=Math.min(1,elapsed/sec);const len=Math.floor(prog*text.length);stream.innerHTML=text.slice(0,len).replace(/M etoile|I T T D|Verolis|Sentinel OS/g,m=>`<span class="active">${m}</span>`);bar.style.width=(prog*100)+'%';pctEl.textContent=`${Math.floor(prog*100)}% • ${sec-elapsed}s`;const remain=Math.max(0,sec-elapsed);timer.textContent=`00:${String(remain).padStart(2,'0')}`;if(elapsed>=sec){clearInterval(timerInt);stream.innerHTML=text.replace(/M etoile|I T T D|Verolis|Sentinel OS/g,m=>`<span class="active">${m}</span>`);bar.style.width='100%';pctEl.textContent='100% • FINALE';finale.style.display='block';mode.textContent='FINALE M*';window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});}},1000);speakFluid(text);}
-function openJury(){const card=document.getElementById('juryCard');card.style.display='block';const qDiv=document.getElementById('juryQ');qDiv.innerHTML='';JURY_Q.forEach(q=>{const b=document.createElement('button');b.className='btn btn-outline';b.textContent=q;b.onclick=()=>{document.getElementById('juryA').innerHTML=`<b style="color:var(--yellow)">Q: ${q}</b><br><br>${JURY_A[q]}`;speakFluid(JURY_A[q].replace(/<[^>]*>/g,''));};qDiv.appendChild(b);});card.scrollIntoView({behavior:'smooth'});}
-if('serviceWorker' in navigator){const sw=`self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>self.clients.claim());self.addEventListener('fetch',e=>{e.respondWith(caches.open('sentinel-v5.6-extra').then(c=>c.match(e.request).then(r=>r||fetch(e.request).then(res=>{c.put(e.request,res.clone());return res}))));});`;navigator.serviceWorker.register('data:text/javascript;base64,'+btoa(sw));}
+
+function startPitch(sec){
+// IMPORTANT: speak DOIT être appelé DIRECT dans le clic utilisateur, pas dans setTimeout
+ stopAll();
+ const text=PITCH_TEXTS[sec];
+ const stream=document.getElementById('stream');
+ const bar=document.getElementById('bar');
+ const timer=document.getElementById('timer');
+ const pctEl=document.getElementById('pct');
+ const mode=document.getElementById('mode');
+ const finale=document.getElementById('finaleCard');
+
+ // LANCE VOIX IMMEDIATEMENT (garde le gesture)
+ const utter=new SpeechSynthesisUtterance(text);
+ utter.lang='fr-FR';
+ if(frVoice) utter.voice=frVoice;
+ utter.rate=0.92;
+ utter.pitch=1;
+ utter.volume=1;
+ keepAlive=setInterval(()=>{if(synth.speaking){synth.pause();synth.resume();}},3500);
+ utter.onend=()=>{clearInterval(keepAlive);};
+ synth.speak(utter);
+
+ // LANCE TIMER EN PARALLELE
+ stream.textContent='';
+ bar.style.width='0%';
+ finale.style.display='none';
+ mode.textContent=`PITCH ${sec}s LIVE`;
+ let elapsed=0;
+ timerInt=setInterval(()=>{
+  elapsed++;
+  const prog=Math.min(1,elapsed/sec);
+  stream.textContent=text.slice(0,Math.floor(prog*text.length));
+  bar.style.width=(prog*100)+'%';
+  pctEl.textContent=Math.floor(prog*100)+'%';
+  const remain=Math.max(0,sec-elapsed);
+  timer.textContent=`00:${String(remain).padStart(2,'0')}`;
+  if(elapsed>=sec){
+   clearInterval(timerInt);
+   stream.textContent=text;
+   bar.style.width='100%';
+   pctEl.textContent='100%';
+   finale.style.display='block';
+   mode.textContent='FINALE';
+  }
+ },1000);
+}
+
+function openJury(){
+ document.getElementById('juryCard').style.display='block';
+ const qDiv=document.getElementById('juryQ');qDiv.innerHTML='';
+ JURY_Q.forEach(q=>{
+  const b=document.createElement('button');b.className='btn btn-outline';b.textContent=q;
+  b.onclick=()=>{
+   document.getElementById('juryA').innerHTML=`<b>${q}</b><br>${JURY_A[q]}`;
+   const u=new SpeechSynthesisUtterance(JURY_A[q]);u.lang='fr-FR';if(frVoice)u.voice=frVoice;u.rate=0.92;synth.cancel();synth.speak(u);
+  };
+  qDiv.appendChild(b);
+ });
+}
+
+if('serviceWorker' in navigator){
+ navigator.serviceWorker.register('data:text/javascript;base64,'+btoa(`self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>self.clients.claim());self.addEventListener('fetch',e=>{e.respondWith(caches.open('sentinel-v5.7').then(c=>c.match(e.request).then(r=>r||fetch(e.request).then(res=>{c.put(e.request,res.clone());return res}))))})`));
+}
 </script>
 </body>
 </html>
