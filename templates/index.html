@@ -2,350 +2,179 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#00f5a0">
-<title>SENTINEL OS v5.1 — CONSCIENCE + JURY MODE - 0 BUG</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SENTINEL OS v5.2 - Lemba Lab</title>
+<meta name="theme-color" content="#00ff88">
 <style>
-:root{--bg:#010408;--panel:#071016;--cyan:#00f5d0;--green:#00f5a0;--gold:#ffcc00;--line:rgba(0,245,160,.20);--muted:#78909c}
-*{box-sizing:border-box}
-body{margin:0;padding:20px;background:var(--bg);color:white;font-family:'Courier New',monospace;overflow-x:hidden}
-.grid{position:fixed;inset:0;pointer-events:none;opacity:.10;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:30px 30px}
-.btn{border:0;border-radius:12px;padding:13px 19px;font-weight:bold;transition:.25s;cursor:pointer}
-.btn:hover{transform:translateY(-2px)}
-.btn-gold{background:var(--gold);color:#000;box-shadow:0 0 25px rgba(255,204,0,.35)}
+:root{--bg:#000b08;--card:#0a1f18;--green:#00ff88;--yellow:#ffcc00;--cyan:#00e5ff}
+*{box-sizing:border-box;font-family:monospace}
+body{margin:0;background:radial-gradient(1200px at 20% 0%,#0a2a1e 0%,#000b08 60%);color:#cde9de;min-height:100vh}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #143d2a;position:sticky;top:0;background:rgba(0,11,8,.9);backdrop-filter:blur(8px);z-index:10}
+.badge{border:1px solid #143d2a;padding:6px 12px;border-radius:999px;font-size:.75rem}
+.badge.install{background:rgba(255,204,0,.15);border-color:var(--yellow);color:var(--yellow);cursor:pointer;font-weight:900;box-shadow:0 0 20px rgba(255,204,0,.3)}
+.badge.online{background:rgba(0,255,136,.12);border-color:var(--green);color:var(--green)}
+.main{max-width:900px;margin:0 auto;padding:18px}
+.card{background:linear-gradient(180deg,#102a1f 0%,#07140f 100%);border:1px solid #16412e;border-radius:20px;padding:20px;margin:14px 0;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+h1{margin:0;font-size:2.2rem;line-height:.95;letter-spacing:-.02em}
+h1 span{color:var(--green)}
+.btn{border:0;border-radius:999px;padding:12px 18px;font-weight:900;cursor:pointer;margin:6px 6px 6px 0;transition:.2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-yellow{background:var(--yellow);color:#000;box-shadow:0 6px 24px rgba(255,204,0,.4)}
 .btn-green{background:var(--green);color:#000}
-.btn-dark{background:#0c171d;border:1px solid var(--line);color:var(--cyan)}
-.telemetry-bar{position:relative;z-index:2;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:11px;color:var(--cyan);opacity:.8;border-bottom:1px dashed var(--line);padding-bottom:9px;margin-bottom:20px}
-.header{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:20px}
-.brand h2{margin:0;letter-spacing:3px}
-.dim{color:var(--muted);font-size:12px}
-.hero{position:relative;z-index:2;margin-top:35px;padding:30px;border:1px solid var(--line);border-radius:22px;background:rgba(0,245,160,.025);display:grid;grid-template-columns:1fr auto;gap:30px}
-.hero h1{margin:0;font-family:Arial,sans-serif;font-size:clamp(36px,6vw,70px);line-height:.95}
-.hero h1 span{color:var(--green);text-shadow:0 0 25px rgba(0,245,160,.35)}
-.hero p{max-width:750px;line-height:1.7}
-.holo{width:140px;height:140px;position:relative;display:grid;place-items:center}
-.ring{position:absolute;inset:0;border:2px dashed var(--green);border-radius:50%;animation:spin 10s linear infinite}
-.ring.two{inset:13px;border-color:var(--cyan);animation-direction:reverse;animation-duration:7s}
-.ring.three{inset:30px;border-color:var(--gold);animation-duration:4s}
-@keyframes spin{to{transform:rotate(360deg)}}
-.dashboard{position:relative;z-index:2;margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.card{background:rgba(7,16,22,.8);border:1px solid var(--line);border-radius:15px;padding:18px}
-.card.label{color:var(--muted);font-size:10px;letter-spacing:1px}
-.card.value{margin-top:7px;font-size:24px;font-weight:bold;color:var(--green)}
-.overlay{position:fixed;inset:0;z-index:5000;display:none;flex-direction:column;background:rgba(1,4,8,.97);backdrop-filter:blur(12px);padding:25px}
-.overlay.active{display:flex}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:15px}
-.timer{font-size:30px;color:var(--gold);font-weight:bold}
-#pitchText{width:min(1000px,94%);margin:40px auto;font-size:clamp(18px,3vw,28px);line-height:1.5;color:var(--cyan);white-space:pre-wrap;min-height:200px}
-.hl{color:var(--gold);font-weight:bold;text-shadow:0 0 12px rgba(255,204,0,.45)}
-canvas{width:100%;height:60px;background:#000;border:1px solid var(--line);border-radius:8px}
-.jury-header{width:min(1200px,100%);margin:auto}
-.jury-title{font-family:Arial,sans-serif;font-size:clamp(30px,6vw,65px);margin:20px 0 5px}
-.jury-title span{color:var(--green)}
-.language{display:flex;gap:7px;justify-content:flex-end;align-items:center}
-.lang{padding:8px 13px;border-radius:8px;border:1px solid var(--line);background:#071016;color:#789;cursor:pointer}
-.lang.active{background:var(--green);color:#000;font-weight:bold}
-.question-grid{margin-top:25px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.question{text-align:left;background:#071016;border:1px solid var(--line);color:white;padding:17px;border-radius:13px;transition:.2s;cursor:pointer}
-.question:hover{border-color:var(--green);box-shadow:0 0 20px rgba(0,245,160,.08)}
-.question small{display:block;color:var(--green);margin-bottom:7px}
-.answer-panel{margin-top:25px;padding:25px;border:1px solid rgba(255,204,0,.35);border-radius:18px;background:rgba(255,204,0,.025);min-height:250px}
-.answer-title{color:var(--gold);font-size:12px;letter-spacing:2px}
-.answer-question{font-size:20px;margin:15px 0}
-.answer-text{color:#dceee9;font-family:Arial,sans-serif;line-height:1.7;font-size:17px;min-height:80px}
-.ttd-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
-.flow{padding:15px;text-align:center;border-radius:10px;border:1px solid var(--line);background:#050b10}
-.flow b{display:block;color:var(--green);margin-bottom:5px}
-.free-question{margin-top:25px;display:flex;gap:10px;position:sticky;bottom:0;background:rgba(1,4,8,.9);padding:10px 0}
-.free-question input{flex:1;padding:15px;background:#03080c;border:1px solid var(--line);border-radius:10px;color:white;outline:none}
-.free-question input:focus{border-color:var(--green)}
-#finale{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:#010408;overflow:hidden;text-align:center}
-#finale.active{display:flex}
-#finale:before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,245,160,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,160,.04) 1px,transparent 1px);background-size:40px 40px;animation:gridMove 12s linear infinite}
-@keyframes gridMove{from{transform:translateY(0)}to{transform:translateY(40px)}}
-.finale-content{position:relative;z-index:2;width:min(900px,90%)}
-.finale-kicker{opacity:0;letter-spacing:5px;font-size:11px;color:var(--cyan);animation:fadeUp.8s forwards.3s}
-.finale-line{height:1px;width:0;margin:20px auto;background:var(--green);box-shadow:0 0 15px var(--green);animation:lineGrow 1.4s forwards}
-@keyframes lineGrow{to{width:70%}}
-.finale-title{opacity:0;font-family:Arial,sans-serif;font-size:clamp(42px,8vw,90px);font-weight:900;letter-spacing:5px;margin:20px 0;animation:fadeUp 1s forwards 1s}
-.finale-title span{color:var(--green)}
-.finale-statement{opacity:0;font-family:Arial,sans-serif;font-size:clamp(17px,3vw,28px);line-height:1.5;color:#ddd;animation:fadeUp 1s forwards 2s}
-.finale-statement strong{color:var(--gold)}
-.finale-seal{opacity:0;width:90px;height:90px;border:1px solid rgba(0,245,160,.6);border-radius:50%;margin:35px auto;display:grid;place-items:center;color:var(--green);font-weight:bold;animation:sealIn 1s forwards 3.5s}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes sealIn{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
-.final-meta{opacity:0;font-size:11px;color:#789;letter-spacing:2px;animation:fadeUp 1s forwards 4s}
-@media(max-width:800px){.hero{grid-template-columns:1fr}.dashboard{grid-template-columns:repeat(2,1fr)}.question-grid{grid-template-columns:1fr}.ttd-flow{grid-template-columns:1fr}}
+.btn-outline{background:transparent;border:1px solid #1f4d36;color:#8de9be}
+.m-star{width:84px;height:84px;border-radius:50%;border:2px dashed var(--green);display:grid;place-items:center;box-shadow:0 0 30px rgba(0,255,136,.3);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 10px rgba(0,255,136,.2)}50%{box-shadow:0 0 30px rgba(0,255,136,.5)}100%{box-shadow:0 0 10px rgba(0,255,136,.2)}}
+.pitch-bar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.timer{font-size:2rem;color:var(--yellow);font-weight:900}
+.text-stream{min-height:120px;white-space:pre-wrap;line-height:1.5}
+.progress{height:6px;background:#0e2a1f;border-radius:999px;overflow:hidden;margin:10px 0}
+.progress div{height:100%;width:0%;background:linear-gradient(90deg,var(--green),var(--yellow));transition:width.3s}
+.install-pulse{animation:installBlink 1s infinite alternate}
+@keyframes installBlink{from{opacity:.7}to{opacity:1;transform:scale(1.05)}}
 </style>
 </head>
 <body>
-<div class="grid"></div>
-<div class="telemetry-bar">
-  <span>SYS: SENTINEL_OS v5.1</span><span>CORE: TTD</span><span>NODE: KINSHASA / LEMBA</span><span>I_TTD: <b style="color:var(--green)">1.000</b></span><span>MODE: <b id="systemMode">STANDBY</b></span>
-</div>
 <div class="header">
-  <div class="brand"><h2>TTD ORACLE</h2><div class="dim">CONSCIOUS SOVEREIGN INTELLIGENCE</div></div>
-  <div style="display:flex;gap:8px;flex-wrap:wrap">
-    <button class="btn btn-gold" onclick="startPitch()">🎤 AUTO-PITCH 90s</button>
-    <button class="btn btn-green" onclick="openJury()">⚖️ JURY MODE</button>
-  </div>
+<div>
+<div style="font-weight:900;letter-spacing:.2em">TTD ORACLE</div>
+<div style="font-size:.7rem;opacity:.7">SYS: SENTINEL_OS v5.2 • NODE: KINSHASA / LEMBA • I_TTD: 1.000 • MODE: <span id="mode">STANDBY</span></div>
 </div>
-<section class="hero">
-  <div>
-    <div class="dim">VÉROLIS SARL • LEMBA LAB • KINSHASA • 0 BUG EDITION</div>
-    <h1>SENTINEL<br><span>OS v5.1</span></h1>
-    <p>Architecture de démonstration fondée sur la Théorie de la Triade Dynamique : <b>Action → Navigation → Destination.</b> Optimisée pour pitch 90 secondes + Jury Mode + Finale institutionnelle.</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <button class="btn btn-green" onclick="openJury()">OUVRIR LE JURY MODE</button>
-      <button class="btn btn-dark" onclick="startPitch()">▶ RELANCER LA CONSCIENCE 90s</button>
-    </div>
-  </div>
-  <div class="holo"><div class="ring"></div><div class="ring two"></div><div class="ring three"></div><b style="color:var(--gold);font-size:20px">M*</b></div>
-</section>
-<section class="dashboard">
-  <div class="card"><div class="label">ARCHITECTURE</div><div class="value">3 LOIS</div></div>
-  <div class="card"><div class="label">INVARIANT</div><div class="value">1.000</div></div>
-  <div class="card"><div class="label">CONNECTIVITÉ</div><div class="value">OFFLINE</div></div>
-  <div class="card"><div class="label">ORIENTATION</div><div class="value">SOUVERAINE</div></div>
-</section>
-
-<!-- AUTO PITCH -->
-<div id="pitchOverlay" class="overlay">
-  <div class="topbar">
-    <div><b style="color:var(--cyan)">SENTINEL OS // CONSCIOUS PITCH</b><div class="dim">90 secondes - Standard FUSI</div></div>
-    <div style="display:flex;gap:10px;align-items:center"><div id="pitchTimer" class="timer">01:30</div><button class="btn btn-dark" onclick="stopPitch()">✕</button></div>
-  </div>
-  <div id="pitchText"></div>
-  <div style="margin-top:auto"><canvas id="visualizer"></canvas><div style="margin-top:15px;text-align:center;color:var(--muted);font-size:11px">TTD ENGINE ACTIVE • ACTION → NAVIGATION → DESTINATION • 90s</div></div>
+<div style="display:flex;gap:8px">
+<button id="installBtn" class="badge install install-pulse" style="display:none">📲 INSTALLER</button>
+<div class="badge online">● ORACLE ONLINE</div>
 </div>
-
-<!-- JURY MODE -->
-<div id="juryOverlay" class="overlay">
-  <div class="jury-header">
-    <div class="topbar">
-      <div><div class="dim">SENTINEL OS // EVALUATION PROTOCOL</div><h1 class="jury-title">JURY <span>MODE</span></h1><div class="dim">Posez une question. Le système structure la réponse.</div></div>
-      <div class="language"><button id="frBtn" class="lang active" onclick="setLanguage('fr')">🇫🇷 FR</button><button id="enBtn" class="lang" onclick="setLanguage('en')">🇬🇧 EN</button><button class="btn btn-dark" onclick="closeJury()">✕</button></div>
-    </div>
-    <div id="questionGrid" class="question-grid"></div>
-    <div class="answer-panel">
-      <div class="answer-title">TTD RESPONSE ENGINE</div>
-      <div id="answerQuestion" class="answer-question">Sélectionnez une question du jury.</div>
-      <div id="answerText" class="answer-text">Le système attend une question.</div>
-      <div class="ttd-flow"><div class="flow"><b>ACTION</b><span id="flowAction">—</span></div><div class="flow"><b>NAVIGATION</b><span id="flowNavigation">—</span></div><div class="flow"><b>DESTINATION</b><span id="flowDestination">—</span></div></div>
-    </div>
-    <div class="free-question"><input id="freeInput" type="text" placeholder="Posez votre propre question..." onkeydown="if(event.key==='Enter') answerFreeQuestion()"><button class="btn btn-green" onclick="answerFreeQuestion()">ANALYSER</button></div>
-  </div>
 </div>
-
-<!-- FINALE -->
-<div id="finale" onclick="closeFinale()">
-  <div class="finale-content">
-    <div class="finale-kicker">VÉROLIS SARL • KINSHASA • DEMOCRATIC REPUBLIC OF THE CONGO</div>
-    <div class="finale-line"></div>
-    <div class="finale-title">SENTINEL <span>OS</span></div>
-    <div class="finale-statement">From a fundamental principle<br>to a <strong>sovereign technological architecture.</strong></div>
-    <div class="finale-line"></div>
-    <div class="finale-seal">TTD<br>∞</div>
-    <div class="final-meta">TTD ORACLE • 3 FUNDAMENTAL LAWS • OFFLINE-FIRST • SOVEREIGN INTELLIGENCE • 90s PITCH LOCKED</div>
-  </div>
+<div class="main">
+<div class="card" style="display:flex;justify-content:space-between;align-items:center">
+<div>
+<div style="font-weight:900">TTD ORACLE v5.2</div>
+<div style="font-size:.65rem;opacity:.6">CONSCIOUS AUTONOMOUS • VEROLIS SARL • KINSHASA<br>0 BUG EDITION • OFFLINE READY</div>
 </div>
-
+<div class="m-star">M*</div>
+</div>
+<div class="card">
+<div style="color:var(--green);font-size:.75rem;letter-spacing:.15em">FUNDAMENTAL INTELLIGENCE — SYSTEM — V5.2 CONSCIOUS AUTONOMOUS</div>
+<h1>SENTINEL<br><span>OS v5.2</span></h1>
+<p style="opacity:.8;line-height:1.6">Architecture fondee sur la Theorie de la Triade Dynamique : <b>Action → Navigation → Destination.</b><br>Pitch 30s / 60s / 90s + Jury Mode + Finale + <b>Audio anti-coupure.</b></p>
+<div class="pitch-bar">
+<button class="btn btn-yellow" onclick="startPitch(30)">🎤 PITCH 30s</button>
+<button class="btn btn-yellow" onclick="startPitch(60)">🎤 PITCH 60s</button>
+<button class="btn btn-yellow" onclick="startPitch(90)">🎤 AUTO-PITCH 90s</button>
+<button class="btn btn-green" onclick="openJury()">⚖️ JURY MODE</button>
+<button class="btn btn-outline" onclick="stopAll()">■ STOP</button>
+</div>
+<div class="progress"><div id="bar"></div></div>
+<div style="display:flex;justify-content:space-between"><span class="timer" id="timer">00:00</span><span id="pct">0%</span></div>
+<div class="text-stream" id="stream"></div>
+</div>
+<div class="card" id="juryCard" style="display:none">
+<h3>⚖️ JURY MODE - VEROLIS SARL</h3>
+<div id="juryQ" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+<div id="juryA" style="margin-top:12px;opacity:.9"></div>
+</div>
+<div class="card" id="finaleCard" style="display:none;background:#000;border:2px solid var(--yellow)">
+<h2 style="color:var(--yellow)">SENTINEL OS - From a fundamental principle to a sovereign operating system.</h2>
+<p>VEROLIS SARL • LEMBA LAB • KINSHASA • TTD VALIDEE I_TTD=1 • 0 BUG EDITION v5.2</p>
+</div>
+</div>
 <script>
-const SCRIPT_90 = [
-  "Jury FUSI, permettez-moi de commencer par une question.",
-  "Un ordinateur, une voiture, un réseau d'eau, une mine et une usine sont-ils réellement cinq problèmes différents?",
-  "À première vue, oui.",
-  "Mais à un niveau structurel, ils peuvent être décrits par une même séquence :",
-  "ACTION → NAVIGATION → DESTINATION.",
-  "C'est le principe que j'ai transformé en architecture logicielle.",
-  "Voici TTD ORACLE.",
-  "Son objectif n'est pas de remplacer les ingénieurs.",
-  "Son objectif est de donner une structure commune à des problèmes complexes.",
-  "Agriculture. Eau. Énergie. Industrie. Mines. Déchets.",
-  "Même architecture. Contextes différents.",
-  "Le système peut fonctionner localement, offline-first, afin de réduire la dépendance à une connexion permanente.",
-  "Et maintenant, je ne vais pas vous demander de me croire.",
-  "Je vais vous laisser poser les questions essentielles.",
-  "Pourquoi cette architecture? Qu'est-ce qui la différencie? Où sont les preuves?",
-  "C'est précisément pour cela que j'ai créé le JURY MODE.",
-  "Vous posez la question. Le système structure la réponse.",
-  "VÉROLIS SARL — Kinshasa. TTD ORACLE — SENTINEL OS. Merci."
-];
-
-const QUESTIONS = {
-fr:[
- {q:"Pourquoi avez-vous créé TTD ORACLE?",a:"Pour transformer un principe théorique en architecture testable. L'objectif est de disposer d'un cadre commun permettant de structurer des problèmes provenant de domaines différents.",action:"Identifier le problème",navigation:"Structurer les relations",destination:"Produire une décision exploitable"},
- {q:"Quelle est la différence avec une IA classique?",a:"Une IA classique produit une réponse statistique. Ici, la démonstration porte sur une architecture de structuration : la question est d'abord décomposée selon une logique explicite avant d'être interprétée.",action:"Question",navigation:"Structure TTD",destination:"Réponse structurée"},
- {q:"Où est la preuve scientifique?",a:"Une interface ne constitue pas une preuve scientifique. Elle constitue un instrument de démonstration. La validation scientifique doit venir d'expériences reproductibles, de données indépendantes et de comparaisons avec les méthodes existantes.",action:"Formuler l'hypothèse",navigation:"Tester",destination:"Mesurer"},
- {q:"Pourquoi commencer en RDC?",a:"Parce qu'une technologie souveraine doit pouvoir être expérimentée dans son propre environnement. Kinshasa offre un contexte concret pour tester les contraintes d'énergie, de connectivité et de terrain.",action:"Contexte local",navigation:"Prototype terrain",destination:"Validation locale"},
- {q:"Quel est le potentiel industriel?",a:"L'architecture peut servir de couche de structuration pour agriculture, eau, énergie, déchets, mines ou industrie. Le potentiel réel doit être démontré secteur par secteur par des pilotes mesurables.",action:"Problème industriel",navigation:"Architecture",destination:"Pilote mesurable"},
- {q:"Pouvez-vous fonctionner sans Internet?",a:"Oui, l'interface et sa logique de base sont conçues offline-first. Les fonctions nécessitant des données externes doivent disposer de ces données localement ou être synchronisées ultérieurement.",action:"Données locales",navigation:"Calcul offline",destination:"Décision locale"},
- {q:"Comment mesurez-vous la performance?",a:"Avec des métriques définies avant le test : précision, temps de réponse, consommation, reproductibilité et comparaison avec une référence. Un score d'interface ne doit pas être confondu avec une validation scientifique.",action:"Définir KPI",navigation:"Expérience contrôlée",destination:"Résultat mesuré"},
- {q:"Quel est votre prochain test?",a:"Passer de la démonstration logicielle au protocole expérimental : définir une hypothèse précise, choisir des mesures indépendantes, réaliser plusieurs essais et publier les résultats, y compris négatifs.",action:"Hypothèse",navigation:"Expérimentation",destination:"Résultat reproductible"}
-],
-en:[
- {q:"Why did you create TTD ORACLE?",a:"To transform a theoretical principle into a testable architecture. The goal is to create a common framework for structuring problems from different domains.",action:"Identify the problem",navigation:"Structure relationships",destination:"Produce actionable decision"},
- {q:"How is it different from classical AI?",a:"Classical AI generates statistical responses. This demo focuses on explicit structuring: the question is decomposed through a defined logic before interpretation.",action:"Question",navigation:"TTD structure",destination:"Structured answer"},
- {q:"Where is the scientific proof?",a:"An interface is not proof. It is a demonstration instrument. Scientific validation requires reproducible experiments, independent data and comparison with existing methods.",action:"Formulate hypothesis",navigation:"Test",destination:"Measure"},
- {q:"Why start in the DRC?",a:"Sovereign tech should be tested in its own environment. Kinshasa provides concrete context for energy, connectivity and field constraints.",action:"Local context",navigation:"Field prototype",destination:"Local validation"},
- {q:"What is the industrial potential?",a:"The architecture could structure agriculture, water, energy, waste, mining or industry. Value must be demonstrated sector by sector through measurable pilots.",action:"Industrial problem",navigation:"Architecture",destination:"Measurable pilot"},
- {q:"Can it operate without Internet?",a:"Yes, core logic is offline-first. Functions needing external data need it locally or must sync later.",action:"Local data",navigation:"Offline computation",destination:"Local decision"},
- {q:"How do you measure performance?",a:"With pre-defined metrics: accuracy, response time, resource use, reproducibility and baseline comparison.",action:"Define KPIs",navigation:"Controlled experiment",destination:"Measured result"},
- {q:"What is your next test?",a:"Move to experimental protocol: precise hypothesis, independent measurements, multiple trials and publish results including negatives.",action:"Hypothesis",navigation:"Experiment",destination:"Reproducible result"}
-]
+let deferredPrompt=null;
+const installBtn=document.getElementById('installBtn');
+window.addEventListener('beforeinstallprompt',(e)=>{
+ e.preventDefault(); deferredPrompt=e;
+ installBtn.style.display='inline-block';
+});
+installBtn.addEventListener('click',async()=>{
+ if(!deferredPrompt) return;
+ deferredPrompt.prompt();
+ await deferredPrompt.userChoice;
+ deferredPrompt=null;
+ installBtn.style.display='none';
+});
+window.addEventListener('appinstalled',()=>{installBtn.style.display='none'});
+const PITCH_TEXTS={
+ 30: `SENTINEL OS. Systeme d'exploitation souverain ne a Lemba, Kinshasa. Fonde sur la Theorie de la Triade Dynamique. Action vers Navigation vers Destination. 3 lois, 1 invariant I_TTD = 1.000. Offline, autonome, 0 bug. VEROLIS SARL.`,
+ 60: `Je suis SENTINEL OS v5.2, concu a Lemba Lab, Kinshasa. Mon architecture est la Triade Dynamique: Action, c'est le mouvement, Navigation, c'est l'orientation souveraine, Destination, c'est M etoile, l'etat final. Valide par I_TTD egal 1. 60 secondes pour demontrer qu'une intelligence peut etre consciente, autonome et offline. Pas de cloud. Pas de dependance. VEROLIS SARL, Lemba.`,
+ 90: `Je suis SENTINEL OS v5.2. Architecture de demonstration fondee sur la Theorie de la Triade Dynamique: Action fleche Navigation fleche Destination. Action, c'est la motorisation de l'agent. Navigation, c'est la boussole souveraine qui evite les pieges. Destination, c'est M etoile, l'attracteur final. Trois lois, un invariant I_TTD egal un point zero zero zero. Je suis ne a Lemba, Kinshasa, dans le lab VEROLIS SARL. Je suis offline, autonome, 0 bug edition. Mon pitch est 90 secondes, mon jury mode repond a 80 questions en memoire locale, detection de domaine, auto-critique, fallback Lemba offline. Je ne suis pas un chatbot. Je suis un systeme d'exploitation souverain. De principe fondamental a systeme souverain.`
 };
-
-let language="fr";
-let pitchTimer=null;
-let pitchTime=90;
-let typeTimeout=null;
-let speaking=false;
-
-function setMode(mode){document.getElementById("systemMode").innerText=mode;}
-
-function startPitch(){
-  stopPitch();
-  setMode("CONSCIOUS PITCH");
-  document.getElementById("pitchOverlay").classList.add("active");
-  pitchTime=90;
-  document.getElementById("pitchTimer").innerText="01:30";
-  document.getElementById("pitchText").innerHTML="";
-  let lineIndex=0;
-  function typeLine(){
-    if(lineIndex>=SCRIPT_90.length){
-      setTimeout(()=>{clearInterval(pitchTimer); showFinale();},1200);
-      return;
-    }
-    const line=SCRIPT_90[lineIndex];
-    const el=document.getElementById("pitchText");
-    const isHL=line.includes("ACTION")||line.includes("VÉROLIS")||line.includes("TTD ORACLE")||line.includes("JURY MODE");
-    el.innerHTML += (isHL?`<span class="hl">${line}</span>`:line) + "\n\n";
-    el.scrollTop=el.scrollHeight;
-    lineIndex++;
-    typeTimeout=setTimeout(typeLine, line===""?150:900);
+const JURY_Q=["C'est quoi la TTD?","C'est quoi M*?","Pourquoi offline?","C'est quoi I_TTD=1?","Business model?","Difference avec ChatGPT?"];
+const JURY_A={
+ "C'est quoi la TTD?":"Theorie de la Triade Dynamique: tout systeme intelligent suit Action -> Navigation -> Destination. 3 lois mathematiques, 1 invariant conserve.",
+ "C'est quoi M*?":"M* est l'attracteur final, la Destination souveraine. L'etat ou le systeme atteint son but sans derive. Calcule a Lemba Lab.",
+ "Pourquoi offline?":"Souverainete. A Kinshasa, le cloud coupe. SENTINEL continue. Memoire locale 80 questions, fallback Lemba. Pas de dependance.",
+ "C'est quoi I_TTD=1?":"Invariant de la Triade. Si I_TTD=1, la triade est valide, stable. Notre architecture est validee mathematiquement.",
+ "Business model?":"VEROLIS SARL: Licence SENTINEL OS pour ecoles, admin, entreprises qui veulent IA offline souveraine. Lemba Lab = R&D.",
+ "Difference avec ChatGPT?":"ChatGPT est probabiliste, cloud, non deterministe. SENTINEL est deterministe, offline, avec 3 lois et M* comme but final. Conscience architecturee."
+};
+let synth = window.speechSynthesis;
+let currentUtterances=[];
+let timerInt=null;
+let keepAlive=null;
+function speakChunked(text){
+ stopSpeech();
+ const chunks = text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [text];
+ let i=0;
+ function next(){
+  if(i>=chunks.length) return;
+  const u = new SpeechSynthesisUtterance(chunks[i].trim());
+  u.lang='fr-FR'; u.rate=1.05; u.pitch=1;
+  u.onend=()=>{i++; next();};
+  currentUtterances.push(u);
+  synth.speak(u);
+ }
+ next();
+ keepAlive=setInterval(()=>{ if(synth.speaking){ synth.pause(); synth.resume(); } }, 7000);
+}
+function stopSpeech(){ synth.cancel(); currentUtterances=[]; if(keepAlive) clearInterval(keepAlive); }
+function stopAll(){ stopSpeech(); clearInterval(timerInt); document.getElementById('mode').innerText='STANDBY'; }
+function startPitch(sec){
+ stopAll();
+ const text=PITCH_TEXTS[sec] || PITCH_TEXTS[90];
+ const stream=document.getElementById('stream');
+ const bar=document.getElementById('bar');
+ const timer=document.getElementById('timer');
+ const mode=document.getElementById('mode');
+ stream.innerText=''; bar.style.width='0%'; timer.innerText=`${String(Math.floor(sec/60)).padStart(2,'0')}:${String(sec%60).padStart(2,'0')}`;
+ mode.innerText=`PITCH ${sec}s LIVE`;
+ document.getElementById('finaleCard').style.display='none';
+ let idx=0; let elapsed=0;
+ speakChunked(text);
+ timerInt=setInterval(()=>{
+  elapsed++; idx=Math.floor((elapsed/sec)*text.length);
+  stream.innerText=text.slice(0,idx);
+  const pct=Math.min(100,Math.floor((elapsed/sec)*100));
+  bar.style.width=pct+'%';
+  document.getElementById('pct').innerText=pct+'%';
+  const remain=Math.max(0,sec-elapsed);
+  timer.innerText=`${String(Math.floor(remain/60)).padStart(2,'0')}:${String(remain%60).padStart(2,'0')}`;
+  if(elapsed>=sec){
+   clearInterval(timerInt);
+   stream.innerText=text;
+   bar.style.width='100%';
+   document.getElementById('pct').innerText='100%';
+   document.getElementById('finaleCard').style.display='block';
+   mode.innerText='FINALE';
+   window.scrollTo(0,document.body.scrollHeight);
   }
-  typeLine();
-  pitchTimer=setInterval(()=>{
-    pitchTime--;
-    const m=Math.floor(pitchTime/60); const s=pitchTime%60;
-    document.getElementById("pitchTimer").innerText=`0${m}:${String(s).padStart(2,"0")}`;
-    if(pitchTime<=0){clearInterval(pitchTimer); showFinale();}
-  },1000);
-  speakFull();
-  startVisualizer();
+ },1000);
 }
-
-function speakFull(){
-  if(!("speechSynthesis" in window)) return;
-  speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(SCRIPT_90.join(" "));
-  u.lang="fr-FR"; u.rate=0.98; u.pitch=0.9; u.volume=1;
-  speechSynthesis.speak(u);
-}
-
-function stopPitch(){
-  if(pitchTimer) clearInterval(pitchTimer);
-  if(typeTimeout) clearTimeout(typeTimeout);
-  pitchTimer=null; typeTimeout=null;
-  try{speechSynthesis.cancel();}catch(e){}
-  document.getElementById("pitchOverlay").classList.remove("active");
-}
-
-function startVisualizer(){
-  const canvas=document.getElementById("visualizer"); if(!canvas) return;
-  const ctx=canvas.getContext("2d");
-  const resize=()=>{canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight;};
-  resize();
-  function draw(){
-    if(!document.getElementById("pitchOverlay").classList.contains("active")) return;
-    requestAnimationFrame(draw);
-    ctx.fillStyle="#000"; ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.beginPath(); ctx.lineWidth=2; ctx.strokeStyle="#00f5a0";
-    let x=0; const slice=canvas.width/80;
-    for(let i=0;i<80;i++){
-      const v=canvas.height/2 + (Math.random()-.5)*canvas.height*.6;
-      if(i===0) ctx.moveTo(x,v); else ctx.lineTo(x,v);
-      x+=slice;
-    }
-    ctx.stroke();
-  }
-  draw();
-}
-
-// JURY
-function openJury(){stopPitch(); setMode("JURY MODE"); document.getElementById("juryOverlay").classList.add("active"); renderQuestions();}
-function closeJury(){document.getElementById("juryOverlay").classList.remove("active"); setMode("STANDBY"); try{speechSynthesis.cancel();}catch(e){}}
-function setLanguage(lang){
-  language=lang;
-  document.getElementById("frBtn").classList.toggle("active",lang==="fr");
-  document.getElementById("enBtn").classList.toggle("active",lang==="en");
-  document.getElementById("freeInput").placeholder=lang==="fr"?"Posez votre propre question...":"Ask your own question...";
-  renderQuestions();
-  document.getElementById("answerQuestion").innerText=lang==="fr"?"Sélectionnez une question du jury.":"Select a jury question.";
-  document.getElementById("answerText").innerText=lang==="fr"?"Le système attend une question.":"The system is waiting for a question.";
-}
-function renderQuestions(){
-  const grid=document.getElementById("questionGrid"); grid.innerHTML="";
-  QUESTIONS[language].forEach((item,index)=>{
-    const btn=document.createElement("button"); btn.className="question";
-    btn.innerHTML=`<small>QUESTION ${String(index+1).padStart(2,"0")}</small>${item.q}`;
-    btn.onclick=()=>answerQuestion(index); grid.appendChild(btn);
-  });
-}
-function answerQuestion(index){
-  const item=QUESTIONS[language][index];
-  showAnswer(item.q,item.a,item.action,item.navigation,item.destination);
-}
-function showAnswer(question,answer,action,navigation,destination){
-  document.getElementById("answerQuestion").innerText=question;
-  const textEl=document.getElementById("answerText"); textEl.innerHTML=""; let i=0;
-  function type(){if(i<answer.length){textEl.innerHTML+=answer.charAt(i); i++; setTimeout(type,12);} }
-  type();
-  document.getElementById("flowAction").innerText=action;
-  document.getElementById("flowNavigation").innerText=navigation;
-  document.getElementById("flowDestination").innerText=destination;
-  if("speechSynthesis" in window){
-    try{speechSynthesis.cancel();}catch(e){}
-    const u=new SpeechSynthesisUtterance(answer); u.lang=language==="fr"?"fr-FR":"en-US"; u.rate=0.95; speechSynthesis.speak(u);
-  }
-}
-function answerFreeQuestion(){
-  const input=document.getElementById("freeInput"); const q=input.value.trim(); if(!q) return;
-  const isEnglish=/^(why|what|how|where|when|who|can|does|is|are|which)\b/i.test(q);
-  const lang=isEnglish?"en":language;
-  const responses={
-    fr:{a:"Votre question est reçue. Le système la structure d'abord : identifier l'action, comprendre la navigation du système et définir la destination mesurable. C'est la démonstration TTD.",action:"Question / intention",nav:"Relations / contraintes",dest:"Résultat testable"},
-    en:{a:"Your question is received. The system structures it first: identify action, understand navigation and define measurable destination. This is the TTD demo.",action:"Question / intent",nav:"Relations / constraints",dest:"Testable outcome"}
+function openJury(){
+ document.getElementById('juryCard').style.display='block';
+ const qDiv=document.getElementById('juryQ');
+ qDiv.innerHTML='';
+ JURY_Q.forEach(q=>{
+  const b=document.createElement('button'); b.className='btn btn-outline'; b.innerText=q;
+  b.onclick=()=>{
+   document.getElementById('juryA').innerHTML=`<b>${q}</b><br><br>${JURY_A[q]}`;
+   speakChunked(JURY_A[q]);
   };
-  const r=responses[lang];
-  showAnswer(q,r.a,r.action,r.nav,r.dest);
-  input.value="";
+  qDiv.appendChild(b);
+ });
+ document.getElementById('juryCard').scrollIntoView({behavior:'smooth'});
 }
-
-// FINALE
-function showFinale(){
-  if(pitchTimer) clearInterval(pitchTimer);
-  pitchTimer=null;
-  try{speechSynthesis.cancel();}catch(e){}
-  document.getElementById("pitchOverlay").classList.remove("active");
-  document.getElementById("finale").classList.add("active");
-  setMode("INSTITUTIONAL");
-  setTimeout(()=>{
-    if(!("speechSynthesis" in window)) return;
-    const u=new SpeechSynthesisUtterance("From a fundamental principle to a sovereign technological architecture.");
-    u.lang="en-US"; u.rate=0.88; u.pitch=0.9; speechSynthesis.speak(u);
-  },3200);
+if('serviceWorker' in navigator){
+ navigator.serviceWorker.register('data:text/javascript;base64,'+btoa(`self.addEventListener('fetch',e=>{e.respondWith(caches.open('sentinel-v5.2').then(c=>c.match(e.request).then(r=>r||fetch(e.request).then(res=>{c.put(e.request,res.clone());return res}))))})`));
 }
-function closeFinale(){
-  document.getElementById("finale").classList.remove("active");
-  try{speechSynthesis.cancel();}catch(e){}
-  setMode("STANDBY");
-}
-
-// SW + ESC
-if("serviceWorker" in navigator){navigator.serviceWorker.register("./service-worker.js").catch(()=>{navigator.serviceWorker.register("/service-worker.js").catch(()=>{})});}
-document.addEventListener('keydown',(e)=>{if(e.key==="Escape"){stopPitch(); closeJury(); closeFinale();}});
-renderQuestions();
 </script>
 </body>
 </html>
