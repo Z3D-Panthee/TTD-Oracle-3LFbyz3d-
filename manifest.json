@@ -11,21 +11,21 @@
   "lang": "fr",
   "icons": [
     {
-      "src": "icon-192.png.jpg",
+      "src": "/static/icon-192.png",
       "sizes": "192x192",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icon-512.png.jpg",
+      "src": "/static/icon-512.png",
       "sizes": "512x512",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icon-1024.png.jpg",
+      "src": "/static/icon-1024.png",
       "sizes": "1024x1024",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ],
@@ -34,7 +34,7 @@
       "name": "Interroger l'Oracle v4.1",
       "url": "./#console",
       "description": "Oracle Universel Conscious",
-      "icons": [{ "src": "icon-192.png.jpg", "sizes": "192x192" }]
+      "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Exporter Mémoire",
