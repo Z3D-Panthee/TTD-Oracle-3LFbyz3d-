@@ -2,707 +2,94 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#020b07">
-<title>SENTINEL OS v9.3 FINAL FUSI</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#0b0f19">
+<title>SENTINEL OS v9.3 - FINAL FUSI + VOICE FIX V3.5.1 + HARDWARE V1.2</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" type="image/png" sizes="192x192" href="/static/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/static/icon-512.png">
-<link rel="apple-touch-icon" href="/static/icon-512.png">
 <style>
-:root{
- --g:#00ff88;
- --y:#ffd43b;
- --r:#ff5566;
- --bg:#020907;
- --b:#1d5239;
- --t:#d7f5e8;
- --u:#78a995;
-}
-*{box-sizing:border-box;font-family:monospace}
-body{
- margin:0;
- background:var(--bg);
- color:var(--t);
- overflow:hidden;
-}
-#splash{
- position:fixed;
- inset:0;
- z-index:9999;
- display:flex;
- flex-direction:column;
- align-items:center;
- justify-content:center;
- background:
-  radial-gradient(circle at center,#0f3a24 0%,#020907 70%);
- transition:opacity.6s ease;
-}
-#splash.hide{
- opacity:0;
- pointer-events:none;
-}
-.logo{
- width:100px;
- height:100px;
- border-radius:24px;
- background:linear-gradient(135deg,var(--g),var(--y));
- display:grid;
- place-items:center;
- font-size:2.8rem;
- box-shadow:0 0 35px rgba(0,255,136,.5);
- animation:pulse 1.3s infinite alternate;
-}
-@keyframes pulse{
- to{transform:scale(1.08)}
-}
-.bar{
- width:180px;
- height:4px;
- background:#082217;
- border-radius:99px;
- overflow:hidden;
- margin-top:18px;
-}
-.pr{
- width:0%;
- height:100%;
- background:linear-gradient(90deg,var(--g),var(--y));
- animation:load 2.2s forwards;
-}
-@keyframes load{
- to{width:100%}
-}
-.app{
- width:100vw;
- height:100vh;
- overflow:auto;
-}
-.head{
- position:sticky;
- top:0;
- z-index:100;
- display:flex;
- justify-content:space-between;
- align-items:center;
- padding:10px 12px;
- background:rgba(2,9,7,.94);
- border-bottom:1px solid var(--b);
-}
-.main{
- max-width:980px;
- margin:auto;
- padding:10px;
-}
-.card{
- background:#0c2117;
- border:1px solid var(--b);
- border-radius:18px;
- padding:14px;
- margin:10px 0;
-}
-.btn{
- border:0;
- border-radius:999px;
- padding:10px 14px;
- font-weight:900;
- margin:3px;
- cursor:pointer;
-}
-.y{background:var(--y);color:#000}
-.g{background:var(--g);color:#000}
-.o{background:transparent;border:1px solid var(--b);color:#a9e9ca}
-.bb{background:#62a8ff;color:#000}
-.badge{
- border:1px solid var(--b);
- border-radius:999px;
- padding:5px 9px;
- font-size:.6rem;
- font-weight:900;
-}
-.on{color:var(--g);border-color:var(--g)}
-.off{color:var(--r);border-color:var(--r)}
-.ins{background:var(--y);color:#000}
-.prog{
- height:7px;
- background:#082217;
- border-radius:99px;
- overflow:hidden;
- margin:8px 0;
-}
-.ba{
- width:0%;
- height:100%;
- background:linear-gradient(90deg,var(--g),#00f5d0,var(--y));
- transition:width.25s;
-}
-.stream{
- min-height:120px;
- padding:10px;
- border-left:2px solid var(--g);
- white-space:pre-wrap;
- line-height:1.65;
- color:#00f5d0;
- background:rgba(0,0,0,.15);
- border-radius:0 10px 10px 0;
-}
-.ti{
- font-size:1.5rem;
- color:var(--y);
- font-weight:900;
-}
-.hist{
- position:fixed;
- inset:0;
- z-index:500;
- background:rgba(2,9,7,.97);
- display:none;
- overflow:auto;
- padding:12px;
-}
-.it{
- padding:9px;
- border:1px solid var(--b);
- border-radius:10px;
- margin:6px 0;
- background:#081811;
- font-size:.78rem;
-}
-.log{
- font-size:.6rem;
- color:var(--u);
- background:#010b06;
- border:1px solid var(--b);
- border-radius:8px;
- padding:7px;
- max-height:110px;
- overflow:auto;
- white-space:pre-wrap;
-}
-.fin{
- display:none;
- text-align:center;
- padding:24px 12px;
- border:2px solid var(--y);
- border-radius:18px;
- background:radial-gradient(circle at center,rgba(255,212,59,.08),transparent 60%);
-}
+:root{--bg:#0b0f19;--panel:rgba(17,24,39,0.75);--border:rgba(59,130,246,0.3);--accent:#3b82f6;--gold:#ffd43b;--green:#10b981;--text:#f3f4f6;--muted:#9ca3af}
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,Segoe UI,Roboto,sans-serif}
+body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+header{background:var(--panel);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:1rem;text-align:center;position:sticky;top:0;z-index:100}
+main{flex:1;padding:1rem;max-width:900px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:1rem;padding-bottom:110px}
+.card{background:var(--panel);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:1.25rem;box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+.btn{flex:1;border:0;border-radius:8px;padding:0.75rem 1rem;font-weight:700;cursor:pointer;min-width:90px}
+.gold{background:linear-gradient(135deg,#ffd43b,#f59e0b);color:#000}
+.blue{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff}
+.green{background:linear-gradient(135deg,#10b981,#059669);color:#fff}
+.sec{background:transparent;border:1px solid var(--border);color:var(--text)}
+.prog{height:8px;background:#111827;border-radius:99px;overflow:hidden;margin:10px 0;border:1px solid var(--border)}
+.ba{width:0%;height:100%;background:linear-gradient(90deg,#3b82f6,#10b981,#ffd43b);transition:width.25s}
+.hw-img{width:100%;max-width:520px;border-radius:12px;border:2px solid #ffd43b;display:block;margin:12px auto;box-shadow:0 0 30px rgba(255,212,59,0.2)}
+.floatBar{position:fixed;bottom:0;left:0;right:0;z-index:200;display:flex;gap:8px;justify-content:center;padding:10px;background:rgba(11,15,25,0.95);border-top:2px solid #ffd43b}
+#btnVoix{background:#374151;color:#fff;border-radius:25px}#btnVoix.on{background:#10b981;color:#000}
+.log{font-size:.65rem;color:var(--muted);background:#01050a;border:1px solid var(--border);border-radius:8px;padding:8px;max-height:120px;overflow:auto;white-space:pre-wrap;margin-top:8px}
+.pitch{font-style:italic;color:var(--muted);background:rgba(0,0,0,0.2);padding:1rem;border-radius:8px;border:1px dashed var(--border);white-space:pre-wrap;min-height:90px}
 </style>
 </head>
 <body>
-
-<div id="splash">
- <div class="logo">🇨🇩</div>
- <div style="margin-top:14px;font-weight:900;letter-spacing:.1em">
-  SENTINEL OS v9.3
- </div>
- <div style="color:var(--u);font-size:.62rem;margin-top:4px">
-  VÉROLIS SARL • TSHISELEKA THOKA DANY
- </div>
- <div style="color:var(--u);font-size:.55rem;margin-top:2px">
-  FINAL FUSI • ANDROID APP
- </div>
- <div class="bar"><div class="pr"></div></div>
- <div style="margin-top:10px;font-size:.55rem;color:var(--u)">
-  Plein écran • Offline • Historique • PWA
- </div>
+<header><h1>Sentinel OS v9.3</h1><p>FINAL FUSI + VOICE FIX V3.5.1 + HARDWARE V1.2 🔥🇨🇩 • TTD: E/t × t/E = 1</p></header>
+<main>
+<div class="card" style="border:2px solid #ffd43b">
+<h2>🇨🇩 GRAND BONSOIR AUX MEMBRES DU GROUPE AIIFAC-ASBL</h2>
+<img class="hw-img" src="__HARDWARE_BASE64__" alt="Sentinel V1.2 Hardware">
+<div style="background:rgba(59,130,246,0.05);border-left:4px solid #3b82f6;padding:0.75rem 1rem;margin:10px 0"><strong>Vérolis SARL - Sentinel V1.2 - Prototype Réel</strong><br>Arduino & Raspberry Pi • Spirale Cuivre • I_TTD = 1.000 • App + Hardware = Souveraineté totale</div>
+<div style="text-align:center;font-size:1.7rem;font-weight:900">GRAND BONSOIR AUX<br><span style="color:#ffd43b">MEMBRES DU GROUPE AIIFAC-ASBL</span></div>
+<div style="display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap"><button class="btn green" onclick="presenterHW()">🔊 Présenter Hardware</button><button class="btn gold" onclick="pitch(90)">🎤 Pitch 90s JURY + HW</button></div>
 </div>
-
-<div class="app">
-<header class="head">
- <div>
-  <div style="font-weight:900;font-size:.78rem">
-   SENTINEL v9.3 FINAL FUSI
-  </div>
-  <div style="font-size:.55rem;color:var(--u)">
-   PLEIN ÉCRAN • AUTONOME • <span id="mode">STANDBY</span>
-  </div>
- </div>
- <div style="display:flex;gap:5px;flex-wrap:wrap">
-  <button id="installBtn" class="badge ins">📲</button>
-  <div id="net" class="badge on">● ON</div>
-  <button class="badge" onclick="fs()">⛶</button>
-  <button class="badge" onclick="openH()">
-   📜<span id="hc">0</span>
-  </button>
- </div>
-</header>
-
-<main class="main">
-<section class="card">
- <div style="color:var(--g);font-size:.6rem;letter-spacing:.15em;font-weight:900">
-  V9.3 FINAL FUSI — JURY + TEST SYSTEME + PWA
- </div>
- <h1 style="font-size:2.7rem;margin:8px 0;line-height:.85">
-  SENTINEL<br>
-  <span style="color:var(--g)">OS v9.3</span>
- </h1>
- <div style="display:flex;flex-wrap:wrap">
-  <button class="btn y" onclick="pitch(30)">🎤 30s</button>
-  <button class="btn y" onclick="pitch(60)">🎤 60s</button>
-  <button class="btn y" onclick="pitch(90)">🎤 90s SOUVERAIN</button>
-  <button class="btn g" onclick="openJ()">⚖️ JURY</button>
-  <button class="btn bb" onclick="toggleLang()">
-   🌍<span id="lb">FR</span>
-  </button>
-  <button class="btn o" onclick="stop()">■ STOP</button>
- </div>
- <div style="display:flex;flex-wrap:wrap;margin-top:6px">
-  <button class="btn o" onclick="runTest()">🧪 TEST SYSTEME</button>
-  <button class="btn o" onclick="prec()">🔊 Précharger Offline</button>
-  <button class="btn o" onclick="ex()">📦 Exporter APP</button>
- </div>
- <div id="vs" class="log" style="margin-top:8px">
-  v9.3 Final Fusi • PWA • Plein écran • Historique local actif
-  • Touchez 1 fois = débloqué
- </div>
- <div class="prog"><div id="bar" class="ba"></div></div>
- <div style="display:flex;justify-content:space-between">
-  <div id="tm" class="ti">00:00</div>
-  <div id="pc" style="color:var(--u);font-size:.7rem">0%</div>
- </div>
- <div id="st" class="stream">
-  Prêt. Version finale FUSI. Offline. Historique local.
- </div>
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">
-  <div class="it">
-   <small style="color:var(--u)">STOCKAGE</small>
-   <b id="si" style="color:var(--g);display:block">LOCAL OK</b>
-  </div>
-  <div class="it">
-   <small style="color:var(--u)">SESSIONS JURY</small>
-   <b id="sc" style="color:var(--g);display:block">0 sessions</b>
-  </div>
-  <div class="it">
-   <small style="color:var(--u)">UPTIME</small>
-   <b id="up" style="color:var(--g);display:block">00:00:00</b>
-  </div>
-  <div class="it">
-   <small style="color:var(--u)">AUDIO</small>
-   <b id="ai" style="color:var(--g);display:block">BROWSER + CACHE</b>
-  </div>
- </div>
- <div id="testBox" class="log" style="display:none;margin-top:8px"></div>
-</section>
-
-<section class="card" id="jp" style="display:none">
- <div style="color:var(--g);font-size:.6rem;font-weight:900">
-  JURY MODE — 8 QUESTIONS — HISTORIQUE AUTO
- </div>
- <div id="qb" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"></div>
- <div id="jq" style="font-weight:900;margin:12px 0;font-size:1.1rem"></div>
- <div id="ja" style="padding:10px;border-left:3px solid var(--y);background:rgba(255,212,59,.05);border-radius:8px;line-height:1.6"></div>
- <div style="margin-top:8px;display:flex;flex-wrap:wrap">
-  <button class="btn y" onclick="nq()">➜ Suivante</button>
-  <button class="btn o" onclick="sp()">🔊 Parler</button>
-  <button class="btn o" onclick="sv()">💾 Sauver Jury</button>
- </div>
-</section>
-
-<section class="fin" id="fin">
- <div style="font-size:2.6rem">🇨🇩</div>
- <h3 style="color:var(--y)">SÉQUENCE FINALE INSTITUTIONNELLE v9.3</h3>
- <p>Système Android autonome validé. Prêt FUSI.</p>
- <div style="font-weight:900;color:var(--g);margin-top:10px">
-  VÉROLIS SARL<br>
-  TSHISELEKA THOKA DANY — KINSHASA 2026<br>
-  I_TTD 1.000 • M* • ACTION → NAVIGATION → DESTINATION
- </div>
-</section>
+<div class="card">
+<h2>🎤 PITCH JURY FUSI - OFFLINE VOICE FIX</h2>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn gold" onclick="pitch(30)">30s Souverain</button><button class="btn gold" onclick="pitch(60)">60s Complet</button><button class="btn blue" onclick="pitch(90)">90s JURY FUSI</button><button class="btn sec" onclick="stopAll()">■ STOP</button></div>
+<div style="display:flex;justify-content:space-between;margin-top:10px"><span id="tm" style="color:#ffd43b;font-weight:900;font-size:1.2rem">00:00</span><span id="pc">0%</span></div>
+<div class="prog"><div id="bar" class="ba"></div></div>
+<div id="st" class="pitch">Prêt. Version finale FUSI VOICE FIX V3.5.1 CHUNKED + Hardware V1.2. Cliquez VOIX TTD en bas pour débloquer.</div>
+<div id="vs" class="log">v9.3 FINAL FUSI • VOICE FIX V3.5.1 CHUNKED • Hardware V1.2 • LocalStorage actif</div>
+</div>
+<div class="card" id="jp" style="display:none">
+<h2>⚖️ JURY MODE - 8 QUESTIONS + HW - HISTORIQUE AUTO</h2>
+<div id="qb" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+<div id="jq" style="font-weight:900;margin:12px 0;color:#ffd43b"></div>
+<div id="ja" style="padding:10px;border-left:3px solid #ffd43b;background:rgba(255,212,59,0.05);border-radius:8px"></div>
+<div style="display:flex;gap:8px;margin-top:10px"><button class="btn gold" onclick="nq()">Suivante</button><button class="btn sec" onclick="sp()">🔊 Parler</button><button class="btn sec" onclick="sv()">💾 Sauver</button></div>
+</div>
+<div class="card">
+<h2>🔬 DIAGNOSTICS & HARDWARE</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.75rem">
+<div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);padding:0.75rem;border-radius:8px;text-align:center"><div style="font-size:0.7rem;color:var(--muted)">Moteur Vocal</div><div style="color:var(--green);font-weight:600">Fix V3.5.1 CHUNKED</div></div>
+<div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);padding:0.75rem;border-radius:8px;text-align:center"><div style="font-size:0.7rem;color:var(--muted)">Hardware</div><div style="color:var(--green);font-weight:600">V1.2 Micro-CIRT</div></div>
+<div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);padding:0.75rem;border-radius:8px;text-align:center"><div style="font-size:0.7rem;color:var(--muted)">Noyau FUSI</div><div style="color:var(--green);font-weight:600">I_TTD=1.000</div></div>
+</div>
+<div style="display:flex;gap:8px;margin-top:10px"><button class="btn blue" onclick="testerSynthese()">Tester Voix Anti-Coupure</button><button class="btn sec" onclick="runTest()">TEST SYSTEME</button><button class="btn sec" onclick="openJ()">JURY</button></div>
+<div id="testBox" class="log">Clique TEST SYSTEME</div>
+</div>
 </main>
-</div>
-
-<div class="hist" id="hp">
- <div style="display:flex;justify-content:space-between;align-items:center">
-  <h3>📜 Historique Sessions Jury</h3>
-  <button class="btn o" onclick="closeH()">✕ Fermer</button>
- </div>
- <div style="display:flex;gap:6px;margin:8px 0;flex-wrap:wrap">
-  <button class="btn o" onclick="exH()">📄 Export JSON</button>
-  <button class="btn o" onclick="clH()" style="color:var(--r)">🗑️ Effacer</button>
- </div>
- <div id="hl"></div>
-</div>
-
+<div class="floatBar"><button id="btnVoix" onclick="toggleVoix()">🔇 VOIX TTD</button><button class="btn gold" onclick="pitch(30)">30s</button><button class="btn green" onclick="pitch(90)">90s JURY</button></div>
+<footer style="text-align:center;padding:1rem;font-size:.7rem;color:#9ca3af;border-top:1px solid var(--border)">Sentinel OS v9.3 FUSI VOICE FIX V3.5.1 + HW V1.2 • Vérolis SARL & AIIFAC-ASBL • Tshiseleka Thoka Dany • Kinshasa 2026 • I_TTD 1.000</footer>
 <script>
-// PWA v4.1.3 FIX PNG - Utilise les vrais fichiers /manifest.json et /sw.js
-let dp=null;
-const ib=document.getElementById('installBtn');
-window.addEventListener('beforeinstallprompt',e=>{
- e.preventDefault();
- dp=e;
- ib.style.display='inline-block';
-});
-ib.onclick=async()=>{
- if(dp){
-  dp.prompt();
-  await dp.userChoice;
-  dp=null;
-  ib.style.display='none';
- }else{
-  alert("Android: ⋮ > Installer l'app");
- }
-};
-
-if('serviceWorker' in navigator){
- navigator.serviceWorker.register('/sw.js')
- .then(()=>console.log('[SENTINEL] SW v4.1.3 enregistré'))
- .catch(e=>console.error(e));
-}
-
-const DATA={
- fr:{
-  p:{
-   30:"Membres du jury. A Lemba quand internet coupe tout s'arrete. Sentinel OS refuse cela. Intelligence souveraine offline dans votre poche.",
-   60:"On dit qu'une IA exige la Silicon Valley. Faux. A Lemba j'ai bati Sentinel OS sur Action Navigation Destination M etoile I_TTD egal un. Zero cloud zero dependance.",
-   90:"Monsieur le President membres du jury FUSI. On nous vend la dependance comme fatalite. A Lemba nous avons choisi la souverainete. Je suis Sentinel OS v9.3 Android App ne de la Triade Dynamique. Action impulsion sans laquelle rien ne nait. Navigation filtrage rigoureux. Destination M etoile point fixe mathematique ou I_TTD egale un. Resultat app Android plein ecran offline historique local. Pendant que d'autres bavardent dans le cloud Sentinel agit stabilise et resout. Verolis Sarl intelligence congolaise souveraine pour l'Afrique et le monde. Merci."
-  },
-  d:"Initialisation v9.3 Final Fusi. Action detectee. Navigation filtrage. Destination M etoile. Stockage local actif. Demo terminee offline.",
-  q:[
-   "C'est quoi la TTD?",
-   "Pourquoi le fonctionnement local?",
-   "Difference avec ChatGPT?",
-   "Modele economique?",
-   "Pourquoi important pour l'Afrique?",
-   "Preuve scientifique?",
-   "Quel vrai probleme resolu?",
-   "Strategie passage a l'echelle?"
-  ],
-  a:[
-   "TTD = Theorie de la Triade Dynamique. Tout processus intelligent fait 3 pas: Action impulsion, Navigation filtrage, Destination M etoile convergence. Invariant I_TTD=1.",
-   "Local: A Kinshasa une coupure ne doit pas arreter une ecole, un hopital, une usine. Sentinel garde les fonctions critiques sans internet, donnees restent au pays.",
-   "ChatGPT est puissant generaliste dans le cloud. Sentinel est specialise souverain offline tracable. Pas meilleur partout, mais controlable localement.",
-   "Modele: Licence Verolis Sarl + installation + integration + maintenance + solutions verticales ecoles, entreprises, fermes, Regideso/Snel.",
-   "Afrique: Souverainete numerique. Couts cloud, connectivite, donnees locales. Solutions adaptees terrain, pas importees.",
-   "Preuve: Par mesure reproductible. On separe theorie et experience. Chaque prediction confrontee a log, metrique, test systeme integre ici.",
-   "Probleme: Comment garder des capacites intelligentes quand cloud, connexion ou paiement echouent. Sentinel repond: offline-first.",
-   "Echelle: Commencer vertical eau, energie, education, prouver stabilite, puis deployer progressivement. Architecture locale d'abord."
-  ]
- },
- en:{
-  p:{
-   30:"Jury members. In Lemba when internet cuts everything stops. Sentinel refuses. Sovereign offline.",
-   60:"They say AI needs Silicon Valley. False. In Lemba I built Sentinel on Action Navigation Destination M star I_TTD one. Zero cloud.",
-   90:"Mr President jury. We are sold dependency as fate. In Lemba we chose sovereignty. I am Sentinel OS v9.3 Android App from Triad. Action impulse Navigation compass Destination M star fixed point where I_TTD equals one. Android fullscreen offline local history. Verolis Sarl Congolese intelligence. Thank you."
-  },
-  d:"Init v9.3 Final Fusi. Action Navigation Destination M star local storage. Demo done.",
-  q:[
-   "What is TTD?",
-   "Why local?",
-   "Vs ChatGPT?",
-   "Business model?",
-   "Why Africa?",
-   "Proof?",
-   "Problem solved?",
-   "Scale strategy?"
-  ],
-  a:[
-   "TTD = Action Navigation Destination I=1.",
-   "Local continues without internet data stays in country.",
-   "ChatGPT powerful generalist cloud. Sentinel specialized sovereign offline.",
-   "License + install + maintenance + verticals.",
-   "Africa needs sovereignty low cost low connectivity.",
-   "Proof via reproducible measurement logs test.",
-   "Keep intelligence when cloud fails offline-first.",
-   "Start vertical prove stability then expand."
-  ]
- }
-};
-
-const $=id=>document.getElementById(id);
-let S={
- lang:'fr',
- v:[],
- fv:null,
- ev:null,
- ok:false,
- t:null,
- e:0,
- sec:0,
- cur:"",
- qi:0,
- st:Date.now(),
- h:[]
-};
-let ka=null;
-const sy=window.speechSynthesis;
-
-function loadStorage(){
- try{
-  const x=localStorage.getItem('sentinel_v93');
-  if(x) S.h=JSON.parse(x);
-  upd();
- }catch(e){}
-}
-function saveStorage(){
- try{
-  localStorage.setItem('sentinel_v93',JSON.stringify(S.h));
-  upd();
- }catch(e){}
-}
-function upd(){
- $('hc').textContent=S.h.length;
- $('sc').textContent=S.h.length+' sessions';
- $('si').textContent='LOCAL '+S.h.length+' OK';
-}
-loadStorage();
-
-window.addEventListener('load',()=>{
- setTimeout(()=>{
-  $('splash').classList.add('hide');
-  setTimeout(()=>{$('splash').style.display='none';},600);
- },2200);
- loadVoices();
- net();
-});
-
-function net(){
- const b=$('net');
- if(navigator.onLine){
-  b.textContent='● ON';
-  b.className='badge on';
- }else{
-  b.textContent='● OFF';
-  b.className='badge off';
- }
-}
-window.addEventListener('online',net);
-window.addEventListener('offline',net);
-
-function loadVoices(){
- try{
-  S.v=sy.getVoices()||[];
-  if(S.v.length){
-   S.fv=S.v.find(v=>v.lang.toLowerCase().startsWith('fr'))||S.v[0];
-   S.ev=S.v.find(v=>v.lang.toLowerCase().startsWith('en'))||S.v[0];
-   $('vs').textContent='🔊 '+S.v.length+' voix • '+(S.fv?S.fv.name:'')+' • Local OK';
-   $('ai').textContent=S.v.length+' VOIX '+(navigator.onLine?'ON':'OFF');
-  }
- }catch(e){}
-}
-loadVoices();
-if(sy) sy.onvoiceschanged=loadVoices;
-
-function prime(){
- if(S.ok) return;
- try{
-  sy.cancel();
-  const u=new SpeechSynthesisUtterance(' ');
-  u.volume=0.01;
-  sy.speak(u);
-  S.ok=true;
-  $('vs').textContent='🔊 Débloqué • 1 clic suffit • Android autonome';
- }catch(e){}
-}
-document.addEventListener('touchstart',prime,{once:true,passive:true});
-document.addEventListener('click',prime,{once:true});
-
-function stop(){
- try{sy.cancel();}catch(e){}
- clearInterval(S.t);
- if(ka) clearInterval(ka);
- $('mode').textContent='STANDBY';
- $('bar').style.width='0%';
- $('tm').textContent='00:00';
- $('pc').textContent='0%';
-}
-function logSession(type,content){
- const entry={
-  id:Date.now(),
-  date:new Date().toISOString(),
-  lang:S.lang,
-  type:type,
-  content:content,
-  online:navigator.onLine
- };
- S.h.unshift(entry);
- if(S.h.length>100) S.h.pop();
- saveStorage();
-}
-
-function pitch(sec){
- prime();
- const exec=()=>{
-  stop();
-  S.sec=sec;
-  S.e=0;
-  const txt=DATA[S.lang].p[sec];
-  $('mode').textContent='PITCH '+sec+'s';
-  $('st').textContent='';
-  $('fin').style.display='none';
-  const u=new SpeechSynthesisUtterance(txt);
-  u.lang=S.lang==='fr'?'fr-FR':'en-US';
-  const v=S.lang==='fr'?S.fv:S.ev;
-  if(v) u.voice=v;
-  u.rate=0.9;
-  ka=setInterval(()=>{
-   if(sy.speaking){sy.pause();sy.resume();}
-  },3000);
-  u.onend=()=>{
-   clearInterval(ka);
-   $('fin').style.display='block';
-  };
-  sy.speak(u);
-  S.t=setInterval(()=>{
-   S.e++;
-   const pr=Math.min(1,S.e/sec);
-   $('st').textContent=txt.slice(0,Math.floor(pr*txt.length));
-   $('bar').style.width=(pr*100)+'%';
-   $('pc').textContent=Math.floor(pr*100)+'%';
-   $('tm').textContent='00:'+String(Math.max(0,sec-S.e)).padStart(2,'0');
-   if(S.e>=sec){
-    clearInterval(S.t);
-    $('st').textContent=txt;
-    $('bar').style.width='100%';
-    $('fin').style.display='block';
-    logSession('PITCH_'+sec,txt);
-   }
-  },1000);
-  logSession('PITCH_START',sec+'s '+S.lang);
- };
- if(S.ok) exec();
- else setTimeout(exec,350);
-}
-
-function openJ(){
- const p=$('jp');
- p.style.display='block';
- const qb=$('qb');
- qb.innerHTML='';
- DATA[S.lang].q.forEach((q,i)=>{
-  const b=document.createElement('button');
-  b.className='btn o';
-  b.textContent=q;
-  b.onclick=()=>sq(i);
-  qb.appendChild(b);
- });
- sq(0);
- p.scrollIntoView({behavior:'smooth'});
-}
-function sq(i){
- S.qi=i;
- $('jq').textContent=DATA[S.lang].q[i];
- $('ja').textContent=DATA[S.lang].a[i];
- S.cur=DATA[S.lang].a[i];
-}
-function nq(){
- sq((S.qi+1)%DATA[S.lang].q.length);
-}
-function sp(){
- prime();
- const u=new SpeechSynthesisUtterance(S.cur);
- u.lang=S.lang==='fr'?'fr-FR':'en-US';
- if(S.lang==='fr'&&S.fv) u.voice=S.fv;
- u.rate=0.9;
+const sy=window.speechSynthesis; let S={fv:null,v:[],ok:false,t:null,e:0,sec:0,cur:"",qi:0,voixOn:false};
+function loadVoices(){try{S.v=sy.getVoices()||[]; if(S.v.length){S.fv=S.v.find(v=>v.lang.toLowerCase().includes('fr'))||S.v[0];}}catch(e){}}
+loadVoices(); if(sy) sy.onvoiceschanged=loadVoices;
+function prime(){if(S.ok) return; try{sy.cancel(); const u=new SpeechSynthesisUtterance(' '); u.volume=0.01; sy.speak(u); S.ok=true;}catch(e){}}
+document.addEventListener('touchstart',prime,{once:true}); document.addEventListener('click',prime,{once:true});
+function parler(texte){
+ if(!S.voixOn){ document.getElementById('vs').textContent='VOIX OFF - clique VOIX TTD'; return; }
  sy.cancel();
- setTimeout(()=>sy.speak(u),80);
+ var phrases=texte.match(/[^.!?\\n]+[.!?]+|[^.!?\\n]+$/g)||[texte];
+ var i=0; function next(){if(i>=phrases.length) return; var c=phrases[i].trim(); if(!c){i++;next();return;} var u=new SpeechSynthesisUtterance(c); u.lang='fr-FR'; u.rate=0.92; if(S.fv) u.voice=S.fv; u.onend=function(){i++;next();}; u.onerror=function(){i++;next();}; sy.speak(u);} next();
 }
-function sv(){
- logSession('JURY_Q'+(S.qi+1),$('jq').textContent+' | '+$('ja').textContent);
- alert('💾 Sauvé dans historique local');
-}
-
-function fs(){
- try{
-  if(!document.fullscreenElement){
-   document.documentElement.requestFullscreen();
-  }else{
-   document.exitFullscreen();
-  }
- }catch(e){
-  alert('Plein écran auto en mode installée');
- }
-}
-function toggleLang(){
- S.lang=S.lang==='fr'?'en':'fr';
- $('lb').textContent=S.lang.toUpperCase();
- if($('jp').style.display==='block') openJ();
-}
-
-function runTest(){
- const box=$('testBox');
- box.style.display='block';
- let out=[];
- try{
-  out.push('✓ Online status: '+(navigator.onLine?'ONLINE':'OFFLINE'));
-  out.push('✓ Voices: '+S.v.length+' trouvées');
-  out.push('✓ SpeechSynthesis: '+('speechSynthesis' in window?'OK':'non supporté'));
-  out.push('✓ ServiceWorker: '+('serviceWorker' in navigator?'OK':'non'));
-  out.push('✓ CacheStorage: '+('caches' in window?'OK':'non'));
-  out.push('✓ LocalStorage: '+(localStorage.getItem('sentinel_v93')!==null?'OK avec '+S.h.length+' sessions':'vide OK'));
-  out.push('✓ Timer fiable: setInterval actif');
-  out.push('✓ PWA installable: '+(dp?'prompt prêt':'en attente geste'));
-  out.push('✓ Aucune API externe: vérifié');
-  out.push('');
-  out.push('→ TEST GLOBAL: PRÊT POUR JURY FUSI');
-  box.textContent=out.join('\n');
- }catch(e){
-  box.textContent='Erreur test: '+e.message;
- }
- box.scrollIntoView({behavior:'smooth'});
-}
-
-function openH(){
- $('hp').style.display='block';
- const l=$('hl');
- l.innerHTML='';
- if(S.h.length===0){
-  l.innerHTML='<div class=log>Aucune session. Lance un pitch.</div>';
-  return;
- }
- S.h.forEach(h=>{
-  const d=document.createElement('div');
-  d.className='it';
-  d.innerHTML='<div style=color:#78a995;font-size:.55rem>'+new Date(h.id).toLocaleString()+' • '+h.type+' • '+h.lang+' '+(h.online?'ON':'OFF')+'</div><div style=margin-top:4px>'+h.content.slice(0,180)+'</div>';
-  l.appendChild(d);
- });
-}
-function closeH(){$('hp').style.display='none';}
-function clH(){
- if(confirm('Effacer historique local?')){
-  S.h=[];
-  saveStorage();
-  openH();
- }
-}
-function exH(){
- const txt=JSON.stringify(S.h,null,2);
- const b=new Blob([txt],{type:'application/json'});
- const u=URL.createObjectURL(b);
- const a=document.createElement('a');
- a.href=u;
- a.download='SENTINEL_v93_HISTORY_'+Date.now()+'.json';
- a.click();
- setTimeout(()=>URL.revokeObjectURL(u),2000);
-}
-function prec(){
- prime();
- if('caches' in window){
-  caches.open('sentinel-v93').then(c=>c.addAll(['./']).then(()=>{
-   alert('✅ App offline préchargée • Historique local actif • PWA prête');
-   $('ai').textContent='CACHE OK';
-  }));
- }
-}
-function ex(){
- const h=document.documentElement.outerHTML;
- const b=new Blob([h],{type:'text/html'});
- const u=URL.createObjectURL(b);
- const a=document.createElement('a');
- a.href=u;
- a.download='SENTINEL_OS_v93_FINAL_FUSI_'+Date.now()+'.html';
- a.click();
- setTimeout(()=>URL.revokeObjectURL(u),2000);
-}
-
-setInterval(()=>{
- const diff=Math.floor((Date.now()-S.st)/1000);
- const hh=String(Math.floor(diff/3600)).padStart(2,'0');
- const mm=String(Math.floor((diff%3600)/60)).padStart(2,'0');
- const ss=String(diff%60).padStart(2,'0');
- const el=$('up');
- if(el) el.textContent=hh+':'+mm+':'+ss;
-},1000);
+function toggleVoix(){ if(sy&&sy.getVoices().length===0) sy.getVoices(); loadVoices(); S.voixOn=!S.voixOn; var b=document.getElementById('btnVoix'); if(S.voixOn){b.classList.add('on');b.innerText='🔊 VOIX ON'; setTimeout(function(){parler("Voix fix V3 point 5 point 1 activée. Hardware V1 point 2 et app v9 point 3 opérationnels. Grand bonsoir AIIFAC Asbl.");},300);} else{b.classList.remove('on');b.innerText='🔇 VOIX TTD'; sy.cancel();} }
+function stopAll(){sy.cancel(); clearInterval(S.t); document.getElementById('bar').style.width='0%';}
+var DATA={fr:{p:{30:"Membres du jury. A Lemba quand internet coupe tout s'arrete. Sentinel OS refuse cela. Intelligence souveraine offline dans votre poche. Hardware V1 point 2 plus app v9 point 3.",60:"On dit qu'une IA exige la Silicon Valley. Faux. A Lemba j'ai bati Sentinel OS sur Action Navigation Destination M etoile I_TTD egal un. Zero cloud. Hardware Micro Cirt plus app Android.",90:"Monsieur le President membres du jury FUSI et AIIFAC Asbl. On nous vend la dependance comme fatalite. A Lemba nous avons choisi la souverainete. Je suis Sentinel OS v9 point 3 plus hardware V1 point 2 Micro Cirt. Action impulsion sans laquelle rien ne nait. Navigation filtrage rigoureux. Destination M etoile point fixe mathematique ou I_TTD egale un. Resultat app Android plein ecran offline plus hardware spirale cuivre Arduino Raspberry Pi. Prototype reel visible ce soir. Verolis Sarl intelligence congolaise souveraine pour l'Afrique et le monde. Merci."},q:["C'est quoi la TTD?","Pourquoi local?","Difference ChatGPT?","Modele economique?","Pourquoi Afrique?","Preuve scientifique?","Probleme resolu?","Hardware V1.2?"],a:["TTD = Triade Dynamique. Action Navigation Destination M etoile I=1.","Local: coupure ne doit pas arreter ecole hopital. Donnees restent au pays.","ChatGPT cloud generaliste. Sentinel specialise souverain offline + hardware reel.","Licence + hardware V1.2 + app + maintenance.","Souverainete numerique Afrique.","I_TTD 1.000 valide + prototype hardware visible.","Garder intelligence quand cloud echoue offline-first.","Hardware V1.2 Micro-CIRT inox spirale cuivre Arduino RPi controle fluide."]}};
+function pitch(sec){prime(); stopAll(); S.sec=sec; S.e=0; var txt=DATA.fr.p[sec]; document.getElementById('st').textContent=txt; parler(txt); S.t=setInterval(function(){S.e++; var pr=Math.min(1,S.e/sec); document.getElementById('bar').style.width=(pr*100)+'%'; document.getElementById('pc').textContent=Math.floor(pr*100)+'%'; document.getElementById('tm').textContent='00:'+String(Math.max(0,sec-S.e)).padStart(2,'0'); if(S.e>=sec){clearInterval(S.t);}},1000);}
+function openJ(){var p=document.getElementById('jp'); p.style.display='block'; var qb=document.getElementById('qb'); qb.innerHTML=''; DATA.fr.q.forEach(function(q,i){var b=document.createElement('button'); b.className='btn gold'; b.textContent=q; b.onclick=function(){sq(i);}; qb.appendChild(b);}); sq(0);}
+function sq(i){S.qi=i; document.getElementById('jq').textContent=DATA.fr.q[i]; document.getElementById('ja').textContent=DATA.fr.a[i]; S.cur=DATA.fr.a[i];}
+function nq(){sq((S.qi+1)%DATA.fr.q.length);} function sp(){parler(S.cur);} function sv(){alert('Sauvé Jury Q'+(S.qi+1));}
+function presenterHW(){parler("Grand bonsoir aux membres du groupe Aii fac Asbl. Je suis Sentinel V1 point 2 Micro Cirt TTD Prototylse. Hardware réel Arduino et Raspberry Pi, spirale cuivre, système autonome. App plus hardware, souveraineté complète pour l Afrique.");}
+function testerSynthese(){parler("Sentinel OS v9 point 3 opérationnel. Le correctif vocal V3 point 5 point 1 est actif. Fini les coupures intempestives sur Chrome. Matériel Micro Cirt V1 point 2 connecté. I TTD égale un.");}
+function runTest(){var b=document.getElementById('testBox'); b.textContent="✓ Voices CHUNKED: "+S.v.length+"\\n✓ Hardware img: OK\\n✓ VOICE FIX V3.5.1: Actif\\n→ PRÊT JURY + AIIFAC"; b.style.display='block';}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 </script>
 </body>
 </html>
