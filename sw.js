@@ -1,16 +1,16 @@
-// SENTINEL OS v4.1.2 CONSCIOUS AUTONOMOUS - SCELLÉ LEMBA - FIX .jpg
-const CACHE_NAME = 'sentinel-os-v4.1.2-conscious-autonomous-lemba';
+// SENTINEL OS v4.1.3 CONSCIOUS AUTONOMOUS - FIX FINAL PNG
+const CACHE_NAME = 'sentinel-os-v4.1.3-fix-png-lemba';
+
 const CORE_FILES = [
   './',
-  './index.html',
   './manifest.json',
-  './icon-192.png.jpg',
-  './icon-512.png.jpg',
-  './icon-1024.png.jpg'
+  '/static/icon-192.png',
+  '/static/icon-512.png',
+  '/static/icon-1024.png'
 ];
 
 self.addEventListener('install', e => {
-  console.log('[SENTINEL v4.1.2] Installation Lemba...');
+  console.log('[SENTINEL v4.1.3] Installation Lemba FIX PNG...');
   e.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(CORE_FILES))
@@ -22,7 +22,13 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys => Promise.all(
-      keys.map(k => k !== CACHE_NAME ? caches.delete(k) : null)
+      keys.map(k => {
+        // Supprime TOUS les anciens caches avec .jpg
+        if (k !== CACHE_NAME) {
+          console.log('[SENTINEL] Suppression ancien cache:', k);
+          return caches.delete(k);
+        }
+      })
     )).then(() => self.clients.claim())
   );
 });
@@ -39,8 +45,8 @@ self.addEventListener('fetch', e => {
         return res;
       }).catch(() => caches.match(req).then(cached => cached || new Response(JSON.stringify({
         k: 0.88, ds: 0.35, confidence: 0.85, domain: "général",
-        answer: "TTD ORACLE v4.1.2 — LEMBA OFFLINE ACTIF\n\nSENTINEL tourne en autonomie.\n\n→ Mémoire locale 80 questions active",
-        status: "LEMBA_OFFLINE_v4.1.2"
+        answer: "TTD ORACLE v4.1.3 — LEMBA OFFLINE ACTIF\n\nSENTINEL tourne en autonomie.\n\n→ Mémoire locale 80 questions active",
+        status: "LEMBA_OFFLINE_v4.1.3"
       }), { headers: { 'Content-Type': 'application/json' } })))
     );
     return;
@@ -58,7 +64,7 @@ self.addEventListener('fetch', e => {
           caches.open(CACHE_NAME).then(c => c.put(req, clone));
         }
         return res;
-      }).catch(() => req.destination === 'document' ? caches.match('./index.html') : null);
+      }).catch(() => req.destination === 'document' ? caches.match('./') : null);
     })
   );
 });
