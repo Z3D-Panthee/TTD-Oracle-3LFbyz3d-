@@ -1,8 +1,9 @@
-from flask import Flask, render_template, send_from_directory, request, jsonify, send_file
+from flask import Flask, render_template, send_from_directory, request, jsonify
 import os
 
 app = Flask(__name__)
-# Dossier où tu mettras tes mp3
+
+# Dossier audio
 AUDIO_FOLDER = os.path.join('static', 'audio')
 os.makedirs(AUDIO_FOLDER, exist_ok=True)
 
@@ -10,30 +11,34 @@ os.makedirs(AUDIO_FOLDER, exist_ok=True)
 def home():
     return render_template('index.html')
 
-# --- FIX AUDIO : Streaming avec Range Requests (anti-coupure) ---
+# --- AUDIO : Streaming avec Range Requests (anti-coupure Kinshasa) ---
 @app.route('/audio/<path:filename>')
 def serve_audio(filename):
-    # Support du streaming partiel (206 Partial Content)
     return send_from_directory(
         AUDIO_FOLDER, 
         filename, 
         mimetype='audio/mpeg',
-        conditional=True,  # Active le 206
+        conditional=True,
         max_age=86400
     )
 
 @app.route('/manifest.json')
 def manifest():
-    return send_from_directory('templates', 'manifest.json')
+    return send_from_directory('.', 'manifest.json')
+
+@app.route('/sw.js')
+def sw():
+    return send_from_directory('.', 'sw.js', mimetype='application/javascript')
 
 @app.route('/service-worker.js')
-def sw():
-    return send_from_directory('templates', 'service-worker.js', mimetype='application/javascript')
+def sw_alias():
+    return send_from_directory('.', 'sw.js', mimetype='application/javascript')
 
-# Corrige tes icons (enlève le .jpg double)
+# Les icônes sont servies auto par Flask depuis /static/
+# Mais on garde une compatibilité si index.html appelle /icon-192.png
 @app.route('/icon-<size>.png')
-def icons(size):
-    return send_from_directory('templates', f'icon-{size}.png.jpg')
+def icons_compat(size):
+    return send_from_directory('static', f'icon-{size}.png', mimetype='image/png')
 
 @app.route('/api/ask', methods=['POST'])
 def ask_api():
@@ -44,7 +49,6 @@ def ask_api():
         "k": 0.89, "ds": 0.32, "confidence": 0.87, "domain": "général"
     })
 
-# Headers anti-coupure pour Kinshasa (cache + keep-alive)
 @app.after_request
 def after_request(response):
     response.headers['Accept-Ranges'] = 'bytes'
