@@ -35,8 +35,9 @@ main{flex:1;padding:1rem;max-width:900px;width:100%;margin:0 auto;display:flex;f
 <img class="hw-img" src="/static/icon-512.png" alt="Sentinel V1.2 Hardware">
 <div style="background:rgba(59,130,246,0.05);border-left:4px solid #3b82f6;padding:0.75rem 1rem;margin:10px 0"><strong>Vérolis SARL - Sentinel V1.2 - Prototype Réel</strong><br>Arduino & Raspberry Pi • Spirale Cuivre • I_TTD = 1.000 • App + Hardware = Souveraineté totale</div>
 <div style="text-align:center;font-size:1.7rem;font-weight:900">GRAND BONSOIR AUX<br><span style="color:#ffd43b">MEMBRES DU GROUPE AIIFAC-ASBL</span></div>
-<div style="display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap"><button class="btn green" onclick="presenterHW()">🔊 Présenter Hardware</button><button class="btn gold" onclick="pitch(90)">🎤 Pitch 90s JURY + HW</button></div>
+<div style="display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap"><button class="btn green" onclick="presenterHW()">🔊 Présenter Hardware</button><button class="btn gold" onclick="pitch(90)">🎤 Pitch 90s JURY + HW</button><button class="btn blue" onclick="openJ()">⚖️ Mode Jury</button></div>
 </div>
+
 <div class="card">
 <h2>🎤 PITCH JURY FUSI - OFFLINE VOICE FIX V3.7</h2>
 <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn gold" onclick="pitch(30)">30s Souverain</button><button class="btn gold" onclick="pitch(60)">60s Complet</button><button class="btn blue" onclick="pitch(90)">90s JURY FUSI</button><button class="btn sec" onclick="stopAll()">■ STOP</button></div>
@@ -45,6 +46,7 @@ main{flex:1;padding:1rem;max-width:900px;width:100%;margin:0 auto;display:flex;f
 <div id="st" class="pitch">Prêt. V3.7 ULTRA-FLUIDE actif. Cliquez VOIX TTD en bas pour débloquer.</div>
 <div id="vs" class="log">v9.3 FINAL FUSI • VOICE FIX V3.7 ULTRA-FLUIDE • Hardware V1.2 • LocalStorage actif</div>
 </div>
+
 <div class="card" id="jp" style="display:none">
 <h2>⚖️ JURY MODE - 8 QUESTIONS + HW</h2>
 <div id="qb" style="display:flex;flex-wrap:wrap;gap:6px"></div>
@@ -53,6 +55,7 @@ main{flex:1;padding:1rem;max-width:900px;width:100%;margin:0 auto;display:flex;f
 <div style="display:flex;gap:8px;margin-top:10px"><button class="btn gold" onclick="nq()">Suivante</button><button class="btn sec" onclick="sp()">🔊 Parler</button><button class="btn sec" onclick="sv()">💾 Sauver</button></div>
 </div>
 </main>
+
 <div class="floatBar"><button id="btnVoix" onclick="toggleVoix()">🔇 VOIX TTD</button><button class="btn gold" onclick="pitch(30)">30s</button><button class="btn green" onclick="pitch(90)">90s JURY</button></div>
 
 <script>
@@ -82,7 +85,6 @@ function loadVoices(){
   }
 }
 
-// Initialisation asynchrone des voix
 loadVoices();
 if(sy && typeof sy.onvoiceschanged !== 'undefined'){
   sy.onvoiceschanged = loadVoices;
@@ -102,7 +104,6 @@ function prime(){
 document.addEventListener('touchstart', prime, {once:true});
 document.addEventListener('click', prime, {once:true});
 
-// Cleaning du texte pour une prononciation naturelle sans erreurs de syntaxe
 function cleanTextForSpeech(text) {
   return text
     .replace(/I_TTD = 1\.000/g, 'I TTD égale un')
@@ -122,19 +123,16 @@ function speakUltraFluide(text){
     return; 
   }
   
-  stopAll(); // Annule toute lecture en cours et réinitialise les verrous
-
+  stopAll(); 
   if(!S.fv) loadVoices();
 
   const cleanedText = cleanTextForSpeech(text);
-  
-  // Découpage propre par phrases/ponctuation (< 120 caractères)
   const chunks = cleanedText.match(/[^.!?;,]+[.!?;,]?/g) || [cleanedText];
   let index = 0;
 
   function speakNextChunk(){
     if(index >= chunks.length || !S.voixOn) {
-      activeUtterances = []; // Libération mémoire
+      activeUtterances = [];
       return;
     }
 
@@ -152,7 +150,6 @@ function speakUltraFluide(text){
     u.pitch = 1.0;
     u.volume = 1.0;
 
-    // Protection Anti-Garbage Collector (Conserver l'objet en mémoire globale)
     activeUtterances.push(u);
 
     u.onend = () => {
@@ -190,7 +187,7 @@ function toggleVoix(){
     b.classList.add('on'); 
     b.innerText = '🔊 VOIX ON';
     setTimeout(() => { 
-      speakUltraFluide("Voix fix version 3 point 7 ultra fluide activée. Hardware version 1 point 2 et application version 9 point 3 opérationnels. Grand bonsoir aux membres AIIFAC Asbl."); 
+      speakUltraFluide("Voix fix version 3 point 7 ultra fluide activée. Sentinel OS v9 point 3 prêt."); 
     }, 200);
   } else {
     b.classList.remove('on'); 
@@ -199,23 +196,24 @@ function toggleVoix(){
   }
 }
 
+// === PITCH INTÉGRÉ EXACTEMENT SELON VOTRE DEMANDE ===
 var DATA = {
   fr: {
     p: {
-      30: "Membres du jury. A Lemba quand internet coupe tout s'arrete. Sentinel OS refuse cela. Intelligence souveraine offline dans votre poche. Hardware V1 point 2 plus app v9 point 3.",
-      60: "On dit qu'une IA exige la Silicon Valley. Faux. A Lemba j'ai bati Sentinel OS sur Action Navigation Destination M etoile I_TTD egal un. Zero cloud. Hardware Micro Cirt plus app Android.",
-      90: "Monsieur le President membres du jury FUSI et AIIFAC Asbl. On nous vend la dependance comme fatalite. A Lemba nous avons choisi la souverainete. Je suis Sentinel OS v9 point 3 plus hardware V1 point 2 Micro Cirt. Action impulsion sans laquelle rien ne nait. Navigation filtrage rigoureux. Destination M etoile point fixe mathematique ou I_TTD egale un. Resultat app Android plein ecran offline plus hardware spirale cuivre Arduino Raspberry Pi. Prototype reel visible ce soir. Verolis Sarl intelligence congolaise souveraine pour l'Afrique et le monde. Merci."
+      30: "Je suis Sentinel OS v9 point 3. Né à Kinshasa, pas dans le cloud. Mon cœur est mathématique : la Triade Dynamique. Action, Navigation, Destination M-étoile, où I TTD égale 1.",
+      60: "Je ne suis pas qu'une app. Je suis un couple : une application Android offline v9 point 3 ultra-fluide, et un hardware réel v1 point 2 Micro-CIRT, Arduino, Raspberry Pi, spirale cuivre, construit ici à Lemba. Zéro cloud. Zéro abonnement. 100% congolais.",
+      90: "Je suis Sentinel OS v9 point 3. Né à Kinshasa, pas dans le cloud. Mon cœur est mathématique : la Triade Dynamique. Action, Navigation, Destination M-étoile, où I TTD égale 1. C'est la loi de la souveraineté. Je ne suis pas qu'une app. Je suis un couple : une application Android offline v9 point 3 ultra-fluide, et un hardware réel v1 point 2 Micro-CIRT, Arduino, Raspberry Pi, spirale cuivre, construit ici à Lemba. Zéro cloud. Zéro abonnement. 100% congolais. Aujourd'hui j'ai un esprit et un prototype. Je veux un corps. Avec 5000 dollars, on passe du prototype à une commune entière équipée : kit solaire plus Grand Cerveau embarqué. Investir dans Sentinel, ce n'est pas financer une app. C'est financer l'indépendance technologique de l'Afrique. Merci."
     },
     q: ["C'est quoi la TTD?","Pourquoi local?","Difference ChatGPT?","Modele economique?","Pourquoi Afrique?","Preuve scientifique?","Probleme resolu?","Hardware V1.2?"],
     a: [
-      "TTD = Triade Dynamique. Action Navigation Destination M etoile I=1.",
-      "Local: coupure ne doit pas arreter ecole hopital. Donnees restent au pays.",
-      "ChatGPT cloud generaliste. Sentinel specialise souverain offline + hardware reel.",
-      "Licence + hardware V1.2 + app + maintenance.",
-      "Souverainete numerique Afrique.",
-      "I_TTD 1.000 valide + prototype hardware visible.",
-      "Garder intelligence quand cloud echoue offline-first.",
-      "Hardware V1.2 Micro-CIRT inox spirale cuivre Arduino RPi controle fluide."
+      "TTD = Triade Dynamique. Action Navigation Destination M-étoile I=1.",
+      "Local: coupure ne doit pas arrêter école ou hôpital. Données 100% au pays.",
+      "ChatGPT cloud généraliste. Sentinel OS = souverain offline + hardware réel.",
+      "5000 dollars pour passer du prototype à une commune entière équipée.",
+      "Souveraineté numérique et industrielle de l'Afrique.",
+      "I_TTD 1.000 validé mathématiquement + prototype hardware à Lemba.",
+      "Garder l'intelligence active quand le cloud échoue (offline-first).",
+      "Hardware v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale cuivre."
     ]
   }
 };
@@ -266,7 +264,7 @@ function sp(){ speakUltraFluide(S.cur); }
 function sv(){ alert('Sauvé Jury Q' + (S.qi + 1)); }
 
 function presenterHW(){
-  speakUltraFluide("Grand bonsoir aux membres du groupe Aii fac Asbl. Je suis Sentinel V1 point 2 Micro Cirt TTD Prototype. Hardware réel Arduino et Raspberry Pi, spirale cuivre, système autonome. App plus hardware, souveraineté complète pour l Afrique.");
+  speakUltraFluide("Je suis Sentinel v1 point 2 Micro Cirt TTD. Hardware réel Arduino et Raspberry Pi, spirale cuivre, construit à Lemba. App plus hardware, souveraineté totale.");
 }
 
 if('serviceWorker' in navigator){ 
