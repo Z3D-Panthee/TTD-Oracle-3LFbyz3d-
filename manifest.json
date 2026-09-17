@@ -1,14 +1,18 @@
 {
-  "name": "SENTINEL OS v4.1 CONSCIOUS AUTONOMOUS",
-  "short_name": "SENTINEL OS",
-  "description": "TTD ORACLE v4.1 - OS Conscient - REGIDESO SNEL Mines Pyrolyse Agriculture - Lemba Lab Offline - Kinshasa 2026",
+  "name": "SENTINEL OS v9.3 FINAL FUSI + VOICE FIX V3.5.1 + HARDWARE V1.2",
+  "short_name": "SENTINEL OS v9.3",
+  "description": "SENTINEL OS v9.3 FINAL FUSI - VOICE FIX V3.5.1 CHUNKED AgroSentinelles + HARDWARE V1.2 Micro-CIRT TTD Prototylse - App Android + Hardware Réel Arduino Raspberry Pi Spirale Cuivre - Offline First - TTD E/t x t/E = 1 - I_TTD 1.000 - Vérolis SARL & AIIFAC-ASBL - Kinshasa 2026",
   "start_url": "./",
-  "display": "standalone",
-  "background_color": "#02060c",
-  "theme_color": "#00f5a0",
+  "display": "fullscreen",
+  "background_color": "#0b0f19",
+  "theme_color": "#ffd43b",
   "orientation": "portrait-primary",
   "scope": "./",
   "lang": "fr",
+  "id": "sentinel-os-v93-final-complete-hw-v12-voice-fix",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
   "icons": [
     {
       "src": "/static/icon-192.png",
@@ -31,15 +35,41 @@
   ],
   "shortcuts": [
     {
-      "name": "Interroger l'Oracle v4.1",
-      "url": "./#console",
-      "description": "Oracle Universel Conscious",
+      "name": "🎤 Pitch 30s Souverain",
+      "short_name": "30s",
+      "url": "./#pitch30",
+      "description": "Pitch Jury 30s Offline - VOICE FIX V3.5.1",
       "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Exporter Mémoire",
-      "url": "./",
-      "description": "Mémoire locale 80 questions"
+      "name": "🎤 Pitch 90s JURY FUSI + HW",
+      "short_name": "90s JURY",
+      "url": "./#pitch90",
+      "description": "Pitch 90s Complet avec Hardware V1.2 - Jury FUSI + AIIFAC",
+      "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
+    },
+    {
+      "name": "⚖️ Jury Mode - 8 Questions",
+      "short_name": "JURY",
+      "url": "./#jury",
+      "description": "Mode Jury 8 Questions + Hardware V1.2 + Historique Local",
+      "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "🔬 Hardware V1.2",
+      "short_name": "HW V1.2",
+      "url": "./#hardware",
+      "description": "Sentinel V1.2 Micro-CIRT TTD Prototylse - Prototype Réel",
+      "icons": [{ "src": "/static/icon-1024.png", "sizes": "1024x1024" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/static/icon-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "SENTINEL OS v9.3 + Hardware V1.2 - App + Prototype Réel"
     }
   ]
 }
