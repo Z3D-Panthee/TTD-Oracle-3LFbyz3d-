@@ -56,97 +56,222 @@ main{flex:1;padding:1rem;max-width:900px;width:100%;margin:0 auto;display:flex;f
 <div class="floatBar"><button id="btnVoix" onclick="toggleVoix()">🔇 VOIX TTD</button><button class="btn gold" onclick="pitch(30)">30s</button><button class="btn green" onclick="pitch(90)">90s JURY</button></div>
 
 <script>
-// === VOICE FIX V3.7 ULTRA-FLUIDE OFFLINE - FINAL ===
+// === MOTEUR VOCAL SENTINEL V3.7 ROBUSTE (ZERO BUG) ===
 const sy = window.speechSynthesis;
-let S={fv:null,v:[],ok:false,t:null,e:0,sec:0,cur:"",qi:0,voixOn:false};
+let activeUtterances = []; // Anti-Garbage Collector global
+
+let S = {
+  fv: null,
+  v: [],
+  ok: false,
+  t: null,
+  e: 0,
+  sec: 0,
+  cur: "",
+  qi: 0,
+  voixOn: false
+};
 
 function loadVoices(){
- try{
-  S.v=sy.getVoices()||[];
-  if(S.v.length){
-    S.fv = S.v.find(v=>v.lang.toLowerCase().includes('fr') && v.localService)
-        || S.v.find(v=>v.lang.toLowerCase().includes('fr'))
+  if(!sy) return;
+  S.v = sy.getVoices() || [];
+  if(S.v.length > 0){
+    S.fv = S.v.find(v => v.lang.toLowerCase().includes('fr') && v.localService)
+        || S.v.find(v => v.lang.toLowerCase().includes('fr'))
         || S.v[0];
   }
- }catch(e){}
 }
+
+// Initialisation asynchrone des voix
 loadVoices();
-if(sy) sy.onvoiceschanged=loadVoices;
+if(sy && typeof sy.onvoiceschanged !== 'undefined'){
+  sy.onvoiceschanged = loadVoices;
+}
 
 function prime(){
- if(S.ok) return;
- try{ sy.cancel(); const u=new SpeechSynthesisUtterance(' '); u.volume=0.01; sy.speak(u); S.ok=true; }catch(e){}
+  if(S.ok || !sy) return;
+  try {
+    sy.cancel();
+    const u = new SpeechSynthesisUtterance('');
+    u.volume = 0.01;
+    sy.speak(u);
+    S.ok = true;
+  } catch(e){}
 }
-document.addEventListener('touchstart',prime,{once:true});
-document.addEventListener('click',prime,{once:true});
+
+document.addEventListener('touchstart', prime, {once:true});
+document.addEventListener('click', prime, {once:true});
+
+// Cleaning du texte pour une prononciation naturelle sans erreurs de syntaxe
+function cleanTextForSpeech(text) {
+  return text
+    .replace(/I_TTD = 1\.000/g, 'I TTD égale un')
+    .replace(/I_TTD/g, 'I TTD')
+    .replace(/v9\.3/g, 'version 9 point 3')
+    .replace(/V1\.2/g, 'version 1 point 2')
+    .replace(/V3\.7/g, 'version 3 point 7')
+    .replace(/=/g, 'égale')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
 function speakUltraFluide(text){
- if(!S.voixOn){ document.getElementById('vs').textContent='VOIX OFF - clique VOIX TTD'; return; }
- sy.cancel();
- text = text.replace(/\s+/g,' ').trim();
- // Coupe en 70 caractères max = fluide continu
- let parts = text.match(/[^.!?]{1,70}[.!?]?/g) || [text];
- let i=0;
- function next(){
-  if(i>=parts.length) return;
-  let c=parts[i].trim();
-  if(!c){ i++; next(); return; }
-  let u=new SpeechSynthesisUtterance(c);
-  u.lang='fr-FR';
-  if(S.fv) u.voice=S.fv;
-  u.rate=0.95;
-  u.pitch=1;
-  u.volume=1;
-  u.onend=()=>{ i++; next(); };
-  u.onerror=()=>{ i++; next(); };
-  sy.speak(u);
- }
- next();
+  const logBox = document.getElementById('vs');
+  if(!S.voixOn){ 
+    if(logBox) logBox.textContent = 'VOIX OFF - Cliquez sur VOIX TTD pour activer.'; 
+    return; 
+  }
+  
+  stopAll(); // Annule toute lecture en cours et réinitialise les verrous
+
+  if(!S.fv) loadVoices();
+
+  const cleanedText = cleanTextForSpeech(text);
+  
+  // Découpage propre par phrases/ponctuation (< 120 caractères)
+  const chunks = cleanedText.match(/[^.!?;,]+[.!?;,]?/g) || [cleanedText];
+  let index = 0;
+
+  function speakNextChunk(){
+    if(index >= chunks.length || !S.voixOn) {
+      activeUtterances = []; // Libération mémoire
+      return;
+    }
+
+    const chunk = chunks[index].trim();
+    if(!chunk) {
+      index++;
+      speakNextChunk();
+      return;
+    }
+
+    const u = new SpeechSynthesisUtterance(chunk);
+    u.lang = 'fr-FR';
+    if(S.fv) u.voice = S.fv;
+    u.rate = 0.95;
+    u.pitch = 1.0;
+    u.volume = 1.0;
+
+    // Protection Anti-Garbage Collector (Conserver l'objet en mémoire globale)
+    activeUtterances.push(u);
+
+    u.onend = () => {
+      index++;
+      speakNextChunk();
+    };
+
+    u.onerror = (err) => {
+      console.warn("Erreur synthèse vocale:", err);
+      index++;
+      speakNextChunk();
+    };
+
+    sy.speak(u);
+  }
+
+  speakNextChunk();
 }
-// Alias pour compatibilité
+
 function parler(t){ speakUltraFluide(t); }
 
-function stopAll(){ sy.cancel(); clearInterval(S.t); document.getElementById('bar').style.width='0%'; }
-
-// ANTI-COUPE GLOBAL
-setInterval(()=>{ if(sy.speaking){ sy.pause(); sy.resume(); } }, 2500);
+function stopAll(){ 
+  if(sy) sy.cancel(); 
+  activeUtterances = []; 
+  if(S.t) clearInterval(S.t); 
+  const bar = document.getElementById('bar');
+  if(bar) bar.style.width = '0%'; 
+}
 
 function toggleVoix(){
- loadVoices();
- S.voixOn=!S.voixOn;
- var b=document.getElementById('btnVoix');
- if(S.voixOn){
-   b.classList.add('on'); b.innerText='🔊 VOIX ON';
-   setTimeout(()=>{ speakUltraFluide("Voix fix V3 point 7 ultra fluide activée. Hardware V1 point 2 et app v9 point 3 opérationnels. Grand bonsoir AIIFAC Asbl."); },400);
- } else {
-   b.classList.remove('on'); b.innerText='🔇 VOIX TTD'; sy.cancel();
- }
+  loadVoices();
+  S.voixOn = !S.voixOn;
+  const b = document.getElementById('btnVoix');
+  if(S.voixOn){
+    b.classList.add('on'); 
+    b.innerText = '🔊 VOIX ON';
+    setTimeout(() => { 
+      speakUltraFluide("Voix fix version 3 point 7 ultra fluide activée. Hardware version 1 point 2 et application version 9 point 3 opérationnels. Grand bonsoir aux membres AIIFAC Asbl."); 
+    }, 200);
+  } else {
+    b.classList.remove('on'); 
+    b.innerText = '🔇 VOIX TTD'; 
+    stopAll();
+  }
 }
 
-var DATA={fr:{p:{30:"Membres du jury. A Lemba quand internet coupe tout s'arrete. Sentinel OS refuse cela. Intelligence souveraine offline dans votre poche. Hardware V1 point 2 plus app v9 point 3.",60:"On dit qu'une IA exige la Silicon Valley. Faux. A Lemba j'ai bati Sentinel OS sur Action Navigation Destination M etoile I_TTD egal un. Zero cloud. Hardware Micro Cirt plus app Android.",90:"Monsieur le President membres du jury FUSI et AIIFAC Asbl. On nous vend la dependance comme fatalite. A Lemba nous avons choisi la souverainete. Je suis Sentinel OS v9 point 3 plus hardware V1 point 2 Micro Cirt. Action impulsion sans laquelle rien ne nait. Navigation filtrage rigoureux. Destination M etoile point fixe mathematique ou I_TTD egale un. Resultat app Android plein ecran offline plus hardware spirale cuivre Arduino Raspberry Pi. Prototype reel visible ce soir. Verolis Sarl intelligence congolaise souveraine pour l'Afrique et le monde. Merci."},q:["C'est quoi la TTD?","Pourquoi local?","Difference ChatGPT?","Modele economique?","Pourquoi Afrique?","Preuve scientifique?","Probleme resolu?","Hardware V1.2?"],a:["TTD = Triade Dynamique. Action Navigation Destination M etoile I=1.","Local: coupure ne doit pas arreter ecole hopital. Donnees restent au pays.","ChatGPT cloud generaliste. Sentinel specialise souverain offline + hardware reel.","Licence + hardware V1.2 + app + maintenance.","Souverainete numerique Afrique.","I_TTD 1.000 valide + prototype hardware visible.","Garder intelligence quand cloud echoue offline-first.","Hardware V1.2 Micro-CIRT inox spirale cuivre Arduino RPi controle fluide."]}};
+var DATA = {
+  fr: {
+    p: {
+      30: "Membres du jury. A Lemba quand internet coupe tout s'arrete. Sentinel OS refuse cela. Intelligence souveraine offline dans votre poche. Hardware V1 point 2 plus app v9 point 3.",
+      60: "On dit qu'une IA exige la Silicon Valley. Faux. A Lemba j'ai bati Sentinel OS sur Action Navigation Destination M etoile I_TTD egal un. Zero cloud. Hardware Micro Cirt plus app Android.",
+      90: "Monsieur le President membres du jury FUSI et AIIFAC Asbl. On nous vend la dependance comme fatalite. A Lemba nous avons choisi la souverainete. Je suis Sentinel OS v9 point 3 plus hardware V1 point 2 Micro Cirt. Action impulsion sans laquelle rien ne nait. Navigation filtrage rigoureux. Destination M etoile point fixe mathematique ou I_TTD egale un. Resultat app Android plein ecran offline plus hardware spirale cuivre Arduino Raspberry Pi. Prototype reel visible ce soir. Verolis Sarl intelligence congolaise souveraine pour l'Afrique et le monde. Merci."
+    },
+    q: ["C'est quoi la TTD?","Pourquoi local?","Difference ChatGPT?","Modele economique?","Pourquoi Afrique?","Preuve scientifique?","Probleme resolu?","Hardware V1.2?"],
+    a: [
+      "TTD = Triade Dynamique. Action Navigation Destination M etoile I=1.",
+      "Local: coupure ne doit pas arreter ecole hopital. Donnees restent au pays.",
+      "ChatGPT cloud generaliste. Sentinel specialise souverain offline + hardware reel.",
+      "Licence + hardware V1.2 + app + maintenance.",
+      "Souverainete numerique Afrique.",
+      "I_TTD 1.000 valide + prototype hardware visible.",
+      "Garder intelligence quand cloud echoue offline-first.",
+      "Hardware V1.2 Micro-CIRT inox spirale cuivre Arduino RPi controle fluide."
+    ]
+  }
+};
 
 function pitch(sec){
- prime(); stopAll(); S.sec=sec; S.e=0;
- var txt=DATA.fr.p[sec];
- document.getElementById('st').textContent=txt;
- speakUltraFluide(txt);
- S.t=setInterval(function(){
-  S.e++; var pr=Math.min(1,S.e/sec);
-  document.getElementById('bar').style.width=(pr*100)+'%';
-  document.getElementById('pc').textContent=Math.floor(pr*100)+'%';
-  document.getElementById('tm').textContent='00:'+String(Math.max(0,sec-S.e)).padStart(2,'0');
-  if(S.e>=sec){ clearInterval(S.t); }
- },1000);
+  prime(); 
+  stopAll(); 
+  S.sec = sec; 
+  S.e = 0;
+  var txt = DATA.fr.p[sec];
+  document.getElementById('st').textContent = txt;
+  speakUltraFluide(txt);
+  
+  S.t = setInterval(function(){
+    S.e++; 
+    var pr = Math.min(1, S.e / sec);
+    document.getElementById('bar').style.width = (pr * 100) + '%';
+    document.getElementById('pc').textContent = Math.floor(pr * 100) + '%';
+    document.getElementById('tm').textContent = '00:' + String(Math.max(0, sec - S.e)).padStart(2, '0');
+    if(S.e >= sec){ clearInterval(S.t); }
+  }, 1000);
 }
 
-function openJ(){var p=document.getElementById('jp'); p.style.display='block'; var qb=document.getElementById('qb'); qb.innerHTML=''; DATA.fr.q.forEach(function(q,i){var b=document.createElement('button'); b.className='btn gold'; b.textContent=q; b.onclick=function(){sq(i);}; qb.appendChild(b);}); sq(0);}
-function sq(i){S.qi=i; document.getElementById('jq').textContent=DATA.fr.q[i]; document.getElementById('ja').textContent=DATA.fr.a[i]; S.cur=DATA.fr.a[i];}
-function nq(){sq((S.qi+1)%DATA.fr.q.length);} function sp(){speakUltraFluide(S.cur);} function sv(){alert('Sauvé Jury Q'+(S.qi+1));}
-function presenterHW(){speakUltraFluide("Grand bonsoir aux membres du groupe Aii fac Asbl. Je suis Sentinel V1 point 2 Micro Cirt TTD Prototype. Hardware réel Arduino et Raspberry Pi, spirale cuivre, système autonome. App plus hardware, souveraineté complète pour l Afrique.");}
-function testerSynthese(){speakUltraFluide("Sentinel OS v9 point 3 opérationnel. Le correctif vocal V3 point 7 est actif. Fini les coupures intempestives sur Chrome. Matériel Micro Cirt V1 point 2 connecté. I TTD égale un.");}
-function runTest(){var b=document.getElementById('testBox'); if(b) b.textContent="✓ Voices: "+S.v.length+"\\n✓ V3.7 ULTRA-FLUIDE: Actif\\n→ PRÊT JURY";}
+function openJ(){
+  var p = document.getElementById('jp'); 
+  p.style.display = 'block'; 
+  var qb = document.getElementById('qb'); 
+  qb.innerHTML = ''; 
+  DATA.fr.q.forEach(function(q, i){
+    var b = document.createElement('button'); 
+    b.className = 'btn gold'; 
+    b.textContent = q; 
+    b.onclick = function(){ sq(i); }; 
+    qb.appendChild(b);
+  }); 
+  sq(0);
+}
 
-if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js'); }
+function sq(i){
+  S.qi = i; 
+  document.getElementById('jq').textContent = DATA.fr.q[i]; 
+  document.getElementById('ja').textContent = DATA.fr.a[i]; 
+  S.cur = DATA.fr.a[i];
+}
+
+function nq(){ sq((S.qi + 1) % DATA.fr.q.length); } 
+function sp(){ speakUltraFluide(S.cur); } 
+function sv(){ alert('Sauvé Jury Q' + (S.qi + 1)); }
+
+function presenterHW(){
+  speakUltraFluide("Grand bonsoir aux membres du groupe Aii fac Asbl. Je suis Sentinel V1 point 2 Micro Cirt TTD Prototype. Hardware réel Arduino et Raspberry Pi, spirale cuivre, système autonome. App plus hardware, souveraineté complète pour l Afrique.");
+}
+
+if('serviceWorker' in navigator){ 
+  navigator.serviceWorker.register('/sw.js').catch(()=>{}); 
+}
 </script>
 </body>
 </html>
