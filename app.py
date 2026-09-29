@@ -2,7 +2,8 @@ from flask import Flask, render_template, send_from_directory, request, jsonify
 import os
 import sqlite3
 
-app = Flask(__name__)
+# Initialisation de Flask avec le chemin statique explicite pour une compatibilité PWA parfaite
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 # Dossier audio
 AUDIO_FOLDER = os.path.join('static', 'audio')
