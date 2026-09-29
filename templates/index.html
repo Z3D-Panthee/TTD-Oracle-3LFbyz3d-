@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no">
 <meta name="theme-color" content="#0b0f19">
-<title>SENTINEL OS v10 NOBEL — FUSI + 8 Apps + Live Lemba</title>
-<link rel="manifest" href="/manifest.json">
+<title>SENTINEL OS v10 NOBEL — AIIFAC-ASBL & TTD</title>
 <style>
 :root{--bg:#07090e;--panel:rgba(13,19,32,0.92);--border:rgba(59,130,246,0.3);--gold:#ffd43b;--green:#10b981;--blue:#3b82f6;--text:#f3f4f6;--muted:#9ca3af;--red:#ef4444}
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,Segoe UI,Roboto,sans-serif}
@@ -15,12 +14,12 @@ body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-d
 header{background:var(--panel);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0.75rem 1rem;position:sticky;top:0;z-index:100}
 .header-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
 .clock-box{font-size:1.4rem;font-weight:900;color:var(--gold);text-align:center;letter-spacing:1px}
-.sub-banner{text-align:center;background:rgba(0,0,0,0.5);border:1px solid var(--border);border-radius:8px;padding:8px;margin-top:8px;font-size:0.75rem}
+.sub-banner{text-align:center;background:rgba(0,0,0,0.5);border:1px solid var(--border);border-radius:8px;padding:10px;margin-top:8px;font-size:0.75rem}
 
 /* Desktop 8 Applications Grid */
 main{flex:1;padding:1rem;max-width:1200px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:1.5rem;padding-bottom:100px}
 .desktop-container{background:var(--panel);backdrop-filter:blur(12px);border:2px solid var(--gold);border-radius:14px;padding:1.25rem;box-shadow:0 0 30px rgba(255,212,59,0.15)}
-.desktop-title{font-size:0.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;font-weight:700}
+.desktop-title{font-size:0.85rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;font-weight:700;text-align:center}
 .apps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 @media(min-width:600px){.apps-grid{grid-template-columns:repeat(4,1fr)}}
 
@@ -55,29 +54,25 @@ main{flex:1;padding:1rem;max-width:1200px;width:100%;margin:0 auto;display:flex;
 <div class="header-top">
   <div>
     <h1 style="font-size:1.1rem;letter-spacing:0.5px">SENTINEL OS <span style="color:var(--gold)">v10 NOBEL</span></h1>
-    <p style="font-size:0.7rem;color:var(--muted)">FUSI + 8 Apps • TTD I=1.000 OFFLINE • LIVE LEMBA</p>
+    <p style="font-size:0.7rem;color:var(--muted)">FUSI + 8 Apps • TTD I=1.000 OFFLINE • LEMBA</p>
   </div>
   <div style="font-size:0.75rem;background:rgba(0,0,0,0.4);padding:4px 10px;border-radius:6px;border:1px solid var(--border)">
-    Sécurité : <span style="color:var(--green)">100% OFF-GRID</span>
+    🇨🇩 <span style="color:var(--gold)">AIIFAC-ASBL</span>
   </div>
 </div>
 
 <div class="sub-banner">
+  <div style="font-weight:900;color:var(--gold);font-size:0.9rem;margin-bottom:4px">GRAND BONSOIR AUX MEMBRES DU GROUPE AIIFAC-ASBL</div>
   <div class="clock-box" id="liveClock">23:41</div>
   <div style="color:var(--muted);margin-top:2px">LUNDI 29 SEPTEMBRE 2026 • LEMBA KINSHASA</div>
   <div style="color:var(--gold);font-weight:700;margin-top:4px">E/t × t/E = 1.000 TRIADE DYNAMIQUE (I_TTD VALIDE OFFLINE FIRST)</div>
-  <div style="display:flex;justify-content:center;gap:15px;margin-top:6px;font-size:0.7rem;flex-wrap:wrap">
-    <span><strong>L1:</strong> Action = Navigation</span>
-    <span><strong>L2:</strong> Destination M* = Souveraineté</span>
-    <span><strong>L3:</strong> I=1 → Énergie -60% + Recyclage 100%</span>
-  </div>
 </div>
 </header>
 
 <main>
   <!-- BUREAU 8 APPLICATIONS -->
   <div class="desktop-container">
-    <div class="desktop-title">DESKTOP — 8 APPLICATIONS SOUVERAINES</div>
+    <div class="desktop-title">🚀 BUREAU INTERACTIF — 8 APPLICATIONS SOUVERAINES</div>
     <div class="apps-grid">
       <div class="app-icon-card" onclick="selectApp(0)" id="appCard0">
         <div class="app-glyph">🌐</div>
@@ -85,7 +80,7 @@ main{flex:1;padding:1rem;max-width:1200px;width:100%;margin:0 auto;display:flex;
       </div>
       <div class="app-icon-card" onclick="selectApp(1)" id="appCard1">
         <div class="app-glyph">🔲</div>
-        <div class="app-name">MICRO-CIRT V1.2</div>
+        <div class="app-name">MICRO-CIRCUIT V1.2</div>
       </div>
       <div class="app-icon-card" onclick="selectApp(2)" id="appCard2">
         <div class="app-glyph">🎙️</div>
@@ -97,7 +92,7 @@ main{flex:1;padding:1rem;max-width:1200px;width:100%;margin:0 auto;display:flex;
       </div>
       <div class="app-icon-card" onclick="selectApp(4)" id="appCard4">
         <div class="app-glyph">⚖️</div>
-        <div class="app-name">JURY MODE</div>
+        <div class="app-name">JURY MODE Q&A</div>
       </div>
       <div class="app-icon-card" onclick="selectApp(5)" id="appCard5">
         <div class="app-glyph">⚗️</div>
@@ -125,11 +120,11 @@ main{flex:1;padding:1rem;max-width:1200px;width:100%;margin:0 auto;display:flex;
     <div class="spec-grid">
       <div class="spec-box">
         <strong>⚙️ Fondements & Propriétés :</strong><br>
-        <span id="detProps">Chargement des propriétés...</span>
+        <span id="detProps">Chargement...</span>
       </div>
       <div class="spec-box">
         <strong>🚀 Apport & Optimisation :</strong><br>
-        <span id="detOpt">Chargement des apports...</span>
+        <span id="detOpt">Chargement...</span>
       </div>
     </div>
 
@@ -147,38 +142,37 @@ main{flex:1;padding:1rem;max-width:1200px;width:100%;margin:0 auto;display:flex;
 </div>
 
 <script>
-// === DONNÉES DES 8 APPLICATIONS AVEC FONDEMENTS, PROPRIÉTÉS, APPORTS ET OPTIMISATIONS ===
 const APPS_DATA = [
   {
     name: "1. TTD ENGINE (Triade Dynamique)",
     category: "Fondamentaux Mathématiques",
-    desc: "Moteur mathématique fondamental formalisant l'unification de l'Espace, du Temps et de la Matière à Kinshasa[span_2](start_span)[span_2](end_span).",
-    props: "Invariant géométrique universel $J_{TTD} = \\int R + \\alpha(E \\cdot T \\cdot M) + \\beta Tr(T) d^3x = 1$. Modélisation stricte des lois Liberté, Vérité, Justice.",
-    opt: "Éradication totale de la dépendance cloud externe. Calculs locaux ultra-rapides garantissant un indice de souveraineté $I_{TTD} = 1.000$ en mode offline-first.",
+    desc: "Moteur mathématique fondamental formalisant l'unification de l'Espace, du Temps et de la Matière à Kinshasa.",
+    props: "Invariant géométrique universel J_TTD = 1. Modélisation stricte des lois Liberté, Vérité, Justice.",
+    opt: "Éradication totale de la dépendance cloud externe. Calculs locaux ultra-rapides garantissant un indice de souveraineté I = 1.000.",
     shortcut: () => alert("TTD Engine actif : Invariant validé à 1.000.")
   },
   {
     name: "2. MICRO-CIRCUIT HARDWARE V1.2",
     category: "Le Corps — Infrastructure",
-    desc: "Boîtier physique IP65 100% offline assemblé au 2930 Av. Mole à Lemba, Kinshasa[span_3](start_span)[span_3](end_span).",
-    props: "Association Raspberry Pi 4 + Arduino Mega + Spirale Cuivre 99,9% + Solaire MPPT 30W. Valide l'opérateur triadique T pour LIGO O5[span_4](start_span)[span_4](end_span).",
-    opt: "Résistance thermique et opérationnelle en zone enclavée. Éradication de 2M USD de pertes annuelles par site minier ou agricole[span_5](start_span)[span_5](end_span).",
+    desc: "Boîtier physique IP65 100% offline assemblé au 2930 Av. Mole à Lemba, Kinshasa.",
+    props: "Association Raspberry Pi 4 + Arduino Mega + Spirale Cuivre 99,9% + Solaire MPPT 30W.",
+    opt: "Résistance thermique et opérationnelle en zone enclavée. Éradication de pertes financières par site minier ou agricole.",
     shortcut: () => alert("Hardware V1.2 connecté : Lemba / Kinshasa opérationnel.")
   },
   {
     name: "3. PITCH VOICE V3.7",
     category: "Interface Vocale Souveraine",
-    desc: "Moteur de synthèse vocale multilingue offline-first anti-coupure (Français, Anglais, Lingala, Kikongo, Swahili, Tshiluba).",
-    props: "Découpage intelligent en chunks sécurisés, support des requêtes de synthèse sans dépendance externe.",
-    opt: "Restitution instantanée des pitchs jury 30s, 60s, 90s et présentation hardware claire sans latence réseau.",
-    shortcut: () => speakText("Module vocal Sentinel v10 prêt pour le jury.")
+    desc: "Moteur de synthèse vocale multilingue offline-first anti-coupure (Français, Anglais, Lingala, Kikongo, Swahili).",
+    props: "Découpage intelligent en chunks sécurisés, support des requêtes sans dépendance externe.",
+    opt: "Restitution instantanée des pitchs jury 30s, 60s, 90s et présentation hardware claire sans latence.",
+    shortcut: () => speakText("Module vocal Sentinel v10 prêt pour AIIFAC-ASBL.")
   },
   {
     name: "4. INVESTOR DECK $5K",
     category: "Financement & Traction",
     desc: "Synthèse exécutive pour investisseurs stratégiques en vue de la clôture du prototype industriel.",
-    props: "Objectif de levée de 5 000 USD : 880$ matériel, 1200$atelier Lemba, 1000$ logistique terrain, certification FUSI[span_6](start_span)[span_6](end_span).",
-    opt: "Co-signer la validation scientifique congolaise testée mondialement avant les tests LIGO O5 du 15 décembre 2026[span_7](start_span)[span_7](end_span).",
+    props: "Objectif de levée de 5 000 USD : matériel, atelier Lemba, logistique terrain, certification FUSI.",
+    opt: "Co-signer la validation scientifique congolaise testée mondialement avant les tests LIGO O5.",
     shortcut: () => alert("Ouverture du canal de levée de fonds Seed 5 000 $.")
   },
   {
@@ -186,14 +180,14 @@ const APPS_DATA = [
     category: "Évaluation & Défense",
     desc: "Module interactif de questions/réponses clés pour les investisseurs et comités d'évaluation.",
     props: "Base de 8 questions fondamentales intégrées avec historique local sécurisé sous SQLite.",
-    opt: "Réponses immédiates, argumentées et mathématiquement vérifiables sur la souveraineté et la TTD.",
+    opt: "Réponses immédiates, argumentées et mathématiquement vérifiables sur la souveraineté.",
     shortcut: () => alert("Mode Jury activé : Prêt pour le grand oral.")
   },
   {
     name: "6. LAB MATIÈRE -60%",
     category: "L'Âme & Optimisation Énergétique",
-    desc: "Système d'exploitation d'intelligence super autonome régissant les processus industriels sans internet[span_8](start_span)[span_8](end_span).",
-    props: "Réduction directe de 60% d'énergie consommée et régulation de 10 kg/h de matière[span_9](start_span)[span_9](end_span).",
+    desc: "Système d'exploitation d'intelligence super autonome régissant les processus industriels sans internet.",
+    props: "Réduction directe de 60% d'énergie consommée et régulation de 10 kg/h de matière.",
     opt: "Optimisation extrême des processus de pyrolyse et de valorisation des déchets (Vérolis SARL).",
     shortcut: () => alert("Lab Matière : -60% d'énergie appliqué.")
   },
@@ -209,8 +203,8 @@ const APPS_DATA = [
     name: "8. NOBEL PATH 2028",
     category: "Perspective Scientifique",
     desc: "Feuille de route vers la reconnaissance mondiale des sciences dures issues du continent africain.",
-    props: "Anticipation LIGO O5 (spectre 10 kHz - 50 kHz prévu déc. 2026, réf. FGSC-2026-0114)[span_10](start_span)[span_10](end_span).",
-    opt: "Premier Nobel de science dure attribué à un chercheur indépendant basé à Kinshasa[span_11](start_span)[span_11](end_span).",
+    props: "Anticipation LIGO O5 (spectre 10 kHz - 50 kHz prévu, réf. FGSC-2026-0114).",
+    opt: "Premier Nobel de science dure attribué à un chercheur indépendant basé à Kinshasa.",
     shortcut: () => alert("Nobel Path 2028 : Trajectoire validée.")
   }
 ];
@@ -238,10 +232,8 @@ function selectApp(index){
 }
 
 function executeAppShortcut(){
-  // Exécute l'action associée à l'app active
   const activeCard = document.querySelector('.app-icon-card.active');
   if(activeCard){
-    // Trouver l'index
     const idx = Array.from(document.querySelectorAll('.app-icon-card')).indexOf(activeCard);
     if(idx >= 0 && APPS_DATA[idx].shortcut) {
       APPS_DATA[idx].shortcut();
@@ -249,7 +241,6 @@ function executeAppShortcut(){
   }
 }
 
-// Moteur vocal
 let voixActive = false;
 function toggleVoix(){
   voixActive = !voixActive;
@@ -257,7 +248,7 @@ function toggleVoix(){
   if(voixActive){
     btn.classList.add('on');
     btn.textContent = "🔊 VOIX ON";
-    speakText("Module vocal Sentinel OS activé.");
+    speakText("Module vocal Sentinel OS activé pour AIIFAC-ASBL.");
   } else {
     btn.classList.remove('on');
     btn.textContent = "🔇 VOIX TTD";
