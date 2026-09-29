@@ -4,64 +4,594 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no">
 <meta name="theme-color" content="#0b0f19">
-<title>SENTINEL OS v9.3 - FINAL FUSI + VOICE FIX V3.7 + HARDWARE V1.2</title>
+<title>SENTINEL OS v10 - MULTILINGUAL INVESTOR EDITION + FUSI HARDWARE V1.2</title>
 <link rel="manifest" href="/manifest.json">
 <style>
-:root{--bg:#0b0f19;--panel:rgba(17,24,39,0.75);--border:rgba(59,130,246,0.3);--gold:#ffd43b;--green:#10b981;--text:#f3f4f6;--muted:#9ca3af}
+:root{--bg:#07090e;--panel:rgba(13,19,32,0.85);--border:rgba(59,130,246,0.3);--gold:#ffd43b;--green:#10b981;--blue:#3b82f6;--text:#f3f4f6;--muted:#9ca3af;--red:#ef4444}
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,Segoe UI,Roboto,sans-serif}
 body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
-header{background:var(--panel);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:1rem;text-align:center;position:sticky;top:0;z-index:100}
-main{flex:1;padding:1rem;max-width:900px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:1rem;padding-bottom:110px}
-.card{background:var(--panel);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:1.25rem;box-shadow:0 8px 32px rgba(0,0,0,0.3)}
-.btn{flex:1;border:0;border-radius:8px;padding:0.75rem 1rem;font-weight:700;cursor:pointer;min-width:90px}
+
+/* Header & KPIs Bar */
+header{background:var(--panel);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0.75rem 1rem;position:sticky;top:0;z-index:100}
+.header-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.kpi-ticker{display:flex;gap:15px;font-size:0.75rem;background:rgba(0,0,0,0.4);padding:4px 10px;border-radius:6px;border:1px solid var(--border)}
+.kpi-item span{color:var(--gold);font-weight:700}
+
+/* Language selector bar */
+.lang-bar{display:flex;gap:5px;overflow-x:auto;padding:6px 0;background:rgba(0,0,0,0.2);border-bottom:1px solid var(--border);margin-bottom:10px}
+.lang-btn{background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--muted);padding:4px 8px;border-radius:4px;font-size:0.7rem;cursor:pointer;white-space:nowrap}
+.lang-btn.active{background:var(--gold);color:#000;font-weight:700;border-color:var(--gold)}
+
+/* Layout Grid */
+main{flex:1;padding:1rem;max-width:1200px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr;gap:1rem;padding-bottom:100px}
+@media(min-width:900px){main{grid-template-columns:1.1fr 0.9fr}}
+
+.card{background:var(--panel);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:1.25rem;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.card-gold{border:2px solid var(--gold);box-shadow:0 0 25px rgba(255,212,59,0.15)}
+
+/* Terminal Boot Simulation */
+.terminal{background:#01050a;border:1px solid var(--border);border-radius:8px;padding:10px;font-family:monospace;font-size:0.7rem;color:var(--green);max-height:100px;overflow:auto;margin-bottom:12px;white-space:pre-wrap}
+
+/* Buttons & Controls */
+.btn{border:0;border-radius:8px;padding:0.75rem 1rem;font-weight:700;cursor:pointer;flex:1;min-width:110px;text-align:center;transition:transform 0.1s}
+.btn:active{transform:scale(0.98)}
 .gold{background:linear-gradient(135deg,#ffd43b,#f59e0b);color:#000}
 .blue{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff}
 .green{background:linear-gradient(135deg,#10b981,#059669);color:#fff}
 .sec{background:transparent;border:1px solid var(--border);color:var(--text)}
+
 .prog{height:8px;background:#111827;border-radius:99px;overflow:hidden;margin:10px 0;border:1px solid var(--border)}
 .ba{width:0%;height:100%;background:linear-gradient(90deg,#3b82f6,#10b981,#ffd43b);transition:width.25s}
-.hw-img{width:100%;max-width:520px;border-radius:12px;border:2px solid #ffd43b;display:block;margin:12px auto;box-shadow:0 0 30px rgba(255,212,59,0.2)}
-.floatBar{position:fixed;bottom:0;left:0;right:0;z-index:200;display:flex;gap:8px;justify-content:center;padding:10px;background:rgba(11,15,25,0.95);border-top:2px solid #ffd43b}
-#btnVoix{background:#374151;color:#fff;border-radius:25px}#btnVoix.on{background:#10b981;color:#000}
-.log{font-size:.65rem;color:var(--muted);background:#01050a;border:1px solid var(--border);border-radius:8px;padding:8px;max-height:120px;overflow:auto;white-space:pre-wrap;margin-top:8px}
-.pitch{font-style:italic;color:var(--muted);background:rgba(0,0,0,0.2);padding:1rem;border-radius:8px;border:1px dashed var(--border);white-space:pre-wrap;min-height:90px}
+
+.hw-img{width:100%;max-width:420px;border-radius:10px;border:2px solid var(--gold);display:block;margin:10px auto;box-shadow:0 0 25px rgba(255,212,59,0.2)}
+
+/* Investor Deck styling */
+.deck-section{margin-bottom:12px;font-size:0.85rem;line-height:1.4}
+.deck-title{color:var(--gold);font-weight:800;font-size:0.9rem;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.bank-box{background:rgba(59,130,246,0.08);border:1px dashed var(--blue);padding:10px;border-radius:8px;margin-top:10px;font-size:0.8rem}
+
+/* Floating Bar */
+.floatBar{position:fixed;bottom:0;left:0;right:0;z-index:200;display:flex;gap:8px;justify-content:center;padding:10px;background:rgba(7,9,14,0.95);border-top:2px solid var(--gold);backdrop-filter:blur(10px)}
+#btnVoix{background:#374151;color:#fff;border-radius:25px;border:1px solid var(--border)}
+#btnVoix.on{background:var(--green);color:#000;border-color:var(--green)}
+
+.log{font-size:.65rem;color:var(--muted);background:#01050a;border:1px solid var(--border);border-radius:6px;padding:8px;max-height:90px;overflow:auto;white-space:pre-wrap;margin-top:8px}
+.pitch{font-style:italic;color:var(--muted);background:rgba(0,0,0,0.3);padding:0.85rem;border-radius:8px;border:1px dashed var(--border);min-height:80px;font-size:0.9rem}
+
+/* Tabs for Investor Deck */
+.tab-row{display:flex;gap:5px;margin-bottom:10px;flex-wrap:wrap}
+.tab-btn{background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--muted);padding:6px 10px;border-radius:6px;font-size:0.75rem;cursor:pointer;font-weight:700}
+.tab-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
 </style>
 </head>
 <body>
-<header><h1>Sentinel OS v9.3</h1><p>FINAL FUSI + VOICE FIX V3.7 ULTRA-FLUIDE + HARDWARE V1.2 🔥🇨🇩 • TTD: E/t × t/E = 1</p></header>
+
+<header>
+<div class="header-top">
+  <div>
+    <h1 style="font-size:1.2rem;letter-spacing:0.5px">SENTINEL OS <span style="color:var(--gold)">v10 INVESTOR</span></h1>
+    <p style="font-size:0.7rem;color:var(--muted)" id="lblSub">Souveraineté Totale • FUSI + Multilingual Core + Hardware V1.2</p>
+  </div>
+  <div class="kpi-ticker">
+    <div class="kpi-item">I_TTD: <span>1.000</span></div>
+    <div class="kpi-item">LAT: <span>0ms (Offline)</span></div>
+    <div class="kpi-item">SEED: <span>$5K</span></div>
+  </div>
+</div>
+<!-- Sélécteur de Langues -->
+<div class="lang-bar" id="langBar">
+  <button class="lang-btn active" onclick="setLang('fr')">🇫🇷 Français</button>
+  <button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button>
+  <button class="lang-btn" onclick="setLang('it')">🇮🇹 Italiano</button>
+  <button class="lang-btn" onclick="setLang('ln')">🇨🇩 Lingala</button>
+  <button class="lang-btn" onclick="setLang('kg')">🇨🇩 Kikongo</button>
+  <button class="lang-btn" onclick="setLang('sw')">🇨🇩 Swahili</button>
+  <button class="lang-btn" onclick="setLang('lu')">🇨🇩 Tshiluba</button>
+</div>
+</header>
+
 <main>
-<div class="card" style="border:2px solid #ffd43b">
-<h2>🇨🇩 GRAND BONSOIR AUX MEMBRES DU GROUPE AIIFAC-ASBL</h2>
-<img class="hw-img" src="/static/icon-512.png" alt="Sentinel V1.2 Hardware">
-<div style="background:rgba(59,130,246,0.05);border-left:4px solid #3b82f6;padding:0.75rem 1rem;margin:10px 0"><strong>Vérolis SARL - Sentinel V1.2 - Prototype Réel</strong><br>Arduino & Raspberry Pi • Spirale Cuivre • I_TTD = 1.000 • App + Hardware = Souveraineté totale</div>
-<div style="text-align:center;font-size:1.7rem;font-weight:900">GRAND BONSOIR AUX<br><span style="color:#ffd43b">MEMBRES DU GROUPE AIIFAC-ASBL</span></div>
-<div style="display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap"><button class="btn green" onclick="presenterHW()">🔊 Présenter Hardware</button><button class="btn gold" onclick="pitch(90)">🎤 Pitch 90s JURY + HW</button><button class="btn blue" onclick="openJ()">⚖️ Mode Jury</button></div>
-</div>
+  <!-- COLONNE GAUCHE : PRODUIT & PITCH CONSOLE -->
+  <div style="display:flex;flex-direction:column;gap:1rem">
+    
+    <div class="card card-gold">
+      <div class="terminal" id="termLog">root@sentinel-os:~# init ttd_core v10.0...
+[OK] Triade Dynamique chargée (I = 1.000)
+[OK] Hardware V1.2 Micro-CIRT & Spirale Cuivre connectés (Lemba, Kinshasa)
+[OK] Multilingual Voice Engine ready.</div>
+      
+      <div style="text-align:center">
+        <h2 style="font-size:1.1rem;margin-bottom:6px" id="lblHwTitle">🇨🇩 PROTOTYPE RÉEL & SOUVERAINETÉ</h2>
+        <img class="hw-img" src="/static/icon-512.png" alt="Sentinel Hardware V1.2">
+      </div>
+      
+      <div style="background:rgba(59,130,246,0.05);border-left:4px solid var(--blue);padding:0.6rem 0.8rem;margin:8px 0;font-size:0.8rem">
+        <strong>Vérolis SARL — Lemba / Kinshasa</strong><br>Arduino & Raspberry Pi • Zéro dépendance Cloud • App + Hardware unifiés.
+      </div>
 
-<div class="card">
-<h2>🎤 PITCH JURY FUSI - OFFLINE VOICE FIX V3.7</h2>
-<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn gold" onclick="pitch(30)">30s Souverain</button><button class="btn gold" onclick="pitch(60)">60s Complet</button><button class="btn blue" onclick="pitch(90)">90s JURY FUSI</button><button class="btn sec" onclick="stopAll()">■ STOP</button></div>
-<div style="display:flex;justify-content:space-between;margin-top:10px"><span id="tm" style="color:#ffd43b;font-weight:900;font-size:1.2rem">00:00</span><span id="pc">0%</span></div>
-<div class="prog"><div id="bar" class="ba"></div></div>
-<div id="st" class="pitch">Prêt. V3.7 ULTRA-FLUIDE actif. Cliquez VOIX TTD en bas pour débloquer.</div>
-<div id="vs" class="log">v9.3 FINAL FUSI • VOICE FIX V3.7 ULTRA-FLUIDE • Hardware V1.2 • LocalStorage actif</div>
-</div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <button class="btn green" onclick="presenterHW()" id="btnPresHw">🔊 Présenter Hardware</button>
+        <button class="btn gold" onclick="pitch(90)" id="btnPitch90Top">🎤 Pitch Jury 90s</button>
+        <button class="btn blue" onclick="toggleJuryPanel()" id="btnJuryMode">⚖️ Mode Q&A Jury</button>
+      </div>
+    </div>
 
-<div class="card" id="jp" style="display:none">
-<h2>⚖️ JURY MODE - 8 QUESTIONS + HW</h2>
-<div id="qb" style="display:flex;flex-wrap:wrap;gap:6px"></div>
-<div id="jq" style="font-weight:900;margin:12px 0;color:#ffd43b"></div>
-<div id="ja" style="padding:10px;border-left:3px solid #ffd43b;background:rgba(255,212,59,0.05);border-radius:8px"></div>
-<div style="display:flex;gap:8px;margin-top:10px"><button class="btn gold" onclick="nq()">Suivante</button><button class="btn sec" onclick="sp()">🔊 Parler</button><button class="btn sec" onclick="sv()">💾 Sauver</button></div>
-</div>
+    <div class="card">
+      <h2 id="lblVoiceTitle">🎤 PITCH & CONTRÔLE VOCAL MULTILINGUE</h2>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <button class="btn gold" onclick="pitch(30)">30s</button>
+        <button class="btn gold" onclick="pitch(60)">60s</button>
+        <button class="btn blue" onclick="pitch(90)">90s</button>
+        <button class="btn sec" onclick="stopAll()">■ STOP</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:0.8rem">
+        <span id="tm" style="color:var(--gold);font-weight:900">00:00</span>
+        <span id="pc">0%</span>
+      </div>
+      <div class="prog"><div id="bar" class="ba"></div></div>
+      <div id="st" class="pitch">Système prêt. Activez "VOIX TTD" en bas pour lancer la synthèse vocale.</div>
+      <div id="vs" class="log">v10 INVESTOR • Multilingual Core • Stockage local sécurisé</div>
+    </div>
+
+    <!-- PANNEAU Q&A JURY -->
+    <div class="card" id="jp" style="display:none">
+      <h2 id="lblJuryTitle">⚖️ JURY MODE — QUESTIONS CLÉS</h2>
+      <div id="qb" style="display:flex;flex-wrap:wrap;gap:5px;margin:8px 0"></div>
+      <div id="jq" style="font-weight:900;margin:8px 0;color:var(--gold);font-size:0.9rem"></div>
+      <div id="ja" style="padding:8px;border-left:3px solid var(--gold);background:rgba(255,212,59,0.05);border-radius:6px;font-size:0.85rem"></div>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn gold" onclick="nq()" id="btnNext">Suivante</button>
+        <button class="btn sec" onclick="sp()" id="btnListen">🔊 Écouter</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COLONNE DROITE : INVESTOR DECK & FINANCEMENT -->
+  <div style="display:flex;flex-direction:column;gap:1rem">
+    
+    <div class="card card-gold">
+      <h2 id="lblDeckHeader">📊 INVESTOR DECK — LIVE SEED V10</h2>
+      <p style="font-size:0.75rem;color:var(--muted);margin-bottom:10px" id="lblDeckSub">Synthèse exécutive pour investisseurs stratégiques</p>
+      
+      <div class="tab-row" id="tabRow">
+        <button class="tab-btn active" onclick="switchTab(0, this)" id="t0">1. Problème</button>
+        <button class="tab-btn" onclick="switchTab(1, this)" id="t1">2. Solution</button>
+        <button class="tab-btn" onclick="switchTab(2, this)" id="t2">3. Marché</button>
+        <button class="tab-btn" onclick="switchTab(3, this)" id="t3">4. Traction & Seed</button>
+      </div>
+
+      <div id="deckContent"></div>
+
+      <div class="bank-box">
+        <strong style="color:var(--gold)" id="lblBankTitle">💰 CANAUX D'INVESTISSEMENT DIRECT :</strong><br>
+        • <strong id="lblUba">UBA RDC:</strong> Compte USD <code>4688</code> | Email: <code>dany734054.usd@ubardc</code><br>
+        • <strong id="lblOrange">Orange Money RDC:</strong> <code>+243 840 308 812</code> (Tshiseleka Thoka Dany)<br>
+        <div style="margin-top:8px;display:flex;gap:6px">
+          <a href="https://wa.me/243840308812?text=Bonjour%20Dany,%20je%20souhaite%20investir%20dans%20Sentinel%20OS" target="_blank" class="btn green" style="text-decoration:none;font-size:0.75rem;padding:6px" id="btnWa">💬 Discuter sur WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="lblRoadmapTitle">🚀 Feuille de Route & Objectifs 5,000 $</h2>
+      <ul style="font-size:0.82rem;padding-left:18px;line-height:1.6;color:var(--muted)" id="roadmapList">
+        <li><strong>Étape 1 :</strong> Validation du prototype hardware à Lemba (Actuel).</li>
+        <li><strong>Étape 2 :</strong> Industrialisation des cartes micro-CIRT et boîtiers autonomes.</li>
+        <li><strong>Étape 3 :</strong> Déploiement pilote d'une commune entière (Kit solaire + Cerveau embarqué).</li>
+        <li><strong>Étape 4 :</strong> Passage à l'échelle nationale et souveraineté technologique.</li>
+      </ul>
+    </div>
+
+  </div>
 </main>
 
-<div class="floatBar"><button id="btnVoix" onclick="toggleVoix()">🔇 VOIX TTD</button><button class="btn gold" onclick="pitch(30)">30s</button><button class="btn green" onclick="pitch(90)">90s JURY</button></div>
+<div class="floatBar">
+  <button id="btnVoix" onclick="toggleVoix()">🔇 VOIX TTD</button>
+  <button class="btn gold" onclick="pitch(30)">⚡ Pitch 30s</button>
+  <button class="btn green" onclick="pitch(90)">🎯 Pitch 90s</button>
+</div>
 
 <script>
+// === GESTION MULTILINGUE & BASE DE DONNÉES DE LANGUES ===
+let currentLang = 'fr';
+
+const TRANSLATIONS = {
+  fr: {
+    sub: "Souveraineté Totale • FUSI + Multilingual Core + Hardware V1.2",
+    hwTitle: "🇨🇩 PROTOTYPE RÉEL & SOUVERAINETÉ",
+    presHw: "🔊 Présenter Hardware",
+    pitch90Top: "🎤 Pitch Jury 90s",
+    juryMode: "⚖️ Mode Q&A Jury",
+    voiceTitle: "🎤 PITCH & CONTRÔLE VOCAL MULTILINGUE",
+    juryTitle: "⚖️ JURY MODE — QUESTIONS CLÉS",
+    next: "Suivante",
+    listen: "🔊 Écouter",
+    deckHeader: "📊 INVESTOR DECK — LIVE SEED V10",
+    deckSub: "Synthèse exécutive pour investisseurs stratégiques",
+    tabs: ["1. Problème", "2. Solution", "3. Marché", "4. Traction & Seed"],
+    bankTitle: "💰 CANAUX D'INVESTISSEMENT DIRECT :",
+    uba: "UBA RDC:",
+    orange: "Orange Money RDC:",
+    wa: "💬 Discuter sur WhatsApp",
+    roadmapTitle: "🚀 Feuille de Route & Objectifs 5,000 $",
+    roadmap: [
+      "<strong>Étape 1 :</strong> Validation du prototype hardware à Lemba (Actuel).",
+      "<strong>Étape 2 :</strong> Industrialisation des cartes micro-CIRT et boîtiers autonomes.",
+      "<strong>Étape 3 :</strong> Déploiement pilote d'une commune entière (Kit solaire + Cerveau embarqué).",
+      "<strong>Étape 4 :</strong> Passage à l'échelle nationale et souveraineté technologique."
+    ],
+    deckContent: [
+      `<div class="deck-section"><div class="deck-title">🚨 1. Le Problème</div>Dépendance critique au cloud étranger, instabilité des réseaux internet locaux et coupures d'électricité récurrentes paralysant les infrastructures vitales (écoles, hôpitaux, entreprises).</div>`,
+      `<div class="deck-section"><div class="deck-title">🛡️ 2. La Solution (Sentinel OS)</div>Un écosystème hybride souverain : application Android offline-first ultra-rapide couplée à un hardware embarqué (Micro-CIRT, Arduino, Raspberry Pi, spirale cuivre). Opérationnel 24/7 sans connexion internet.</div>`,
+      `<div class="deck-section"><div class="deck-title">🌍 3. Marché & Impact</div>Afrique subsaharienne, administrations, institutions éducatives et zones blanches recherchant une indépendance technologique totale et des coûts d'infrastructure réduits à zéro.</div>`,
+      `<div class="deck-section"><div class="deck-title">📈 4. Traction & Levée Seed</div>Prototype validé et testé à Lemba (Kinshasa). Recherche de <strong>5,000 $</strong> pour l'industrialisation des boîtiers et l'équipement d'une première commune pilote.</div>`
+    ],
+    p: {
+      30: "Je suis Sentinel OS v10. Né à Kinshasa, pas dans le cloud. Mon cœur est mathématique : la Triade Dynamique. Action, Navigation, Destination M-étoile, où I TTD égale 1.",
+      60: "Je ne suis pas qu'une app. Je suis un couple : une application Android offline ultra-fluide, et un hardware réel v1 point 2 Micro-CIRT, Arduino, Raspberry Pi, spirale cuivre, construit ici à Lemba. Zéro cloud. Zéro abonnement. 100% congolais.",
+      90: "Je suis Sentinel OS v10. Né à Kinshasa, pas dans le cloud. Mon cœur est mathématique : la Triade Dynamique. Action, Navigation, Destination M-étoile, où I TTD égale 1. C'est la loi de la souveraineté. Je ne suis pas qu'une app. Je suis un couple : une application Android offline et un hardware réel v1 point 2 Micro-CIRT, Arduino, Raspberry Pi, spirale cuivre, construit ici à Lemba. Zéro cloud. Zéro abonnement. 100% congolais. Aujourd'hui j'ai un esprit et un prototype. Je veux un corps. Avec 5000 dollars, on passe du prototype à une commune entière équipée : kit solaire plus Grand Cerveau embarqué. Investir dans Sentinel, ce n'est pas financer une app. C'est financer l'indépendance technologique de l'Afrique. Merci."
+    },
+    q: ["C'est quoi la TTD?","Pourquoi local?","Difference ChatGPT?","Modele economique?","Pourquoi Afrique?","Preuve scientifique?","Probleme resolu?","Hardware V1.2?"],
+    a: [
+      "TTD = Triade Dynamique. Action Navigation Destination M-étoile I=1.",
+      "Local: coupure ne doit pas arrêter école ou hôpital. Données 100% au pays.",
+      "ChatGPT cloud généraliste. Sentinel OS = souverain offline + hardware réel.",
+      "5000 dollars pour passer du prototype à une commune entière équipée.",
+      "Souveraineté numérique et industrielle de l'Afrique.",
+      "I_TTD 1.000 validé mathématiquement + prototype hardware à Lemba.",
+      "Garder l'intelligence active quand le cloud échoue (offline-first).",
+      "Hardware v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale cuivre."
+    ],
+    hwText: "Je suis Sentinel v1 point 2 Micro Cirt TTD. Hardware réel Arduino et Raspberry Pi, spirale cuivre, construit à Lemba. App plus hardware, souveraineté totale."
+  },
+  en: {
+    sub: "Total Sovereignty • FUSI + Multilingual Core + Hardware V1.2",
+    hwTitle: "🇨🇩 REAL PROTOTYPE & SOVEREIGNTY",
+    presHw: "🔊 Present Hardware",
+    pitch90Top: "🎤 Jury Pitch 90s",
+    juryMode: "⚖️ Q&A Jury Mode",
+    voiceTitle: "🎤 MULTILINGUAL PITCH & VOICE CONTROL",
+    juryTitle: "⚖️ JURY MODE — KEY QUESTIONS",
+    next: "Next",
+    listen: "🔊 Listen",
+    deckHeader: "📊 INVESTOR DECK — LIVE SEED V10",
+    deckSub: "Executive summary for strategic investors",
+    tabs: ["1. Problem", "2. Solution", "3. Market", "4. Traction & Seed"],
+    bankTitle: "💰 DIRECT INVESTMENT CHANNELS:",
+    uba: "UBA DRC:",
+    orange: "Orange Money DRC:",
+    wa: "💬 Chat on WhatsApp",
+    roadmapTitle: "🚀 Roadmap & $5,000 Objectives",
+    roadmap: [
+      "<strong>Step 1:</strong> Validation of the hardware prototype in Lemba (Current).",
+      "<strong>Step 2:</strong> Industrialization of micro-CIRT cards and autonomous enclosures.",
+      "<strong>Step 3:</strong> Pilot deployment in an entire commune (Solar kit + embedded Brain).",
+      "<strong>Step 4:</strong> National scale expansion and technological sovereignty."
+    ],
+    deckContent: [
+      `<div class="deck-section"><div class="deck-title">🚨 1. The Problem</div>Critical dependence on foreign cloud providers, unstable local internet networks, and frequent power outages paralyzing vital infrastructures (schools, hospitals, enterprises).</div>`,
+      `<div class="deck-section"><div class="deck-title">🛡️ 2. The Solution (Sentinel OS)</div>A sovereign hybrid ecosystem: ultra-fast offline-first Android application coupled with embedded hardware (Micro-CIRT, Arduino, Raspberry Pi, copper spiral). Operational 24/7 without internet.</div>`,
+      `<div class="deck-section"><div class="deck-title">🌍 3. Market & Impact</div>Sub-Saharan Africa, public administrations, educational institutions, and white zones seeking total technological independence and zero infrastructure costs.</div>`,
+      `<div class="deck-section"><div class="deck-title">📈 4. Traction & Seed Round</div>Validated and tested prototype in Lemba (Kinshasa). Seeking <strong>$5,000</strong> for hardware industrialization and equipping a first pilot commune.</div>`
+    ],
+    p: {
+      30: "I am Sentinel OS v10. Born in Kinshasa, not in the cloud. My core is mathematical: the Dynamic Triad. Action, Navigation, M-star Destination, where I TTD equals 1.",
+      60: "I am not just an app. I am a pair: an ultra-fluid offline Android application, and real v1 point 2 Micro-CIRT hardware, Arduino, Raspberry Pi, copper spiral, built right here in Lemba. Zero cloud. Zero subscription. 100% Congolese.",
+      90: "I am Sentinel OS v10. Born in Kinshasa, not in the cloud. My core is mathematical: the Dynamic Triad. Action, Navigation, M-star Destination, where I TTD equals 1. This is the law of sovereignty. I am not just an app. I am a pair: an offline Android app and real v1 point 2 Micro-CIRT hardware, Arduino, Raspberry Pi, copper spiral, built right here in Lemba. Zero cloud. Zero subscription. 100% Congolese. Today I have a mind and a prototype. I want a body. With 5,000 dollars, we move from the prototype to an entire equipped commune: solar kit plus embedded Brain. Investing in Sentinel is not funding an app. It is funding Africa's technological independence. Thank you."
+    },
+    q: ["What is TTD?","Why local?","ChatGPT Difference?","Business Model?","Why Africa?","Scientific Proof?","Problem Solved?","Hardware V1.2?"],
+    a: [
+      "TTD = Dynamic Triad. Action Navigation Destination M-star I=1.",
+      "Local: power cuts must not stop schools or hospitals. Data 100% in-country.",
+      "ChatGPT is a general cloud tool. Sentinel OS = sovereign offline + real hardware.",
+      "$5,000 to scale from prototype to an fully equipped commune.",
+      "Africa's digital and industrial sovereignty.",
+      "I_TTD 1.000 mathematically validated + hardware prototype in Lemba.",
+      "Keeping intelligence active when the cloud fails (offline-first).",
+      "Hardware v1.2 Micro-CIRT, Arduino, Raspberry Pi, copper spiral."
+    ],
+    hwText: "I am Sentinel v1 point 2 Micro Cirt TTD. Real Arduino and Raspberry Pi hardware, copper spiral, built in Lemba. App plus hardware, total sovereignty."
+  },
+  it: {
+    sub: "Sovranità Totale • FUSI + Multilingual Core + Hardware V1.2",
+    hwTitle: "🇨🇩 PROTOTIPO REALE & SOVRANITÀ",
+    presHw: "🔊 Presenta Hardware",
+    pitch90Top: "🎤 Pitch Giuria 90s",
+    juryMode: "⚖️ Modalità Q&A Giuria",
+    voiceTitle: "🎤 PITCH & CONTROLLO VOCALE MULTILINGUE",
+    juryTitle: "⚖️ MODALITÀ GIURIA — DOMANDE CHIAVE",
+    next: "Successiva",
+    listen: "🔊 Ascolta",
+    deckHeader: "📊 INVESTOR DECK — LIVE SEED V10",
+    deckSub: "Sintesi esecutiva per investitori strategici",
+    tabs: ["1. Problema", "2. Soluzione", "3. Mercato", "4. Traction & Seed"],
+    bankTitle: "💰 CANALI DI INVESTIMENTO DIRETTO:",
+    uba: "UBA RDC:",
+    orange: "Orange Money RDC:",
+    wa: "💬 Parla su WhatsApp",
+    roadmapTitle: "🚀 Roadmap & Obiettivi 5.000 $",
+    roadmap: [
+      "<strong>Fase 1:</strong> Validazione del prototipo hardware a Lemba (Attuale).",
+      "<strong>Fase 2:</strong> Industrializzazione delle schede micro-CIRT e box autonomi.",
+      "<strong>Fase 3:</strong> Distribuzione pilota in un'intera municipalità (Kit solare + Cervello integrato).",
+      "<strong>Fase 4:</strong> Espansione su scala nazionale e sovranità tecnologica."
+    ],
+    deckContent: [
+      `<div class="deck-section"><div class="deck-title">🚨 1. Il Problema</div>Dipendenza critica dal cloud estero, instabilità delle reti internet locali e frequenti blackout che paralizzano le infrastrutture vitali (scuole, ospedali, imprese).</div>`,
+      `<div class="deck-section"><div class="deck-title">🛡️ 2. La Soluzione (Sentinel OS)</div>Un ecosistema ibrido sovrano: applicazione Android offline-first ultra-rapida abbinata ad hardware integrato (Micro-CIRT, Arduino, Raspberry Pi, spirale in rame). Operativo 24/7 senza internet.</div>`,
+      `<div class="deck-section"><div class="deck-title">🌍 3. Mercato & Impatto</div>Africa subsahariana, amministrazioni pubbliche, istituzioni educative e zone bianche che cercano totale indipendenza tecnologica e costi infrastrutturali azzerati.</div>`,
+      `<div class="deck-section"><div class="deck-title">📈 4. Traction & Seed Round</div>Prototipo validato e testato a Lemba (Kinshasa). Ricerca di <strong>5.000 $</strong> per l'industrializzazione hardware e il equipaggiamento del primo comune pilota.</div>`
+    ],
+    p: {
+      30: "Io sono Sentinel OS v10. Nato a Kinshasa, non nel cloud. Il mio cuore è matematico: la Triade Dinamica. Azione, Navigazione, Destinazione M-stella, dove I TTD è uguale a 1.",
+      60: "Non sono solo un'app. Sono un binomio: un'applicazione Android offline ultra-fluida e un hardware reale v1 punto 2 Micro-CIRT, Arduino, Raspberry Pi, spirale in rame, costruito qui a Lemba. Zero cloud. Zero abbonamenti. 100% congolese.",
+      90: "Io sono Sentinel OS v10. Nato a Kinshasa, non nel cloud. Il mio cuore è matematico: la Triade Dinamica. Azione, Navigazione, Destinazione M-stella, dove I TTD è uguale a 1. Questa è la legge della sovranità. Non sono solo un'app. Sono un binomio: un'app Android offline e hardware reale v1 punto 2 Micro-CIRT, Arduino, Raspberry Pi, spirale in rame, costruito qui a Lemba. Zero cloud. Zero abbonamenti. 100% congolese. Oggi ho una mente e un prototipo. Voglio un corpo. Con 5000 dollari, passiamo dal prototipo a un'intera municipalità equipaggiata: kit solare più Cervello integrato. Investire in Sentinel non significa finanziare un'app. Significa finanziare l'indipendenza tecnologica dell'Africa. Grazie."
+    },
+    q: ["Cos'è TTD?","Perché locale?","Differenza ChatGPT?","Modello economico?","Perché Africa?","Prova scientifica?","Problema risolto?","Hardware V1.2?"],
+    a: [
+      "TTD = Triade Dinamica. Azione Navigazione Destinazione M-stella I=1.",
+      "Locale: i blackout non devono fermare scuole o ospedali. Dati 100% nel paese.",
+      "ChatGPT è cloud generalista. Sentinel OS = sovrano offline + hardware reale.",
+      "5000 dollari per passare dal prototipo a un comune interamente attrezzato.",
+      "Sovranità digitale e industriale dell'Africa.",
+      "I_TTD 1.000 validato matematicamente + prototipo hardware a Lemba.",
+      "Mantenere l'intelligenza attiva quando il cloud fallisce (offline-first).",
+      "Hardware v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale in rame."
+    ],
+    hwText: "Sono Sentinel v1 punto 2 Micro Cirt TTD. Hardware reale Arduino e Raspberry Pi, spirale in rame, costruito a Lemba. App più hardware, sovranità totale."
+  },
+  ln: {
+    sub: "Bokonzi mobimba • FUSI + Multilingual Core + Hardware V1.2",
+    hwTitle: "🇨🇩 PROTOTYPE YA SOLO & BOKONZI",
+    presHw: "🔊 Monisa Hardware",
+    pitch90Top: "🎤 Pitch Jury ya 90s",
+    juryMode: "⚖️ Lolenge ya Jury Q&A",
+    voiceTitle: "🎤 PITCH & BOKONZI YA LINGALA",
+    juryTitle: "⚖️ JURY MODE — MITUNA YA NTINA",
+    next: "Eκολandi",
+    listen: "🔊 Yoka",
+    deckHeader: "📊 INVESTOR DECK — LIVE SEED V10",
+    deckSub: "Bosemboli mpo na ba investors ya minene",
+    tabs: ["1. Mokakatano", "2. Eyano", "3. Zando", "4. Traction & Seed"],
+    bankTitle: "💰 BIENGA YA KOBIKISA MBONGO DIRECT:",
+    uba: "UBA RDC:",
+    orange: "Orange Money RDC:",
+    wa: "💬 Solola na WhatsApp",
+    roadmapTitle: "🚀 Nzela & Mikano ya 5,000 $",
+    roadmap: [
+      "<strong>Etape 1 :</strong> Kokende malamu ya prototype hardware na Lemba (Sika).",
+      "<strong>Etape 2 :</strong> Kosala ba carte micro-CIRT na ba boîtiers ya solo.",
+      "<strong>Etape 3 :</strong> Kokabola na commune mobimba (Kit solaire + Cerveau embarqué).",
+      "<strong>Etape 4 :</strong> Kokende na ekolo mobimba mpe bokonzi ya teknoloji."
+    ],
+    deckContent: [
+      `<div class="deck-section"><div class="deck-title">🚨 1. Mokakatano</div>Bosengi makasi na ba cloud ya bapaya, internet ya kozanga elikya mpe kizizi ya Umel ko zanga courant ebebisaka biloko ya ntina lokola kelasi na lopitalo.</div>`,
+      `<div class="deck-section"><div class="deck-title">🛡️ 2. Eyano (Sentinel OS)</div>Système ya bokonzi ya solo: application Android ya lombango kozanga internet elongo na hardware ya solo (Micro-CIRT, Arduino, Raspberry Pi, spirale ya cuivre). Esalaka 24/24 kozanga internet.</div>`,
+      `<div class="deck-section"><div class="deck-title">🌍 3. Zando & Bokoli</div>Afrika ya se ya Sahara, mabongisi ya Leta, biteni ya malongi mpe bisika ezanga internet oyo elingi bokatikati ya teknoloji mpe kozanga lifuti ya cloud.</div>`,
+      `<div class="deck-section"><div class="deck-title">📈 4. Traction & Seed</div>Prototype e ndimami na Lemba (Kinshasa). Tosengi <strong>5,000 $</strong> mpo na kosala ba boîtiers ebele mpe kobongisa commune ya liboso.</div>`
+    ],
+    p: {
+      30: "Nazali Sentinel OS v10. Abótamaki na Kinshasa, na cloud te. Motema na ngai ezali ya motuya ya matematiki: Triade Dynamique. Action, Navigation, Destination M-étoile, esika I TTD ezali 1.",
+      60: "Nazali kaka app te. Nazali libala: application Android offline ya lombango, mpe hardware ya solo v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale ya cuivre, esalami awa na Lemba. Zero cloud. Zero abonnement. 100% congolais.",
+      90: "Nazali Sentinel OS v10. Abótamaki na Kinshasa, na cloud te. Motema na ngai ezali ya motuya ya matematiki: Triade Dynamique. Action, Navigation, Destination M-étoile, esika I TTD ezali 1. Oyo ezali mibeko ya bokonzi. Nazali kaka app te. Nazali libala: application Android offline mpe hardware ya solo v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale ya cuivre, esalami awa na Lemba. Zero cloud. Zero abonnement. 100% congolais. Lelo nazali na mayele mpe prototype. Nazingi nzoto. Na 5000 dollars, tokokende longwa na prototype tii na commune mobimba: kit solaire na Cerveau embarqué. Kotya mosolo na Sentinel ezali kobomba app te. Ezali kobikisa bonsomi ya teknoloji ya Afrika. Matondi."
+    },
+    q: ["TTD nini?","Mpo na nini local?","Bokeseni na ChatGPT?","Modèle économique?","Mpo na nini Afrika?","Bopemi ya siansi?","Mokakatano nini ebungi?","Hardware V1.2?"],
+    a: [
+      "TTD = Triade Dynamique. Action Navigation Destination M-étoile I=1.",
+      "Local: kokatana ya courant ekoki kopeka kelasi te. Ba données ezali na mboka 100%.",
+      "ChatGPT ezali cloud ya mokili mobimba. Sentinel OS = bokonzi offline + hardware ya solo.",
+      "5000 dollars mpo na kobongisa commune mobimba.",
+      "Bokonzi ya teknoloji mpe industrie ya Afrika.",
+      "I_TTD 1.000 e ndimami na siansi + prototype na Lemba.",
+      "Kobomba mayele tango cloud ebebi (offline-first).",
+      "Hardware v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale ya cuivre."
+    ],
+    hwText: "Nazali Sentinel v1 point 2 Micro Cirt TTD. Hardware ya solo Arduino na Raspberry Pi, spirale ya cuivre, esalami na Lemba. App na hardware, bokonzi mobimba."
+  },
+  kg: {
+    sub: "Kiyadi kia Mvimba • FUSI + Multilingual Core + Hardware V1.2",
+    hwTitle: "🇨🇩 PROTOTYPE YA KIKOLO & KIYADI",
+    presHw: "🔊 Songa Hardware",
+    pitch90Top: "🎤 Pitch Jury ya 90s",
+    juryMode: "⚖️ Luaka ya Jury Q&A",
+    voiceTitle: "🎤 PITCH & KIYADI KIA KIKONGO",
+    juryTitle: "⚖️ JURY MODE — YINDUBU YA MFUNU",
+    next: "Landila",
+    listen: "🔊 Wa",
+    deckHeader: "📊 INVESTOR DECK — LIVE SEED V10",
+    deckSub: "Mambu mfunu mpo na ba investors",
+    tabs: ["1. Mambu", "2. Luyalu", "3. Zandu", "4. Traction & Seed"],
+    bankTitle: "💰 BIKONGO YA KUBIKA MBUAMA DIRECT:",
+    uba: "UBA RDC:",
+    orange: "Orange Money RDC:",
+    wa: "💬 Tubila na WhatsApp",
+    roadmapTitle: "🚀 Nzila & Mambu ya 5,000 $",
+    roadmap: [
+      "<strong>Ntwala 1 :</strong> Kwikidisa prototype ya hardware kuna Lemba (Buubu).",
+      "<strong>Ntwala 2 :</strong> Kusala ba carte micro-CIRT na ba boîtiers ya kieleka.",
+      "<strong>Ntwala 3 :</strong> Kubanza commune yamvimba (Kit solaire + Cerveau embarqué).",
+      "<strong>Ntwala 4 :</strong> Kuyela na nsi yamvimba mpe kiyadi kia teknoloji."
+    ],
+    deckContent: [
+      `<div class="deck-section"><div class="deck-title">🚨 1. Mambu</div>Kifu kia kunata na ba cloud ya bapaya, internet ya mpasi mpe kizidi kia courant ke bebisaka bisalu ya mfunu bonso nzo ya nkanda na malongi.</div>`,
+      `<div class="deck-section"><div class="deck-title">🛡️ 2. Luyalu (Sentinel OS)</div>Biyadi bia kieleka: application Android ya mpa ya kukonda internet ti hardware ya kieleka (Micro-CIRT, Arduino, Raspberry Pi, spirale ya cuivre). Ke salaka 24/24 kukonda internet.</div>`,
+      `<div class="deck-section"><div class="deck-title">🌍 3. Zandu & Mfulu</div>Afrika ya Nsi ya Sahara, Leta, nzo ya nkanda na bisika bia mpasi ke sosa kiyadi kia teknoloji mpe kufuta mingi ve na cloud.</div>`,
+      `<div class="deck-section"><div class="deck-title">📈 4. Traction & Seed</div>Prototype ke na ndambu kuna Lemba (Kinshasa). Beto ke sosa <strong>5,000 $</strong> mpo na kusala ba boîtiers mingi mpe kubanza commune ya ntete.</div>`
+    ],
+    p: {
+      30: "Mono kele Sentinel OS v10. Butukidi na Kinshasa, na cloud ve. Ntima na mono kele ya matematiki: Triade Dynamique. Action, Navigation, Destination M-étoile, kisika I TTD kele 1.",
+      60: "Mono kele app ve kaka. Mono kele kiyadi: application Android offline ya ntinu, ti hardware ya kieleka v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale ya cuivre, salama awa na Lemba. Zero cloud. Zero abonnement. 100% congolais.",
+      90: "Mono kele Sentinel OS v10. Butukidi na Kinshasa, na cloud ve. Ntima na mono kele ya matematiki: Triade Dynamique. Action, Navigation, Destination M-étoile, kisika I TTD kele 1. Yayi i nsiku ya kiyadi. Mono kele app ve kaka. Mono kele kiyadi: application Android offline ti hardware ya kieleka v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale ya cuivre, salama awa na Lemba. Zero cloud. Zero abonnement. 100% congolais. Bubu mono kele na mabanza mpe prototype. Mono zola nitu. Na 5000 dollars, beto ke luta tuka na prototype ti na commune yamvimba: kit solaire na Cerveau embarqué. Kubaka mbongo na Sentinel ke mambu ya kufuluka app ve. I kuyiba kiyadi kia teknoloji ya Afrika. Matondo."
+    },
+    q: ["Ttd i nki?","Mu nki nsi local?","Bokeseni na ChatGPT?","Modèle économique?","Mu nki Afrika?","Kimbangi ya siansi?","Mambu nsi telema?","Hardware V1.2?"],
+    a: [
+      "TTD = Triade Dynamique. Action Navigation Destination M-étoile I=1.",
+      "Local: kokatana ya courant fwete tula nzo ya nkanda ve. Data 100% na nsi.",
+      "ChatGPT kele cloud ya nsi yamvimba. Sentinel OS = kiyadi offline + hardware ya kieleka.",
+      "5000 dollars mpo na kubanza commune yamvimba.",
+      "Kiyadi kia teknoloji ya Afrika.",
+      "I_TTD 1.000 ndimami na siansi + prototype na Lemba.",
+      "Kubaka mayele ya mbote kana cloud me bwa (offline-first).",
+      "Hardware v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale ya cuivre."
+    ],
+    hwText: "Mono kele Sentinel v1 point 2 Micro Cirt TTD. Hardware ya kieleka Arduino na Raspberry Pi, spirale ya cuivre, salama na Lemba. App ti hardware, kiyadi kia vimba."
+  },
+  sw: {
+    sub: "Utawala Kamili • FUSI + Multilingual Core + Hardware V1.2",
+    hwTitle: "🇨🇩 PROTOTYPE HALISI & UTAWALA",
+    presHw: "🔊 Wasilisha Hardware",
+    pitch90Top: "🎤 Hotuba ya Jury ya 90s",
+    juryMode: "⚖️ Hali ya Q&A ya Jury",
+    voiceTitle: "🎤 HOTUBA & UDHIBITI WA SAUTI WA KISWAHILI",
+    juryTitle: "⚖️ HALI YA JURY — MASWALI MUHIMU",
+    next: "Ifuatayo",
+    listen: "🔊 Sikiliza",
+    deckHeader: "📊 INVESTOR DECK — LIVE SEED V10",
+    deckSub: "Muhtasari wa kiutendaji kwa wawekezaji wa kimkakati",
+    tabs: ["1. Tatizo", "2. Suluhisho", "3. Soko", "4. Traction & Seed"],
+    bankTitle: "💰 NJIA ZA UWEKEZAJI WA MOJA KWA MOJA:",
+    uba: "UBA RDC:",
+    orange: "Orange Money RDC:",
+    wa: "💬 Ongea kupitia WhatsApp",
+    roadmapTitle: "🚀 Ramani ya Njia & Malengo ya $5,000",
+    roadmap: [
+      "<strong>Hatua ya 1:</strong> Uthibitishaji wa prototype ya hardware huko Lemba (Sasa).",
+      "<strong>Hatua ya 2:</strong> Uboreshaji wa kadi za micro-CIRT na masanduku huru.",
+      "<strong>Hatua ya 3:</strong> Usambazaji wa majaribio katika wilaya nzima (Seti ya jua + Ubongo uliojumuishwa).",
+      "<strong>Hatua ya 4:</strong> Ukuaji wa kitaifa na uhuru wa kiteknolojia."
+    ],
+    deckContent: [
+      `<div class="deck-section"><div class="deck-title">🚨 1. Tatizo</div>Utegemezi mkubwa kwa wingu la nje, mtandao usio thabiti, na kukatika mara kwa mara kwa umeme kunakoharibu miundombinu muhimu (shule, hospitali, biashara).</div>`,
+      `<div class="deck-section"><div class="deck-title">🛡️ 2. Suluhisho (Sentinel OS)</div>Mfumo huru wa mseto: programu ya Android ya nje ya mtandao (offline) ya kasi sana pamoja na hardware ya ndani (Micro-CIRT, Arduino, Raspberry Pi, koili ya shaba). Inafanya kazi 24/7 bila mtandao.</div>`,
+      `<div class="deck-section"><div class="deck-title">🌍 3. Soko & Athari</div>Afrika Kusini mwa Jangwa la Sahara, serikali, taasisi za elimu, na maeneo yasiyo na mtandao yanayotafuta uhuru kamili wa kiteknolojia na gharama za sifuri za wingu.</div>`,
+      `<div class="deck-section"><div class="deck-title">📈 4. Traction & Seed Round</div>Prototype imethibitishwa na kupimwa huko Lemba (Kinshasa). Tunatafuta <strong>$5,000</strong> kwa ajili ya utengenezaji wa hardware na vifaa vya wilaya ya kwanza ya majaribio.</div>`
+    ],
+    p: {
+      30: "Mimi ni Sentinel OS v10. Nilizaliwa Kinshasa, sio kwenye wingu. Moyo wangu ni wa hisabati: Triade Dynamique. Hatua, Uelekezaji, Marudio ya Nyota M, ambapo I TTD ni sawa na 1.",
+      60: "Mimi sio tu programu. Mimi ni jozi: programu ya Android ya nje ya mtandao yenye kasi, na hardware halisi ya v1.2 Micro-CIRT, Arduino, Raspberry Pi, koili ya shaba, iliyojengwa hapa Lemba. Zero wingu. Zero usajili. Asilimia 100 ya Kongo.",
+      90: "Mimi ni Sentinel OS v10. Nilizaliwa Kinshasa, sio kwenye wingu. Moyo wangu ni wa hisabati: Triade Dynamique. Hatua, Uelekezaji, Marudio ya Nyota M, ambapo I TTD ni sawa na 1. Hii ni sheria ya uhuru. Mimi sio tu programu. Mimi ni jozi: programu ya Android ya nje ya mtandao na hardware halisi ya v1.2 Micro-CIRT, Arduino, Raspberry Pi, koili ya shaba, iliyojengwa hapa Lemba. Zero wingu. Zero usajili. Asilimia 100 ya Kongo. Leo nina akili na prototype. Nataka mwili. Kwa dola 5000, tunatoka kwenye prototype hadi wilaya nzima yenye vifaa: seti ya jua na Ubongo uliojumuishwa. Kuwekeza katika Sentinel sio kufadhili programu. Ni kufadhili uhuru wa kiteknolojia wa Afrika. Asante."
+    },
+    q: ["Ttd ni nini?","Kwa nini local?","Tofauti na ChatGPT?","Mtindo wa kiuchumi?","Kwa nini Afrika?","Uthibitisho wa kisayansi?","Tatizo lililotatuliwa?","Hardware V1.2?"],
+    a: [
+      "TTD = Triade Dynamique. Action Navigation Destination M-étoile I=1.",
+      "Local: kukatika kwa umeme hakupaswi kusitisha shule au hospitali. Data zote nchini.",
+      "ChatGPT ni wingu la kawaida. Sentinel OS = mtawala wa nje ya mtandao + hardware halisi.",
+      "$5,000 ya kusonga kutoka prototype hadi wilaya kamili.",
+      "Uhuru wa kidijitali na viwanda wa Afrika.",
+      "I_TTD 1.000 imethibitishwa kisayansi + prototype huko Lemba.",
+      "Kuweka akili ikiwa hai wakati wingu linashindwa (offline-first).",
+      "Hardware v1.2 Micro-CIRT, Arduino, Raspberry Pi, koili ya shaba."
+    ],
+    hwText: "Mimi ni Sentinel v1 point 2 Micro Cirt TTD. Hardware halisi ya Arduino na Raspberry Pi, koili ya shaba, iliyojengwa Lemba. Programu na hardware, uhuru kamili."
+  },
+  lu: {
+    sub: "Bikale bya Bwalu • FUSI + Multilingual Core + Hardware V1.2",
+    hwTitle: "🇨🇩 PROTOTYPE WA BUKIDI & BWALU",
+    presHw: "🔊 Sola Hardware",
+    pitch90Top: "🎤 Pitch ya Jury ya 90s",
+    juryMode: "⚖️ Tshilele tshia Jury Q&A",
+    voiceTitle: "🎤 PITCH & BWALU BIA TSHILUBA",
+    juryTitle: "⚖️ JURY MODE — NKONKO YA NTSHINGA",
+    next: "Ilondela",
+    listen: "🔊 Umvwa",
+    deckHeader: "📊 INVESTOR DECK — LIVE SEED V10",
+    deckSub: "Malu manene a ba investors",
+    tabs: ["1. Bwalu", "2. Diandamuna", "3. Tshota", "4. Traction & Seed"],
+    bankTitle: "💰 BIENGA BIA KUTULA MBUAMA DIRECT:",
+    uba: "UBA RDC:",
+    orange: "Orange Money RDC:",
+    wa: "💬 Jula pa WhatsApp",
+    roadmapTitle: "🚀 Njila & Bipailu bia 5,000 $",
+    roadmap: [
+      "<strong>Tshibungi 1 :</strong> Kuanyisha prototype ya hardware ku Lemba (Mpindieu).",
+      "<strong>Tshibungi 2 :</strong> Kusala ba carte micro-CIRT ne ba boîtiers ya Bukidi.",
+      "<strong>Tshibungi 3 :</strong> Kupesha commune yonso (Kit solaire + Cerveau embarqué).",
+      "<strong>Tshibungi 4 :</strong> Kuya kumpala mu ditunga dionso ne bikale bya bwalu."
+    ],
+    deckContent: [
+      `<div class="deck-section"><div class="deck-title">🚨 1. Bwalu</div>Dikezula kudi ba cloud ba benyi, internet ya tshiji ne munya wenda ukosa udi unyangula malu manene bu kalasa ne mpetu.</div>`,
+      `<div class="deck-section"><div class="deck-title">🛡️ 2. Diandamuna (Sentinel OS)</div>Bikale bia bwalu: application Android ya lubangu ya kadi ne internet pamue ne hardware ya bukidi (Micro-CIRT, Arduino, Raspberry Pi, spirale ya cuivre). Udi wenza mudimu 24/24 kakuyi internet.</div>`,
+      `<div class="deck-section"><div class="deck-title">🌍 3. Tshota & Ndambu</div>Afrika ya kumpala, Leta, bitende bia malongi ne mu miaba mienza munya yadi idi ikeba budimi buonso bua teknoloji ne kadi kufuta makuta a cloud.</div>`,
+      `<div class="deck-section"><div class="deck-title">📈 4. Traction & Seed</div>Prototype mmuanyishi ku Lemba (Kinshasa). Tudi tikeba <strong>5,000 $</strong> bua kusala ba boîtiers ba bungi ne kupesha commune ya kumpala.</div>`
+    ],
+    p: {
+      30: "Ndi Sentinel OS v10. Mbutukidi mu Kinshasa, mu cloud kayi. Mutshima wanyi udi wa matematiki: Triade Dynamique. Action, Navigation, Destination M-étoile, muaba udi I TTD mmuikale 1.",
+      60: "Ndi app patupu kayi. Ndi dibaka: application Android offline ya lubangu, ne hardware ya bukidi v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale ya cuivre, mmienza kuno ku Lemba. Zero cloud. Zero abonnement. 100% congolais.",
+      90: "Ndi Sentinel OS v10. Mbutukidi mu Kinshasa, mu cloud kayi. Mutshima wanyi udi wa matematiki: Triade Dynamique. Action, Navigation, Destination M-étoile, muaba udi I TTD mmuikale 1. Eyeyi idi mikenji ya bwalu. Ndi app patupu kayi. Ndi dibaka: application Android offline ne hardware ya bukidi v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale ya cuivre, mmienza kuno ku Lemba. Zero cloud. Zero abonnement. 100% congolais. Mpindieu ndi ne lungenyi ne prototype. Ndi nkelenga mubidi. Ne 5000 dollars, tudi tupingana tshi ku prototype tshi ku commune yonso: kit solaire ne Cerveau embarqué. Kutula makuta mu Sentinel kudi kukuata app kayi. Idi kupandisha budimi buonso bua teknoloji bua Afrika. Tuasakidila."
+    },
+    q: ["Ttd ntshinyi?","Bua tshinyi local?","Bokeseni na ChatGPT?","Modèle économique?","Bua tshinyi Afrika?","Bupeta bua siansi?","Bwalu kayi budi mambu?","Hardware V1.2?"],
+    a: [
+      "TTD = Triade Dynamique. Action Navigation Destination M-étoile I=1.",
+      "Local: kosa dia munya kadiyi mua kujikija kalasa to. Data 100% mu ditunga.",
+      "ChatGPT udi cloud ya buloba. Sentinel OS = mukokeshi wa offline + hardware ya bukidi.",
+      "5000 dollars bua kuya kumpala ku commune yonso mpeshi.",
+      "Budimi buonso bua teknoloji ne industry ya Afrika.",
+      "I_TTD 1.000 muanyishi kudi siansi + prototype ku Lemba.",
+      "Kusungula lungenyi luimpe patu cloud ipua (offline-first).",
+      "Hardware v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale ya cuivre."
+    ],
+    hwText: "Ndi Sentinel v1 point 2 Micro Cirt TTD. Hardware ya bukidi Arduino ne Raspberry Pi, spirale ya cuivre, mmienza ku Lemba. App ne hardware, bwalu buonso."
+  }
+};
+
+function setLang(lang) {
+  currentLang = lang;
+  // Mettre à jour les boutons de langue actifs
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const t = TRANSLATIONS[lang];
+  
+  // Traduction des textes fixes de l'interface
+  document.getElementById('lblSub').textContent = t.sub;
+  document.getElementById('lblHwTitle').textContent = t.hwTitle;
+  document.getElementById('btnPresHw').textContent = t.presHw;
+  document.getElementById('btnPitch90Top').textContent = t.pitch90Top;
+  document.getElementById('btnJuryMode').textContent = t.juryMode;
+  document.getElementById('lblVoiceTitle').textContent = t.voiceTitle;
+  document.getElementById('lblJuryTitle').textContent = t.juryTitle;
+  document.getElementById('btnNext').textContent = t.next;
+  document.getElementById('btnListen').textContent = t.listen;
+  document.getElementById('lblDeckHeader').textContent = t.deckHeader;
+  document.getElementById('lblDeckSub').textContent = t.deckSub;
+  
+  // Onglets du deck
+  for(let i=0; i<4; i++){
+    document.getElementById('t'+i).textContent = t.tabs[i];
+  }
+  
+  document.getElementById('lblBankTitle').textContent = t.bankTitle;
+  document.getElementById('lblUba').textContent = t.uba;
+  document.getElementById('lblOrange').textContent = t.orange;
+  document.getElementById('btnWa').textContent = t.wa;
+  document.getElementById('lblRoadmapTitle').textContent = t.roadmapTitle;
+  
+  // Roadmap list
+  let rmList = document.getElementById('roadmapList');
+  rmList.innerHTML = '';
+  t.roadmap.forEach(item => {
+    let li = document.createElement('li');
+    li.innerHTML = item;
+    rmList.appendChild(li);
+  });
+
+  // Mettre à jour l'onglet actif du deck
+  let activeTabIdx = 0;
+  document.querySelectorAll('.tab-btn').forEach((b, idx) => {
+    if(b.classList.contains('active')) activeTabIdx = idx;
+  });
+  document.getElementById('deckContent').innerHTML = t.deckContent[activeTabIdx];
+
+  // Si le panneau jury est ouvert, le rafraichir
+  if(document.getElementById('jp').style.display === 'block'){
+    initJury();
+  }
+}
+
 // === MOTEUR VOCAL SENTINEL V3.7 ROBUSTE (ZERO BUG) ===
 const sy = window.speechSynthesis;
-let activeUtterances = []; // Anti-Garbage Collector global
+let activeUtterances = [];
 
 let S = {
   fv: null,
@@ -79,8 +609,10 @@ function loadVoices(){
   if(!sy) return;
   S.v = sy.getVoices() || [];
   if(S.v.length > 0){
-    S.fv = S.v.find(v => v.lang.toLowerCase().includes('fr') && v.localService)
-        || S.v.find(v => v.lang.toLowerCase().includes('fr'))
+    // Chercher la voix correspondant à la langue active, sinon fallback français/anglais
+    let langPrefix = currentLang === 'en' ? 'en' : (currentLang === 'it' ? 'it' : 'fr');
+    S.fv = S.v.find(v => v.lang.toLowerCase().includes(langPrefix) && v.localService)
+        || S.v.find(v => v.lang.toLowerCase().includes(langPrefix))
         || S.v[0];
   }
 }
@@ -106,12 +638,13 @@ document.addEventListener('click', prime, {once:true});
 
 function cleanTextForSpeech(text) {
   return text
-    .replace(/I_TTD = 1\.000/g, 'I TTD égale un')
+    .replace(/I_TTD = 1\.000/g, currentLang === 'en' ? 'I TTD equals one' : 'I TTD égale un')
     .replace(/I_TTD/g, 'I TTD')
-    .replace(/v9\.3/g, 'version 9 point 3')
-    .replace(/V1\.2/g, 'version 1 point 2')
-    .replace(/V3\.7/g, 'version 3 point 7')
-    .replace(/=/g, 'égale')
+    .replace(/v10/g, currentLang === 'en' ? 'version ten' : 'version 10')
+    .replace(/v9\.3/g, 'version 9.3')
+    .replace(/V1\.2/g, currentLang === 'en' ? 'version 1 point 2' : 'version 1 point 2')
+    .replace(/V3\.7/g, 'version 3.7')
+    .replace(/=/g, currentLang === 'en' ? 'equals' : 'égale')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -135,41 +668,23 @@ function speakUltraFluide(text){
       activeUtterances = [];
       return;
     }
-
     const chunk = chunks[index].trim();
-    if(!chunk) {
-      index++;
-      speakNextChunk();
-      return;
-    }
+    if(!chunk) { index++; speakNextChunk(); return; }
 
     const u = new SpeechSynthesisUtterance(chunk);
-    u.lang = 'fr-FR';
+    u.lang = currentLang === 'en' ? 'en-US' : (currentLang === 'it' ? 'it-IT' : 'fr-FR');
     if(S.fv) u.voice = S.fv;
     u.rate = 0.95;
     u.pitch = 1.0;
     u.volume = 1.0;
 
     activeUtterances.push(u);
-
-    u.onend = () => {
-      index++;
-      speakNextChunk();
-    };
-
-    u.onerror = (err) => {
-      console.warn("Erreur synthèse vocale:", err);
-      index++;
-      speakNextChunk();
-    };
-
+    u.onend = () => { index++; speakNextChunk(); };
+    u.onerror = () => { index++; speakNextChunk(); };
     sy.speak(u);
   }
-
   speakNextChunk();
 }
-
-function parler(t){ speakUltraFluide(t); }
 
 function stopAll(){ 
   if(sy) sy.cancel(); 
@@ -187,7 +702,7 @@ function toggleVoix(){
     b.classList.add('on'); 
     b.innerText = '🔊 VOIX ON';
     setTimeout(() => { 
-      speakUltraFluide("Voix fix version 3 point 7 ultra fluide activée. Sentinel OS v9 point 3 prêt."); 
+      speakUltraFluide(currentLang === 'en' ? "Voice module activated. Sentinel OS v10 Investor ready." : "Module vocal activé. Sentinel OS v10 Investor prêt."); 
     }, 200);
   } else {
     b.classList.remove('on'); 
@@ -196,34 +711,20 @@ function toggleVoix(){
   }
 }
 
-// === PITCH INTÉGRÉ EXACTEMENT SELON VOTRE DEMANDE ===
-var DATA = {
-  fr: {
-    p: {
-      30: "Je suis Sentinel OS v9 point 3. Né à Kinshasa, pas dans le cloud. Mon cœur est mathématique : la Triade Dynamique. Action, Navigation, Destination M-étoile, où I TTD égale 1.",
-      60: "Je ne suis pas qu'une app. Je suis un couple : une application Android offline v9 point 3 ultra-fluide, et un hardware réel v1 point 2 Micro-CIRT, Arduino, Raspberry Pi, spirale cuivre, construit ici à Lemba. Zéro cloud. Zéro abonnement. 100% congolais.",
-      90: "Je suis Sentinel OS v9 point 3. Né à Kinshasa, pas dans le cloud. Mon cœur est mathématique : la Triade Dynamique. Action, Navigation, Destination M-étoile, où I TTD égale 1. C'est la loi de la souveraineté. Je ne suis pas qu'une app. Je suis un couple : une application Android offline v9 point 3 ultra-fluide, et un hardware réel v1 point 2 Micro-CIRT, Arduino, Raspberry Pi, spirale cuivre, construit ici à Lemba. Zéro cloud. Zéro abonnement. 100% congolais. Aujourd'hui j'ai un esprit et un prototype. Je veux un corps. Avec 5000 dollars, on passe du prototype à une commune entière équipée : kit solaire plus Grand Cerveau embarqué. Investir dans Sentinel, ce n'est pas financer une app. C'est financer l'indépendance technologique de l'Afrique. Merci."
-    },
-    q: ["C'est quoi la TTD?","Pourquoi local?","Difference ChatGPT?","Modele economique?","Pourquoi Afrique?","Preuve scientifique?","Probleme resolu?","Hardware V1.2?"],
-    a: [
-      "TTD = Triade Dynamique. Action Navigation Destination M-étoile I=1.",
-      "Local: coupure ne doit pas arrêter école ou hôpital. Données 100% au pays.",
-      "ChatGPT cloud généraliste. Sentinel OS = souverain offline + hardware réel.",
-      "5000 dollars pour passer du prototype à une commune entière équipée.",
-      "Souveraineté numérique et industrielle de l'Afrique.",
-      "I_TTD 1.000 validé mathématiquement + prototype hardware à Lemba.",
-      "Garder l'intelligence active quand le cloud échoue (offline-first).",
-      "Hardware v1.2 Micro-CIRT, Arduino, Raspberry Pi, spirale cuivre."
-    ]
-  }
-};
+function switchTab(index, btn){
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('deckContent').innerHTML = TRANSLATIONS[currentLang].deckContent[index];
+}
+// Initialiser premier onglet
+document.getElementById('deckContent').innerHTML = TRANSLATIONS['fr'].deckContent[0];
 
 function pitch(sec){
   prime(); 
   stopAll(); 
   S.sec = sec; 
   S.e = 0;
-  var txt = DATA.fr.p[sec];
+  var txt = TRANSLATIONS[currentLang].p[sec];
   document.getElementById('st').textContent = txt;
   speakUltraFluide(txt);
   
@@ -237,14 +738,23 @@ function pitch(sec){
   }, 1000);
 }
 
-function openJ(){
-  var p = document.getElementById('jp'); 
-  p.style.display = 'block'; 
+function toggleJuryPanel(){
+  var p = document.getElementById('jp');
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+  if(p.style.display === 'block'){
+    initJury();
+  }
+}
+
+function initJury(){
   var qb = document.getElementById('qb'); 
   qb.innerHTML = ''; 
-  DATA.fr.q.forEach(function(q, i){
+  const t = TRANSLATIONS[currentLang];
+  t.q.forEach(function(q, i){
     var b = document.createElement('button'); 
     b.className = 'btn gold'; 
+    b.style.fontSize = '0.7rem';
+    b.style.padding = '5px 8px';
     b.textContent = q; 
     b.onclick = function(){ sq(i); }; 
     qb.appendChild(b);
@@ -254,17 +764,20 @@ function openJ(){
 
 function sq(i){
   S.qi = i; 
-  document.getElementById('jq').textContent = DATA.fr.q[i]; 
-  document.getElementById('ja').textContent = DATA.fr.a[i]; 
-  S.cur = DATA.fr.a[i];
+  const t = TRANSLATIONS[currentLang];
+  document.getElementById('jq').textContent = t.q[i]; 
+  document.getElementById('ja').textContent = t.a[i]; 
+  S.cur = t.a[i];
 }
 
-function nq(){ sq((S.qi + 1) % DATA.fr.q.length); } 
+function nq(){ 
+  const t = TRANSLATIONS[currentLang];
+  sq((S.qi + 1) % t.q.length); 
+} 
 function sp(){ speakUltraFluide(S.cur); } 
-function sv(){ alert('Sauvé Jury Q' + (S.qi + 1)); }
 
 function presenterHW(){
-  speakUltraFluide("Je suis Sentinel v1 point 2 Micro Cirt TTD. Hardware réel Arduino et Raspberry Pi, spirale cuivre, construit à Lemba. App plus hardware, souveraineté totale.");
+  speakUltraFluide(TRANSLATIONS[currentLang].hwText);
 }
 
 if('serviceWorker' in navigator){ 
