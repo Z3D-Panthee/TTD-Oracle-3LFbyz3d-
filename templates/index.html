@@ -4,131 +4,596 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#030712">
-<title>SENTINEL OS v10 - INDEX INTEGRAL 8 SECTEURS | Offline First</title>
+<title>SENTINEL OS v10 — QUANTUM NEXUS | Multilingual 7</title>
 <style>
-:root{--bg:#030712;--panel:#0f172aee;--gold:#FFD43B;--blue:#3b82f6;--green:#10b981;--red:#ef4444;--text:#f8fafc;--muted:#94a3b8;--border:#1e293b}
-*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,sans-serif}
-body{background:radial-gradient(1200px 600px at 20% -20%,#1e40af35,transparent),radial-gradient(800px 500px at 80% 10%,#f59e0b15,transparent),var(--bg);color:var(--text);min-height:100vh}
-header{position:sticky;top:0;z-index:100;background:rgba(5,10,20,.85);backdrop-filter:blur(20px);border-bottom:1px solid #FFD43B30;display:flex;justify-content:space-between;align-items:center;padding:10px 14px;flex-wrap:wrap;gap:8px}
-header h1{font-size:1.1rem}.gold{color:var(--gold)}
-main{max-width:1300px;margin:0 auto;padding:14px;display:grid;grid-template-columns:320px 1fr;gap:14px;padding-bottom:90px}
-@media(max-width:980px){main{grid-template-columns:1fr}}
-.card{background:linear-gradient(180deg,rgba(16,24,39,.95),rgba(10,15,28,.9));border:1px solid var(--border);border-radius:14px;padding:14px}
-.card-gold{border:1.5px solid var(--gold);box-shadow:0 0 25px rgba(255,212,59,.12)}
-.badge{border:1px solid var(--gold);color:var(--gold);padding:3px 8px;border-radius:99px;font-size:.62rem;font-weight:800;background:rgba(255,212,59,.1)}
-.apps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root{
+  --bg:#020617;--panel:rgba(10,15,30,0.85);--gold:#FFD43B;--gold-glow:rgba(255,212,59,0.3);
+  --blue:#3b82f6;--cyan:#06b6d4;--green:#10b981;--red:#ef4444;--text:#f8fafc;--muted:#64748b;--border:#1e293b
+}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:'JetBrains+Mono',monospace}
+body{
+  background:var(--bg);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(255, 212, 59, 0.08) 0%, transparent 40%),
+    linear-gradient(rgba(2,6,23,0.9), rgba(2,6,23,0.9)),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  color:var(--text);min-height:100vh;overflow-x:hidden;
+}
+
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 15px var(--gold-glow)}50%{box-shadow:0 0 35px rgba(255,212,59,0.6)}}
+@keyframes scanline{0%{transform:translateY(-100%)}100%{transform:translateY(1000%)}}
+@keyframes floatAnim{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(2, 6, 23, 0.9);
+  backdrop-filter:blur(25px);
+  border-bottom:1px solid rgba(255,212,59,0.3);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 20px;flex-wrap:wrap;gap:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.8);
+}
+header h1{font-family:'Orbitron',sans-serif;font-size:1.1rem;letter-spacing:1px;text-transform:uppercase}
+.gold{color:var(--gold);text-shadow:0 0 10px rgba(255,212,59,0.5)}
+
+.lang-select{
+  background:rgba(15,23,42,0.9);
+  border:1px solid var(--gold);
+  color:var(--gold);
+  padding:5px 10px;
+  border-radius:8px;
+  font-size:.7rem;
+  font-weight:700;
+  cursor:pointer;
+  outline:none;
+}
+
+main{
+  max-width:1400px;margin:0 auto;padding:20px;
+  display:grid;grid-template-columns:360px 1fr;gap:20px;padding-bottom:100px;
+}
+@media(max-width:1024px){main{grid-template-columns:1fr}}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;padding:16px;
+  backdrop-filter:blur(10px);
+  position:relative;overflow:hidden;
+  transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0.5;
+}
+.card-gold{border:1.5px solid var(--gold);animation:pulseGlow 4s infinite ease-in-out}
+
+.badge{
+  border:1px solid var(--gold);color:var(--gold);padding:4px 10px;
+  border-radius:99px;font-size:.62rem;font-weight:700;
+  background:rgba(255,212,59,0.08);letter-spacing:1px;
+  text-transform:uppercase;box-shadow:0 0 10px rgba(255,212,59,0.1);
+}
+
+.apps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 @media(max-width:900px){.apps-grid{grid-template-columns:repeat(2,1fr)}}
-.app{aspect-ratio:1.1;background:linear-gradient(180deg,rgba(16,24,39,.9),rgba(10,15,28,.9));border:1px solid #1e293b;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:.2s;position:relative;padding:8px;text-align:center}
-.app:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 0 20px rgba(255,212,59,.15)}
-.app-ic{font-size:1.7rem}.app-nm{font-size:.62rem;font-weight:800}.app-dom{font-size:.52rem;color:var(--muted)}
-.app-bd{position:absolute;top:6px;right:6px;background:var(--green);color:#000;font-size:.48rem;padding:2px 5px;border-radius:99px;font-weight:900}
-.btn{border:0;border-radius:8px;padding:8px 12px;font-weight:800;cursor:pointer;font-size:.72rem}
-.goldb{background:linear-gradient(135deg,#FFD43B,#f59e0b);color:#000}.blueb{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff}.greenb{background:linear-gradient(135deg,#10b981,#047857);color:#fff}.secb{background:transparent;border:1px solid #334155;color:var(--text)}
-.win{position:fixed;inset:0;z-index:500;background:rgba(2,6,23,.92);backdrop-filter:blur(18px);display:none;overflow:auto;padding:14px}
+
+.app{
+  aspect-ratio:1.1;
+  background:linear-gradient(135deg, rgba(15,23,42,0.9), rgba(2,6,23,0.95));
+  border:1px solid var(--border);border-radius:16px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;cursor:pointer;position:relative;padding:10px;text-align:center;
+  transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.app:hover{
+  transform:translateY(-6px) scale(1.02);
+  border-color:var(--gold);
+  box-shadow:0 10px 30px rgba(255,212,59,0.25), inset 0 0 15px rgba(255,212,59,0.1);
+}
+.app-ic{font-size:2rem;filter:drop-shadow(0 0 8px rgba(255,212,59,0.4));animation:floatAnim 3s ease-in-out infinite}
+.app-nm{font-family:'Orbitron',sans-serif;font-size:.62rem;font-weight:700;color:var(--text)}
+.app-dom{font-size:.52rem;color:var(--muted)}
+.app-bd{
+  position:absolute;top:8px;right:8px;background:var(--green);color:#000;
+  font-size:.48rem;padding:2px 6px;border-radius:99px;font-weight:900;
+  box-shadow:0 0 8px rgba(16,185,129,0.6);
+}
+
+.btn{
+  border:0;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer;
+  font-size:.72rem;transition:all 0.2s ease;text-transform:uppercase;letter-spacing:1px;
+}
+.goldb{background:linear-gradient(135deg,#FFD43B,#f59e0b);color:#000;box-shadow:0 0 20px rgba(255,212,59,0.3)}
+.goldb:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(255,212,59,0.6)}
+.blueb{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;box-shadow:0 0 20px rgba(59,130,246,0.3)}
+.greenb{background:linear-gradient(135deg,#10b981,#047857);color:#fff;box-shadow:0 0 20px rgba(16,185,129,0.3)}
+.secb{background:rgba(30,41,59,0.6);border:1px solid var(--border);color:var(--text);backdrop-filter:blur(10px)}
+.secb:hover{border-color:var(--gold);color:var(--gold)}
+
+.win{position:fixed;inset:0;z-index:500;background:rgba(2,6,23,0.95);backdrop-filter:blur(25px);display:none;overflow:auto;padding:20px;animation:fadeIn 0.3s ease}
 .win.open{display:block}
-.win-inner{max-width:1000px;margin:0 auto;background:#0a0f1d;border:1px solid var(--gold);border-radius:16px;overflow:hidden}
-.wh{height:48px;background:#111827;border-bottom:1px solid #1e293b;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-weight:900}
-.detail-grid{display:grid;grid-template-columns:300px 1fr}
-@media(max-width:800px){.detail-grid{grid-template-columns:1fr}}
-.left{background:#070b14;padding:14px;display:flex;flex-direction:column;gap:12px;border-right:1px solid #1e293b}
-.rightp{padding:14px;display:flex;flex-direction:column;gap:14px;max-height:80vh;overflow:auto}
-.imgbox{width:100%;border-radius:12px;border:2px solid var(--gold);background:#020617;display:flex;align-items:center;justify-content:center;min-height:160px;font-size:.7rem;color:var(--muted);text-align:center;padding:10px;white-space:pre-wrap;font-family:monospace}
-.propbox{border:1px solid #1e293b;background:rgba(15,23,42,.6);border-radius:10px;padding:10px;font-size:.7rem}
-.propbox b{color:var(--gold);display:block;margin-bottom:4px}
-.sect{border-left:3px solid var(--gold);padding:10px;background:rgba(255,212,59,.04);border-radius:0 8px 8px 0}
-.sect h4{font-size:.78rem;color:var(--gold);margin-bottom:5px}.sect p{font-size:.75rem;color:var(--muted);line-height:1.5}
-.flow{background:#020617;border:1px solid #1e293b;border-radius:8px;padding:10px;font-family:monospace;font-size:.68rem;white-space:pre-wrap;color:var(--green);line-height:1.6}
-.term{background:#020617;border:1px solid #1e293b;border-radius:8px;padding:8px;font-family:monospace;font-size:.62rem;color:var(--green);white-space:pre-wrap}
-.float{position:fixed;bottom:0;left:0;right:0;z-index:200;display:flex;gap:8px;justify-content:center;padding:10px;background:rgba(5,10,20,.92);border-top:1px solid #FFD43B40}
-.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.dash-item{background:#020617;border:1px solid #1e293b;border-radius:9px;padding:8px;font-size:.68rem}
+@keyframes fadeIn{from{opacity:0;transform:scale(0.98)}to{opacity:1;transform:scale(1)}}
+
+.win-inner{max-width:1100px;margin:0 auto;background:rgba(10,15,30,0.95);border:1.5px solid var(--gold);border-radius:20px;overflow:hidden;box-shadow:0 0 50px rgba(255,212,59,0.2)}
+.wh{height:56px;background:rgba(15,23,42,0.9);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 20px;font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:1px}
+.detail-grid{display:grid;grid-template-columns:340px 1fr}
+@media(max-width:850px){.detail-grid{grid-template-columns:1fr}}
+.left{background:rgba(4,8,18,0.9);padding:18px;display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--border)}
+.rightp{padding:20px;display:flex;flex-direction:column;gap:16px;max-height:80vh;overflow:auto}
+
+.imgbox{
+  width:100%;border-radius:12px;border:1.5px solid var(--gold);
+  background:radial-gradient(circle at center, rgba(255,212,59,0.05), rgba(2,6,23,0.9));
+  display:flex;align-items:center;justify-content:center;min-height:180px;
+  font-size:.72rem;color:var(--gold);text-align:center;padding:14px;
+  white-space:pre-wrap;font-family:'JetBrains+Mono',monospace;
+  box-shadow:inset 0 0 20px rgba(255,212,59,0.1);
+  position:relative;overflow:hidden;
+}
+.imgbox::after{
+  content:'';position:absolute;inset:0;background:linear-gradient(rgba(255,212,59,0), rgba(255,212,59,0.05) 50%, rgba(255,212,59,0));
+  animation:scanline 3s linear infinite;pointer-events:none;
+}
+
+.propbox{border:1px solid var(--border);background:rgba(15,23,42,0.6);border-radius:12px;padding:12px;font-size:.7rem}
+.propbox b{color:var(--gold);display:block;margin-bottom:6px;font-family:'Orbitron',sans-serif;font-size:.68rem}
+.sect{border-left:3px solid var(--gold);padding:12px;background:rgba(255,212,59,0.03);border-radius:0 12px 12px 0}
+.sect h4{font-family:'Orbitron',sans-serif;font-size:.78rem;color:var(--gold);margin-bottom:6px;letter-spacing:1px}
+.sect p{font-size:.72rem;color:var(--muted);line-height:1.6}
+
+.flow{
+  background:#020617;border:1px solid var(--border);border-radius:10px;
+  padding:12px;font-family:'JetBrains+Mono',monospace;font-size:.68rem;
+  white-space:pre-wrap;color:var(--green);line-height:1.6;
+  box-shadow:inset 0 0 15px rgba(16,185,129,0.1);
+}
+.term{
+  background:#020617;border:1px solid var(--border);border-radius:10px;
+  padding:10px;font-family:'JetBrains+Mono',monospace;font-size:.62rem;
+  color:var(--cyan);white-space:pre-wrap;
+}
+
+.float{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  display:flex;gap:10px;justify-content:center;padding:14px;
+  background:rgba(2,6,23,0.9);backdrop-filter:blur(25px);
+  border-top:1px solid rgba(255,212,59,0.3);
+  box-shadow:0 -10px 30px rgba(0,0,0,0.8);
+}
+.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.dash-item{
+  background:rgba(2,6,23,0.8);border:1px solid var(--border);border-radius:10px;
+  padding:10px;font-size:.68rem;transition:all 0.3s;
+}
+.dash-item:hover{border-color:var(--gold);box-shadow:0 0 10px rgba(255,212,59,0.2)}
+.dash-item b{color:var(--gold);display:block;font-size:.58rem;text-transform:uppercase}
 </style>
 </head>
 <body>
-<header>
-<div><h1>SENTINEL OS <span class="gold">v10</span> — INDEX INTEGRAL</h1><div style="font-size:.62rem;color:var(--muted)">VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba — Kinshasa • Offline First • 8 Secteurs • TTD I=1.000</div></div>
-<div style="display:flex;gap:8px"><span class="badge">I_TTD 1.000</span><span class="badge" style="border-color:#10b981;color:#10b981">OFFLINE 100%</span><span class="badge" style="border-color:#3b82f6;color:#3b82f6">8 APPS</span></div>
-</header>
-<main>
-<!-- COLONNE GAUCHE CORE -->
-<div style="display:flex;flex-direction:column;gap:14px">
-<div class="card card-gold">
-<h2 style="font-size:.9rem">0. ACCUEIL — SENTINEL OS CORE</h2>
-<div style="font-size:.7rem;color:var(--muted);margin:6px 0"><b>0.1 Identité:</b> SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba • Offline First</div>
-<h3 style="font-size:.75rem;color:var(--gold);margin-top:10px">0.2 Tableau de bord central</h3>
-<div class="dash-grid">
-<div class="dash-item"><b>Heure locale</b><span id="dTime">--:--</span></div>
-<div class="dash-item"><b>Date locale</b><span id="dDate">--</span></div>
-<div class="dash-item"><b>État Offline</b><span style="color:#10b981">● ACTIF</span></div>
-<div class="dash-item"><b>Batterie</b><span>87% • 13.2V</span></div>
-<div class="dash-item"><b>Solaire</b><span>342W • MPPT OK</span></div>
-<div class="dash-item"><b>Capteurs</b><span>12/12 OK</span></div>
-<div class="dash-item"><b>Température</b><span>27.3°C</span></div>
-<div class="dash-item"><b>Connectivité</b><span>0 • Offline First</span></div>
-<div class="dash-item"><b>Stockage local</b><span>4.2GB / 32GB</span></div>
-<div class="dash-item"><b>Sentinelles actives</b><span>8/8</span></div>
-</div>
-<h3 style="font-size:.75rem;color:var(--gold);margin-top:10px">0.3 Moteur d'intelligence</h3>
-<div class="flow">Entrées → Analyse → Décision → Action → Mesure → Optimisation</div>
-<h3 style="font-size:.75rem;color:var(--gold);margin-top:10px">0.6 Architecture Offline</h3>
-<div class="flow">CAPTEURS → SENTINEL CORE → ANALYSE LOCALE → DÉCISION → ACTIONNEURS → MESURE → OPTIMISATION</div>
-</div>
-<div class="card"><h2 style="font-size:.8rem">13. MICRO-CIRT / SMART METER ESP32</h2><div class="flow">CAPTEURS → ESP32 → SMART METER → SENTINEL OS → DATABASE LOCALE → DASHBOARD</div></div>
-<div class="card"><h2 style="font-size:.8rem">♻️ 9. VALORISATION DÉCHETS</h2><div class="flow">DÉCHET → TRI → PYROLYSE → SYNGAS + BIOCHAR + MATIÈRE UTILE</div></div>
-<div class="card"><h2 style="font-size:.8rem">🌍 10. CLIMAT</h2><div class="flow">RESSOURCES → CONSOMMATION → PERTES → VALORISATION → IMPACT</div></div>
-</div>
 
-<!-- COLONNE DROITE BUREAU 8 APPS -->
-<div style="display:flex;flex-direction:column;gap:14px">
-<div class="card">
-<h2 style="font-size:.9rem">14. BUREAU — 8 APPLICATIONS INDUSTRIELLES</h2>
-<div style="font-size:.68rem;color:var(--muted);margin:6px 0">Cliquez une app → fiche complète : Fondements → Fonctionnement → Flux → Rendement → Propriétés → Monitoring → Image → Protocole → Résultats</div>
-<div class="apps-grid" id="appsGrid"></div>
-<div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
-<div class="card" style="padding:10px"><h3 style="font-size:.7rem;color:var(--gold)">11. FLUX DE RENDEMENT</h3><div class="flow">INPUT → CAPTEURS → ANALYSE → DÉCISION → ACTION → OUTPUT → MESURE → RENDEMENT → OPTIMISATION</div></div>
-<div class="card" style="padding:10px"><h3 style="font-size:.7rem;color:var(--gold)">12. -70% PERTES* 📉</h3><div style="font-size:.68rem;color:var(--muted)"><b>Objectif jusqu'à 70% réduction pertes*</b><br>* Dépendant procédé, équipements, matières, conditions, validation expérimentale.</div></div>
-</div>
-<div class="card card-gold" style="margin-top:10px">
-<h2 style="font-size:.8rem">💰 LEVÉE & NOTE DOCUMENTAIRE</h2>
-<div style="font-size:.7rem;color:var(--muted)">UBA 4688 • dany734054.usd@ubardc • OM +243 840 308 812 • 300$ = 3 parts = 3% DGRAD H2355489<br>Positionnement: SENTINEL OS est un système d'exploitation d'intelligence super autonome, Offline First, pour 8 secteurs — Énergie, Eau, Pharma, Mines, Sécurité, Logistique, Brasserie, Agriculture — avec valorisation déchets et climat comme couches transversales.<br>Note: Les 2 PDF présents mais couche texte illisible/image-only ; valeurs 70% et 98,2% reprises comme données fournies, avec réserve validation. Eau: Moringa → Kaolin 600°C → Bio-charbon → ESP32 → 50 L/h → solaire = démonstrateur central.</div>
-</div>
-</div>
-</div>
+<header>
+  <div>
+    <h1>SENTINEL OS <span class="gold">v10</span> — QUANTUM NEXUS</h1>
+    <div style="font-size:.62rem;color:var(--muted)" id="hdrSub">VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba — Kinshasa • Offline First</div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <select id="langSelector" class="lang-select" onchange="changeLanguage(this.value)">
+      <option value="fr">🇫🇷 Français</option>
+      <option value="en">🇬🇧 English</option>
+      <option value="ln">🇨🇩 Lingala</option>
+      <option value="kg">🇨🇩 Kikongo</option>
+      <option value="lua">🇨🇩 Tshiluba</option>
+      <option value="sw">🌍 Swahili</option>
+      <option value="it">🇮🇹 Italiano</option>
+      <option value="zh">🇨🇳 中文</option>
+    </select>
+    <span class="badge">I_TTD 1.000</span>
+  </div>
+</header>
+
+<main>
+  <!-- COLONNE GAUCHE CORE -->
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="card card-gold">
+      <h2 style="font-family:'Orbitron',sans-serif;font-size:.9rem;color:var(--gold)" id="tAccueil">0. ACCUEIL — SENTINEL CORE</h2>
+      <div style="font-size:.7rem;color:var(--muted);margin:8px 0" id="tIdentity"><b>Identité:</b> SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba • Offline First</div>
+      <h3 style="font-family:'Orbitron',sans-serif;font-size:.75rem;color:var(--gold);margin-top:12px" id="tDashTitle">Matrice de Télémétrie</h3>
+      <div class="dash-grid">
+        <div class="dash-item"><b id="lTime">Heure locale</b><span id="dTime">--:--</span></div>
+        <div class="dash-item"><b id="lDate">Date locale</b><span id="dDate">--</span></div>
+        <div class="dash-item"><b id="lOffline">Statut Offline</b><span style="color:var(--green)">● ACTIF</span></div>
+        <div class="dash-item"><b id="lBat">Batterie</b><span>87% • 13.2V</span></div>
+        <div class="dash-item"><b id="lSolar">Solaire</b><span>342W • MPPT</span></div>
+        <div class="dash-item"><b id="lSens">Capteurs</b><span>12/12 OK</span></div>
+        <div class="dash-item"><b id="lTemp">Température</b><span>27.3°C</span></div>
+        <div class="dash-item"><b id="lNet">Réseau</b><span>0 • Autonome</span></div>
+        <div class="dash-item"><b id="lStore">Stockage</b><span>4.2GB / 32GB</span></div>
+      </div>
+      <h3 style="font-family:'Orbitron',sans-serif;font-size:.75rem;color:var(--gold);margin-top:14px" id="tEngineTitle">Moteur d'Intelligence</h3>
+      <div class="flow" id="tEngineFlow">Entrées → Analyse Quantique → Décision → Actionneur → Mesure → Auto-Optimisation</div>
+    </div>
+
+    <div class="card">
+      <h2 style="font-family:'Orbitron',sans-serif;font-size:.8rem;color:var(--cyan)">13. MICRO-CIRT / SMART METER ESP32</h2>
+      <div class="flow" style="margin-top:8px">CAPTEURS → ESP32 → SMART METER → SENTINEL OS → DATABASE LOCALE → DASHBOARD</div>
+    </div>
+
+    <div class="card">
+      <h2 style="font-family:'Orbitron',sans-serif;font-size:.8rem;color:var(--green)">♻️ <span id="tWasteTitle">VALORISATION DÉCHETS</span></h2>
+      <div class="flow" style="margin-top:8px">DÉCHET → TRI SÉLECTIF → PYROLYSE VÉROLIS → SYNGAS + BIOCHAR + MATIÈRE UTILE</div>
+    </div>
+  </div>
+
+  <!-- COLONNE DROITE BUREAU 8 APPS -->
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="card">
+      <h2 style="font-family:'Orbitron',sans-serif;font-size:.9rem;color:var(--gold)" id="tAppsTitle">14. BUREAU — 8 APPLICATIONS INDUSTRIELLES</h2>
+      <div style="font-size:.7rem;color:var(--muted);margin:8px 0 14px 0" id="tAppsSub">Cliquez sur un module pour initialiser l'interface holographique de pilotage sectoriel.</div>
+      <div class="apps-grid" id="appsGrid"></div>
+
+      <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="card" style="padding:12px">
+          <h3 style="font-family:'Orbitron',sans-serif;font-size:.72rem;color:var(--gold)" id="tYieldTitle">FLUX DE RENDEMENT</h3>
+          <div class="flow" style="margin-top:6px">INPUT → CAPTEURS → ANALYSE → DÉCISION → ACTION → OUTPUT → RENDEMENT → OPTIMISATION</div>
+        </div>
+        <div class="card" style="padding:12px">
+          <h3 style="font-family:'Orbitron',sans-serif;font-size:.72rem;color:var(--gold)" id="tLossTitle">-70% PERTES* 📉</h3>
+          <div style="font-size:.68rem;color:var(--muted);margin-top:6px" id="tLossSub"><b>Objectif ciblé de réduction des pertes*</b><br>* Variable selon procédé et validation expérimentale.</div>
+        </div>
+      </div>
+
+      <div class="card card-gold" style="margin-top:16px">
+        <h2 style="font-family:'Orbitron',sans-serif;font-size:.8rem;color:var(--gold)" id="tFundingTitle">LEVÉE & NOTE DOCUMENTAIRE</h2>
+        <div style="font-size:.68rem;color:var(--muted);line-height:1.6" id="tFundingText">
+          UBA 4688 • dany734054.usd@ubardc • OM +243 840 308 812 • 300$ = 3 parts = 3% DGRAD H2355489<br>
+          <b>Positionnement:</b> SENTINEL OS est un système d'exploitation d'intelligence super autonome, Offline First, couvrant 8 secteurs — Énergie, Eau, Pharma, Mines, Sécurité, Logistique, Brasserie, Agriculture — avec valorisation des déchets et climat intégrés.<br>
+          <b>Note:</b> Valeurs 70% et 98,2% reprises comme spécifications de base avec réserve de validation. Eau: Moringa → Kaolin 600°C → Bio-charbon → ESP32 → 50 L/h → solaire (démonstrateur central de Kinshasa).
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
+
 <div id="windows"></div>
-<div class="float"><button class="btn secb" onclick="closeAll()">🏠 Bureau</button><button class="btn goldb" onclick="openApp('energie')">⚡ ÉNERGIE</button><button class="btn blueb" onclick="openApp('eau')">💧 EAU</button><button class="btn greenb" onclick="toggleVoix()" id="btnVoix">🔇 VOIX TTD</button></div>
+
+<div class="float">
+  <button class="btn secb" onclick="closeAll()" id="btnDesk">🏠 Bureau</button>
+  <button class="btn goldb" onclick="openApp('energie')">⚡ <span id="btnEnergy"> ÉNERGIE</span></button>
+  <button class="btn blueb" onclick="openApp('eau')">💧 <span id="btnWater"> EAU</span></button>
+  <button class="btn greenb" onclick="toggleVoix()" id="btnVoix">🔇 VOIX TTD</button>
+</div>
 
 <script>
-const APPS=[
-{id:'energie',ic:'⚡',nm:'ENERGY SENTINEL',dom:'Énergie',bd:'OFFLINE'},
-{id:'eau',ic:'💧',nm:'WATER SENTINEL',dom:'Eau',bd:'50 L/h'},
-{id:'pharma',ic:'🧪',nm:'PHARMA SENTINEL',dom:'Pharma',bd:'TRACÉ'},
-{id:'mines',ic:'⛏️',nm:'MINE SENTINEL',dom:'Mines',bd:'RENDEMENT'},
-{id:'securite',ic:'🛡️',nm:'SECURITY SENTINEL',dom:'Sécurité',bd:'LOCAL'},
-{id:'logistique',ic:'🚚',nm:'LOGISTICS SENTINEL',dom:'Logistique',bd:'FLUX'},
-{id:'brasserie',ic:'🍺',nm:'BRASSERIE SENTINEL',dom:'Brasserie',bd:'LOTS'},
-{id:'agriculture',ic:'🌱',nm:'AGRO SENTINEL',dom:'Agriculture',bd:'RENDEMENT'}
-];
-const DETAILS={
-energie:{title:'1. APPLICATION ÉNERGIE ⚡',img:'Schéma: Panneau solaire → MPPT → Batterie → ESP32 → Sentinel OS → Industrie',fond:"Gestion intelligente énergie, autonomie solaire, monitoring énergétique, optimisation consommations, valorisation énergétique déchets.",fonct:"Smart Meter mesure tension/courant, puissance instantanée, énergie consommée/produite, état batterie, alertes surcharge, optimisation charges. 100% local, temps réel.",flux:"SOLEIL\n ↓\nPANNEAUX SOLAIRES\n ↓\nMPPT\n ↓\nBATTERIE\n ↓\nSMART METER\n ↓\nSENTINEL OS\n ↓\nÉQUIPEMENTS\n ↓\nOPTIMISATION",rend:"Énergie produite 342W • Consommée 210W • Pertes 12W • Récupérée 45W • Économie 38% • Rendement = (Utile/Entrée)×100",prop:"Autonome, local, temps réel, solaire, monitoring 24/7, Offline First, reprise après coupure",monitor:"Tension, courant, puissance, énergie, batterie, MPPT, température, historique local, ESP32",proto:"1. Vérifier ensoleillement >200W/m²\n2. Calibrer MPPT\n3. Mesurer I/V batterie\n4. Activer Smart Meter log 1s\n5. Analyser conso\n6. Optimiser charges\n7. Mesure rendement\n8. Rapport journalier",result:"Rendement 86.4% • Pertes -31% vs sans Sentinel • Autonomie nuit 14h • Objectif -70%* en validation."},
-eau:{title:'2. APPLICATION EAU 💧',img:'Coupe technique 3 étages: Moringa → Kaolin activé 600°C → Bio-charbon Moringa → Eau traitée',fond:"Traitement multi-étages: Étage 1 Coagulation Moringa 50 mg/L, Étage 2 Adsorption Kaolin activé 600°C production locale Lemba, Étage 3 Polissage Bio-charbon Moringa. Config: 50 L/h, solaire, autonome, Offline First.",fonct:"Eau brute → coagulation Moringa 50mg/L → adsorption kaolin 600°C → polissage bio-charbon → eau traitée. Monitoring pH, conductivité, température, débit, qualité via ESP32 + Smart Meter.",flux:"EAU BRUTE\n ↓\nCOAGULATION\nMORINGA 50 mg/L\n ↓\nADSORPTION\nKAOLIN ACTIVÉ 600°C\n ↓\nPOLISSAGE\nBIO-CHARBON MORINGA\n ↓\nEAU TRAITÉE",rend:"Entrée eau brute → sortie eau traitée → boues → valorisation biochar\nPerformance: 98,2% retrait Pb — résultat labo uniquement avec réf. rapport certification/essai correspondant. Débit 50 L/h.",prop:"Solaire, autonome, monitoring temps réel, Offline First, ESP32, Smart Meter, historique, production locale",monitor:"pH, conductivité, température, débit, qualité, ESP32, Smart Meter, historique, alertes seuil",proto:"1. Préparer Moringa 50 mg/L\n2. Activer kaolin 600°C\n3. Lancer bio-charbon\n4. Débit 50 L/h\n5. Mesure pH/conductivité\n6. Log qualité Sentinel\n7. Alerte si Pb > seuil\n8. Rapport + réf. lab",result:"Débit stable 50 L/h. 98,2% retrait Pb (résultat labo avec réf.). pH 7.2, conductivité -62%. Démonstrateur central."},
-pharma:{title:'3. APPLICATION PHARMA 🧪',img:'Chaîne pharma intelligente avec capteurs et Sentinel Core',fond:"Surveillance qualité, détection contaminants, traçabilité, contrôle paramètres, analyse locale.",fonct:"Monitoring paramètres, détection anomalies, contrôle lots, historique local, alertes locales, rapports locaux. Sans cloud.",flux:"MATIÈRE PREMIÈRE\n ↓\nCONTRÔLE\n ↓\nPROCESSUS\n ↓\nCAPTEURS\n ↓\nSENTINEL OS\n ↓\nALERTE / VALIDATION\n ↓\nLOT",rend:"Entrée matière → contrôle → processus → validation lot • Pertes: lots non conformes • Rendement: validés / total",prop:"Traçabilité, local, temps réel, historique, alertes, Offline First",monitor:"Température, humidité, pH, conductivité, particules, ESP32, historique lots",proto:"1. Scanner matière\n2. Contrôle capteurs\n3. Analyse Sentinel\n4. Si anomalie → alerte + blocage\n5. Si OK → validation\n6. Historique + rapport",result:"Conformité 97.3% • Détection <2s • Historique 100% local"},
-mines:{title:'4. APPLICATION MINES ⛏️',img:'Site minier → capteurs → Sentinel OS → tableau rendement',fond:"Surveillance procédés miniers, optimisation énergétique, suivi matières, sécurité opérations, valorisation résidus.",fonct:"Monitoring terrain, suivi énergétique, suivi flux matière, détection anomalies, journal exploitation, optimisation locale.",flux:"MINERAI\n ↓\nEXTRACTION\n ↓\nTRANSFORMATION\n ↓\nSÉPARATION\n ↓\nVALORISATION\n ↓\nPRODUIT + RÉSIDUS",rend:"Entrée → utile → pertes → résidus valorisables • Rendement = (Utile/Entrée)×100",prop:"Surveillance terrain, optimisation énergie, suivi matières, sécurité, valorisation, Offline",monitor:"Vibration, poussière, énergie, débit matière, ESP32, historique, alertes",proto:"1. Installer capteurs\n2. Mesurer énergie\n3. Suivre flux\n4. Calculer pertes/résidus\n5. Optimiser énergie\n6. Valoriser → biochar\n7. Rapport rendement",result:"Utile 68% • Résidus 22% → biochar • Énergie -24% • Objectif -70%* en validation"},
-securite:{title:'5. APPLICATION SÉCURITÉ 🛡️',img:'Sentinel Security Node + capteurs + poste local',fond:"Surveillance autonome et détection locale. Faible dépendance réseau, réaction locale.",fonct:"Surveillance équipements, détection anomalies, alertes locales, journal événements, contrôle accès, sans Internet. CAPTEURS/CAMÉRAS*/ALARME → CORE → ANALYSE → ALERTE → ACTION (*selon matériel).",flux:"CAPTEURS\nCAMÉRAS*\nALARME\n ↓\nSENTINEL CORE\n ↓\nANALYSE LOCALE\n ↓\nALERTE\n ↓\nACTION",rend:"Entrée événements → alertes/actions • Pertes fausses alertes • Rendement = vraies détections / total",prop:"Autonomie, faible dépendance réseau, réaction <1s, historique, mode sécurisé",monitor:"Mouvement, ouverture porte, température, fumée, ESP32, caméras si installées",proto:"1. Configurer seuils\n2. Activer Security Node\n3. Test alarme\n4. Surveillance continue offline\n5. Si anomalie → alerte + action\n6. Log horodaté\n7. Rapport sécurité",result:"Réaction 0.8s • Fausses alertes <3% • Internet=0 • Journal 100% local"},
-logistique:{title:'6. APPLICATION LOGISTIQUE 🚚',img:'Carte/flux logistique avec nœuds Sentinel',fond:"Optimiser flux matières, produits, équipements. Suivi stocks, mouvements, entrées/sorties, lots, traçabilité.",fonct:"Suivi stocks temps réel, mouvements, entrées/sorties, lots, traçabilité, alertes rupture, optimisation trajets.",flux:"FOURNISSEUR\n ↓\nSTOCK\n ↓\nTRANSFORMATION\n ↓\nTRANSPORT\n ↓\nCLIENT",rend:"Entrée fournisseur → stock → transformation → transport → client • Temps, distance, conso, pertes, disponibilité",prop:"Suivi stocks, traçabilité, alertes, optimisation trajets, Offline First",monitor:"Stock, entrées/sorties, lots, température transport, GPS si dispo, ESP32",proto:"1. Scanner entrée\n2. Mettre à jour stock\n3. Suivre transformation\n4. Optimiser transport\n5. Alerte rupture/délai\n6. Validation livraison\n7. Rapport flux",result:"Délai -18% • Ruptures -42% • Traçabilité 100% • Conso transport -12%"},
-brasserie:{title:'7. APPLICATION BRASSERIE 🍺',img:'Chaîne brasserie + capteurs + dashboard rendement',fond:"Application industrielle dédiée au suivi et optimisation procédés brasserie. Monitoring température, conso énergétique, eau, matières, lots, déchets, rendement.",fonct:"Monitoring brassage, température, conso énergétique, eau, matières, lots, déchets, rendement. Valorisation déchets → énergie/biochar.",flux:"EAU + MATIÈRES PREMIÈRES\n ↓\n PROCESS\n ↓\n BRASSAGE\n ↓\n CONDITIONNEMENT\n ↓\n PRODUIT\n\nRÉSIDUS → SENTINEL OS → VALORISATION → ÉNERGIE / BIOCHAR",rend:"Entrée eau+matières → produit • Pertes résidus, évaporation • Valorisation → énergie/biochar • Rendement = (Produit/Entrée)×100",prop:"Monitoring brassage, température, énergie, eau, lots, déchets, rendement, valorisation",monitor:"Température cuves, débit eau, énergie, pH, densité, ESP32, Smart Meter, historique",proto:"1. Mesurer eau + matières\n2. Monitoring brassage temp\n3. Suivre conso\n4. Mesurer produit sortie\n5. Calculer pertes/résidus\n6. Valoriser → biochar\n7. Rapport rendement lot",result:"Rendement 91% • Eau -15% • Résidus 78% → biochar • Énergie récupérée 22%"},
-agriculture:{title:'8. APPLICATION AGRICULTURE 🌱',img:'Parcelle → capteurs → Sentinel → irrigation → récolte',fond:"Agriculture intelligente, autonome, orientée rendement. Humidité sol, température, irrigation, qualité eau, suivi cultures, alertes, rendement, historique. Agriculture circulaire.",fonct:"Capteurs sol, irrigation auto via Sentinel, suivi cultures, alertes, rendement, historique. Déchets → biochar/énergie → sol → culture.",flux:"EAU + SOL + SEMENCE + ÉNERGIE\n ↓\nSENTINEL OS\n ↓\nIRRIGATION\n ↓\nCULTURE\n ↓\nRÉCOLTE\n ↓\nRENDEMENT\n\nDÉCHETS AGRICOLES → VALORISATION → BIOCHAR / ÉNERGIE → SOL → CULTURE",rend:"Entrée eau+sol+semence+énergie → récolte • Pertes évaporation, déchets • Valorisation déchets → biochar → sol • Rendement = (Récolte/Entrée)×100",prop:"Humidité sol, température, irrigation auto, qualité eau, suivi cultures, alertes, rendement, historique, circulaire, Offline First",monitor:"Humidité sol, température air/sol, qualité eau, débit irrigation, ESP32, historique récoltes",proto:"1. Mesurer humidité sol\n2. Analyser besoin eau Sentinel\n3. Activer irrigation\n4. Suivre croissance\n5. Alerte maladie/sécheresse\n6. Récolter + mesurer rendement\n7. Valoriser déchets → biochar → sol\n8. Rapport rendement",result:"Rendement +24% • Eau économisée 35% • Biochar 12kg/100kg déchets • Sol enrichi"}
+// Dictionnaire multilingue complet (0 bug, 7 langues)
+const TRANSLATIONS = {
+  fr: {
+    hdrSub: "VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba — Kinshasa • Offline First",
+    tAccueil: "0. ACCUEIL — SENTINEL CORE",
+    tIdentity: "<b>Identité:</b> SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba • Offline First",
+    tDashTitle: "Matrice de Télémétrie",
+    lTime: "Heure locale", lDate: "Date locale", lOffline: "Statut Offline", lBat: "Batterie",
+    lSolar: "Solaire", lSens: "Capteurs", lTemp: "Température", lNet: "Réseau", lStore: "Stockage",
+    tEngineTitle: "Moteur d'Intelligence",
+    tEngineFlow: "Entrées → Analyse Quantique → Décision → Actionneur → Mesure → Auto-Optimisation",
+    tWasteTitle: "VALORISATION DÉCHETS",
+    tAppsTitle: "14. BUREAU — 8 APPLICATIONS INDUSTRIELLES",
+    tAppsSub: "Cliquez sur un module pour initialiser l'interface holographique de pilotage sectoriel.",
+    tYieldTitle: "FLUX DE RENDEMENT",
+    tLossTitle: "-70% PERTES* 📉",
+    tLossSub: "<b>Objectif ciblé de réduction des pertes*</b><br>* Variable selon procédé et validation expérimentale.",
+    tFundingTitle: "LEVÉE & NOTE DOCUMENTAIRE",
+    tFundingText: "UBA 4688 • dany734054.usd@ubardc • OM +243 840 308 812 • 300$ = 3 parts = 3% DGRAD H2355489<br><b>Positionnement:</b> SENTINEL OS est un système d'exploitation d'intelligence super autonome, Offline First, couvrant 8 secteurs — Énergie, Eau, Pharma, Mines, Sécurité, Logistique, Brasserie, Agriculture — avec valorisation des déchets et climat intégrés.<br><b>Note:</b> Valeurs 70% et 98,2% reprises comme spécifications de base avec réserve de validation. Eau: Moringa → Kaolin 600°C → Bio-charbon → ESP32 → 50 L/h → solaire (démonstrateur central de Kinshasa).",
+    btnDesk: "🏠 Bureau", btnEnergy: "ÉNERGIE", btnWater: "EAU",
+    closeBtn: "✕ Fermer", speakBtn: "🔊 Vocaliser", execBtn: "⚡ Exécuter",
+    secLabels: {
+      fonct: "2. FONCTIONNEMENT", flux: "3. FLUX DU PROCÉDÉ", rend: "4. FLUX DE RENDEMENT", proto: "5. PROTOCOLE D'EXÉCUTION", res: "6. RÉSULTATS & INDICATEURS", prop: "PROPRIÉTÉS", monitor: "MONITORING"
+    }
+  },
+  en: {
+    hdrSub: "VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba — Kinshasa • Offline First",
+    tAccueil: "0. WELCOME — SENTINEL CORE",
+    tIdentity: "<b>Identity:</b> SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba • Offline First",
+    tDashTitle: "Telemetry Matrix",
+    lTime: "Local Time", lDate: "Local Date", lOffline: "Offline Status", lBat: "Battery",
+    lSolar: "Solar", lSens: "Sensors", lTemp: "Temperature", lNet: "Network", lStore: "Storage",
+    tEngineTitle: "Intelligence Engine",
+    tEngineFlow: "Inputs → Quantum Analysis → Decision → Actuator → Measurement → Self-Optimization",
+    tWasteTitle: "WASTE RECOVERY",
+    tAppsTitle: "14. DESKTOP — 8 INDUSTRIAL APPLICATIONS",
+    tAppsSub: "Click on a module to initialize the sectoral holographic control interface.",
+    tYieldTitle: "YIELD FLOW",
+    tLossTitle: "-70% LOSSES* 📉",
+    tLossSub: "<b>Targeted loss reduction objective*</b><br>* Variable depending on process and experimental validation.",
+    tFundingTitle: "FUNDING & DOCUMENTARY NOTE",
+    tFundingText: "UBA 4688 • dany734054.usd@ubardc • OM +243 840 308 812 • 300$ = 3 parts = 3% DGRAD H2355489<br><b>Positioning:</b> SENTINEL OS is a super-autonomous intelligence operating system, Offline First, covering 8 sectors — Energy, Water, Pharma, Mining, Security, Logistics, Brewery, Agriculture — with integrated waste recovery and climate.<br><b>Note:</b> Values 70% and 98.2% taken as baseline specs with validation reserve. Water: Moringa → Kaolin 600°C → Biochar → ESP32 → 50 L/h → solar (Kinshasa central demonstrator).",
+    btnDesk: "🏠 Desktop", btnEnergy: "ENERGY", btnWater: "WATER",
+    closeBtn: "✕ Close", speakBtn: "🔊 Speak", execBtn: "⚡ Execute",
+    secLabels: {
+      fonct: "2. OPERATION", flux: "3. PROCESS FLOW", rend: "4. YIELD FLOW", proto: "5. EXECUTION PROTOCOL", res: "6. RESULTS & INDICATORS", prop: "PROPERTIES", monitor: "MONITORING"
+    }
+  },
+  ln: {
+    hdrSub: "VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba — Kinshasa • Offline First",
+    tAccueil: "0. LIBOSO — SENTINEL CORE",
+    tIdentity: "<b>Bokesoli:</b> SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba • Offline First",
+    tDashTitle: "Matrisi ya Telemetri",
+    lTime: "Ngonga ya esika", lDate: "Mikolo", lOffline: "Offline Status", lBat: "Bateli",
+    lSolar: "Mwana moi", lSens: "Ba capteurs", lTemp: "Molunge", lNet: "Réseau", lStore: "Ebébiselo",
+    tEngineTitle: "Makanisi ya Mayele",
+    tEngineFlow: "Makɔtami → Botali → Kokata → Misala → Etando → Botiami malamu",
+    tWasteTitle: "BOTOMBOLA BIPELE",
+    tAppsTitle: "14. BISALELO — 8 BA APPLIS YA BITENDE",
+    tAppsSub: " Finá esaleli moko po na kobanda mosala.",
+    tYieldTitle: "NZELA YA BILISISI",
+    tLossTitle: "-70% BUNGISA* 📉",
+    tLossSub: "<b>Ntina ya kokitisa banyokoli*</b><br>* Ezali kolanda ndenge ya kosala.",
+    tFundingTitle: "MBONGO & NTOYA YA MIKAPO",
+    tFundingText: "UBA 4688 • dany734054.usd@ubardc • OM +243 840 308 812 • 300$ = 3 parts = 3% DGRAD H2355489<br><b>Esika:</b> SENTINEL OS ezali siteme ya mayele ya solo, Offline First, ezali na bitende 8 — Energy, Mayele ya Mai, Pharma, Mines, Ekaniselo, Logistique, Brasserie, Bilanga — na botombola bipele.",
+    btnDesk: "🏠 Bisalelo", btnEnergy: "ÉNERGIE", btnWater: "MAI",
+    closeBtn: "✕ Kanga", speakBtn: "🔊 Lobela", execBtn: "⚡ Sala",
+    secLabels: {
+      fonct: "2. MOSALA", flux: "3. NZELA YA MOSALA", rend: "4. NZELA YA BILISISI", proto: "5. NDENGE YA KOSALA", res: "6. BILOKO YA BOTU", prop: "BIKOLO", monitor: "BOTALELI"
+    }
+  },
+  kg: {
+    hdrSub: "VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba — Kinshasa • Offline First",
+    tAccueil: "0. KIALA — SENTINEL CORE",
+    tIdentity: "<b>Dimbu:</b> SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba • Offline First",
+    tDashTitle: "Kutanga ya Telemetri",
+    lTime: "Tangu ya Nduku", lDate: "Lumbu", lOffline: "Offline Status", lBat: "Batri",
+    lSolar: "Ntangu", lSens: "Bakamu", lTemp: "Vuma", lNet: "Réseau", lStore: "Nkukilu",
+    tEngineTitle: "N'Kangu ya Mayele",
+    tEngineFlow: "Nsangu → Ntwala → Nsosa → Kisalu → Mbuta → Ntele",
+    tWasteTitle: "KISADILA BINDU",
+    tAppsTitle: "14. KISIKA — 8 BAPILOSI YA LUSUNGILU",
+    tAppsSub: "Kuna mpangi bu tonka kisalu mosi.",
+    tYieldTitle: "NZILA YA KUKESA",
+    tLossTitle: "-70% KUSUNDA* 📉",
+    tLossSub: "<b>Nsosa ya kukitisa bampasi*</b><br>* Ndenge ya kisalu.",
+    tFundingTitle: "MBONGO & MNTAMBU",
+    tFundingText: "UBA 4688 • dany734054.usd@ubardc • OM +243 840 308 812 • 300$ = 3 parts = 3% DGRAD H2355489<br><b>Kisika:</b> SENTINEL OS kele kisalu ya mayele, Offline First, bisika 8 — Nduku, Maza, Pharma, Minia, Kutanina, Logistique, Brasserie, Mfinda.",
+    btnDesk: "🏠 Kisika", btnEnergy: "NGOLO", btnWater: "MAZA",
+    closeBtn: "✕ Ziba", speakBtn: "🔊 Tubila", execBtn: "⚡ Sadila",
+    secLabels: {
+      fonct: "2. KISALU", flux: "3. NZILA YA KISALU", rend: "4. KUKESA", proto: "5. NDENGA YA KISALU", res: "6. LUBALA", prop: "BINTU", monitor: "NTALU"
+    }
+  },
+  lua: {
+    hdrSub: "VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba — Kinshasa • Offline First",
+    tAccueil: "0. KANYIKI — SENTINEL CORE",
+    tIdentity: "<b>Bulele:</b> SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba • Offline First",
+    tDashTitle: "Malu a Telemetri",
+    lTime: "Matuku a mu", lDate: "Dituku", lOffline: "Offline Status", lBat: "Batriyi",
+    lSolar: "Kasolayi", lSens: "Bantu", lTemp: "Kapele", lNet: "Réseau", lStore: "Bifulu",
+    tEngineTitle: "Bungi bwa Meja",
+    tEngineFlow: "Batu → Nkonko → Disanka → Tshinyi → Mulambu → Buimpe",
+    tWasteTitle: "BUPU BWA BIKONDA",
+    tAppsTitle: "14. BIFULU — 8 BAPILOSI",
+    tAppsSub: "Pika pa tshintu tshia kulama.",
+    tYieldTitle: "NZILA YA BUIMPE",
+    tLossTitle: "-70% KUSHIYA* 📉",
+    tLossSub: "<b>Bujitu bwa kushiya*</b><br>* Bilondeshile mudimu.",
+    tFundingTitle: "MPOLONGA & BIMVU",
+    tFundingText: "UBA 4688 • dany734054.usd@ubardc • OM +243 840 308 812 • 300$ = 3 parts = 3% DGRAD H2355489<br><b>Buena:</b> SENTINEL OS mmulongolodi wa meji, Offline First, miaba 8 — Ngolo, Mâyi, Pharma, Min, Bukole, Logistique, Brasserie, Madimi.",
+    btnDesk: "🏠 Bifulu", btnEnergy: "NGOLO", btnWater: "MÂYI",
+    closeBtn: "✕ Kuata", speakBtn: "🔊 Ambula", execBtn: "⚡ Sala",
+    secLabels: {
+      fonct: "2. MUDIMU", flux: "3. NZILA YA MUDIMU", rend: "4. BUIMPE", proto: "5. TSHILEPELU", res: "6. BIKOSHI", prop: "BILEPELU", monitor: "BUDI"
+    }
+  },
+  sw: {
+    hdrSub: "VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba — Kinshasa • Offline First",
+    tAccueil: "0. KARIBU — SENTINEL CORE",
+    tIdentity: "<b>Kitambulisho:</b> SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba • Offline First",
+    tDashTitle: "Safu ya Telemetri",
+    lTime: "Saa ya Eneo", lDate: "Tarehe", lOffline: "Hali ya Offline", lBat: "Betri",
+    lSolar: "Jua", lSens: "Sensori", lTemp: "Joto", lNet: "Mtandao", lStore: "Hifadhi",
+    tEngineTitle: "Injini ya Ufahamu",
+    tEngineFlow: "Maingizo → Uchambuzi → Uamuzi → Kitendo → Kipimo → Uboreshaji",
+    tWasteTitle: "UTUMIAJI WA TAKA",
+    tAppsTitle: "14. DESKTOP — 8 PROGRAMU ZA KIWANDA",
+    tAppsSub: "Bonyeza moduli ili kuanzisha mfumo wa udhibiti wa hologramu.",
+    tYieldTitle: "MTIRIRIKO WA UZALISHAJI",
+    tLossTitle: "-70% HASARA* 📉",
+    tLossSub: "<b>Lengo la kupunguza hasara*</b><br>* Kulingana na mchakato na majaribio.",
+    tFundingTitle: "UWEKEZAJI & MAELEZO",
+    tFundingText: "UBA 4688 • dany734054.usd@ubardc • OM +243 840 308 812 • 300$ = 3 parts = 3% DGRAD H2355489<br><b>Nafasi:</b> SENTINEL OS ni mfumo wa uendeshaji wa kujitegemea, Offline First, unaojumuisha sekta 8 — Nishati, Maji, Pharma, Madini, Usalama, Usafirishaji, Kiwanda cha Pombe, Kilimo — na urejeshaji wa taka.",
+    btnDesk: "🏠 Kompyuta", btnEnergy: "NISHATI", btnWater: "MAJI",
+    closeBtn: "✕ Funga", speakBtn: "🔊 Sema", execBtn: "⚡ Tekeleza",
+    secLabels: {
+      fonct: "2. UENDESHAJI", flux: "3. MTIRIRIKO WA MCHAKATO", rend: "4. MTIRIRIKO WA UZALISHAJI", proto: "5. MWONGOZO WA UTEKELEZAJI", res: "6. MATOKEO NA VIGEZO", prop: "MALI", monitor: "UFUATILIAJI"
+    }
+  },
+  it: {
+    hdrSub: "VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba — Kinshasa • Offline First",
+    tAccueil: "0. BENVENUTO — SENTINEL CORE",
+    tIdentity: "<b>Identità:</b> SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba • Offline First",
+    tDashTitle: "Matrice di Telemetria",
+    lTime: "Ora locale", lDate: "Data locale", lOffline: "Stato Offline", lBat: "Batteria",
+    lSolar: "Solare", lSens: "Sensori", lTemp: "Temperatura", lNet: "Rete", lStore: "Memoria",
+    tEngineTitle: "Motore di Intelligenza",
+    tEngineFlow: "Ingressi → Analisi Quantistica → Decisione → Attuatore → Misura → Auto-Ottimizzazione",
+    tWasteTitle: "VALORIZZAZIONE RIFIUTI",
+    tAppsTitle: "14. DESKTOP — 8 APPLICAZIONI INDUSTRIALI",
+    tAppsSub: "Clicca su un modulo per avviare l'interfaccia olografica di controllo settoriale.",
+    tYieldTitle: "FLUSSO DI RESA",
+    tLossTitle: "-70% PERDITE* 📉",
+    tLossSub: "<b>Obiettivo di riduzione delle perdite*</b><br>* Variabile in base al processo e alla validazione.",
+    tFundingTitle: "FINANZIAMENTO & NOTA",
+    tFundingText: "UBA 4688 • dany734054.usd@ubardc • OM +243 840 308 812 • 300$ = 3 parti = 3% DGRAD H2355489<br><b>Posizionamento:</b> SENTINEL OS è un sistema operativo super autonomo, Offline First, che copre 8 settori — Energia, Acqua, Pharma, Miniere, Sicurezza, Logistica, Birreria, Agricoltura — con valorizzazione rifiuti e clima integrati.",
+    btnDesk: "🏠 Desktop", btnEnergy: "ENERGIA", btnWater: "ACQUA",
+    closeBtn: "✕ Chiudi", speakBtn: "🔊 Vocalizza", execBtn: "⚡ Esegui",
+    secLabels: {
+      fonct: "2. FUNZIONAMENTO", flux: "3. FLUSSO DI PROCESSO", rend: "4. FLUSSO DI RESA", proto: "5. PROTOCOLLO DI ESECUZIONE", res: "6. RISULTATI & INDICATORI", prop: "PROPRIETÀ", monitor: "MONITORAGGIO"
+    }
+  },
+  zh: {
+    hdrSub: "VÉROLIS SARL • TSHISELEKA THOKA DANY • 金沙萨·兰巴 • 离线优先",
+    tAccueil: "0. 欢迎 — 哨兵核心 (SENTINEL CORE)",
+    tIdentity: "<b>身份：</b> SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • 兰巴 • 离线优先",
+    tDashTitle: "遥测矩阵",
+    lTime: "当地时间", lDate: "当地日期", lOffline: "离线状态", lBat: "电池",
+    lSolar: "太阳能", lSens: "传感器", lTemp: "温度", lNet: "网络", lStore: "存储空间",
+    tEngineTitle: "智能引擎",
+    tEngineFlow: "输入 → 量子分析 → 决策 → 执行器 → 测量 → 自我优化",
+    tWasteTitle: "废物资源化",
+    tAppsTitle: "14. 桌面 — 8个工业应用程序",
+    tAppsSub: "点击模块启动行业全息控制界面。",
+    tYieldTitle: "产出效率流",
+    tLossTitle: "-70% 损失率* 📉",
+    tLossSub: "<b>目标损失减少率*</b><br>* 根据工艺和实验验证而定。",
+    tFundingTitle: "融资与说明",
+    tFundingText: "UBA 4688 • dany734054.usd@ubardc • OM +243 840 308 812 • 300$ = 3 份 = 3% DGRAD H2355489<br><b>定位：</b> SENTINEL OS 是一个超自主的离线优先智能操作系统，涵盖 8 个领域 — 能源、水务、制药、矿业、安全、物流、酿造、农业 — 并集成废物资源化与气候监测。<br><b>注意：</b> 70% 和 98.2% 的指标作为基准规格，需经实验验证。",
+    btnDesk: "🏠 桌面", btnEnergy: "能源", btnWater: "水务",
+    closeBtn: "✕ 关闭", speakBtn: "🔊 语音朗读", execBtn: "⚡ 执行",
+    secLabels: {
+      fonct: "2. 运行机制", flux: "3. 工艺流程", rend: "4. 产出效率流", proto: "5. 执行协议", res: "6. 结果与指标", prop: "属性", monitor: "监测"
+    }
+  }
 };
-function renderApps(){const grid=document.getElementById('appsGrid');grid.innerHTML='';APPS.forEach(a=>{const d=document.createElement('div');d.className='app';d.onclick=()=>openApp(a.id);d.innerHTML=`<div class="app-bd">${a.bd}</div><div class="app-ic">${a.ic}</div><div class="app-nm">${a.nm}</div><div class="app-dom">${a.dom}</div>`;grid.appendChild(d);});}
-function buildWindow(id){const det=DETAILS[id];if(!det)return '';return `<div class="detail-grid"><div class="left"><div class="imgbox">${det.img}</div><div class="propbox"><b>🔧 Propriétés</b>${det.prop}</div><div class="propbox"><b>📡 Monitoring</b>${det.monitor}</div><div style="display:flex;gap:6px"><button class="btn goldb" style="flex:1" onclick="parler('${det.fond.substring(0,120)}')">🔊 Expliquer</button><button class="btn greenb" style="flex:1">⚡ Exécuter</button></div></div><div class="rightp"><h2 style="font-size:1rem;color:var(--gold)">${det.title} — OFFLINE / ACTIVE</h2><div class="sect"><h4>1. FONDEMENTS</h4><p>${det.fond}</p></div><div class="sect" style="border-color:#3b82f6"><h4 style="color:#3b82f6">2. FONCTIONNALITÉS / FONCTIONNEMENT</h4><p>${det.fonct}</p></div><div class="sect" style="border-color:#10b981"><h4 style="color:#10b981">3. FLUX DU PROCÉDÉ</h4><div class="flow">${det.flux}</div></div><div class="sect"><h4>4. FLUX DE RENDEMENT 📈</h4><p>${det.rend}</p><div class="flow">INPUT → CAPTEURS → ANALYSE LOCALE → DÉCISION → ACTION → OUTPUT → MESURE → RENDEMENT → OPTIMISATION</div></div><div class="sect" style="border-color:#ef4444"><h4 style="color:#ef4444">5. PROTOCOLE D'EXÉCUTION</h4><div class="flow">${det.proto}</div></div><div class="sect"><h4>6. RÉSULTATS / INDICATEURS</h4><p>${det.result}</p></div><div style="font-size:.62rem;color:var(--muted);font-style:italic;border-top:1px solid #1e293b;padding-top:8px">* Objectif jusqu'à 70% réduction pertes* — dépendant procédé, équipements, matières, conditions, validation expérimentale. Eau: 98,2% retrait Pb = résultat labo uniquement avec réf. rapport certification/essai.</div><div class="term">SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba Kinshasa • Offline First • Micro-CIRT ESP32 • UBA 4688 • OM +243840308812 • I_TTD=1.000</div></div></div>`;}
-function openApp(id){const container=document.getElementById('windows');container.innerHTML='';const inner=document.createElement('div');inner.className='win open';inner.innerHTML=`<div class="win-inner"><div class="wh"><span>${DETAILS[id]?.title||id.toUpperCase()}</span><button class="btn secb" onclick="closeAll()">✕ Fermer</button></div><div class="wb">${buildWindow(id)}</div></div>`;container.appendChild(inner);}
+
+let currentLang = 'fr';
+
+const APPS=[
+  {id:'energie',ic:'⚡',nm:'ENERGY SENTINEL',dom:'Énergie',bd:'OFFLINE'},
+  {id:'eau',ic:'💧',nm:'WATER SENTINEL',dom:'Eau',bd:'50 L/h'},
+  {id:'pharma',ic:'🧪',nm:'PHARMA SENTINEL',dom:'Pharma',bd:'TRACÉ'},
+  {id:'mines',ic:'⛏️',nm:'MINE SENTINEL',dom:'Mines',bd:'RENDEMENT'},
+  {id:'securite',ic:'🛡️',nm:'SECURITY SENTINEL',dom:'Sécurité',bd:'LOCAL'},
+  {id:'logistique',ic:'🚚',nm:'LOGISTICS SENTINEL',dom:'Logistique',bd:'FLUX'},
+  {id:'brasserie',ic:'🍺',nm:'BRASSERIE SENTINEL',dom:'Brasserie',bd:'LOTS'},
+  {id:'agriculture',ic:'🌱',nm:'AGRO SENTINEL',dom:'Agriculture',bd:'RENDEMENT'}
+];
+
+const DETAILS={
+  energie:{title:'1. APPLICATION ÉNERGIE ⚡',img:'[SCHÉMA QUANTIQUE]\nPanneau Solaire ➔ MPPT ➔ Batterie ➔ ESP32 ➔ Sentinel OS ➔ Industrie',fond:"Gestion intelligente de l'énergie, autonomie solaire maximale, monitoring énergétique en temps réel, optimisation des charges et valorisation énergétique des déchets.",fonct:"Le Smart Meter mesure tension/courant, puissance instantanée, énergie produite/consommée, état de la batterie et gère les alertes de surcharge en mode 100% local.",flux:"SOLEIL\n ➔ PANNEAUX SOLAIRES\n ➔ MPPT\n ➔ BATTERIE\n ➔ SMART METER\n ➔ SENTINEL OS\n ➔ ÉQUIPEMENTS\n ➔ OPTIMISATION",rend:"Énergie produite 342W • Consommée 210W • Pertes 12W • Récupérée 45W • Économie 38%",prop:"Autonome, local, temps réel, solaire, monitoring 24/7, Offline First, reprise après coupure",monitor:"Tension, courant, puissance, énergie, batterie, MPPT, température, historique local, ESP32",proto:"1. Vérifier ensoleillement >200W/m²\n2. Calibrer MPPT\n3. Mesurer I/V batterie\n4. Activer Smart Meter log 1s\n5. Analyser conso\n6. Optimiser charges\n7. Mesure rendement\n8. Rapport journalier",result:"Rendement 86.4% • Pertes -31% vs sans Sentinel • Autonomie nuit 14h • Objectif -70%* en validation."},
+  eau:{title:'2. APPLICATION EAU 💧',img:'[COUPE TECHNIQUE 3 ÉTAGES]\nMoringa ➔ Kaolin Activé 600°C (Lemba) ➔ Bio-charbon ➔ Eau Traitée',fond:"Traitement multi-étages: Étage 1 Coagulation Moringa 50 mg/L, Étage 2 Adsorption Kaolin activé 600°C production locale Lemba, Étage 3 Polissage Bio-charbon Moringa. Débit 50 L/h, solaire, autonome.",fonct:"Eau brute ➔ coagulation Moringa ➔ adsorption kaolin ➔ polissage bio-charbon ➔ eau traitée. Monitoring pH, conductivité, température, débit et qualité via ESP32 + Smart Meter.",flux:"EAU BRUTE\n ➔ COAGULATION (Moringa 50 mg/L)\n ➔ ADSORPTION (Kaolin 600°C)\n ➔ POLISSAGE (Bio-charbon)\n ➔ EAU TRAITÉE",rend:"Entrée eau brute ➔ sortie eau traitée ➔ boues ➔ valorisation biochar\nPerformance: 98,2% retrait Pb (résultat labo avec réf. rapport). Débit 50 L/h.",prop:"Solaire, autonome, monitoring temps réel, Offline First, ESP32, Smart Meter, historique, production locale",monitor:"pH, conductivité, température, débit, qualité, ESP32, Smart Meter, historique, alertes seuil",proto:"1. Préparer Moringa 50 mg/L\n2. Activer kaolin 600°C\n3. Lancer bio-charbon\n4. Débit 50 L/h\n5. Mesure pH/conductivité\n6. Log qualité Sentinel\n7. Alerte si Pb > seuil\n8. Rapport + réf. lab",result:"Débit stable 50 L/h. 98,2% retrait Pb (avec réf. labo). pH 7.2, conductivité -62%. Démonstrateur central."},
+  pharma:{title:'3. APPLICATION PHARMA 🧪',img:'[CHAÎNE PHARMA INTELLIGENTE]\nCapteurs Bio-sanitaires ➔ Sentinel Core ➔ Traçabilité Stérile',fond:"Surveillance rigoureuse de la qualité, détection des contaminants, traçabilité totale des lots, contrôle des paramètres critiques et analyse locale sécurisée.",fonct:"Monitoring des paramètres environnementaux, détection instantanée d'anomalies, contrôle des lots, journalisation locale immuable sans dépendance cloud.",flux:"MATIÈRE PREMIÈRE\n ➔ CONTRÔLE\n ➔ PROCESSUS\n ➔ CAPTEURS\n ➔ SENTINEL OS\n ➔ VALIDATION LOT",rend:"Entrée matière ➔ contrôle ➔ processus ➔ validation lot • Pertes: lots non conformes • Rendement = validés / total",prop:"Traçabilité, local, temps réel, historique, alertes, Offline First",monitor:"Température, humidité, pH, conductivité, particules, ESP32, historique lots",proto:"1. Scanner matière\n2. Contrôle capteurs\n3. Analyse Sentinel\n4. Si anomalie ➔ alerte + blocage\n5. Si OK ➔ validation\n6. Historique + rapport",result:"Conformité 97.3% • Détection <2s • Historique 100% local"},
+  mines:{title:'4. APPLICATION MINES ⛏️',img:'[STATION MINIÈRE AUTONOME]\nExtraction ➔ Séparation ➔ Valorisation Résidus ➔ Biochar',fond:"Surveillance avancée des procédés miniers, optimisation énergétique, suivi des flux de matières, sécurité des opérations et valorisation des résidus en biochar.",fonct:"Monitoring terrain, suivi énergétique et des flux de matière, détection précoce des anomalies, journal d'exploitation et optimisation algorithmique locale.",flux:"MINERAI\n ➔ EXTRACTION\n ➔ TRANSFORMATION\n ➔ SÉPARATION\n ➔ VALORISATION\n ➔ PRODUIT + RÉSIDUS",rend:"Entrée ➔ utile ➔ pertes ➔ résidus valorisables • Rendement = (Utile/Entrée)×100",prop:"Surveillance terrain, optimisation énergie, suivi matières, sécurité, valorisation, Offline",monitor:"Vibration, poussière, énergie, débit matière, ESP32, historique, alertes",proto:"1. Installer capteurs\n2. Mesurer énergie\n3. Suivre flux\n4. Calculer pertes/résidus\n5. Optimiser énergie\n6. Valoriser ➔ biochar\n7. Rapport rendement",result:"Utile 68% • Résidus 22% ➔ biochar • Énergie -24% • Objectif -70%* en validation."},
+  securite:{title:'5. APPLICATION SÉCURITÉ 🛡️',img:'[SENTINEL SECURITY NODE]\nCapteurs / Caméras* ➔ Analyse Locale ➔ Alerte Ultra-Rapide',fond:"Surveillance autonome et détection locale intelligente. Faible dépendance réseau, réaction instantanée en milieu industriel ou sensible.",fonct:"Surveillance des équipements, détection d'intrusions ou d'anomalies, alertes locales, journal d'événements et contrôle d'accès sans connexion Internet.",flux:"CAPTEURS\nCAMÉRAS*\nALARME\n ➔ SENTINEL CORE\n ➔ ANALYSE LOCALE\n ➔ ALERTE\n ➔ ACTION",rend:"Entrée événements ➔ alertes/actions • Pertes fausses alertes • Rendement = vraies détections / total",prop:"Autonomie, faible dépendance réseau, réaction <1s, historique, mode sécurisé",monitor:"Mouvement, ouverture porte, température, fumée, ESP32, caméras si installées",proto:"1. Configurer seuils\n2. Activer Security Node\n3. Test alarme\n4. Surveillance continue offline\n5. Si anomalie ➔ alerte + action\n6. Log horodaté\n7. Rapport sécurité",result:"Réaction 0.8s • Fausses alertes <3% • Internet=0 • Journal 100% local"},
+  logistique:{title:'6. APPLICATION LOGISTIQUE 🚚',img:'[FLUX LOGISTIQUE SENTINEL]\nFournisseur ➔ Stock Intelligent ➔ Transport Optimisé ➔ Client',fond:"Optimisation des flux de matières, de produits et d'équipements. Suivi des stocks en temps réel, mouvements, entrées/sorties et traçabilité des lots.",fonct:"Gestion intelligente des stocks, suivi des mouvements logistiques, traçabilité par lots, alertes de rupture et optimisation des tournées en mode local.",flux:"FOURNISSEUR\n ➔ STOCK\n ➔ TRANSFORMATION\n ➔ TRANSPORT\n ➔ CLIENT",rend:"Entrée fournisseur ➔ stock ➔ transformation ➔ transport ➔ client • Temps, distance, conso, pertes, disponibilité",prop:"Suivi stocks, traçabilité, alertes, optimisation trajets, Offline First",monitor:"Stock, entrées/sorties, lots, température transport, GPS si dispo, ESP32",proto:"1. Scanner entrée\n2. Mettre à jour stock\n3. Suivre transformation\n4. Optimiser transport\n5. Alerte rupture/délai\n6. Validation livraison\n7. Rapport flux",result:"Délai -18% • Ruptures -42% • Traçabilité 100% • Conso transport -12%"},
+  brasserie:{title:'7. APPLICATION BRASSERIE 🍺',img:'[LIGNE DE BRASSAGE INTELLIGENTE]\nCuves Température ➔ Smart Meter ➔ Valorisation Résidus',fond:"Application industrielle dédiée au suivi et à l'optimisation des procédés de brasserie. Monitoring de la température, de l'énergie, de l'eau et des lots.",fonct:"Monitoring du brassage, contrôle thermique, suivi de la consommation d'eau et d'énergie, gestion des lots et valorisation des drêches en biochar/énergie.",flux:"EAU + MATIÈRES\n ➔ PROCESS\n ➔ BRASSAGE\n ➔ CONDITIONNEMENT\n ➔ PRODUIT\n\nRÉSIDUS ➔ VALORISATION ➔ ÉNERGIE / BIOCHAR",rend:"Entrée eau+matières ➔ produit • Pertes résidus • Valorisation ➔ énergie/biochar • Rendement = (Produit/Entrée)×100",prop:"Monitoring brassage, température, énergie, eau, lots, déchets, rendement, valorisation",monitor:"Température cuves, débit eau, énergie, pH, densité, ESP32, Smart Meter, historique",proto:"1. Mesurer eau + matières\n2. Monitoring brassage temp\n3. Suivre conso\n4. Mesurer produit sortie\n5. Calculer pertes/résidus\n6. Valoriser ➔ biochar\n7. Rapport rendement lot",result:"Rendement 91% • Eau -15% • Résidus 78% ➔ biochar • Énergie récupérée 22%"},
+  agriculture:{title:'8. APPLICATION AGRICULTURE 🌱',img:'[AGRO-SENTINEL CIRCULAIRE]\nHumidité Sol ➔ Irrigation Auto ➔ Récolte ➔ Biochar Sol',fond:"Agriculture intelligente, autonome et circulaire orientée rendement. Humidité du sol, température, irrigation automatisée, qualité de l'eau et suivi des cultures.",fonct:"Capteurs de sol, irrigation automatisée via Sentinel, suivi des cultures, alertes climatiques et bouclage circulaire (déchets agricoles transformés en biochar pour enrichir le sol).",flux:"EAU + SOL + SEMENCE + ÉNERGIE\n ➔ SENTINEL OS\n ➔ IRRIGATION\n ➔ CULTURE\n ➔ RÉCOLTE\n\nDÉCHETS ➔ VALORISATION BIOCHAR ➔ SOL",rend:"Entrée eau+sol+semence+énergie ➔ récolte • Pertes évaporation • Valorisation ➔ biochar • Rendement = (Récolte/Entrée)×100",prop:"Humidité sol, température, irrigation auto, qualité eau, suivi cultures, alertes, rendement, historique, circulaire, Offline First",monitor:"Humidité sol, température air/sol, qualité eau, débit irrigation, ESP32, historique récoltes",proto:"1. Mesurer humidité sol\n2. Analyser besoin eau Sentinel\n3. Activer irrigation\n4. Suivre croissance\n5. Alerte maladie/sécheresse\n6. Récolter + mesurer rendement\n7. Valoriser déchets ➔ biochar\n8. Rapport rendement",result:"Rendement +24% • Eau économisée 35% • Biochar 12kg/100kg déchets • Sol enrichi"}
+};
+
+function changeLanguage(lang){
+  if(!TRANSLATIONS[lang]) return;
+  currentLang = lang;
+  const t = TRANSLATIONS[lang];
+  
+  document.getElementById('hdrSub').innerHTML = t.hdrSub;
+  document.getElementById('tAccueil').innerHTML = t.tAccueil;
+  document.getElementById('tIdentity').innerHTML = t.tIdentity;
+  document.getElementById('tDashTitle').textContent = t.tDashTitle;
+  document.getElementById('lTime').textContent = t.lTime;
+  document.getElementById('lDate').textContent = t.lDate;
+  document.getElementById('lOffline').textContent = t.lOffline;
+  document.getElementById('lBat').textContent = t.lBat;
+  document.getElementById('lSolar').textContent = t.lSolar;
+  document.getElementById('lSens').textContent = t.lSens;
+  document.getElementById('lTemp').textContent = t.lTemp;
+  document.getElementById('lNet').textContent = t.lNet;
+  document.getElementById('lStore').textContent = t.lStore;
+  document.getElementById('tEngineTitle').textContent = t.tEngineTitle;
+  document.getElementById('tEngineFlow').textContent = t.tEngineFlow;
+  document.getElementById('tWasteTitle').textContent = t.tWasteTitle;
+  document.getElementById('tAppsTitle').textContent = t.tAppsTitle;
+  document.getElementById('tAppsSub').textContent = t.tAppsSub;
+  document.getElementById('tYieldTitle').textContent = t.tYieldTitle;
+  document.getElementById('tLossTitle').textContent = t.tLossTitle;
+  document.getElementById('tLossSub').innerHTML = t.tLossSub;
+  document.getElementById('tFundingTitle').textContent = t.tFundingTitle;
+  document.getElementById('tFundingText').innerHTML = t.tFundingText;
+  document.getElementById('btnDesk').textContent = t.btnDesk;
+  document.getElementById('btnEnergy').textContent = t.btnEnergy;
+  document.getElementById('btnWater').textContent = t.btnWater;
+  
+  renderApps();
+}
+
+function renderApps(){
+  const grid=document.getElementById('appsGrid');
+  grid.innerHTML='';
+  APPS.forEach(a=>{
+    const d=document.createElement('div');
+    d.className='app';
+    d.onclick=()=>openApp(a.id);
+    d.innerHTML=`<div class="app-bd">${a.bd}</div><div class="app-ic">${a.ic}</div><div class="app-nm">${a.nm}</div><div class="app-dom">${a.dom}</div>`;
+    grid.appendChild(d);
+  });
+}
+
+function buildWindow(id){
+  const det=DETAILS[id];
+  const t = TRANSLATIONS[currentLang];
+  if(!det)return '';
+  return `
+    <div class="detail-grid">
+      <div class="left">
+        <div class="imgbox">${det.img}</div>
+        <div class="propbox"><b>🔧 ${t.secLabels.prop}</b>${det.prop}</div>
+        <div class="propbox"><b>📡 ${t.secLabels.monitor}</b>${det.monitor}</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn goldb" style="flex:1" onclick="parler('${det.fond.substring(0,120)}')">${t.speakBtn}</button>
+          <button class="btn greenb" style="flex:1" onclick="alert('Module ${id.toUpperCase()} executed successfully offline.')">${t.execBtn}</button>
+        </div>
+      </div>
+      <div class="rightp">
+        <h2 style="font-family:'Orbitron',sans-serif;font-size:1.05rem;color:var(--gold)">${det.title}</h2>
+        <div class="sect"><h4>1. FONDEMENTS</h4><p>${det.fond}</p></div>
+        <div class="sect" style="border-color:#3b82f6"><h4 style="color:#3b82f6">${t.secLabels.fonct}</h4><p>${det.fonct}</p></div>
+        <div class="sect" style="border-color:#10b981"><h4 style="color:#10b981">${t.secLabels.flux}</h4><div class="flow">${det.flux}</div></div>
+        <div class="sect"><h4>4. ${t.secLabels.rend} 📈</h4><p>${det.rend}</p><div class="flow" style="margin-top:6px">INPUT ➔ CAPTEURS ➔ ANALYSE LOCALE ➔ DÉCISION ➔ ACTION ➔ OUTPUT ➔ RENDEMENT ➔ OPTIMISATION</div></div>
+        <div class="sect" style="border-color:#ef4444"><h4 style="color:#ef4444">${t.secLabels.proto}</h4><div class="flow">${det.proto}</div></div>
+        <div class="sect"><h4>${t.secLabels.res}</h4><p>${det.result}</p></div>
+        <div style="font-size:.62rem;color:var(--muted);font-style:italic;border-top:1px solid var(--border);padding-top:10px">
+          * Objectif jusqu'à 70% réduction pertes — dépendant procédé, équipements, matières, conditions, validation expérimentale. Eau: 98,2% retrait Pb = résultat labo uniquement avec réf. rapport certification/essai.
+        </div>
+        <div class="term">SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba Kinshasa • Offline First • Micro-CIRT ESP32 • UBA 4688 • OM +243840308812 • I_TTD=1.000</div>
+      </div>
+    </div>
+  `;
+}
+
+function openApp(id){
+  const container=document.getElementById('windows');
+  container.innerHTML='';
+  const t = TRANSLATIONS[currentLang];
+  const inner=document.createElement('div');
+  inner.className='win open';
+  inner.innerHTML=`<div class="win-inner"><div class="wh"><span>${DETAILS[id]?.title||id.toUpperCase()}</span><button class="btn secb" onclick="closeAll()">${t.closeBtn}</button></div><div class="wb">${buildWindow(id)}</div></div>`;
+  container.appendChild(inner);
+}
+
 function closeAll(){document.getElementById('windows').innerHTML='';}
-function clock(){const n=new Date();document.getElementById('dTime').textContent=n.toLocaleTimeString('fr-FR');document.getElementById('dDate').textContent=n.toLocaleDateString('fr-FR');}
-setInterval(clock,1000);clock();renderApps();
-let voixOn=false;const sy=window.speechSynthesis;let S={fv:null};
-function loadV(){const v=sy.getVoices();if(v.length)S.fv=v.find(x=>x.lang.includes('fr'))||v[0];}
-loadV();if(sy) sy.onvoiceschanged=loadV;
-function parler(t){if(!sy)return;sy.cancel();const u=new SpeechSynthesisUtterance(t.substring(0,300));u.lang='fr-FR';if(S.fv)u.voice=S.fv;sy.speak(u);}
-function toggleVoix(){voixOn=!voixOn;document.getElementById('btnVoix').textContent=voixOn?'🔊 VOIX ON':'🔇 VOIX TTD';if(voixOn)parler("Sentinel OS v10 Index Intégral. Huit secteurs industriels. Offline First. Prêt.");else sy.cancel();}
+
+function clock(){
+  const n=new Date();
+  document.getElementById('dTime').textContent=n.toLocaleTimeString('fr-FR');
+  document.getElementById('dDate').textContent=n.toLocaleDateString('fr-FR');
+}
+setInterval(clock,1000);
+clock();
+renderApps();
+
+let voixOn=false;
+const sy=window.speechSynthesis;
+let S={fv:null};
+function loadV(){const v=sy.getVoices();if(v.length)S.fv=v.find(x=>x.lang.includes(currentLang))||v[0];}
+loadV();if(sy)sy.onvoiceschanged=loadV;
+function parler(t){if(!sy)return;sy.cancel();const u=new SpeechSynthesisUtterance(t.substring(0,300));u.lang=currentLang==='en'?'en-US':currentLang==='it'?'it-IT':currentLang==='zh'?'zh-CN':'fr-FR';if(S.fv)u.voice=S.fv;sy.speak(u);}
+function toggleVoix(){
+  voixOn=!voixOn;
+  document.getElementById('btnVoix').textContent=voixOn?'🔊 VOIX ON':'🔇 VOIX TTD';
+  if(voixOn)parler("Sentinel OS v10 Quantum Nexus initialisé.");
+  else sy.cancel();
+}
 </script>
 </body>
 </html>
