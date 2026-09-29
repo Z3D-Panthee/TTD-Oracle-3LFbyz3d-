@@ -62,17 +62,17 @@ def icons_compat(size):
 
 @app.route('/api/ask', methods=['POST'])
 def ask_api():
-    data = request.get_json() or {}
-    q = data.get('question','')
+    data = request.get_json(silent=True) or {}
+    q = data.get('question', '')
     return jsonify({
         "answer": f"TTD ORACLE v4.1.2 Lemba — Reçu: {q}",
         "k": 0.89, "ds": 0.32, "confidence": 0.87, "domain": "général"
     })
 
-# --- NOUVELLES ROUTES : Sauvegarde et Historique SQLite ---
+# --- Sauvegarde et Historique SQLite ---
 @app.route('/api/save_jury', methods=['POST'])
 def save_jury():
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     question = data.get('question', '')
     answer = data.get('answer', '')
     
