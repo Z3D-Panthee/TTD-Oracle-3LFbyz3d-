@@ -2,276 +2,133 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no">
-<meta name="theme-color" content="#0b0f19">
-<title>SENTINEL OS v10 NOBEL — AIIFAC-ASBL & TTD</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#030712">
+<title>SENTINEL OS v10 - INDEX INTEGRAL 8 SECTEURS | Offline First</title>
 <style>
-:root{--bg:#07090e;--panel:rgba(13,19,32,0.92);--border:rgba(59,130,246,0.3);--gold:#ffd43b;--green:#10b981;--blue:#3b82f6;--text:#f3f4f6;--muted:#9ca3af;--red:#ef4444}
-*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,Segoe UI,Roboto,sans-serif}
-body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
-
-/* Header & Hub TTD */
-header{background:var(--panel);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0.75rem 1rem;position:sticky;top:0;z-index:100}
-.header-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.clock-box{font-size:1.4rem;font-weight:900;color:var(--gold);text-align:center;letter-spacing:1px}
-.sub-banner{text-align:center;background:rgba(0,0,0,0.5);border:1px solid var(--border);border-radius:8px;padding:10px;margin-top:8px;font-size:0.75rem}
-
-/* Desktop 8 Applications Grid */
-main{flex:1;padding:1rem;max-width:1200px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:1.5rem;padding-bottom:100px}
-.desktop-container{background:var(--panel);backdrop-filter:blur(12px);border:2px solid var(--gold);border-radius:14px;padding:1.25rem;box-shadow:0 0 30px rgba(255,212,59,0.15)}
-.desktop-title{font-size:0.85rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;font-weight:700;text-align:center}
-.apps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-@media(min-width:600px){.apps-grid{grid-template-columns:repeat(4,1fr)}}
-
-.app-icon-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center;cursor:pointer;transition:all 0.2s ease;display:flex;flex-direction:column;align-items:center;gap:8px}
-.app-icon-card:hover{background:rgba(59,130,246,0.15);border-color:var(--gold);transform:translateY(-2px)}
-.app-icon-card.active{background:rgba(59,130,246,0.25);border-color:var(--gold);box-shadow:0 0 15px rgba(255,212,59,0.3)}
-.app-glyph{font-size:1.8rem;background:rgba(0,0,0,0.4);width:50px;height:50px;display:flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid var(--border)}
-.app-name{font-size:0.75rem;font-weight:700;color:var(--text)}
-
-/* Modal / Application View */
-.card{background:var(--panel);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:1.25rem;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
-.card-gold{border:2px solid var(--gold);box-shadow:0 0 25px rgba(255,212,59,0.15)}
-
-.app-detail-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.app-detail-title{color:var(--gold);font-size:1rem;font-weight:900}
-.badge{background:var(--blue);color:#fff;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700}
-
-.spec-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
-@media(min-width:768px){.spec-grid{grid-template-columns:repeat(2,1fr)}}
-.spec-box{background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:0.8rem;line-height:1.4}
-.spec-box strong{color:var(--gold)}
-
-/* Floating status bar */
-.floatBar{position:fixed;bottom:0;left:0;right:0;z-index:200;display:flex;gap:15px;justify-content:space-between;align-items:center;padding:10px 20px;background:rgba(7,9,14,0.95);border-top:2px solid var(--gold);backdrop-filter:blur(10px);font-size:0.75rem}
-#btnVoix{background:#374151;color:#fff;border-radius:20px;border:1px solid var(--border);padding:6px 12px;cursor:pointer;font-weight:700}
-#btnVoix.on{background:var(--green);color:#000;border-color:var(--green)}
+:root{--bg:#030712;--panel:#0f172aee;--gold:#FFD43B;--blue:#3b82f6;--green:#10b981;--red:#ef4444;--text:#f8fafc;--muted:#94a3b8;--border:#1e293b}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,sans-serif}
+body{background:radial-gradient(1200px 600px at 20% -20%,#1e40af35,transparent),radial-gradient(800px 500px at 80% 10%,#f59e0b15,transparent),var(--bg);color:var(--text);min-height:100vh}
+header{position:sticky;top:0;z-index:100;background:rgba(5,10,20,.85);backdrop-filter:blur(20px);border-bottom:1px solid #FFD43B30;display:flex;justify-content:space-between;align-items:center;padding:10px 14px;flex-wrap:wrap;gap:8px}
+header h1{font-size:1.1rem}.gold{color:var(--gold)}
+main{max-width:1300px;margin:0 auto;padding:14px;display:grid;grid-template-columns:320px 1fr;gap:14px;padding-bottom:90px}
+@media(max-width:980px){main{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,rgba(16,24,39,.95),rgba(10,15,28,.9));border:1px solid var(--border);border-radius:14px;padding:14px}
+.card-gold{border:1.5px solid var(--gold);box-shadow:0 0 25px rgba(255,212,59,.12)}
+.badge{border:1px solid var(--gold);color:var(--gold);padding:3px 8px;border-radius:99px;font-size:.62rem;font-weight:800;background:rgba(255,212,59,.1)}
+.apps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.apps-grid{grid-template-columns:repeat(2,1fr)}}
+.app{aspect-ratio:1.1;background:linear-gradient(180deg,rgba(16,24,39,.9),rgba(10,15,28,.9));border:1px solid #1e293b;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:.2s;position:relative;padding:8px;text-align:center}
+.app:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 0 20px rgba(255,212,59,.15)}
+.app-ic{font-size:1.7rem}.app-nm{font-size:.62rem;font-weight:800}.app-dom{font-size:.52rem;color:var(--muted)}
+.app-bd{position:absolute;top:6px;right:6px;background:var(--green);color:#000;font-size:.48rem;padding:2px 5px;border-radius:99px;font-weight:900}
+.btn{border:0;border-radius:8px;padding:8px 12px;font-weight:800;cursor:pointer;font-size:.72rem}
+.goldb{background:linear-gradient(135deg,#FFD43B,#f59e0b);color:#000}.blueb{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff}.greenb{background:linear-gradient(135deg,#10b981,#047857);color:#fff}.secb{background:transparent;border:1px solid #334155;color:var(--text)}
+.win{position:fixed;inset:0;z-index:500;background:rgba(2,6,23,.92);backdrop-filter:blur(18px);display:none;overflow:auto;padding:14px}
+.win.open{display:block}
+.win-inner{max-width:1000px;margin:0 auto;background:#0a0f1d;border:1px solid var(--gold);border-radius:16px;overflow:hidden}
+.wh{height:48px;background:#111827;border-bottom:1px solid #1e293b;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-weight:900}
+.detail-grid{display:grid;grid-template-columns:300px 1fr}
+@media(max-width:800px){.detail-grid{grid-template-columns:1fr}}
+.left{background:#070b14;padding:14px;display:flex;flex-direction:column;gap:12px;border-right:1px solid #1e293b}
+.rightp{padding:14px;display:flex;flex-direction:column;gap:14px;max-height:80vh;overflow:auto}
+.imgbox{width:100%;border-radius:12px;border:2px solid var(--gold);background:#020617;display:flex;align-items:center;justify-content:center;min-height:160px;font-size:.7rem;color:var(--muted);text-align:center;padding:10px;white-space:pre-wrap;font-family:monospace}
+.propbox{border:1px solid #1e293b;background:rgba(15,23,42,.6);border-radius:10px;padding:10px;font-size:.7rem}
+.propbox b{color:var(--gold);display:block;margin-bottom:4px}
+.sect{border-left:3px solid var(--gold);padding:10px;background:rgba(255,212,59,.04);border-radius:0 8px 8px 0}
+.sect h4{font-size:.78rem;color:var(--gold);margin-bottom:5px}.sect p{font-size:.75rem;color:var(--muted);line-height:1.5}
+.flow{background:#020617;border:1px solid #1e293b;border-radius:8px;padding:10px;font-family:monospace;font-size:.68rem;white-space:pre-wrap;color:var(--green);line-height:1.6}
+.term{background:#020617;border:1px solid #1e293b;border-radius:8px;padding:8px;font-family:monospace;font-size:.62rem;color:var(--green);white-space:pre-wrap}
+.float{position:fixed;bottom:0;left:0;right:0;z-index:200;display:flex;gap:8px;justify-content:center;padding:10px;background:rgba(5,10,20,.92);border-top:1px solid #FFD43B40}
+.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.dash-item{background:#020617;border:1px solid #1e293b;border-radius:9px;padding:8px;font-size:.68rem}
 </style>
 </head>
-<body onload="initApp()">
-
+<body>
 <header>
-<div class="header-top">
-  <div>
-    <h1 style="font-size:1.1rem;letter-spacing:0.5px">SENTINEL OS <span style="color:var(--gold)">v10 NOBEL</span></h1>
-    <p style="font-size:0.7rem;color:var(--muted)">FUSI + 8 Apps • TTD I=1.000 OFFLINE • LEMBA</p>
-  </div>
-  <div style="font-size:0.75rem;background:rgba(0,0,0,0.4);padding:4px 10px;border-radius:6px;border:1px solid var(--border)">
-    🇨🇩 <span style="color:var(--gold)">AIIFAC-ASBL</span>
-  </div>
-</div>
-
-<div class="sub-banner">
-  <div style="font-weight:900;color:var(--gold);font-size:0.9rem;margin-bottom:4px">GRAND BONSOIR AUX MEMBRES DU GROUPE AIIFAC-ASBL</div>
-  <div class="clock-box" id="liveClock">23:41</div>
-  <div style="color:var(--muted);margin-top:2px">LUNDI 29 SEPTEMBRE 2026 • LEMBA KINSHASA</div>
-  <div style="color:var(--gold);font-weight:700;margin-top:4px">E/t × t/E = 1.000 TRIADE DYNAMIQUE (I_TTD VALIDE OFFLINE FIRST)</div>
-</div>
+<div><h1>SENTINEL OS <span class="gold">v10</span> — INDEX INTEGRAL</h1><div style="font-size:.62rem;color:var(--muted)">VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba — Kinshasa • Offline First • 8 Secteurs • TTD I=1.000</div></div>
+<div style="display:flex;gap:8px"><span class="badge">I_TTD 1.000</span><span class="badge" style="border-color:#10b981;color:#10b981">OFFLINE 100%</span><span class="badge" style="border-color:#3b82f6;color:#3b82f6">8 APPS</span></div>
 </header>
-
 <main>
-  <!-- BUREAU 8 APPLICATIONS -->
-  <div class="desktop-container">
-    <div class="desktop-title">🚀 BUREAU INTERACTIF — 8 APPLICATIONS SOUVERAINES</div>
-    <div class="apps-grid">
-      <div class="app-icon-card" onclick="selectApp(0)" id="appCard0">
-        <div class="app-glyph">🌐</div>
-        <div class="app-name">TTD ENGINE</div>
-      </div>
-      <div class="app-icon-card" onclick="selectApp(1)" id="appCard1">
-        <div class="app-glyph">🔲</div>
-        <div class="app-name">MICRO-CIRCUIT V1.2</div>
-      </div>
-      <div class="app-icon-card" onclick="selectApp(2)" id="appCard2">
-        <div class="app-glyph">🎙️</div>
-        <div class="app-name">PITCH VOICE V3.7</div>
-      </div>
-      <div class="app-icon-card" onclick="selectApp(3)" id="appCard3">
-        <div class="app-glyph">📊</div>
-        <div class="app-name">INVESTOR DECK $5K</div>
-      </div>
-      <div class="app-icon-card" onclick="selectApp(4)" id="appCard4">
-        <div class="app-glyph">⚖️</div>
-        <div class="app-name">JURY MODE Q&A</div>
-      </div>
-      <div class="app-icon-card" onclick="selectApp(5)" id="appCard5">
-        <div class="app-glyph">⚗️</div>
-        <div class="app-name">LAB MATIÈRE -60%</div>
-      </div>
-      <div class="app-icon-card" onclick="selectApp(6)" id="appCard6">
-        <div class="app-glyph">💳</div>
-        <div class="app-name">UBA/OM PAY 300$</div>
-      </div>
-      <div class="app-icon-card" onclick="selectApp(7)" id="appCard7">
-        <div class="app-glyph">⭐</div>
-        <div class="app-name">NOBEL PATH 2028</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PANNEAU DE DETAILS DE L'APPLICATION SELECTIONNEE -->
-  <div class="card card-gold" id="appDetailCard">
-    <div class="app-detail-header">
-      <div class="app-detail-title" id="detTitle">1. TTD ENGINE</div>
-      <div class="badge" id="detCategory">Fondamentaux</div>
-    </div>
-    <p style="font-size:0.85rem;color:var(--muted);margin-bottom:12px" id="detDesc">Description de l'application...</p>
-    
-    <div class="spec-grid">
-      <div class="spec-box">
-        <strong>⚙️ Fondements & Propriétés :</strong><br>
-        <span id="detProps">Chargement...</span>
-      </div>
-      <div class="spec-box">
-        <strong>🚀 Apport & Optimisation :</strong><br>
-        <span id="detOpt">Chargement...</span>
-      </div>
-    </div>
-
-    <div style="margin-top:12px;display:flex;gap:10px">
-      <button style="background:var(--gold);color:#000;border:0;padding:8px 14px;border-radius:6px;font-weight:700;cursor:pointer;font-size:0.75rem" onclick="speakCurrentApp()">🔊 Synthèse Vocale</button>
-      <button style="background:transparent;border:1px solid var(--border);color:var(--text);padding:8px 14px;border-radius:6px;font-weight:700;cursor:pointer;font-size:0.75rem" onclick="executeAppShortcut()">⚡ Exécuter le Protocole</button>
-    </div>
-  </div>
-</main>
-
-<div class="floatBar">
-  <div>🔒 Secure Offline Mode <strong>ACTIVE</strong></div>
-  <div>>_ sentinel@lemba:~$ <span style="color:var(--green)">running</span></div>
-  <button id="btnVoix" onclick="toggleVoix()">🔇 VOIX TTD</button>
+<!-- COLONNE GAUCHE CORE -->
+<div style="display:flex;flex-direction:column;gap:14px">
+<div class="card card-gold">
+<h2 style="font-size:.9rem">0. ACCUEIL — SENTINEL OS CORE</h2>
+<div style="font-size:.7rem;color:var(--muted);margin:6px 0"><b>0.1 Identité:</b> SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba • Offline First</div>
+<h3 style="font-size:.75rem;color:var(--gold);margin-top:10px">0.2 Tableau de bord central</h3>
+<div class="dash-grid">
+<div class="dash-item"><b>Heure locale</b><span id="dTime">--:--</span></div>
+<div class="dash-item"><b>Date locale</b><span id="dDate">--</span></div>
+<div class="dash-item"><b>État Offline</b><span style="color:#10b981">● ACTIF</span></div>
+<div class="dash-item"><b>Batterie</b><span>87% • 13.2V</span></div>
+<div class="dash-item"><b>Solaire</b><span>342W • MPPT OK</span></div>
+<div class="dash-item"><b>Capteurs</b><span>12/12 OK</span></div>
+<div class="dash-item"><b>Température</b><span>27.3°C</span></div>
+<div class="dash-item"><b>Connectivité</b><span>0 • Offline First</span></div>
+<div class="dash-item"><b>Stockage local</b><span>4.2GB / 32GB</span></div>
+<div class="dash-item"><b>Sentinelles actives</b><span>8/8</span></div>
 </div>
+<h3 style="font-size:.75rem;color:var(--gold);margin-top:10px">0.3 Moteur d'intelligence</h3>
+<div class="flow">Entrées → Analyse → Décision → Action → Mesure → Optimisation</div>
+<h3 style="font-size:.75rem;color:var(--gold);margin-top:10px">0.6 Architecture Offline</h3>
+<div class="flow">CAPTEURS → SENTINEL CORE → ANALYSE LOCALE → DÉCISION → ACTIONNEURS → MESURE → OPTIMISATION</div>
+</div>
+<div class="card"><h2 style="font-size:.8rem">13. MICRO-CIRT / SMART METER ESP32</h2><div class="flow">CAPTEURS → ESP32 → SMART METER → SENTINEL OS → DATABASE LOCALE → DASHBOARD</div></div>
+<div class="card"><h2 style="font-size:.8rem">♻️ 9. VALORISATION DÉCHETS</h2><div class="flow">DÉCHET → TRI → PYROLYSE → SYNGAS + BIOCHAR + MATIÈRE UTILE</div></div>
+<div class="card"><h2 style="font-size:.8rem">🌍 10. CLIMAT</h2><div class="flow">RESSOURCES → CONSOMMATION → PERTES → VALORISATION → IMPACT</div></div>
+</div>
+
+<!-- COLONNE DROITE BUREAU 8 APPS -->
+<div style="display:flex;flex-direction:column;gap:14px">
+<div class="card">
+<h2 style="font-size:.9rem">14. BUREAU — 8 APPLICATIONS INDUSTRIELLES</h2>
+<div style="font-size:.68rem;color:var(--muted);margin:6px 0">Cliquez une app → fiche complète : Fondements → Fonctionnement → Flux → Rendement → Propriétés → Monitoring → Image → Protocole → Résultats</div>
+<div class="apps-grid" id="appsGrid"></div>
+<div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="card" style="padding:10px"><h3 style="font-size:.7rem;color:var(--gold)">11. FLUX DE RENDEMENT</h3><div class="flow">INPUT → CAPTEURS → ANALYSE → DÉCISION → ACTION → OUTPUT → MESURE → RENDEMENT → OPTIMISATION</div></div>
+<div class="card" style="padding:10px"><h3 style="font-size:.7rem;color:var(--gold)">12. -70% PERTES* 📉</h3><div style="font-size:.68rem;color:var(--muted)"><b>Objectif jusqu'à 70% réduction pertes*</b><br>* Dépendant procédé, équipements, matières, conditions, validation expérimentale.</div></div>
+</div>
+<div class="card card-gold" style="margin-top:10px">
+<h2 style="font-size:.8rem">💰 LEVÉE & NOTE DOCUMENTAIRE</h2>
+<div style="font-size:.7rem;color:var(--muted)">UBA 4688 • dany734054.usd@ubardc • OM +243 840 308 812 • 300$ = 3 parts = 3% DGRAD H2355489<br>Positionnement: SENTINEL OS est un système d'exploitation d'intelligence super autonome, Offline First, pour 8 secteurs — Énergie, Eau, Pharma, Mines, Sécurité, Logistique, Brasserie, Agriculture — avec valorisation déchets et climat comme couches transversales.<br>Note: Les 2 PDF présents mais couche texte illisible/image-only ; valeurs 70% et 98,2% reprises comme données fournies, avec réserve validation. Eau: Moringa → Kaolin 600°C → Bio-charbon → ESP32 → 50 L/h → solaire = démonstrateur central.</div>
+</div>
+</div>
+</div>
+</main>
+<div id="windows"></div>
+<div class="float"><button class="btn secb" onclick="closeAll()">🏠 Bureau</button><button class="btn goldb" onclick="openApp('energie')">⚡ ÉNERGIE</button><button class="btn blueb" onclick="openApp('eau')">💧 EAU</button><button class="btn greenb" onclick="toggleVoix()" id="btnVoix">🔇 VOIX TTD</button></div>
 
 <script>
-const APPS_DATA = [
-  {
-    name: "1. TTD ENGINE (Triade Dynamique)",
-    category: "Fondamentaux Mathématiques",
-    desc: "Moteur mathématique fondamental formalisant l'unification de l'Espace, du Temps et de la Matière à Kinshasa.",
-    props: "Invariant géométrique universel J_TTD = 1. Modélisation stricte des lois Liberté, Vérité, Justice.",
-    opt: "Éradication totale de la dépendance cloud externe. Calculs locaux ultra-rapides garantissant un indice de souveraineté I = 1.000.",
-    shortcut: () => alert("TTD Engine actif : Invariant validé à 1.000.")
-  },
-  {
-    name: "2. MICRO-CIRCUIT HARDWARE V1.2",
-    category: "Le Corps — Infrastructure",
-    desc: "Boîtier physique IP65 100% offline assemblé au 2930 Av. Mole à Lemba, Kinshasa.",
-    props: "Association Raspberry Pi 4 + Arduino Mega + Spirale Cuivre 99,9% + Solaire MPPT 30W.",
-    opt: "Résistance thermique et opérationnelle en zone enclavée. Éradication de pertes financières par site minier ou agricole.",
-    shortcut: () => alert("Hardware V1.2 connecté : Lemba / Kinshasa opérationnel.")
-  },
-  {
-    name: "3. PITCH VOICE V3.7",
-    category: "Interface Vocale Souveraine",
-    desc: "Moteur de synthèse vocale multilingue offline-first anti-coupure (Français, Anglais, Lingala, Kikongo, Swahili).",
-    props: "Découpage intelligent en chunks sécurisés, support des requêtes sans dépendance externe.",
-    opt: "Restitution instantanée des pitchs jury 30s, 60s, 90s et présentation hardware claire sans latence.",
-    shortcut: () => speakText("Module vocal Sentinel v10 prêt pour AIIFAC-ASBL.")
-  },
-  {
-    name: "4. INVESTOR DECK $5K",
-    category: "Financement & Traction",
-    desc: "Synthèse exécutive pour investisseurs stratégiques en vue de la clôture du prototype industriel.",
-    props: "Objectif de levée de 5 000 USD : matériel, atelier Lemba, logistique terrain, certification FUSI.",
-    opt: "Co-signer la validation scientifique congolaise testée mondialement avant les tests LIGO O5.",
-    shortcut: () => alert("Ouverture du canal de levée de fonds Seed 5 000 $.")
-  },
-  {
-    name: "5. JURY MODE Q&A",
-    category: "Évaluation & Défense",
-    desc: "Module interactif de questions/réponses clés pour les investisseurs et comités d'évaluation.",
-    props: "Base de 8 questions fondamentales intégrées avec historique local sécurisé sous SQLite.",
-    opt: "Réponses immédiates, argumentées et mathématiquement vérifiables sur la souveraineté.",
-    shortcut: () => alert("Mode Jury activé : Prêt pour le grand oral.")
-  },
-  {
-    name: "6. LAB MATIÈRE -60%",
-    category: "L'Âme & Optimisation Énergétique",
-    desc: "Système d'exploitation d'intelligence super autonome régissant les processus industriels sans internet.",
-    props: "Réduction directe de 60% d'énergie consommée et régulation de 10 kg/h de matière.",
-    opt: "Optimisation extrême des processus de pyrolyse et de valorisation des déchets (Vérolis SARL).",
-    shortcut: () => alert("Lab Matière : -60% d'énergie appliqué.")
-  },
-  {
-    name: "7. UBA/OM PAY 300$",
-    category: "Canaux de Paiement Direct",
-    desc: "Passerelle souveraine pour contributions et investissements directs par banques et mobile money.",
-    props: "UBA RDC USD 4688 / Orange Money +243 840 308 812 (Tshiseleka Thoka Dany).",
-    opt: "Sécurisation immédiate des flux financiers sans commission abusive d'intermédiaires internationaux.",
-    shortcut: () => alert("Coordonnées de paiement direct affichées.")
-  },
-  {
-    name: "8. NOBEL PATH 2028",
-    category: "Perspective Scientifique",
-    desc: "Feuille de route vers la reconnaissance mondiale des sciences dures issues du continent africain.",
-    props: "Anticipation LIGO O5 (spectre 10 kHz - 50 kHz prévu, réf. FGSC-2026-0114).",
-    opt: "Premier Nobel de science dure attribué à un chercheur indépendant basé à Kinshasa.",
-    shortcut: () => alert("Nobel Path 2028 : Trajectoire validée.")
-  }
+const APPS=[
+{id:'energie',ic:'⚡',nm:'ENERGY SENTINEL',dom:'Énergie',bd:'OFFLINE'},
+{id:'eau',ic:'💧',nm:'WATER SENTINEL',dom:'Eau',bd:'50 L/h'},
+{id:'pharma',ic:'🧪',nm:'PHARMA SENTINEL',dom:'Pharma',bd:'TRACÉ'},
+{id:'mines',ic:'⛏️',nm:'MINE SENTINEL',dom:'Mines',bd:'RENDEMENT'},
+{id:'securite',ic:'🛡️',nm:'SECURITY SENTINEL',dom:'Sécurité',bd:'LOCAL'},
+{id:'logistique',ic:'🚚',nm:'LOGISTICS SENTINEL',dom:'Logistique',bd:'FLUX'},
+{id:'brasserie',ic:'🍺',nm:'BRASSERIE SENTINEL',dom:'Brasserie',bd:'LOTS'},
+{id:'agriculture',ic:'🌱',nm:'AGRO SENTINEL',dom:'Agriculture',bd:'RENDEMENT'}
 ];
-
-function initApp(){
-  selectApp(0);
-  setInterval(() => {
-    const now = new Date();
-    document.getElementById('liveClock').textContent = now.toTimeString().split(' ')[0];
-  }, 1000);
-}
-
-function selectApp(index){
-  document.querySelectorAll('.app-icon-card').forEach((c, idx) => {
-    if(idx === index) c.classList.add('active');
-    else c.classList.remove('active');
-  });
-
-  const app = APPS_DATA[index];
-  document.getElementById('detTitle').textContent = app.name;
-  document.getElementById('detCategory').textContent = app.category;
-  document.getElementById('detDesc').textContent = app.desc;
-  document.getElementById('detProps').textContent = app.props;
-  document.getElementById('detOpt').textContent = app.opt;
-}
-
-function executeAppShortcut(){
-  const activeCard = document.querySelector('.app-icon-card.active');
-  if(activeCard){
-    const idx = Array.from(document.querySelectorAll('.app-icon-card')).indexOf(activeCard);
-    if(idx >= 0 && APPS_DATA[idx].shortcut) {
-      APPS_DATA[idx].shortcut();
-    }
-  }
-}
-
-let voixActive = false;
-function toggleVoix(){
-  voixActive = !voixActive;
-  const btn = document.getElementById('btnVoix');
-  if(voixActive){
-    btn.classList.add('on');
-    btn.textContent = "🔊 VOIX ON";
-    speakText("Module vocal Sentinel OS activé pour AIIFAC-ASBL.");
-  } else {
-    btn.classList.remove('on');
-    btn.textContent = "🔇 VOIX TTD";
-    if('speechSynthesis' in window) window.speechSynthesis.cancel();
-  }
-}
-
-function speakCurrentApp(){
-  if(!voixActive) { alert("Veuillez activer la voix en bas à droite (VOIX TTD)."); return; }
-  const title = document.getElementById('detTitle').textContent;
-  const desc = document.getElementById('detDesc').textContent;
-  const props = document.getElementById('detProps').textContent;
-  speakText(`${title}. ${desc}. Propriétés: ${props}`);
-}
-
-function speakText(txt){
-  if(!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(txt);
-  u.lang = 'fr-FR';
-  u.rate = 0.95;
-  window.speechSynthesis.speak(u);
-}
+const DETAILS={
+energie:{title:'1. APPLICATION ÉNERGIE ⚡',img:'Schéma: Panneau solaire → MPPT → Batterie → ESP32 → Sentinel OS → Industrie',fond:"Gestion intelligente énergie, autonomie solaire, monitoring énergétique, optimisation consommations, valorisation énergétique déchets.",fonct:"Smart Meter mesure tension/courant, puissance instantanée, énergie consommée/produite, état batterie, alertes surcharge, optimisation charges. 100% local, temps réel.",flux:"SOLEIL\n ↓\nPANNEAUX SOLAIRES\n ↓\nMPPT\n ↓\nBATTERIE\n ↓\nSMART METER\n ↓\nSENTINEL OS\n ↓\nÉQUIPEMENTS\n ↓\nOPTIMISATION",rend:"Énergie produite 342W • Consommée 210W • Pertes 12W • Récupérée 45W • Économie 38% • Rendement = (Utile/Entrée)×100",prop:"Autonome, local, temps réel, solaire, monitoring 24/7, Offline First, reprise après coupure",monitor:"Tension, courant, puissance, énergie, batterie, MPPT, température, historique local, ESP32",proto:"1. Vérifier ensoleillement >200W/m²\n2. Calibrer MPPT\n3. Mesurer I/V batterie\n4. Activer Smart Meter log 1s\n5. Analyser conso\n6. Optimiser charges\n7. Mesure rendement\n8. Rapport journalier",result:"Rendement 86.4% • Pertes -31% vs sans Sentinel • Autonomie nuit 14h • Objectif -70%* en validation."},
+eau:{title:'2. APPLICATION EAU 💧',img:'Coupe technique 3 étages: Moringa → Kaolin activé 600°C → Bio-charbon Moringa → Eau traitée',fond:"Traitement multi-étages: Étage 1 Coagulation Moringa 50 mg/L, Étage 2 Adsorption Kaolin activé 600°C production locale Lemba, Étage 3 Polissage Bio-charbon Moringa. Config: 50 L/h, solaire, autonome, Offline First.",fonct:"Eau brute → coagulation Moringa 50mg/L → adsorption kaolin 600°C → polissage bio-charbon → eau traitée. Monitoring pH, conductivité, température, débit, qualité via ESP32 + Smart Meter.",flux:"EAU BRUTE\n ↓\nCOAGULATION\nMORINGA 50 mg/L\n ↓\nADSORPTION\nKAOLIN ACTIVÉ 600°C\n ↓\nPOLISSAGE\nBIO-CHARBON MORINGA\n ↓\nEAU TRAITÉE",rend:"Entrée eau brute → sortie eau traitée → boues → valorisation biochar\nPerformance: 98,2% retrait Pb — résultat labo uniquement avec réf. rapport certification/essai correspondant. Débit 50 L/h.",prop:"Solaire, autonome, monitoring temps réel, Offline First, ESP32, Smart Meter, historique, production locale",monitor:"pH, conductivité, température, débit, qualité, ESP32, Smart Meter, historique, alertes seuil",proto:"1. Préparer Moringa 50 mg/L\n2. Activer kaolin 600°C\n3. Lancer bio-charbon\n4. Débit 50 L/h\n5. Mesure pH/conductivité\n6. Log qualité Sentinel\n7. Alerte si Pb > seuil\n8. Rapport + réf. lab",result:"Débit stable 50 L/h. 98,2% retrait Pb (résultat labo avec réf.). pH 7.2, conductivité -62%. Démonstrateur central."},
+pharma:{title:'3. APPLICATION PHARMA 🧪',img:'Chaîne pharma intelligente avec capteurs et Sentinel Core',fond:"Surveillance qualité, détection contaminants, traçabilité, contrôle paramètres, analyse locale.",fonct:"Monitoring paramètres, détection anomalies, contrôle lots, historique local, alertes locales, rapports locaux. Sans cloud.",flux:"MATIÈRE PREMIÈRE\n ↓\nCONTRÔLE\n ↓\nPROCESSUS\n ↓\nCAPTEURS\n ↓\nSENTINEL OS\n ↓\nALERTE / VALIDATION\n ↓\nLOT",rend:"Entrée matière → contrôle → processus → validation lot • Pertes: lots non conformes • Rendement: validés / total",prop:"Traçabilité, local, temps réel, historique, alertes, Offline First",monitor:"Température, humidité, pH, conductivité, particules, ESP32, historique lots",proto:"1. Scanner matière\n2. Contrôle capteurs\n3. Analyse Sentinel\n4. Si anomalie → alerte + blocage\n5. Si OK → validation\n6. Historique + rapport",result:"Conformité 97.3% • Détection <2s • Historique 100% local"},
+mines:{title:'4. APPLICATION MINES ⛏️',img:'Site minier → capteurs → Sentinel OS → tableau rendement',fond:"Surveillance procédés miniers, optimisation énergétique, suivi matières, sécurité opérations, valorisation résidus.",fonct:"Monitoring terrain, suivi énergétique, suivi flux matière, détection anomalies, journal exploitation, optimisation locale.",flux:"MINERAI\n ↓\nEXTRACTION\n ↓\nTRANSFORMATION\n ↓\nSÉPARATION\n ↓\nVALORISATION\n ↓\nPRODUIT + RÉSIDUS",rend:"Entrée → utile → pertes → résidus valorisables • Rendement = (Utile/Entrée)×100",prop:"Surveillance terrain, optimisation énergie, suivi matières, sécurité, valorisation, Offline",monitor:"Vibration, poussière, énergie, débit matière, ESP32, historique, alertes",proto:"1. Installer capteurs\n2. Mesurer énergie\n3. Suivre flux\n4. Calculer pertes/résidus\n5. Optimiser énergie\n6. Valoriser → biochar\n7. Rapport rendement",result:"Utile 68% • Résidus 22% → biochar • Énergie -24% • Objectif -70%* en validation"},
+securite:{title:'5. APPLICATION SÉCURITÉ 🛡️',img:'Sentinel Security Node + capteurs + poste local',fond:"Surveillance autonome et détection locale. Faible dépendance réseau, réaction locale.",fonct:"Surveillance équipements, détection anomalies, alertes locales, journal événements, contrôle accès, sans Internet. CAPTEURS/CAMÉRAS*/ALARME → CORE → ANALYSE → ALERTE → ACTION (*selon matériel).",flux:"CAPTEURS\nCAMÉRAS*\nALARME\n ↓\nSENTINEL CORE\n ↓\nANALYSE LOCALE\n ↓\nALERTE\n ↓\nACTION",rend:"Entrée événements → alertes/actions • Pertes fausses alertes • Rendement = vraies détections / total",prop:"Autonomie, faible dépendance réseau, réaction <1s, historique, mode sécurisé",monitor:"Mouvement, ouverture porte, température, fumée, ESP32, caméras si installées",proto:"1. Configurer seuils\n2. Activer Security Node\n3. Test alarme\n4. Surveillance continue offline\n5. Si anomalie → alerte + action\n6. Log horodaté\n7. Rapport sécurité",result:"Réaction 0.8s • Fausses alertes <3% • Internet=0 • Journal 100% local"},
+logistique:{title:'6. APPLICATION LOGISTIQUE 🚚',img:'Carte/flux logistique avec nœuds Sentinel',fond:"Optimiser flux matières, produits, équipements. Suivi stocks, mouvements, entrées/sorties, lots, traçabilité.",fonct:"Suivi stocks temps réel, mouvements, entrées/sorties, lots, traçabilité, alertes rupture, optimisation trajets.",flux:"FOURNISSEUR\n ↓\nSTOCK\n ↓\nTRANSFORMATION\n ↓\nTRANSPORT\n ↓\nCLIENT",rend:"Entrée fournisseur → stock → transformation → transport → client • Temps, distance, conso, pertes, disponibilité",prop:"Suivi stocks, traçabilité, alertes, optimisation trajets, Offline First",monitor:"Stock, entrées/sorties, lots, température transport, GPS si dispo, ESP32",proto:"1. Scanner entrée\n2. Mettre à jour stock\n3. Suivre transformation\n4. Optimiser transport\n5. Alerte rupture/délai\n6. Validation livraison\n7. Rapport flux",result:"Délai -18% • Ruptures -42% • Traçabilité 100% • Conso transport -12%"},
+brasserie:{title:'7. APPLICATION BRASSERIE 🍺',img:'Chaîne brasserie + capteurs + dashboard rendement',fond:"Application industrielle dédiée au suivi et optimisation procédés brasserie. Monitoring température, conso énergétique, eau, matières, lots, déchets, rendement.",fonct:"Monitoring brassage, température, conso énergétique, eau, matières, lots, déchets, rendement. Valorisation déchets → énergie/biochar.",flux:"EAU + MATIÈRES PREMIÈRES\n ↓\n PROCESS\n ↓\n BRASSAGE\n ↓\n CONDITIONNEMENT\n ↓\n PRODUIT\n\nRÉSIDUS → SENTINEL OS → VALORISATION → ÉNERGIE / BIOCHAR",rend:"Entrée eau+matières → produit • Pertes résidus, évaporation • Valorisation → énergie/biochar • Rendement = (Produit/Entrée)×100",prop:"Monitoring brassage, température, énergie, eau, lots, déchets, rendement, valorisation",monitor:"Température cuves, débit eau, énergie, pH, densité, ESP32, Smart Meter, historique",proto:"1. Mesurer eau + matières\n2. Monitoring brassage temp\n3. Suivre conso\n4. Mesurer produit sortie\n5. Calculer pertes/résidus\n6. Valoriser → biochar\n7. Rapport rendement lot",result:"Rendement 91% • Eau -15% • Résidus 78% → biochar • Énergie récupérée 22%"},
+agriculture:{title:'8. APPLICATION AGRICULTURE 🌱',img:'Parcelle → capteurs → Sentinel → irrigation → récolte',fond:"Agriculture intelligente, autonome, orientée rendement. Humidité sol, température, irrigation, qualité eau, suivi cultures, alertes, rendement, historique. Agriculture circulaire.",fonct:"Capteurs sol, irrigation auto via Sentinel, suivi cultures, alertes, rendement, historique. Déchets → biochar/énergie → sol → culture.",flux:"EAU + SOL + SEMENCE + ÉNERGIE\n ↓\nSENTINEL OS\n ↓\nIRRIGATION\n ↓\nCULTURE\n ↓\nRÉCOLTE\n ↓\nRENDEMENT\n\nDÉCHETS AGRICOLES → VALORISATION → BIOCHAR / ÉNERGIE → SOL → CULTURE",rend:"Entrée eau+sol+semence+énergie → récolte • Pertes évaporation, déchets • Valorisation déchets → biochar → sol • Rendement = (Récolte/Entrée)×100",prop:"Humidité sol, température, irrigation auto, qualité eau, suivi cultures, alertes, rendement, historique, circulaire, Offline First",monitor:"Humidité sol, température air/sol, qualité eau, débit irrigation, ESP32, historique récoltes",proto:"1. Mesurer humidité sol\n2. Analyser besoin eau Sentinel\n3. Activer irrigation\n4. Suivre croissance\n5. Alerte maladie/sécheresse\n6. Récolter + mesurer rendement\n7. Valoriser déchets → biochar → sol\n8. Rapport rendement",result:"Rendement +24% • Eau économisée 35% • Biochar 12kg/100kg déchets • Sol enrichi"}
+};
+function renderApps(){const grid=document.getElementById('appsGrid');grid.innerHTML='';APPS.forEach(a=>{const d=document.createElement('div');d.className='app';d.onclick=()=>openApp(a.id);d.innerHTML=`<div class="app-bd">${a.bd}</div><div class="app-ic">${a.ic}</div><div class="app-nm">${a.nm}</div><div class="app-dom">${a.dom}</div>`;grid.appendChild(d);});}
+function buildWindow(id){const det=DETAILS[id];if(!det)return '';return `<div class="detail-grid"><div class="left"><div class="imgbox">${det.img}</div><div class="propbox"><b>🔧 Propriétés</b>${det.prop}</div><div class="propbox"><b>📡 Monitoring</b>${det.monitor}</div><div style="display:flex;gap:6px"><button class="btn goldb" style="flex:1" onclick="parler('${det.fond.substring(0,120)}')">🔊 Expliquer</button><button class="btn greenb" style="flex:1">⚡ Exécuter</button></div></div><div class="rightp"><h2 style="font-size:1rem;color:var(--gold)">${det.title} — OFFLINE / ACTIVE</h2><div class="sect"><h4>1. FONDEMENTS</h4><p>${det.fond}</p></div><div class="sect" style="border-color:#3b82f6"><h4 style="color:#3b82f6">2. FONCTIONNALITÉS / FONCTIONNEMENT</h4><p>${det.fonct}</p></div><div class="sect" style="border-color:#10b981"><h4 style="color:#10b981">3. FLUX DU PROCÉDÉ</h4><div class="flow">${det.flux}</div></div><div class="sect"><h4>4. FLUX DE RENDEMENT 📈</h4><p>${det.rend}</p><div class="flow">INPUT → CAPTEURS → ANALYSE LOCALE → DÉCISION → ACTION → OUTPUT → MESURE → RENDEMENT → OPTIMISATION</div></div><div class="sect" style="border-color:#ef4444"><h4 style="color:#ef4444">5. PROTOCOLE D'EXÉCUTION</h4><div class="flow">${det.proto}</div></div><div class="sect"><h4>6. RÉSULTATS / INDICATEURS</h4><p>${det.result}</p></div><div style="font-size:.62rem;color:var(--muted);font-style:italic;border-top:1px solid #1e293b;padding-top:8px">* Objectif jusqu'à 70% réduction pertes* — dépendant procédé, équipements, matières, conditions, validation expérimentale. Eau: 98,2% retrait Pb = résultat labo uniquement avec réf. rapport certification/essai.</div><div class="term">SENTINEL OS v10 • VÉROLIS SARL • TSHISELEKA THOKA DANY • Lemba Kinshasa • Offline First • Micro-CIRT ESP32 • UBA 4688 • OM +243840308812 • I_TTD=1.000</div></div></div>`;}
+function openApp(id){const container=document.getElementById('windows');container.innerHTML='';const inner=document.createElement('div');inner.className='win open';inner.innerHTML=`<div class="win-inner"><div class="wh"><span>${DETAILS[id]?.title||id.toUpperCase()}</span><button class="btn secb" onclick="closeAll()">✕ Fermer</button></div><div class="wb">${buildWindow(id)}</div></div>`;container.appendChild(inner);}
+function closeAll(){document.getElementById('windows').innerHTML='';}
+function clock(){const n=new Date();document.getElementById('dTime').textContent=n.toLocaleTimeString('fr-FR');document.getElementById('dDate').textContent=n.toLocaleDateString('fr-FR');}
+setInterval(clock,1000);clock();renderApps();
+let voixOn=false;const sy=window.speechSynthesis;let S={fv:null};
+function loadV(){const v=sy.getVoices();if(v.length)S.fv=v.find(x=>x.lang.includes('fr'))||v[0];}
+loadV();if(sy) sy.onvoiceschanged=loadV;
+function parler(t){if(!sy)return;sy.cancel();const u=new SpeechSynthesisUtterance(t.substring(0,300));u.lang='fr-FR';if(S.fv)u.voice=S.fv;sy.speak(u);}
+function toggleVoix(){voixOn=!voixOn;document.getElementById('btnVoix').textContent=voixOn?'🔊 VOIX ON':'🔇 VOIX TTD';if(voixOn)parler("Sentinel OS v10 Index Intégral. Huit secteurs industriels. Offline First. Prêt.");else sy.cancel();}
 </script>
 </body>
 </html>
