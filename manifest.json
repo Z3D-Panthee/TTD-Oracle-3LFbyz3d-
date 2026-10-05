@@ -1,15 +1,15 @@
 {
-  "name": "SENTINEL OS v9.3 FINAL FUSI + VOICE FIX V3.5.1 + HARDWARE V1.2",
-  "short_name": "SENTINEL OS v9.3",
-  "description": "SENTINEL OS v9.3 FINAL FUSI - VOICE FIX V3.5.1 CHUNKED AgroSentinelles + HARDWARE V1.2 Micro-CIRT TTD Prototylse - App Android + Hardware Réel Arduino Raspberry Pi Spirale Cuivre - Offline First - TTD E/t x t/E = 1 - I_TTD 1.000 - Vérolis SARL & AIIFAC-ASBL - Kinshasa 2026",
+  "name": "SENTINEL OS v10.6 — 3D QUANTUM NEXUS | FrancoTech Edition",
+  "short_name": "SENTINEL OS v10.6",
+  "description": "SENTINEL OS v10.6 Quantum Nexus - Moteur Holo-3D Triadique & Hardware V1.2 Integration - AgroSentinelles & Vérolis SARL - Kinshasa 2026 - Semi-finaliste FrancoTech",
   "start_url": "./",
   "display": "fullscreen",
-  "background_color": "#0b0f19",
+  "background_color": "#020617",
   "theme_color": "#ffd43b",
   "orientation": "portrait-primary",
   "scope": "./",
   "lang": "fr",
-  "id": "sentinel-os-v93-final-complete-hw-v12-voice-fix",
+  "id": "sentinel-os-v106-quantum-nexus-hw-v12",
   "launch_handler": {
     "client_mode": "navigate-existing"
   },
@@ -35,31 +35,31 @@
   ],
   "shortcuts": [
     {
-      "name": "🎤 Pitch 30s Souverain",
-      "short_name": "30s",
-      "url": "./#pitch30",
-      "description": "Pitch Jury 30s Offline - VOICE FIX V3.5.1",
+      "name": "🌐 Matrice 3D Holo",
+      "short_name": "3D Nexus",
+      "url": "./#matrix3d",
+      "description": "Visualiseur 3D Triadique & Télémétrie en Direct",
       "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "🎤 Pitch 90s JURY FUSI + HW",
-      "short_name": "90s JURY",
-      "url": "./#pitch90",
-      "description": "Pitch 90s Complet avec Hardware V1.2 - Jury FUSI + AIIFAC",
+      "name": "🏆 FrancoTech 2026",
+      "short_name": "FrancoTech",
+      "url": "./#francotech",
+      "description": "Dossier Demi-Finale & Pilotage Industriel Vérolis",
       "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
     },
     {
-      "name": "⚖️ Jury Mode - 8 Questions",
-      "short_name": "JURY",
+      "name": "⚖️ Mode Jury - 8 Secteurs",
+      "short_name": "Jury",
       "url": "./#jury",
-      "description": "Mode Jury 8 Questions + Hardware V1.2 + Historique Local",
+      "description": "Inspection locale des 8 applications & SQLite",
       "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "🔬 Hardware V1.2",
+      "name": "🔬 Hardware V1.2 & LIGO",
       "short_name": "HW V1.2",
       "url": "./#hardware",
-      "description": "Sentinel V1.2 Micro-CIRT TTD Prototylse - Prototype Réel",
+      "description": "Banc de mesure physique & LIGO-BOX V1.2",
       "icons": [{ "src": "/static/icon-1024.png", "sizes": "1024x1024" }]
     }
   ],
@@ -69,7 +69,7 @@
       "sizes": "1024x1024",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "SENTINEL OS v9.3 + Hardware V1.2 - App + Prototype Réel"
+      "label": "SENTINEL OS v10.6 Quantum Nexus - Application PWA & Matrice 3D"
     }
   ]
 }
