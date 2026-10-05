@@ -1,5 +1,5 @@
-// === SENTINEL OS v10.6 - SERVICE WORKER QUANTUM NEXUS ===
-const CACHE_NAME = 'sentinel-os-v10.6-nexus-v4.0';
+// === SENTINEL OS v10.7 - SERVICE WORKER QUANTUM NEXUS ===
+const CACHE_NAME = 'sentinel-os-v10.7-nexus-v4.0';
 
 // Actifs essentiels mis en cache pour le mode 100% hors-ligne
 const ASSETS = [
@@ -16,7 +16,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('[ServiceWorker] Mise en cache des actifs essentiels');
+        console.log('[ServiceWorker] Mise en cache des actifs essentiels v10.7');
         return Promise.allSettled(
           ASSETS.map(asset => cache.add(asset).catch(err => console.warn('[ServiceWorker] Fichier non trouvé ignoré :', asset)))
         );
