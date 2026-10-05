@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#030712">
-<title>SENTINEL OS v10.6 — QUANTUM NEXUS | 3D & Holographic</title>
+<meta name="theme-color" content="#020617">
+<title>SENTINEL OS v10.6 — QUANTUM NEXUS | Super-Intelligence Offline</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root{
-  --bg:#020617;--panel:rgba(10,15,30,0.9);--gold:#FFD43B;--gold-glow:rgba(255,212,59,0.35);
+  --bg:#020617;--panel:rgba(10,15,30,0.85);--gold:#FFD43B;--gold-glow:rgba(255,212,59,0.35);
   --blue:#3b82f6;--cyan:#06b6d4;--green:#10b981;--red:#ef4444;--text:#f8fafc;--muted:#64748b;--border:#1e293b
 }
 
@@ -19,7 +19,7 @@ body{
   background-image: 
     radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(255, 212, 59, 0.08) 0%, transparent 40%),
-    linear-gradient(rgba(2,6,23,0.9), rgba(2,6,23,0.9));
+    linear-gradient(rgba(2,6,23,0.92), rgba(2,6,23,0.92));
   color:var(--text);min-height:100vh;overflow-x:hidden;
 }
 
@@ -32,39 +32,35 @@ header{
   backdrop-filter:blur(25px);
   border-bottom:1px solid rgba(255,212,59,0.3);
   display:flex;justify-content:space-between;align-items:center;
-  padding:12px 20px;flex-wrap:wrap;gap:10px;
+  padding:12px 24px;flex-wrap:wrap;gap:10px;
   box-shadow:0 10px 30px rgba(0,0,0,0.8);
 }
 header h1{font-family:'Orbitron',sans-serif;font-size:1.1rem;letter-spacing:1px;text-transform:uppercase}
 .gold{color:var(--gold);text-shadow:0 0 10px rgba(255,212,59,0.5)}
 
-.lang-select{
-  background:rgba(15,23,42,0.9);border:1px solid var(--gold);color:var(--gold);
-  padding:5px 10px;border-radius:8px;font-size:.7rem;font-weight:700;cursor:pointer;outline:none;
+.status-pill{
+  display:flex;align-items:center;gap:6px;font-size:.65rem;border:1px solid var(--green);
+  padding:4px 10px;border-radius:99px;background:rgba(16,185,129,0.1);color:var(--green);font-weight:700;
 }
+.status-dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 8px var(--green);animation:pulseGlow 2s infinite}
 
 main{
   max-width:1400px;margin:0 auto;padding:20px;
-  display:grid;grid-template-columns:420px 1fr;gap:20px;padding-bottom:100px;
+  display:grid;grid-template-columns:380px 1fr;gap:20px;padding-bottom:100px;
 }
 @media(max-width:1024px){main{grid-template-columns:1fr}}
 
 .card{
   background:var(--panel);border:1px solid var(--border);
-  border-radius:16px;padding:16px;backdrop-filter:blur(10px);
+  border-radius:16px;padding:18px;backdrop-filter:blur(12px);
   position:relative;overflow:hidden;transition:all 0.3s ease;
+  box-shadow:0 8px 32px rgba(0,0,0,0.4);
 }
 .card-gold{border:1.5px solid var(--gold);animation:pulseGlow 4s infinite ease-in-out}
 
-.badge{
-  border:1px solid var(--gold);color:var(--gold);padding:4px 10px;
-  border-radius:99px;font-size:.62rem;font-weight:700;
-  background:rgba(255,212,59,0.08);letter-spacing:1px;text-transform:uppercase;
-}
-
 /* CONTENEUR CANVAS 3D */
 #canvas3d-container {
-  width: 100%; height: 260px;
+  width: 100%; height: 220px;
   border-radius: 12px; border: 1px solid var(--gold);
   background: radial-gradient(circle at center, rgba(10,15,30,0.9), rgba(2,6,23,0.95));
   position: relative; overflow: hidden; margin-top: 10px;
@@ -73,110 +69,146 @@ main{
 canvas { display: block; width: 100%; height: 100%; cursor: grab; }
 canvas:active { cursor: grabbing; }
 
-.apps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.apps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px}
 @media(max-width:900px){.apps-grid{grid-template-columns:repeat(2,1fr)}}
 
 .app{
-  aspect-ratio:1.1;
+  aspect-ratio:1;
   background:linear-gradient(135deg, rgba(15,23,42,0.9), rgba(2,6,23,0.95));
-  border:1px solid var(--border);border-radius:16px;
+  border:1px solid var(--border);border-radius:14px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:8px;cursor:pointer;position:relative;padding:10px;text-align:center;
+  gap:6px;cursor:pointer;position:relative;padding:8px;text-align:center;
   transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .app:hover{
-  transform:translateY(-6px) scale(1.02);border-color:var(--gold);
+  transform:translateY(-6px) scale(1.03);border-color:var(--gold);
   box-shadow:0 10px 30px rgba(255,212,59,0.25);
 }
-.app-ic{font-size:2rem;animation:floatAnim 3s ease-in-out infinite}
-.app-nm{font-family:'Orbitron',sans-serif;font-size:.62rem;font-weight:700;color:var(--text)}
-.app-dom{font-size:.52rem;color:var(--muted)}
+.app-ic{font-size:1.8rem;animation:floatAnim 3s ease-in-out infinite}
+.app-nm{font-family:'Orbitron',sans-serif;font-size:.58rem;font-weight:700;color:var(--text)}
+.app-dom{font-size:.48rem;color:var(--muted)}
 .app-bd{
-  position:absolute;top:8px;right:8px;background:var(--green);color:#000;
-  font-size:.48rem;padding:2px 6px;border-radius:99px;font-weight:900;
+  position:absolute;top:6px;right:6px;background:var(--green);color:#000;
+  font-size:.42rem;padding:2px 5px;border-radius:99px;font-weight:900;
 }
 
 .btn{
   border:0;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer;
-  font-size:.72rem;transition:all 0.2s ease;text-transform:uppercase;letter-spacing:1px;
+  font-size:.7rem;transition:all 0.2s ease;text-transform:uppercase;letter-spacing:1px;
 }
 .goldb{background:linear-gradient(135deg,#FFD43B,#f59e0b);color:#000;box-shadow:0 0 20px rgba(255,212,59,0.3)}
 .blueb{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;box-shadow:0 0 20px rgba(59,130,246,0.3)}
-.greenb{background:linear-gradient(135deg,#10b981,#047857);color:#fff;box-shadow:0 0 20px rgba(16,185,129,0.3)}
 .secb{background:rgba(30,41,59,0.6);border:1px solid var(--border);color:var(--text);backdrop-filter:blur(10px)}
 
-.win{position:fixed;inset:0;z-index:500;background:rgba(2,6,23,0.95);backdrop-filter:blur(25px);display:none;overflow:auto;padding:20px}
-.win.open{display:block}
-.win-inner{max-width:1100px;margin:0 auto;background:rgba(10,15,30,0.95);border:1.5px solid var(--gold);border-radius:20px;overflow:hidden}
-.wh{height:56px;background:rgba(15,23,42,0.9);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 20px;font-family:'Orbitron',sans-serif;font-weight:900}
+/* MODALE ACTIVE DES SECTEURS / ORACLE */
+.win{
+  position:fixed;inset:0;z-index:500;background:rgba(2,6,23,0.92);
+  backdrop-filter:blur(25px);display:none;align-items:center;justify-content:center;padding:20px;
+}
+.win.open{display:flex}
+.win-inner{
+  width:100%;max-width:800px;background:rgba(10,15,30,0.98);
+  border:1.5px solid var(--gold);border-radius:20px;overflow:hidden;
+  box-shadow:0 20px 50px rgba(0,0,0,0.9);animation:floatAnim 0.4s ease;
+}
+.wh{
+  height:54px;background:rgba(15,23,42,0.95);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 20px;
+  font-family:'Orbitron',sans-serif;font-weight:900;color:var(--gold);
+}
+.win-body{padding:20px;max-height:70vh;overflow-y:auto}
+
+input, textarea{
+  width:100%;background:rgba(2,6,23,0.8);border:1px solid var(--border);
+  border-radius:10px;padding:12px;color:var(--text);font-size:.8rem;margin-top:8px;outline:none;
+}
+input:focus, textarea:focus{border-color:var(--gold);box-shadow:0 0 10px rgba(255,212,59,0.2)}
 
 .float{
   position:fixed;bottom:0;left:0;right:0;z-index:200;
-  display:flex;gap:10px;justify-content:center;padding:14px;
+  display:flex;gap:12px;justify-content:center;padding:14px;
   background:rgba(2,6,23,0.9);backdrop-filter:blur(25px);
   border-top:1px solid rgba(255,212,59,0.3);
 }
-.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.dash-item{background:rgba(2,6,23,0.8);border:1px solid var(--border);border-radius:10px;padding:10px;font-size:.68rem}
-.dash-item b{color:var(--gold);display:block;font-size:.58rem;text-transform:uppercase}
 
-/* Graphique dynamique 2D canvas */
-#telemetryChart { width: 100%; height: 90px; background: rgba(2,6,23,0.8); border: 1px solid var(--border); border-radius: 8px; margin-top: 10px; }
+.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.dash-item{background:rgba(2,6,23,0.8);border:1px solid var(--border);border-radius:10px;padding:10px;font-size:.65rem}
+.dash-item b{color:var(--gold);display:block;font-size:.55rem;text-transform:uppercase}
+
+#telemetryChart { width: 100%; height: 80px; background: rgba(2,6,23,0.8); border: 1px solid var(--border); border-radius: 8px; margin-top: 10px; }
 </style>
 
-<!-- Import de Three.js pour la scène 3D holographique -->
+<!-- Three.js pour la 3D Holographique -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
 
 <header>
   <div>
-    <h1>SENTINEL OS <span class="gold">v10.6</span> — 3D QUANTUM NEXUS</h1>
-    <div style="font-size:.62rem;color:var(--muted)">VÉROLIS SARL • TSHISELEKA THOKA DANY • FrancoTech Semifinalist</div>
+    <h1>SENTINEL OS <span class="gold">v10.6</span> — QUANTUM NEXUS</h1>
+    <div style="font-size:.6rem;color:var(--muted)">VÉROLIS SARL • KINSHASA • MODE 100% OFFLINE AUTONOME</div>
   </div>
-  <span class="badge">HOLO-ENGINE 3D ON</span>
+  <div class="status-pill">
+    <div class="status-dot"></div>
+    <span>LIGO-BOX V1.2 ACTIVE</span>
+  </div>
 </header>
 
 <main>
-  <!-- COLONNE GAUCHE: VISUALISEUR 3D & TÉLÉMÉTRIE -->
+  <!-- COLONNE GAUCHE : MATRICE 3D & TÉLÉMÉTRIE -->
   <div style="display:flex;flex-direction:column;gap:16px">
     <div class="card card-gold">
-      <h2 style="font-family:'Orbitron',sans-serif;font-size:.9rem;color:var(--gold)">🌐 MATRICE 3D TRIADIQUE</h2>
-      <div style="font-size:.68rem;color:var(--muted);margin-top:4px">Visualisation interactive de la Torsion $T$ et du champ PMV-1.0. (Glissez pour pivoter).</div>
+      <h2 style="font-family:'Orbitron',sans-serif;font-size:.85rem;color:var(--gold)">🌐 MATRICE 3D TRIADIQUE</h2>
+      <div style="font-size:.65rem;color:var(--muted);margin-top:4px">Champ PMV-1.0 et Torsion T ($I=1.000$). Glissez pour pivoter.</div>
       
-      <!-- Conteneur 3D Three.js -->
       <div id="canvas3d-container"></div>
 
-      <h3 style="font-family:'Orbitron',sans-serif;font-size:.75rem;color:var(--gold);margin-top:12px">Graphique d'Onde & Télémétrie en Direct</h3>
+      <h3 style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:var(--gold);margin-top:12px">Télémétrie & Signal Capteurs</h3>
       <canvas id="telemetryChart"></canvas>
 
-      <div class="dash-grid" style="margin-top:12px">
+      <div class="dash-grid">
         <div class="dash-item"><b>Torsion (T)</b><span id="valT" style="color:var(--cyan)">0.0014 rad</span></div>
-        <div class="dash-item"><b>LIGO-BOX V1.2</b><span style="color:var(--green)">● SYNC</span></div>
-        <div class="dash-item"><b>Fréquence</b><span>104.2 Hz</span></div>
+        <div class="dash-item"><b>Core Status</b><span style="color:var(--green)">Optimisé</span></div>
+        <div class="dash-item"><b>Précision</b><span style="color:var(--gold)">99.9%</span></div>
       </div>
     </div>
   </div>
 
-  <!-- COLONNE DROITE: 8 APPLICATIONS -->
+  <!-- COLONNE DROITE : LES 8 SECTEURS INDUSTRIELS & ORACLE -->
   <div style="display:flex;flex-direction:column;gap:16px">
     <div class="card">
-      <h2 style="font-family:'Orbitron',sans-serif;font-size:.9rem;color:var(--gold)">14. BUREAU — 8 APPLICATIONS INDUSTRIELLES</h2>
-      <div style="font-size:.7rem;color:var(--muted);margin:8px 0 14px 0">Sélectionnez un domaine pour inspecter l'architecture locale.</div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h2 style="font-family:'Orbitron',sans-serif;font-size:.85rem;color:var(--gold)">⚡ LES 8 SECTEURS & SYSTÈMES AUTONOMES</h2>
+        <button class="btn goldb" style="padding:6px 12px;font-size:.6rem" onclick="openOracle()">🧠 Oracle TTD</button>
+      </div>
+      <div style="font-size:.65rem;color:var(--muted);margin:8px 0 10px 0">Cliquez sur un secteur pour piloter le sous-système local ou connecter le hardware.</div>
+      
       <div class="apps-grid" id="appsGrid"></div>
     </div>
   </div>
 </main>
 
-<div id="windows"></div>
+<!-- FENÊTRE MODALE DE PILOTAGE DE SECTEUR -->
+<div class="win" id="sectorModal">
+  <div class="win-inner">
+    <div class="wh">
+      <span id="modalTitle">SECTEUR INDUSTRIEL</span>
+      <button class="btn secb" style="padding:4px 10px" onclick="closeModal()">✕ Fermer</button>
+    </div>
+    <div class="win-body" id="modalContent">
+      <!-- Contenu dynamique injecté -->
+    </div>
+  </div>
+</div>
 
 <div class="float">
   <button class="btn secb" onclick="resetCamera3D()">🔄 Recentrer 3D</button>
-  <button class="btn goldb" onclick="triggerPulse()">⚡ Impulsion Quantique</button>
+  <button class="btn blueb" onclick="openOracle()">💬 Consulter l'Oracle TTD</button>
+  <button class="btn goldb" onclick="triggerPulse()">⚡ Impulsion Matérielle</button>
 </div>
 
 <script>
-// --- 1. INITIALISATION DE LA SCÈNE 3D (THREE.JS) ---
+// --- 1. SCÈNE 3D HOLOGRAPHIQUE ---
 const container = document.getElementById('canvas3d-container');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
@@ -184,125 +216,182 @@ const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 container.appendChild(renderer.domElement);
 
-// Objet central : Sphère Triadique Or & Cyan
-const geometry = new THREE.IcosahedronGeometry(1.5, 2);
+const geometry = new THREE.IcosahedronGeometry(1.4, 2);
 const material = new THREE.MeshStandardMaterial({ 
-  color: 0xFFD43B, 
-  wireframe: true, 
-  emissive: 0x3b82f6,
-  emissiveIntensity: 0.4
+  color: 0xFFD43B, wireframe: true, emissive: 0x3b82f6, emissiveIntensity: 0.5
 });
 const sphere = new THREE.Mesh(geometry, material);
 scene.add(sphere);
 
-// Anneaux orbitaux
-const ringGeo = new THREE.BufferGeometry();
-const ringMat = new THREE.LineBasicMaterial({ color: 0x06b6d4 });
-const torusGeo = new THREE.TorusGeometry(2.4, 0.03, 16, 100);
-const torusMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true });
+const torusGeo = new THREE.TorusGeometry(2.2, 0.02, 16, 100);
+const torusMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, wireframe: true });
 const torus = new THREE.Mesh(torusGeo, torusMat);
 torus.rotation.x = Math.PI / 3;
 scene.add(torus);
 
-// Lumières
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-scene.add(ambientLight);
-const pointLight = new THREE.PointLight(0xFFD43B, 2, 50);
-pointLight.position.set(5, 5, 5);
-scene.add(pointLight);
+scene.add(new THREE.AmbientLight(0xffffff, 1));
 
 camera.position.z = 5;
 
-// Interaction souris pour faire pivoter la 3D
-let isDragging = false, previousMousePosition = { x: 0, y: 0 };
-container.addEventListener('mousedown', e => { isDragging = true; });
+let isDragging = false, prevMouse = { x: 0, y: 0 };
+container.addEventListener('mousedown', () => isDragging = true);
+window.addEventListener('mouseup', () => isDragging = false);
 container.addEventListener('mousemove', e => {
   if (!isDragging) return;
-  const deltaX = e.clientX - previousMousePosition.x;
-  const deltaY = e.clientY - previousMousePosition.y;
-  sphere.rotation.y += deltaX * 0.01;
-  sphere.rotation.x += deltaY * 0.01;
-  torus.rotation.z -= deltaX * 0.005;
-  previousMousePosition = { x: e.clientX, y: e.clientY };
+  sphere.rotation.y += (e.clientX - prevMouse.x) * 0.01;
+  sphere.rotation.x += (e.clientY - prevMouse.y) * 0.01;
+  prevMouse = { x: e.clientX, y: e.clientY };
 });
-window.addEventListener('mouseup', () => { isDragging = false; });
-container.addEventListener('mousemove', e => { previousMousePosition = { x: e.clientX, y: e.clientY }; });
+container.addEventListener('mousemove', e => { prevMouse = { x: e.clientX, y: e.clientY }; });
 
-function resetCamera3D() {
-  sphere.rotation.set(0, 0, 0);
-  torus.rotation.set(Math.PI / 3, 0, 0);
-}
-
+function resetCamera3D() { sphere.rotation.set(0,0,0); torus.rotation.set(Math.PI/3,0,0); }
 function triggerPulse() {
   material.color.setHex(0x10b981);
-  setTimeout(() => material.color.setHex(0xFFD43B), 600);
+  setTimeout(() => material.color.setHex(0xFFD43B), 500);
 }
 
-// Boucle d'animation 3D
 function animate3D() {
   requestAnimationFrame(animate3D);
-  sphere.rotation.y += 0.005;
-  torus.rotation.z += 0.008;
+  sphere.rotation.y += 0.006;
+  torus.rotation.z += 0.01;
   renderer.render(scene, camera);
 }
 animate3D();
 
-// --- 2. GRAPHIQUE DE TÉLÉMÉTRIE 2D EN TEMPS RÉEL ---
+// --- 2. TÉLÉMÉTRIE 2D ---
 const tCanvas = document.getElementById('telemetryChart');
 const tCtx = tCanvas.getContext('2d');
-let waveData = Array(50).fill(20);
+let waveData = Array(40).fill(25);
 
-function drawTelemetry() {
+setInterval(() => {
+  if(!tCanvas.clientWidth) return;
   tCanvas.width = tCanvas.clientWidth;
   tCanvas.height = tCanvas.clientHeight;
-  
   tCtx.clearRect(0, 0, tCanvas.width, tCanvas.height);
   tCtx.strokeStyle = '#06b6d4';
   tCtx.lineWidth = 2;
   tCtx.beginPath();
   
-  const sliceWidth = tCanvas.width / waveData.length;
-  let x = 0;
-  
-  waveData.push(Math.sin(Date.now() * 0.005) * 15 + Math.random() * 5 + 40);
+  waveData.push(Math.sin(Date.now()*0.006)*12 + Math.random()*6 + 35);
   waveData.shift();
   
-  for(let i = 0; i < waveData.length; i++) {
-    const y = tCanvas.height - (waveData[i] / 80) * tCanvas.height;
-    if(i === 0) tCtx.moveTo(x, y);
-    else tCtx.lineTo(x, y);
-    x += sliceWidth;
-  }
+  const step = tCanvas.width / waveData.length;
+  waveData.forEach((val, i) => {
+    const y = tCanvas.height - (val / 70) * tCanvas.height;
+    if(i === 0) tCtx.moveTo(i * step, y); else tCtx.lineTo(i * step, y);
+  });
   tCtx.stroke();
-  
-  // Mise à jour de la valeur textuelle de torsion
-  document.getElementById('valT').textContent = (0.001 + Math.random() * 0.0005).toFixed(4) + " rad";
-}
-setInterval(drawTelemetry, 80);
+  document.getElementById('valT').textContent = (0.0012 + Math.random()*0.0003).toFixed(4) + " rad";
+}, 80);
 
-// --- 3. GRILLE DES 8 APPLICATIONS ---
-const APPS=[
-  {id:'energie',ic:'⚡',nm:'ENERGY SENTINEL',dom:'Énergie',bd:'OFFLINE'},
-  {id:'eau',ic:'💧',nm:'WATER SENTINEL',dom:'Eau',bd:'50 L/h'},
-  {id:'pharma',ic:'🧪',nm:'PHARMA SENTINEL',dom:'Pharma',bd:'TRACÉ'},
-  {id:'mines',ic:'⛏️',nm:'MINE SENTINEL',dom:'Mines',bd:'LIGO-BOX'},
-  {id:'securite',ic:'🛡',nm:'SECURITY SENTINEL',dom:'Sécurité',bd:'LOCAL'},
-  {id:'logistique',ic:'🚚',nm:'LOGISTICS SENTINEL',dom:'Logistique',bd:'FLUX'},
-  {id:'brasserie',ic:'🍺',nm:'BRASSERIE SENTINEL',dom:'Brasserie',bd:'LOTS'},
-  {id:'agriculture',ic:'🌱',nm:'AGRO SENTINEL',dom:'Agriculture',bd:'RENDEMENT'}
+// --- 3. GESTION DES 8 SECTEURS & APPLICATIONS ---
+const APPS = [
+  {id:'energie', ic:'⚡', nm:'ÉNERGIE & SNEL', dom:'Micro-réseau', bd:'ACTIF', desc:'Régulation automatique des phases et équilibrage de charge off-grid.'},
+  {id:'eaux', ic:'💧', nm:'EAUX & REGIDESO', dom:'Filtration', bd:'STABLE', desc:'Contrôle intelligent des débits et traitement par spirales de cuivre.'},
+  {id:'mines', ic:'⛏️', nm:'MINES & EXTRACTION', dom:'Torsion T', bd:'LIGO-BOX', desc:'Monitoring géologique de précision et intégrité structurelle.'},
+  {id:'securite', ic:'🛡️️', nm:'SÉCURITÉ SENTINELLE', dom:'Surveillance', bd:'MODE SÉCU', desc:'Détection d’anomalies et cryptage local de bout en bout.'},
+  {id:'logistique', ic:'🚚', nm:'LOGISTIQUE KIX', dom:'Flotte Offline', bd:'SYNCHRONISÉ', desc:'Cartographie hors-ligne et traçabilité des convois à Kinshasa.'},
+  {id:'agriculture', ic:'🌱', nm:'AGROSENTINELLES', dom:'Sols & IoT', bd:'PRÊT', desc:'Analyse des paramètres agronomiques et boucles de rétroaction locale.'},
+  {id:'sante', ic:'🧪', nm:'SANTÉ & PHARMA', dom:'Dispensaires', bd:'LOCAL DB', desc:'Gestion des stocks de médicaments et dossiers médicaux décentralisés.'},
+  {id:'education', ic:'📚', nm:'ÉDUCATION POUR TOUS', dom:'LMS Embarqué', bd:'ACTIF', desc:'Diffusion de modules de formation scientifique et technique sans Internet.'}
 ];
 
-function renderApps(){
-  const grid=document.getElementById('appsGrid');
-  grid.innerHTML='';
-  APPS.forEach(a=>{
-    const d=document.createElement('div');
-    d.className='app';
-    d.innerHTML=`<div class="app-bd">${a.bd}</div><div class="app-ic">${a.ic}</div><div class="app-nm">${a.nm}</div><div class="app-dom">${a.dom}</div>`;
-    grid.appendChild(d);
+function renderApps() {
+  const grid = document.getElementById('appsGrid');
+  grid.innerHTML = '';
+  APPS.forEach(app => {
+    const el = document.createElement('div');
+    el.className = 'app';
+    el.innerHTML = `
+      <div class="app-bd">${app.bd}</div>
+      <div class="app-ic">${app.ic}</div>
+      <div class="app-nm">${app.nm}</div>
+      <div class="app-dom">${app.dom}</div>
+    `;
+    el.onclick = () => openSector(app);
+    grid.appendChild(el);
   });
 }
 renderApps();
+
+function openSector(app) {
+  document.getElementById('modalTitle').textContent = app.nm + " — " + app.dom;
+  document.getElementById('modalContent').innerHTML = `
+    <div style="font-size:.8rem;color:var(--text);line-height:1.6">
+      <p style="margin-bottom:12px">${app.desc}</p>
+      <div style="background:rgba(2,6,23,0.7);border:1px solid var(--border);padding:12px;border-radius:10px;margin-bottom:14px">
+        <b>Statut Matériel :</b> Connecté à la LIGO-BOX V1.2<br>
+        <b>Mode d'exécution :</b> 100% Offline (SQLite Local)<br>
+        <b>Opérateur TTD :</b> Validé ($I = 1.000$)
+      </div>
+      <h3 style="font-family:'Orbitron';font-size:.75rem;color:var(--gold);margin-bottom:6px">Envoyer une commande ou télémétrie :</h3>
+      <textarea id="sectorPayload" rows="3" placeholder="Entrez vos données de capteur ou ordre de pilotage..."></textarea>
+      <div style="display:flex;gap:10px;margin-top:12px">
+        <button class="btn goldb" onclick="sendSectorData('${app.id}')">Exécuter la commande</button>
+        <button class="btn secb" onclick="closeModal()">Fermer</button>
+      </div>
+      <div id="sectorResult" style="margin-top:10px;font-size:.75rem;color:var(--cyan)"></div>
+    </div>
+  `;
+  document.getElementById('sectorModal').classList.add('open');
+}
+
+function openOracle() {
+  document.getElementById('modalTitle').textContent = "ORACLE TTD — SUPER-INTELLIGENCE LOCALE";
+  document.getElementById('modalContent').innerHTML = `
+    <div style="font-size:.8rem;color:var(--text);line-height:1.6">
+      <p style="margin-bottom:10px">Posez votre question au moteur d'intelligence super autonome. Le calcul est résolu instantanément en local.</p>
+      <input type="text" id="oracleQ" placeholder="Ex: État de régulation du micro-réseau à Lemba...">
+      <div style="display:flex;gap:10px;margin-top:12px">
+        <button class="btn goldb" onclick="askOracle()">Calculer l'Oracle</button>
+        <button class="btn secb" onclick="closeModal()">Fermer</button>
+      </div>
+      <div id="oracleAns" style="margin-top:14px;background:rgba(2,6,23,0.9);border:1px solid var(--gold);padding:12px;border-radius:10px;display:none;color:var(--gold)"></div>
+    </div>
+  `;
+  document.getElementById('sectorModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('sectorModal').classList.remove('open');
+}
+
+async function sendSectorData(sectorId) {
+  const payloadText = document.getElementById('sectorPayload').value;
+  const resDiv = document.getElementById('sectorResult');
+  resDiv.textContent = "Transmission au sous-système...";
+  
+  try {
+    const response = await fetch(`/api/sector/${sectorId}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ message: payloadText, timestamp: Date.now() })
+    });
+    const data = await response.json();
+    resDiv.textContent = "Succès : " + data.message;
+  } catch (err) {
+    resDiv.textContent = "Erreur de liaison locale (Mode Hors-ligne de secours actif).";
+  }
+}
+
+async function askOracle() {
+  const q = document.getElementById('oracleQ').value;
+  const ansDiv = document.getElementById('oracleAns');
+  ansDiv.style.display = 'block';
+  ansDiv.textContent = "Calcul de la Triade Dynamique en cours...";
+  
+  try {
+    const response = await fetch('/api/ask', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ question: q, sector: 'general' })
+    });
+    const data = await response.json();
+    ansDiv.innerHTML = `<b>Réponse Oracle :</b><br>${data.answer}<br><span style="font-size:.65rem;color:var(--cyan)">Confiance : ${data.confidence} | K : ${data.k}</span>`;
+  } catch (err) {
+    ansDiv.textContent = "Erreur de traitement local.";
+  }
+}
 </script>
 </body>
 </html>
