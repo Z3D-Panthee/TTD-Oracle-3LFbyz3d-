@@ -14,15 +14,14 @@ os.makedirs(AUDIO_FOLDER, exist_ok=True)
 # --- DB SQLITE UNIFIÉE & SECTORIELLE ---
 DB_NAME = 'sentinel_jury.db'
 
-# Les 8 Secteurs Stratégiques de Sentinel OS
 SECTEURS_VALIDES = {
+    "energie": {"nom": "Énergie & SNEL", "statut": "Actif - Régulation Phase"},
+    "eaux": {"nom": "Eaux & REGIDESO", "statut": "Actif - Débitmètre OK"},
     "mines": {"nom": "Mines & Extraction", "statut": "Actif - Capteurs Torsion T"},
-    "eaux": {"nom": "Gestion des Eaux (REGIDESO/Filtres)", "statut": "Actif - Débitmètre OK"},
-    "logistique": {"nom": "Logistique & Transport Kinshasa", "statut": "Actif - GPS Offline"},
     "securite": {"nom": "Sécurité & Surveillance", "statut": "Actif - Mode Sentinelle"},
-    "energie": {"nom": "Énergie & SNEL (Micro-réseaux)", "statut": "Actif - Régulation Phase"},
-    "agriculture": {"nom": "AgroSentinelles (IoT Sols)", "statut": "Prêt - En attente lien Maluku"},
-    "sante": {"nom": "Santé & Dispensaires Ruraux", "statut": "Actif - Base Médicale Locale"},
+    "logistique": {"nom": "Logistique Kinshasa", "statut": "Actif - GPS Offline"},
+    "agriculture": {"nom": "AgroSentinelles (IoT)", "statut": "Prêt - En attente lien Maluku"},
+    "sante": {"nom": "Santé & Pharma", "statut": "Actif - Base Médicale Locale"},
     "education": {"nom": "Éducation (Centre Pour Tous)", "statut": "Actif - LMS Embarqué"}
 }
 
@@ -57,8 +56,9 @@ init_db()
 def home():
     try:
         return render_template('index.html')
-    except:
-        return send_from_directory('.', 'sentinel_os_v10_6_QUANTUM_NEXUS.html')
+    except Exception as e:
+        logging.warning(f"Template introuvable, repli racine : {e}")
+        return send_from_directory('.', 'index.html')
 
 # --- AUDIO & PWA ---
 @app.route('/audio/<path:filename>')
@@ -93,7 +93,6 @@ def ask_api():
     sector = data.get('sector', 'general')
     logging.info(f"Oracle [Secteur: {sector}] -> Question: {q}")
     
-    # Réponse super-autonome basée sur l'opérateur PMV-1.0 et la TTD
     return jsonify({
         "status": "success",
         "sector": sector,
@@ -104,7 +103,7 @@ def ask_api():
         "mode": "Offline-First Super-Autonome"
     })
 
-# --- GESTION DES 8 SECTEURS INDUSTRIELS (Apps & Hardware) ---
+# --- GESTION DES 8 SECTEURS INDUSTRIELS ---
 @app.route('/api/sectors', methods=['GET'])
 def list_sectors():
     return jsonify({
@@ -127,7 +126,6 @@ def manage_sector(sector_id):
             "message": f"Sous-système {sector_id} opérationnel en mode local."
         })
     
-    # POST : Réception de données de capteurs (Hardware) ou d'ordres SaaS
     data = request.get_json(silent=True) or {}
     try:
         with sqlite3.connect(DB_NAME) as conn:
@@ -146,14 +144,11 @@ def manage_sector(sector_id):
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# --- PASSERELLE MATÉRIELLE & AGROSENTINELLES ---
 @app.route('/api/hardware/sync', methods=['POST'])
 def hardware_sync():
     data = request.get_json(silent=True) or {}
     node_id = data.get('node_id', 'KIX-LEMBA-01')
     telemetry = data.get('telemetry', {})
-    
-    logging.info(f"[HARDWARE SYNC] Paquet reçu du nœud {node_id} | Télémétrie : {telemetry}")
     
     return jsonify({
         "status": "success",
@@ -163,37 +158,6 @@ def hardware_sync():
         "ligo_box_status": "ONLINE - Torsion T Validée",
         "message": "Synchronisation matérielle et processus industriels validés sans Internet."
     }), 200
-
-# --- Jury SQLite ---
-@app.route('/api/save_jury', methods=['POST'])
-def save_jury():
-    data = request.get_json(silent=True) or {}
-    question = data.get('question','').strip()
-    answer = data.get('answer','').strip()
-    if not question or not answer:
-        return jsonify({"status": "error", "message": "Question ou réponse manquante."}), 400
-    try:
-        with sqlite3.connect(DB_NAME) as conn:
-            cursor = conn.cursor()
-            cursor.execute("INSERT INTO jury_logs (question, answer) VALUES (?,?)", (question, answer))
-            conn.commit()
-        logging.info("Entrée jury sauvegardée.")
-        return jsonify({"status": "success", "message": "Sauvegardé dans SQLite!"}), 200
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
-
-@app.route('/api/jury_history', methods=['GET'])
-def jury_history():
-    try:
-        with sqlite3.connect(DB_NAME) as conn:
-            cursor = conn.cursor()
-            cursor.execute("SELECT id, question, answer, timestamp FROM jury_logs ORDER BY id DESC LIMIT 100")
-            rows = cursor.fetchall()
-        
-        history = [{"id": r[0], "question": r[1], "answer": r[2], "timestamp": r[3]} for r in rows]
-        return jsonify({"status": "success", "count": len(history), "history": history}), 200
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
 
 @app.after_request
 def after_request(response):
