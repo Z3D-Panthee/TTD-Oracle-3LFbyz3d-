@@ -1,7 +1,7 @@
 {
-  "name": "SENTINEL OS v10.6 — 3D QUANTUM NEXUS | FrancoTech Edition",
-  "short_name": "SENTINEL OS v10.6",
-  "description": "SENTINEL OS v10.6 Quantum Nexus - Moteur Holo-3D Triadique & Hardware V1.2 Integration - AgroSentinelles & Vérolis SARL - Kinshasa 2026 - Semi-finaliste FrancoTech",
+  "name": "SENTINEL OS v10.7 — 3D QUANTUM NEXUS | FrancoTech Edition",
+  "short_name": "SENTINEL OS v10.7",
+  "description": "SENTINEL OS v10.7 Quantum Nexus - Moteur Holo-3D Triadique & Hardware V1.2 Integration - AgroSentinelles & Vérolis SARL - Kinshasa 2026 - FrancoTech",
   "start_url": "./",
   "display": "fullscreen",
   "background_color": "#020617",
@@ -9,7 +9,7 @@
   "orientation": "portrait-primary",
   "scope": "./",
   "lang": "fr",
-  "id": "sentinel-os-v106-quantum-nexus-hw-v12",
+  "id": "sentinel-os-v107-quantum-nexus-hw-v12",
   "launch_handler": {
     "client_mode": "navigate-existing"
   },
@@ -45,7 +45,7 @@
       "name": "🏆 FrancoTech 2026",
       "short_name": "FrancoTech",
       "url": "./#francotech",
-      "description": "Dossier Demi-Finale & Pilotage Industriel Vérolis",
+      "description": "Dossier & Pilotage Industriel Vérolis",
       "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
     },
     {
@@ -69,7 +69,7 @@
       "sizes": "1024x1024",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "SENTINEL OS v10.6 Quantum Nexus - Application PWA & Matrice 3D"
+      "label": "SENTINEL OS v10.7 Quantum Nexus - Application PWA & Matrice 3D"
     }
   ]
 }
