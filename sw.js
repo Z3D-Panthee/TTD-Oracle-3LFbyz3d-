@@ -1,7 +1,7 @@
-// === SENTINEL OS v9.3 - SERVICE WORKER ROBUSTE V3.7 ===
-const CACHE_NAME = 'sentinel-os-v9.3-fusi-v3.7';
+// === SENTINEL OS v10.6 - SERVICE WORKER QUANTUM NEXUS ===
+const CACHE_NAME = 'sentinel-os-v10.6-nexus-v4.0';
 
-// Utilisation de chemins relatifs sécurisés
+// Actifs essentiels mis en cache pour le mode 100% hors-ligne
 const ASSETS = [
   './',
   './index.html',
@@ -11,7 +11,7 @@ const ASSETS = [
   './static/icon-1024.png'
 ];
 
-// Installation : Mise en cache sécurisée (élément par élément pour éviter un échec global)
+// Installation : Mise en cache sécurisée élément par élément
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -41,8 +41,23 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Interception des requêtes : Stratégie Cache-First avec fallback réseau et mode hors-ligne
+// Interception des requêtes : Double stratégie (API Hardware vs Interface Statique)
 self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+
+  // 1. STRATÉGIE NETWORK-FIRST POUR L'API & LE MATÉRIEL (LIGO-BOX, SQLite, Télémétrie)
+  if (url.pathname.startsWith('/api/')) {
+    event.respondWith(
+      fetch(event.request)
+        .catch(() => {
+          console.warn('[ServiceWorker] Réseau indisponible pour l\'API hardware, tentative cache...');
+          return caches.match(event.request);
+        })
+    );
+    return;
+  }
+
+  // 2. STRATÉGIE CACHE-FIRST POUR LES ACTIFS STATIQUES ET L'INTERFACE
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
