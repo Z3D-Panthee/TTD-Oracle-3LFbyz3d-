@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#020617">
-<title>SENTINEL OS v10.7 — QUANTUM NEXUS | Multilingue & Super-Intelligence</title>
+<title>QUANTUM NEXUS v10.7 — GINOXCO SARL x VEROLIS | FrancoTech 15 Nov 2026 FREE</title>
 <link rel="manifest" href="/manifest.json">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
@@ -59,8 +59,8 @@ input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 10px rgba(255
 <body>
 <header>
 <div>
-  <h1>SENTINEL OS <span class="gold">v10.7</span> — QUANTUM NEXUS</h1>
-  <div style="font-size:.58rem;color:var(--muted)">VÉROLIS SARL • KINSHASA • <span id="lblHeaderSub">OFFLINE FIRST • EGOBOX 94$ + LIGO-BOX 250$</span></div>
+  <h1>QUANTUM NEXUS <span class="gold">v10.7</span> — GINOXCO SARL</h1>
+  <div style="font-size:.58rem;color:var(--muted)">VEROLIS x GINOXCO • KINSHASA • <span id="lblHeaderSub">FRANCOTECH 15 NOV 2026 • FREE FOR ALL • LIGO-BOX V1.2 LIVE</span></div>
 </div>
 <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
   <select id="langSelect" onchange="changeLang(this.value)" style="width:auto;margin:0;padding:5px 10px;font-size:.65rem;background:#0f172a;color:var(--gold);border:1px solid var(--gold)">
@@ -75,12 +75,11 @@ input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 10px rgba(255
   <button class="btn secb" style="padding:6px 10px" onclick="toggleDemo()">🎭 DEMO↔REEL</button>
 </div>
 </header>
-
+<!-- RESTE DE TON CODE IDENTIQUE JUSQU'AU SCRIPT - JUSTE CHANGE LES LABELS -->
 <main>
 <div style="display:flex;flex-direction:column;gap:16px">
-  <!-- BLOC ACCUEIL & HEURE LOCALE -->
   <div class="card card-gold">
-    <h2 id="lblCoreTitle" style="font-family:'Orbitron',sans-serif;font-size:.82rem;color:var(--gold)">⚡ SENTINEL CORE - ÉTAT SYSTÈME</h2>
+    <h2 id="lblCoreTitle" style="font-family:'Orbitron',sans-serif;font-size:.82rem;color:var(--gold)">⚡ QUANTUM NEXUS CORE - ÉTAT SYSTÈME</h2>
     <div class="dash-grid" style="margin-top:8px">
       <div class="dash-item"><b id="lblTimeTitle">HEURE LOCALE</b><span id="liveTime" style="color:var(--gold);font-size:.75rem">--:--:--</span></div>
       <div class="dash-item"><b id="lblDateTitle">DATE LOCALE</b><span id="liveDate" style="color:var(--cyan)">--/--/2026</span></div>
@@ -90,13 +89,11 @@ input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 10px rgba(255
       <div class="dash-item"><b>CAPTEURS / ESP32</b><span style="color:var(--cyan)">12/12 OK</span></div>
     </div>
     <div style="font-size:.6rem;color:var(--muted);margin-top:10px;line-height:1.4">
-      <b>Flux d'Intelligence :</b> Entrées Capteurs → Analyse Quantique Tr(T) → Décision Locale → Actionneur SSR → Auto-Optimisation DB SQLite.
+      <b>Flux QUANTUM NEXUS :</b> Capteurs → RC o RO o RI = Id + T (ε=1e-5) → SSR 40A → SQLite • FrancoTech 15 Nov 2026 FREE
     </div>
   </div>
-
-  <!-- MATRICE 3D -->
   <div class="card">
-    <h2 id="lblMat3d" style="font-family:'Orbitron',sans-serif;font-size:.82rem;color:var(--gold)">🌐 MATRICE 3D TRIADIQUE + LIGO O5</h2>
+    <h2 id="lblMat3d" style="font-family:'Orbitron',sans-serif;font-size:.82rem;color:var(--gold)">🌐 MATRICE 3D QUANTUM NEXUS + LIGO O5</h2>
     <div id="canvas3d-container"></div>
     <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
       <button class="btn secb" style="padding:6px 10px;font-size:.6rem" onclick="resetCamera3D()">🔄 Recentrer</button>
@@ -104,424 +101,31 @@ input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 10px rgba(255
       <button class="btn goldb" style="padding:6px 10px;font-size:.6rem" onclick="connectSerial()">🔌 Arduino</button>
     </div>
     <canvas id="telemetryChart" style="width:100%;height:80px;background:rgba(2,6,23,0.8);border:1px solid var(--border);border-radius:8px;margin-top:8px"></canvas>
-    <div class="log" id="logMini"><div>[INIT] v10.7 Multilingue - Hardware pilotable</div></div>
+    <div class="log" id="logMini"><div>[INIT] QUANTUM NEXUS v10.7 - FrancoTech 15 Nov 2026 - FREE</div></div>
   </div>
 </div>
-
 <div style="display:flex;flex-direction:column;gap:16px">
-  <!-- 8 SECTEURS INDUSTRIELS & VALORISATION -->
   <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-      <h2 id="lblSectorsTitle" style="font-family:'Orbitron',sans-serif;font-size:.82rem;color:var(--gold)">⚡ 8 SECTEURS INDUSTRIELS & VALORISATION</h2>
+      <h2 id="lblSectorsTitle" style="font-family:'Orbitron',sans-serif;font-size:.82rem;color:var(--gold)">⚡ 8 SECTEURS QUANTUM NEXUS & LIGO-BOX V1.2</h2>
       <button class="btn goldb" style="padding:6px 12px;font-size:.6rem" onclick="openOracle()">🧠 Oracle TTD ε=1e-5</button>
     </div>
-    <div id="lblSectorsSub" style="font-size:.62rem;color:var(--muted);margin:8px 0">Cliquez sur un secteur pour voir l'analyse détaillée du matériel (Egobox 94$+ Ligo-Box 250$) et le gain milliards associé.</div>
-    
+    <div id="lblSectorsSub" style="font-size:.62rem;color:var(--muted);margin:8px 0">Cliquez secteur pour voir Ligo-Box V1.2 LIVE EXPERIMENT + gains. 100% GRATUIT JOUR J 15 Nov 2026</div>
     <div class="apps-grid" id="appsGrid"></div>
-
     <div class="metric" style="margin-top:14px">
-      <div class="row"><span id="lblStatusDemoNotice">MODE ACTUEL</span><b id="modeText" class="conn demo">DEMO - Simulation pilotable (Ginoxco / Jury)</b></div>
+      <div class="row"><span id="lblStatusDemoNotice">MODE ACTUEL</span><b id="modeText" class="conn demo">DEMO - QUANTUM NEXUS v10.7 Pilotable (Ginoxco / Jury / Thong)</b></div>
     </div>
   </div>
-
-  <!-- QR CODE & TRAÇABILITÉ -->
   <div class="card" style="text-align:center">
-    <h2 id="lblQrTitle" style="font-family:'Orbitron',sans-serif;font-size:.75rem;color:var(--gold)">🔗 QR TRAÇABILITÉ + HARDWARE ID</h2>
+    <h2 id="lblQrTitle" style="font-family:'Orbitron',sans-serif;font-size:.75rem;color:var(--gold)">🔗 QR QUANTUM NEXUS + LIGO-BOX V1.2 LIVE</h2>
     <div id="qrcode" style="background:#fff;padding:10px;width:max-content;border-radius:8px;margin:10px auto"></div>
-    <div id="lblQrSub" style="font-size:.62rem;color:var(--muted)">EGO-V01-94$+ LIGO-V12-250$ + GOMBE-452 + ε=1e-5 + Tr(T)≠0</div>
+    <div id="lblQrSub" style="font-size:.62rem;color:var(--muted)">QN-V10.7-15NOV2026-FREE | EGO-94$+LIGO-V12-250$ | ε=1e-5 | Tr(T)≠0 | FrancoTech Cambodia</div>
   </div>
 </div>
 </main>
-
-<div class="win" id="sectorModal">
-  <div class="win-inner">
-    <div class="wh"><span id="modalTitle">SECTEUR</span><button class="btn secb" style="padding:5px 10px" onclick="closeModal()">✕</button></div>
-    <div class="win-body" id="modalContent"></div>
-  </div>
-</div>
-
-<div class="float">
-  <button class="btn secb" onclick="resetCamera3D()">🔄 3D</button>
-  <button class="btn blueb" onclick="openOracle()">💬 Oracle TTD</button>
-  <button class="btn goldb" onclick="triggerPulse();pilot('egobox','led_on')">⚡ Impulsion + LED</button>
-</div>
-
+<!-- Garde le reste de ton JS mais change genererQR -->
 <script>
-// --- DICTIONNAIRE MULTILINGUE (6 LANGUES) ---
+// CHANGE SEULEMENT CETTE FONCTION ET TRANSLATIONS
 const TRANSLATIONS = {
-  fr: {
-    headerSub: "OFFLINE FIRST • EGOBOX 94$+ LIGO-BOX 250$",
-    coreTitle: "⚡ SENTINEL CORE - ÉTAT SYSTÈME",
-    timeTitle: "HEURE LOCALE",
-    dateTitle: "DATE LOCALE",
-    offlineTitle: "STATUT OFFLINE",
-    mat3d: "🌐 MATRICE 3D TRIADIQUE + LIGO O5",
-    sectorsTitle: "⚡ 8 SECTEURS INDUSTRIELS & VALORISATION",
-    sectorsSub: "Cliquez sur un secteur pour voir le matériel exact et les gains associés.",
-    qrTitle: "🔗 QR TRAÇABILITÉ + HARDWARE ID",
-    demoNotice: "MODE ACTUEL",
-    oracleTitle: "ORACLE TTD — ε=1e-5",
-    close: "Fermer",
-    execute: "▶ Exécuter + Pilot"
-  },
-  en: {
-    headerSub: "OFFLINE FIRST • EGOBOX $94 + LIGO-BOX $250",
-    coreTitle: "⚡ SENTINEL CORE - SYSTEM STATUS",
-    timeTitle: "LOCAL TIME",
-    dateTitle: "LOCAL DATE",
-    offlineTitle: "OFFLINE STATUS",
-    mat3d: "🌐 TRIADIC 3D MATRIX + LIGO O5",
-    sectorsTitle: "⚡ 8 INDUSTRIAL SECTORS & VALUE CREATION",
-    sectorsSub: "Click a sector to view exact hardware specifications and financial gains.",
-    qrTitle: "🔗 TRACEABILITY QR + HARDWARE ID",
-    demoNotice: "CURRENT MODE",
-    oracleTitle: "TTD ORACLE — ε=1e-5",
-    close: "Close",
-    execute: "▶ Execute + Pilot"
-  },
-  it: {
-    headerSub: "OFFLINE FIRST • EGOBOX $94 + LIGO-BOX $250",
-    coreTitle: "⚡ SENTINEL CORE - STATO SISTEMA",
-    timeTitle: "ORA LOCALE",
-    dateTitle: "DATA LOCALE",
-    offlineTitle: "STATO OFFLINE",
-    mat3d: "🌐 MATRICE 3D TRIADICA + LIGO O5",
-    sectorsTitle: "⚡ 8 SETTORI INDUSTRIALI & VALORIZZAZIONE",
-    sectorsSub: "Clicca su un settore per visualizzare l'hardware e i guadagni.",
-    qrTitle: "🔗 QR TRACCIABILITÀ + HARDWARE ID",
-    demoNotice: "MODALITÀ",
-    oracleTitle: "ORACLE TTD — ε=1e-5",
-    close: "Chiudi",
-    execute: "▶ Esegui + Pilot"
-  },
-  es: {
-    headerSub: "OFFLINE FIRST • EGOBOX $94 + LIGO-BOX $250",
-    coreTitle: "⚡ SENTINEL CORE - ESTADO DEL SISTEMA",
-    timeTitle: "HORA LOCAL",
-    dateTitle: "FECHA LOCAL",
-    offlineTitle: "ESTADO OFFLINE",
-    mat3d: "🌐 MATRIZ 3D TRIÁDICA + LIGO O5",
-    sectorsTitle: "⚡ 8 SECTORES INDUSTRIALES Y VALORIZACIÓN",
-    sectorsSub: "Haga clic en un sector para ver el hardware exacto y las ganancias.",
-    qrTitle: "🔗 QR TRAZABILIDAD + HARDWARE ID",
-    demoNotice: "MODO ACTUAL",
-    oracleTitle: "ORACLE TTD — ε=1e-5",
-    close: "Cerrar",
-    execute: "▶ Ejecutar + Piloto"
-  },
-  zh: {
-    headerSub: "离线优先 • EGOBOX $94 + LIGO-BOX $250",
-    coreTitle: "⚡ 哨兵核心 - 系统状态",
-    timeTitle: "本地时间",
-    dateTitle: "本地日期",
-    offlineTitle: "离线状态",
-    mat3d: "🌐 三元 3D 矩阵 + LIGO O5",
-    sectorsTitle: "⚡ 8大工业板块与价值创造",
-    sectorsSub: "点击任意板块查看详细硬件规格与收益评估。",
-    qrTitle: "🔗 溯源二维码 + 硬件ID",
-    demoNotice: "当前模式",
-    oracleTitle: "TTD 预言机 — ε=1e-5",
-    close: "关闭",
-    execute: "▶ 执行并控制"
-  },
-  ar: {
-    headerSub: "التشغيل المستقل • EGOBOX $94 + LIGO-BOX $250",
-    coreTitle: "⚡ نواة النظام - حالة الحواسيب",
-    timeTitle: "الوقت المحلي",
-    dateTitle: "التاريخ المحلي",
-    offlineTitle: "حالة عدم الاتصال",
-    mat3d: "🌐 مصفوفة ثلاثية الأبعاد + LIGO O5",
-    sectorsTitle: "⚡ 8 قطاعات صناعية وخلق القيمة",
-    sectorsSub: "انقر فوق أي قطاع لعرض الأجهزة الدقيقة والعوائد المالية.",
-    qrTitle: "🔗 رمز الاستجابة السريعة للتتبع",
-    demoNotice: "الوضع الحالي",
-    oracleTitle: "أوراكل TTD — ε=1e-5",
-    close: "إغلاق",
-    execute: "▶ تنفيذ وتوجيه"
-  }
-};
-
-let currentLang = 'fr';
-function changeLang(lang) {
-  currentLang = lang;
-  const t = TRANSLATIONS[lang] || TRANSLATIONS.fr;
-  if($('lblHeaderSub'))$('lblHeaderSub').textContent = t.headerSub;
-  if($('lblCoreTitle'))$('lblCoreTitle').textContent = t.coreTitle;
-  if($('lblTimeTitle'))$('lblTimeTitle').textContent = t.timeTitle;
-  if($('lblDateTitle'))$('lblDateTitle').textContent = t.dateTitle;
-  if($('lblOfflineTitle'))$('lblOfflineTitle').textContent = t.offlineTitle;
-  if($('lblMat3d'))$('lblMat3d').textContent = t.mat3d;
-  if($('lblSectorsTitle'))$('lblSectorsTitle').textContent = t.sectorsTitle;
-  if($('lblSectorsSub'))$('lblSectorsSub').textContent = t.sectorsSub;
-  if($('lblQrTitle'))$('lblQrTitle').textContent = t.qrTitle;
-  if($('lblStatusDemoNotice'))$('lblStatusDemoNotice').textContent = t.demoNotice;
-  renderApps();
-}
-
-// --- HORLOGE TEMPS RÉEL ---
-function updateClock() {
-  const now = new Date();
-  const timeStr = now.toTimeString().split(' ')[0];
-  const dateStr = now.toLocaleDateString('fr-FR');
-  if($('liveTime'))$('liveTime').textContent = timeStr;
-  if($('liveDate'))$('liveDate').textContent = dateStr;
-}
-setInterval(updateClock, 1000);
-
-let isDemo=true,port=null,ws=null,THREE_READY=false;
-const $=id=>document.getElementById(id);
-function logMini(m){
-  const l=$('logMini');if(!l)return;
-  const d=document.createElement('div');
-  d.textContent="["+new Date().toTimeString().split(' ')[0]+"] "+m;
-  l.appendChild(d);l.scrollTop=l.scrollHeight;
-  if(l.children.length>50)l.removeChild(l.firstChild);
-}
-
-let scene,camera,renderer,sphere,torus,container3d;
-function init3D(){
- try{
-  container3d=document.getElementById('canvas3d-container');
-  if(!container3d||typeof THREE==='undefined')return;
-  scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(60,container3d.clientWidth/container3d.clientHeight,0.1,1000);
-  renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
-  renderer.setSize(container3d.clientWidth,container3d.clientHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  container3d.innerHTML='';container3d.appendChild(renderer.domElement);
-  const geo=new THREE.IcosahedronGeometry(1.4,2);
-  const mat=new THREE.MeshStandardMaterial({color:0xFFD43B,wireframe:true,emissive:0x3b82f6,emissiveIntensity:0.5});
-  sphere=new THREE.Mesh(geo,mat);scene.add(sphere);
-  const torusGeo=new THREE.TorusGeometry(2.2,0.02,16,100);
-  const torusMat=new THREE.MeshBasicMaterial({color:0x06b6d4,wireframe:true});
-  torus=new THREE.Mesh(torusGeo,torusMat);torus.rotation.x=Math.PI/3;scene.add(torus);
-  scene.add(new THREE.AmbientLight(0xffffff,1.2));camera.position.z=5;THREE_READY=true;
-  new ResizeObserver(()=>{
-    if(!container3d||!camera||!renderer)return;
-    camera.aspect=container3d.clientWidth/container3d.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container3d.clientWidth,container3d.clientHeight);
-  }).observe(container3d);
-  let drag=false,prev={x:0,y:0};
-  container3d.addEventListener('mousedown',e=>{drag=true;prev={x:e.clientX,y:e.clientY};});
-  window.addEventListener('mouseup',()=>drag=false);
-  container3d.addEventListener('mousemove',e=>{
-    if(!drag||!sphere)return;
-    sphere.rotation.y+=(e.clientX-prev.x)*0.01;
-    sphere.rotation.x+=(e.clientY-prev.y)*0.01;
-    prev={x:e.clientX,y:e.clientY};
-  });
-  animate3D();
- }catch(e){logMini('3D error '+e.message);}
-}
-function resetCamera3D(){if(sphere)sphere.rotation.set(0,0,0);if(torus)torus.rotation.set(Math.PI/3,0,0);}
-function triggerPulse(){
-  if(!sphere)return;const m=sphere.material;const old=m.color.getHex();
-  m.color.setHex(0x10b981);m.emissiveIntensity=1.2;
-  setTimeout(()=>{m.color.setHex(old);m.emissiveIntensity=0.5;},500);
-  logMini('⚡ Impulsion Tr(T)≠0 Validée');
-}
-function animate3D(){
-  if(!THREE_READY)return;
-  requestAnimationFrame(animate3D);
-  if(sphere)sphere.rotation.y+=0.006;
-  if(torus)torus.rotation.z+=0.01;
-  renderer.render(scene,camera);
-}
-
-let waveData=Array(50).fill(30);
-function initTelemetry(){
- const c=$('telemetryChart');if(!c)return;const ctx=c.getContext('2d');
- setInterval(()=>{
-  try{
-   const w=c.clientWidth||300,h=c.clientHeight||80;
-   if(c.width!==w||c.height!==h){c.width=w;c.height=h;}
-   ctx.clearRect(0,0,w,h);
-   ctx.strokeStyle='#06b6d4';ctx.lineWidth=2;ctx.beginPath();
-   waveData.push(35+Math.sin(Date.now()*0.001)*5+Math.random()*6);
-   if(waveData.length>50)waveData.shift();
-   const step=w/waveData.length;
-   waveData.forEach((v,i)=>{
-     const y=h-(v/70)*h;
-     if(i===0)ctx.moveTo(i*step,y);else ctx.lineTo(i*step,y);
-   });
-   ctx.stroke();
-  }catch(e){}
- },80);
-}
-
-function toggleDemo(){
- isDemo=!isDemo;
- const c=isDemo?'demo':'ok',t=isDemo?'DEMO PILOTABLE':'REEL CONNECTÉ';
- ['hwStatus','modeText'].forEach(id=>{
-   const el=$(id);if(!el)return;
-   el.className='conn '+c;
-   el.textContent=id==='modeText'?(isDemo?'DEMO - Simulation pilotable (Ginoxco / Jury)':'REEL - Hardware physique actif'):t;
- });
- logMini((isDemo?'↩ Mode DEMO':'→ Mode REEL')+' actif.');
-}
-
-async function connectSerial(){
- try{
-  if(!('serial' in navigator)){alert('WebSerial non supporté sur ce navigateur.');return;}
-  port=await navigator.serial.requestPort();
-  await port.open({baudRate:115200});
-  isDemo=false;toggleDemo();if(isDemo)toggleDemo();
-  logMini('🔌 WebSerial Egobox connecté avec succès.');
- }catch(e){logMini('Serial err: '+e.message);}
-}
-
-async function pilot(device,command){
- if(isDemo){
-  logMini('🎭 [DEMO PILOT] '+device+' -> '+command);
-  if(command==='led_on') triggerPulse();
-  return;
- }
- try{
-   if(port&&device==='egobox'){
-     const w=port.writable.getWriter();
-     await w.write(new TextEncoder().encode(command.toUpperCase()+'\n'));
-     w.releaseLock();
-   }
- }catch(e){logMini('Erreur pilotage hardware: '+e.message);}
-}
-
-// --- 8 SECTEURS INDUSTRIELS & GAINS MILLIARDS ---
-const APPS = [
-  {
-    id:'energie', ic:'⚡', nm:'ENERGY SENTINEL', dom:'Micro-réseau & SNEL', bd:'ACTIF',
-    gain:'+840 M$/an', fraud:'Cause fraude 1,2 Mds$',
-    desc:'Pince SCT-013 → ESP32 342W → Smart Meter → Tr(T)≠0 détecte la fraude → Base SQLite → Coupe auto SSR 40A → Matériel Egobox 94$(spirale Cu 10m) + Ligo-Box 250$ (MPPT).'
-  },
-  {
-    id:'eaux', ic:'💧', nm:'WATER SENTINEL', dom:'Eaux & REGIDESO', bd:'STABLE',
-    gain:'+244 M$/an', fraud:'Pertes réseau 45%',
-    desc:'Débitmètre 25$+ Vanne automatique 50$ → Contrôle intelligent et régulation hors-ligne des flux de distribution à Kinshasa.'
-  },
-  {
-    id:'mines', ic:'⛏️', nm:'MINE SENTINEL', dom:'Mines & Extraction', bd:'LIGO-BOX',
-    gain:'+2,8 Mds$', fraud:'Traçabilité minérale',
-    desc:'Balance GPS 90$ + IMU [RC][RO] → Monitoring géologique de haute précision, intégrité structurelle et sécurisation des sites miniers.'
-  },
-  {
-    id:'securite', ic:'🛡️', nm:'SECURITY OS', dom:'Surveillance KIX', bd:'SÉCURISÉ',
-    gain:'+140 M$/an', fraud:'Vigie autonome',
-    desc:'Egobox Powerbank + Raspberry Pi4 SOC → Détection d’anomalies par IA locale et cryptage de bout en bout sans connexion Cloud.'
-  },
-  {
-    id:'logistique', ic:'🚚', nm:'LOGISTICS', dom:'Flotte Offline', bd:'SYNCHRO',
-    gain:'+420 M$/an', fraud:'Optimisation convois',
-    desc:'GPS Tracker 90$ → Cartographie hors-ligne de Kinshasa et traçabilité absolue des marchandises et convois industriels.'
-  },
-  {
-    id:'agriculture', ic:'🌱', nm:'AGROSENTINELLES', dom:'Sols & IoT', bd:'PRÊT MALUKU',
-    gain:'+1,05 Mds$', fraud:'Rendement agricole',
-    desc:'Sondes de sol & Vanne 858 80$ → Analyse agronomique locale, boucles de rétroaction et pilotage de l’irrigation à Maluku.'
-  },
-  {
-    id:'sante', ic:'🧪', nm:'PHARMA SENTINEL', dom:'Santé & Dispensaires', bd:'LOCAL DB',
-    gain:'+350 M$/an', fraud:'Chaîne du froid',
-    desc:'Sondes thermiques PT100 40$ → Gestion et intégrité des stocks de médicaments et dossiers médicaux décentralisés.'
-  },
-  {
-    id:'education', ic:'📚', nm:'ÉDUCATION', dom:'Centre Pour Tous', bd:'EMBARQUÉ',
-    gain:'Impact Social', fraud:'LMS Souverain',
-    desc:'Diffusion de modules de formation scientifique et technique sans Internet. Frais symboliques 10$ + QR Code Egobox.'
-  }
-];
-
-function renderApps(){
-  const grid=$('appsGrid');if(!grid)return;
-  grid.innerHTML='';
-  APPS.forEach(app=>{
-    const el=document.createElement('div');
-    el.className='app';
-    el.innerHTML=`
-      <div class="app-bd">${app.bd}</div>
-      <div class="app-ic">${app.ic}</div>
-      <div class="app-nm">${app.nm}</div>
-      <div class="app-dom">${app.gain}</div>
-    `;
-    el.onclick=()=>openSector(app);
-    grid.appendChild(el);
-  });
-}
-
-function openSector(app){
-  $('modalTitle').textContent=app.nm+' — '+app.dom+' ('+app.gain+')';$('modalContent').innerHTML=`
-    <div style="font-size:.8rem;line-height:1.6">
-      <div style="background:rgba(255,212,59,0.1);border:1px solid var(--gold);padding:10px;border-radius:8px;margin-bottom:12px;color:var(--gold)">
-        <b>Impact Financier :</b> ${app.gain} | <i>${app.fraud}</i>
-      </div>
-      <p style="margin-bottom:12px">${app.desc}</p>
-      <div style="background:rgba(2,6,23,0.7);border:1px solid var(--border);padding:12px;border-radius:10px;margin-bottom:14px;font-size:.72rem">
-        <div class="row"><span>Hardware associé</span><b>Egobox 94$ + Ligo-Box 250$</b></div>
-        <div class="row"><span>Mode d'exécution</span><b class="conn ${isDemo?'demo':'ok'}">${isDemo?'DEMO PILOTABLE JURY':'REEL'}</b></div>
-      </div>
-      <textarea id="sectorPayload" rows="2" placeholder="Entrez une consigne ou télémétrie spécifique..."></textarea>
-      <div style="display:flex;gap:10px;margin-top:12px">
-        <button class="btn goldb" onclick="sendSectorData('${app.id}')">▶ Exécuter l'action</button>
-        <button class="btn secb" onclick="closeModal()">Fermer</button>
-      </div>
-      <div id="sectorResult" style="margin-top:10px;font-size:.72rem;color:var(--cyan)"></div>
-    </div>
-  `;
-  $('sectorModal').classList.add('open');
-}
-
-function openOracle(){
-  $('modalTitle').textContent='ORACLE TTD — v10.7 Super-Intelligence';$('modalContent').innerHTML=`
-    <div style="font-size:.8rem;line-height:1.6">
-      <p style="margin-bottom:10px">Moteur de calcul formel falsifiable : $\\Delta\\varphi = \\varepsilon \\times (f/100) \\times (D/1\\text{Gpc})$ ($10^{-3}$ rad @ 1kHz/1Gpc). Si O5 Dec 2026 < $10^{-5}$ rad → TTD fausse.</p>
-      <input type="text" id="oracleQ" placeholder="Ex: Analyser la régulation du micro-réseau et la torsion T...">
-      <div style="display:flex;gap:10px;margin-top:12px">
-        <button class="btn goldb" onclick="askOracle()">Calculer l'Oracle</button>
-        <button class="btn secb" onclick="closeModal()">Fermer</button>
-      </div>
-      <div id="oracleAns" style="margin-top:14px;background:rgba(2,6,23,0.9);border:1px solid var(--gold);padding:12px;border-radius:10px;display:none;color:var(--gold)"></div>
-    </div>
-  `;
-  $('sectorModal').classList.add('open');
-}
-
-function closeModal(){$('sectorModal').classList.remove('open');}
-
-async function sendSectorData(sectorId){
-  const resDiv=$('sectorResult');
-  resDiv.textContent="Traitement de la commande pour "+sectorId+"...";
-  setTimeout(()=>{
-    resDiv.textContent=" Succès : Sous-système "+sectorId+" synchronisé avec la LIGO-BOX locale.";
-    logMini("Secteur "+sectorId+" piloté avec succès.");
-  }, 600);
-}
-
-async function askOracle(){
-  const q=$('oracleQ').value||'État général du système';
-  const ansDiv=$('oracleAns');
-  ansDiv.style.display='block';
-  ansDiv.textContent="Calcul de la Triade Dynamique en cours...";
-  setTimeout(()=>{
-    ansDiv.innerHTML=`<b>Réponse Oracle TTD :</b><br>${q} — Résolu localement en mode Offline-First.<br><span style="font-size:.65rem;color:var(--cyan)">Confiance : 99.9% | K : 1.000 | Tr(T) ≠ 0 Validé</span>`;
-  }, 700);
-}
-
-function genererQR(){
-  try{
-    const c=$('qrcode');if(!c)return;
-    c.innerHTML='';
-    const txt='SENTINEL-v10.7|LANG='+currentLang+'|EGO-94$\vert{}LIGO-250$|'+Date.now();
-    new QRCode(c,{text:txt,width:130,height:130,colorDark:"#020617",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H});
-  }catch(e){}
-}
-
-window.addEventListener('load',()=>{
-  init3D();
-  initTelemetry();
-  renderApps();
-  updateClock();
-  genererQR();
-  logMini('✅ Sentinel OS v10.7 Multilingue initialisé avec succès.');
-  setInterval(genererQR, 10000);
-});
-</script>
-</body>
-</html>
+  fr: { headerSub: "FRANCOTECH 15 NOV 2026 • FREE FOR ALL • LIGO-BOX V1.2 LIVE", coreTitle: "⚡ QUANTUM NEXUS CORE - ÉTAT SYSTÈME", timeTitle: "HEURE LOCALE", dateTitle: "DATE LOCALE", offlineTitle: "STATUT OFFLINE", mat3d: "🌐 MATRICE 3D QUANTUM NEXUS + LIGO O5", sectorsTitle: "⚡ 8 SECTEURS QUANTUM NEXUS & LIGO-BOX V1.2", sectorsSub: "Cliquez secteur pour voir Ligo-Box V1.2 LIVE + gains. GRATUIT JOUR J 15 Nov 2026", qrTitle: "🔗 QR QUANTUM NEXUS + LIGO-BOX V1.2 LIVE", demoNotice: "MODE ACTUEL" },
+  en: { headerSub: "FRANCOTECH 15 NOV 2026 • FREE FOR ALL • LIGO-BOX V1.2 LIVE", coreTitle: "⚡ QUANTUM NEXUS CORE - SYSTEM STATUS", timeTitle: "LOCAL TIME", dateTitle: "LOCAL DATE", offlineTitle: "OFFLINE STATUS", mat3d: "🌐 QUANTUM NEXUS 3D MATRIX
