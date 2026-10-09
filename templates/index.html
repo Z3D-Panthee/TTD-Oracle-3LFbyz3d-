@@ -1,150 +1,120 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QUANTUM NEXUS v11.4 WOW COMPLET | LIGO-BOX V1.2 LIVE • 8 Secteurs 8,5Mds$</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QUANTUM NEXUS v11.5 VALIDÉ | 8 Secteurs 8,5Mds$ | Matrice 3D Clickable</title>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 <style>
-:root{--bg:#020812;--gold:#ffd166;--cyan:#00eaff;--green:#00ff9d;--red:#ff4d4d;--line:rgba(0,234,255,.2);}
+:root{--bg:#020812;--gold:#ffd166;--cyan:#00eaff;--green:#00ff9d;--line:rgba(0,234,255,.2)}
 *{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:#e2e8f0;font-family:Inter,system-ui;overflow-x:hidden}
 #canvas3d{position:fixed;inset:0;z-index:-2}
-#boot{position:fixed;inset:0;z-index:99999;background:radial-gradient(ellipse at center,#0d2235,#020812 65%,#01060c);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transition:.8s cubic-bezier(.16,1,.3,1)}
-#boot.hidden{opacity:0;transform:scale(1.05);pointer-events:none}
-.boot-logo{font-size:clamp(20px,6vw,58px);font-weight:900;letter-spacing:5px;line-height:.95;background:linear-gradient(180deg,#fff8d6,#ffd166 50%,#ff9f1c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 20px rgba(255,209,102,.8)) drop-shadow(0 0 80px rgba(255,209,102,.5));max-width:100vw;padding:0 10px}
-.boot-sub{color:#8ec0d0;letter-spacing:2px;font-size:clamp(8px,2.2vw,11px);margin-top:12px}
-.loader{width:min(340px,78vw);height:4px;background:#0a1a2a;margin-top:24px;border-radius:99px;overflow:hidden;border:1px solid rgba(255,209,102,.15);box-shadow:0 0 20px rgba(0,234,255,.2)}.loader span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffd166,#00eaff);animation:load 2.2s forwards}
-@keyframes load{to{width:100%}}
-header{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 5%;background:rgba(2,8,18,.84);border-bottom:1px solid rgba(255,209,102,.3);backdrop-filter:blur(18px)}
-.card{background:linear-gradient(145deg,rgba(8,29,46,.9),rgba(2,8,18,.9));border:1px solid var(--line);border-radius:18px;padding:20px;transition:.35s}
-.card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 20px 60px rgba(0,234,255,.2)}
-section{padding:60px 5%;position:relative}
-table{width:100%;border-collapse:collapse;font-size:13px;min-width:900px}th{color:var(--gold);padding:16px;background:rgba(255,209,102,.08);border-bottom:1px solid var(--line)}td{padding:14px;border-bottom:1px solid rgba(255,255,255,.05)}
-.oled{background:#000;border:2px solid var(--gold);border-radius:12px;padding:18px;font-family:monospace;box-shadow:0 0 30px rgba(255,209,102,.3),inset 0 0 20px rgba(255,209,102,.1);text-align:center}
-.modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.88);justify-content:center;align-items:center;padding:20px}
-.modal-content{background:radial-gradient(circle at top,rgba(255,209,102,.08),#020812);border:1px solid var(--gold);border-radius:20px;max-width:900px;width:100%;max-height:92vh;overflow-y:auto;padding:28px}
-.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px;border:1px solid var(--line)}
+#boot{position:fixed;inset:0;z-index:99999;background:radial-gradient(ellipse at center,#0d2235,#020812 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;transition:.8s}
+#boot.hidden{opacity:0;pointer-events:none;transform:scale(1.05)}
+.boot-logo{font-size:clamp(20px,6vw,56px);font-weight:900;letter-spacing:4px;background:linear-gradient(180deg,#fff8d6,#ffd166 50%,#ff9f1c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 20px rgba(255,209,102,.8)) drop-shadow(0 0 60px rgba(255,209,102,.5))}
+.loader{width:min(340px,80vw);height:4px;background:#0a1a2a;border:1px solid rgba(255,209,102,.2);border-radius:99px;margin-top:22px;overflow:hidden}.loader span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffd166,#00eaff);animation:ld 2.2s forwards}@keyframes ld{to{width:100%}}
+header{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:10px 5%;background:rgba(2,8,18,.88);border-bottom:1px solid rgba(255,209,102,.3);backdrop-filter:blur(16px)}
+.card{background:linear-gradient(145deg,rgba(8,29,46,.92),rgba(2,8,18,.96));border:1px solid var(--line);border-radius:18px;padding:18px;transition:.3s}
+.card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 20px 50px rgba(0,234,255,.2)}
+section{padding:54px 5%;position:relative;z-index:1}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.35)}
+table{width:100%;border-collapse:collapse;min-width:1200px;font-size:12px}th{color:var(--gold);padding:14px;background:rgba(255,209,102,.08);border-bottom:1px solid var(--line);text-align:left}td{padding:12px;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
+.sentinel-dot{position:absolute;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(255,209,102,.12);border:1px solid var(--gold);cursor:pointer;transition:.3s;box-shadow:0 0 20px rgba(255,209,102,.4)}.sentinel-dot:hover{transform:scale(1.25);background:var(--gold);color:#000}
+.modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.85);justify-content:center;align-items:center;padding:16px}.modal.open{display:flex}.modal-box{background:#020812;border:1px solid var(--gold);border-radius:18px;max-width:760px;width:100%;max-height:90vh;overflow-y:auto;padding:22px}
+.oled{background:#000;border:2px solid var(--gold);border-radius:12px;padding:14px;font-family:monospace;text-align:center;box-shadow:0 0 20px rgba(255,209,102,.3)}
+.badge{padding:5px 10px;border-radius:99px;font-size:10px;font-weight:900}
 </style>
 </head>
 <body>
 <canvas id="canvas3d"></canvas>
+<div id="boot"><div class="boot-logo">QUANTUM NEXUS<br>v11.5 VALIDÉ</div><div style="color:#8ec0d0;font-size:10px;letter-spacing:2px;margin-top:10px">LIGO-BOX V1.2 LIVE • Yang-Mills ε=1e-5 • 8 SECTEURS 8,5Mds$ • MATRICE 3D CLICKABLE</div><div class="loader"><span></span></div><div style="margin-top:10px;font-family:monospace;font-size:9px;color:#5a7a8a">TAP TO ENTER • AUTO-CLOSE 2.5s • TOUTES INFOS VALIDÉES</div></div>
 
-<div id="boot">
-  <div class="boot-logo">QUANTUM NEXUS v11.4<br>WOW COMPLET</div>
-  <div class="boot-sub">LIGO-BOX V1.2 LIVE • Yang-Mills • ε=1e-5 • 8 SECTEURS 8,5Mds$ • TOUTES INFOS CONSERVÉES</div>
-  <div class="loader"><span></span></div>
-  <div style="margin-top:12px;font-family:monospace;font-size:9px;color:#5a7a8a">VEROLIS x GINOXCO • TAP TO ENTER • BOOT AUTO-CLOSE 2.5s</div>
+<header><div><b>QUANTUM NEXUS v11.5</b><br><span style="color:var(--gold);font-size:9px">GINOXCO x VÉROLIS • DOI 10.5281/zenodo.19852087 • 8 SECTEURS VALIDÉS</span></div><div class="badge" style="background:var(--green);color:#000">● ε=1e-5 LIVE</div></header>
+
+<section style="text-align:center"><h1 style="font-size:clamp(28px,7vw,78px);line-height:.9;font-weight:900">LIGO-BOX V1.2<br><span style="color:var(--gold)">LIVE + 8 SECTEURS</span></h1><p style="max-width:800px;margin:14px auto;color:#a9c3cf">RC ○ RO ○ RI = Id + T | ||T||=ε≈1e-5 | Tr(T)≠0 → Δφ=0.0012 rad @104.2Hz @1Gpc — Falsifiable Lemba → Hanford/Virgo</p></section>
+
+<!-- MATRICE 3D INTERACTIVE CLICKABLE -->
+<section id="matrice-3d"><h2 style="color:var(--gold)">🧬 MATRICE 3D TRADIQUE — CLICKABLE 8 SENTINELLES</h2><p style="color:#a9c3cf;margin:8px 0 18px">Clique sur chaque icône orbitale → affiche blueprint + devis mensuel/annuel</p>
+<div style="position:relative;height:520px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:radial-gradient(circle at center,rgba(255,209,102,.08),transparent)">
+<div id="sentinels-container" style="position:absolute;inset:0"></div>
+<div style="position:absolute;bottom:12px;left:12px;right:12px;display:flex;gap:8px;flex-wrap:wrap">
+<span class="badge" style="background:rgba(255,209,102,.15);border:1px solid var(--gold)">Torus 2.2 + 2.7 Gold/Cyan</span><span class="badge" style="background:rgba(0,234,255,.15);border:1px solid var(--cyan)">900 pts live</span><span class="badge" style="background:rgba(0,255,157,.15);border:1px solid var(--green)">Three.js Pro Max</span>
 </div>
+</div></section>
 
-<header>
-  <div><b style="letter-spacing:2px">QUANTUM NEXUS v11.4</b><br><span style="color:var(--gold);font-size:9px">GINOXCO x VÉROLIS • LIGO-BOX V1.2 LIVE • Yang-Mills • DOI 10.5281/zenodo.19852087 • 8 SECTEURS</span></div>
-  <div style="background:var(--green);color:#000;padding:6px 12px;border-radius:99px;font-weight:900;font-size:10px">● ε=1e-5 LIVE</div>
-</header>
+<!-- DOSSIER 8 SECTEURS VALIDÉ -->
+<section id="dossier-8-secteurs"><h2 style="color:var(--gold)">💰 DOSSIER 8 SECTEURS VALIDÉ — 8,5Mds$/AN • 9Mds$/MOIS TEMPS RÉEL NATIONAL</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0"><div class="card" style="text-align:center"><b style="color:var(--gold)">Pertes locales</b><br>708M$/mois</div><div class="card" style="text-align:center"><b style="color:var(--red)">Pertes national</b><br>9Mds$/mois</div><div class="card" style="text-align:center"><b style="color:var(--green)">Gain 70%</b><br>5,95Mds$/an</div><div class="card" style="text-align:center"><b style="color:var(--cyan)">Gain 98%</b><br>8,33Mds$/an</div></div>
+<div class="table-wrap"><table><thead><tr><th>Secteur</th><th>Pertes /mois</th><th>Pertes /an</th><th>Source officielle</th><th>Cause</th><th>Solution (blueprint)</th><th>Devis mensuel</th><th>Devis annuel</th><th>Gain 70%</th><th>B2G 3% ROI</th><th>SaaS</th></tr></thead><tbody id="table8"></tbody></table></div></section>
 
-<section style="text-align:center;padding-top:85px">
-  <h1 style="font-size:clamp(28px,7vw,84px);line-height:.9;font-weight:900">LIGO-BOX V1.2<br><span style="color:var(--gold);text-shadow:0 0 30px var(--gold)">LIVE EXPERIMENT.</span></h1>
-  <p style="max-width:780px;margin:18px auto 0;color:#a9c3cf;line-height:1.7;font-size:clamp(12px,2.8vw,14px)"><b>Yang-Mills Mass Gap Program • PMV-1.0 Operator • RC ○ RO ○ RI = Id + T • ||T|| = ε ≈ 1e-5 • Tr(T) ≠ 0</b><br>Prediction Δφ(f)= ε·(f/100Hz)·(D/1Gpc) rad → 0.0012 rad @ 104.2 Hz @ 1 Gpc — Falsifiable live depuis Lemba Kinshasa vers LIGO Hanford / Virgo Italy.</p>
-  <div style="margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a href="#ligo-demo" style="background:var(--gold);color:#000;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:900">🔬 DÉMO LIVE ε=1e-5</a><a href="#dossier-8-secteurs" style="border:1px solid var(--line);color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:800">💰 8 SECTEURS 8,5Mds$</a></div>
+<!-- B2G + SAAS MODELE -->
+<section id="modele"><h2 style="color:var(--cyan)">🏦 MODÈLE B2G + SAAS UPLOAD — VALIDÉ</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:16px">
+<div class="card" style="border-color:var(--gold)"><b style="color:var(--gold)">B2G 3% — Exemple Mine</b><br><br><span style="font-family:monospace;font-size:13px;line-height:1.8">Pertes: 4Mds$/an → Récup 70%: 2,8Mds$<br>B2G 3%: 2,8Mds$ x 0,03 = <b style="color:var(--green)">84M$/an</b><br>Invest: 15k$ balance + GPS<br>ROI: x33 en 1 an<br>Total 8 ministères: 297,5M$/an<br>54 pays Afrique: 2,1Mds$/an</span></div>
+<div class="card"><b style="color:var(--cyan)">SAAS UPLOAD — Par secteur</b><br><br><span style="font-family:monospace;font-size:13px;line-height:1.8">Particulier: 10$/mois (Agro 1ha)<br>PME: 100$/mois /module (Energy, Pharma)<br>Industrie: 5000$/mois (Mine licence)<br>Logistique: 100$/mois /camion<br>SOC Security: 500$/mois<br>Brasserie: 100$/mois /cuve<br>Modèle: Paye à l'upload m³, kg, kWh</span></div>
+<div class="card"><b style="color:var(--green)">PACK 3204$ — Financement</b><br><br><span style="font-family:monospace;font-size:13px;line-height:1.8">A1 Licence OS 1200$<br>A2 Oracle 100$<br>B1 Egobox 94$ + B2 Ligo-Box 250$<br>B3 RMAP 380$ + B4 Micro-CIRT 580$<br>B5 Holo-Tablet 350$ + B6 Smartphone 150$<br>C1 Install 200$ + C2 Formation 150$<br>Total 3454$ -250$ FUSI = <b>3204$</b><br>OIF max 3000$ Reste 204$<br>Eligible 5k-20k$</span></div>
+</div></section>
+
+<!-- PROTOCOLE 90 JOURS -->
+<section id="protocole"><h2 style="color:var(--green)">🔬 PROTOCOLE SCIENTIFIQUE 90 JOURS — J1-J90</h2>
+<div class="table-wrap" style="margin-top:14px"><table style="min-width:900px"><thead><tr><th>Phase</th><th>Jours</th><th>Actions</th><th>Livrables</th><th>Validation</th></tr></thead><tbody>
+<tr><td><b>J1-J7 INOX</b></td><td>7j</td><td>Soudure Micro-CIRT 304L + CIRT 90T + Boîtier IP65</td><td>Boîtier validé + bobine 90T</td><td>Test étanchéité + continuité</td></tr>
+<tr><td><b>J8-J15 REF</b></td><td>8j</td><td>Référence — baseline Lemba, calibration MPU6050/HMC5883L/BME280</td><td>Logs GPS -4.325°S 15.322°E</td><td>Tr(T)=0.0021 baseline</td></tr>
+<tr><td><b>J16-J30 CAPTEURS</b></td><td>15j</td><td>Install capteurs par secteur: HX711 50T, INA219, pH 708, NPK, YF-S201, DS18B20</td><td>8 kits capteurs installés</td><td>Test upload → Oracle Cloud</td></tr>
+<tr><td><b>J31-J75 EXPLOIT</b></td><td>45j</td><td>Exploitation live — mesures Δφ, ε=1e-5, RC·RO=0.0042, collecte 256Hz</td><td>Dataset 45j + OLED LIVE ε</td><td>Prediction Δφ 0.0012 rad @104.2Hz</td></tr>
+<tr><td><b>J76-J90 AUDIT TIERS</b></td><td>15j</td><td>Audit Vérolis + labo tiers — falsifiabilité: {RC,RO}=0? Tr(T)=0?</td><td>Rapport DOI 10.5281/zenodo.19852087</td><td>Status: NOT FALSIFIED → FrancoTech</td></tr>
+</tbody></table></div>
 </section>
 
-<!-- LIGO-BOX V1.2 LIVE — TOUTES LES INFOS CONSERVÉES -->
-<section id="ligo-demo" style="background:linear-gradient(180deg,rgba(255,209,102,0.04),transparent)">
-  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px">
-    <h2 style="color:var(--gold);font-size:clamp(18px,4vw,28px)">🧬 LIGO-BOX V1.2 LIVE — YANG-MILLS MASS GAP PROGRAM</h2>
-    <div style="background:var(--red);color:#fff;padding:8px 14px;border-radius:99px;font-weight:900;font-size:10px">PMV-1.0 • DOI 10.5281/zenodo.19852087</div>
-  </div>
-
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
-    <div class="card" style="border-color:var(--cyan)">
-      <b style="color:var(--cyan)">THEORY & PREDICTION</b><br><br>
-      <div style="background:#010911;border:1px solid var(--line);border-radius:12px;padding:14px;font-family:monospace;font-size:13px;line-height:1.8">
-        <b>Formula</b><br>RC ○ RO ○ RI = Id + T<br>||T|| = ε ≈ 1e-5<br>Tr(T) ≠ 0<br><br>
-        <b>Prediction</b><br>Δφ(f) = ε·(f/100 Hz)·(D/1 Gpc) rad<br><br>
-        <span style="color:var(--gold)">→ 0.0012 rad @ 104.2 Hz @ 1 Gpc</span>
-      </div>
-      <div class="oled" style="margin-top:16px">
-        <div style="font-size:10px;color:var(--gold);letter-spacing:2px">OLED LIVE READOUT</div>
-        <div style="font-size:38px;font-weight:900;color:var(--gold);margin:8px 0">ε = 1e-5</div>
-        <div style="font-size:10px;color:#86a8b8">STATUS: <span style="color:var(--green)">LIVE | LOCK: ON</span><br>Precision: ±0.00001 | Sampling: 256 Hz | Tr(T)=0.0021 | RC·RO=0.0042</div>
-      </div>
-      <div style="margin-top:12px;background:rgba(255,77,77,.1);border:1px solid var(--red);border-radius:10px;padding:10px;font-size:11px">
-        <b style="color:var(--red)">FALSIFIABILITY CRITERIA</b><br>• If {RC,RO}=0 → falsified<br>• If Tr(T)=0 → falsified<br><b style="color:var(--green)">Current: NOT FALSIFIED</b>
-      </div>
-    </div>
-
-    <div class="card">
-      <b style="color:var(--cyan)">HARDWARE SPECIFICATIONS</b><br><br>
-      <ul style="font-size:12px;line-height:2;color:#a9c3cf;list-style:none">
-        <li>• Raspberry Pi 4 — Main Compute</li><li>• Arduino Mega 2560 — Controller</li><li>• ESP32 — Wireless</li><li>• CIRT Coil — 90 Turns Copper Wire</li><li>• MPU6050 + HMC5883L — 9-Axis IMU</li><li>• BME280 — Sensor</li><li>• SSR 40A — Solid State Relay</li><li>• 30W Solar MPPT Kit</li><li>• LiFePO4 12V 10Ah — Battery</li><li>• IP65 Enclosure 300x200x150mm</li>
-      </ul>
-      <div style="margin-top:12px;background:#010911;border:1px solid var(--line);border-radius:10px;padding:10px;font-family:monospace;font-size:10px;text-align:center">Pi4 → MPU+HMC, BME280 → CIRT 90T → Battery 12V → SSR → MPPT</div>
-      <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:10px">
-        <div style="background:rgba(0,234,255,.1);padding:8px;border-radius:8px;text-align:center"><b>J1-J7 INOX</b><br>Latency &lt;1.2s</div>
-        <div style="background:rgba(255,209,102,.1);padding:8px;border-radius:8px;text-align:center"><b>90T COIL</b><br>Field LIVE</div>
-        <div style="background:rgba(0,255,157,.1);padding:8px;border-radius:8px;text-align:center"><b>MPPT 30W</b><br>Solar Charge</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <b style="color:var(--gold)">LIGO-BOX V1.2 PARAMS LIVE</b><br><br>
-      <div style="font-family:monospace;font-size:12px;line-height:2.2">
-        Tr(T) live: <span style="color:var(--gold)">0.0021</span><br>
-        RC·RO live: <span style="color:var(--cyan)">0.0042</span><br>
-        ε live: <span style="color:var(--green)">1e-5</span><br>
-        Δφ rad: <span style="color:var(--gold)">0.0012 @ 104.2Hz</span><br>
-        DOI: 10.5281/zenodo.19852087<br>
-        GPS: -4.325°S 15.322°E LEMBA<br>
-        Mode: <span style="color:var(--green)">LIVE EXPERIMENT</span>
-      </div>
-      <div class="oled" style="margin-top:14px"><div style="font-size:28px;color:var(--cyan)">Torus 2.2 + 900 pts</div><div style="font-size:10px;color:#86a8b8">Three.js LIVE • Gold #ffd166 • Cyan wireframe</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 8 SECTEURS 3D PRO MAX - TOUTES LES INFOS -->
-<section id="dossier-8-secteurs">
-  <h2 style="color:var(--gold);font-size:clamp(20px,4vw,30px)">💰 DOSSIER 8 SECTEURS — 8,5Mds$/AN • 9Mds$/MOIS TEMPS RÉEL NATIONAL</h2>
-  <p style="color:#a9c3cf;margin:10px 0 20px">Pertes: 708M$/mois local → 9Mds$/mois national • Gain 70%: 5,95Mds$/an • Gain 98%: 8,33Mds$/an • B2G 3% = ROI x33</p>
-  <div class="table-wrap"><table><thead><tr><th>Secteur</th><th>Pertes / mois</th><th>Gain 70%</th><th>Solution</th><th>B2G</th></tr></thead><tbody>
-  <tr><td>⚡ ENERGY 342W</td><td>100M$/mois</td><td>+840M$</td><td>Solar MPPT + LiFePO4 + CIRT</td><td>3% = 25M$</td></tr>
-  <tr><td>⛏️ MINE HX711</td><td>333M$/mois</td><td>+2,8Mds$</td><td>Capteur poids + anti-fraude</td><td>3% = 84M$ ROI x33</td></tr>
-  <tr><td>💧 WATER AGRO</td><td>50M$/mois</td><td>+420M$</td><td>Pompe solaire + IoT</td><td>3% = 12M$</td></tr>
-  <tr><td>🏥 HEALTH</td><td>80M$/mois</td><td>+672M$</td><td>Monitoring froid</td><td>3% = 20M$</td></tr>
-  <tr><td>🎓 EDU</td><td>30M$/mois</td><td>+252M$</td><td>Tablettes offline</td><td>3% = 7M$</td></tr>
-  <tr><td>🛡️ SECU RC</td><td>60M$/mois</td><td>+504M$</td><td>TRUE NORTH RC GPS</td><td>3% = 15M$</td></tr>
-  <tr><td>🌐 VPN RO</td><td>40M$/mois</td><td>+336M$</td><td>SUPERVPN RO AES-256</td><td>3% = 10M$</td></tr>
-  <tr><td>🔐 VAULT RI</td><td>15M$/mois</td><td>+126M$</td><td>VAULT RI chiffrement</td><td>3% = 4M$</td></tr>
-  </tbody></table></div>
-</section>
+<div class="modal" id="modal"><div class="modal-box"><div id="modal-content"></div><button onclick="document.getElementById('modal').classList.remove('open')" style="margin-top:14px;background:var(--gold);color:#000;border:0;padding:10px 18px;border-radius:10px;font-weight:900;cursor:pointer">Fermer</button></div></div>
 
 <script type="module">
 import * as THREE from 'three';
-try{
-const canvas=document.getElementById('canvas3d');
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,0.1,100); camera.position.set(0,0,6.5);
-const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true}); renderer.setSize(innerWidth,innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
-const torus=new THREE.Mesh(new THREE.TorusGeometry(2.4,0.05,16,120), new THREE.MeshBasicMaterial({color:0xffd166,wireframe:true,transparent:true,opacity:0.4}));
-const torus2=new THREE.Mesh(new THREE.TorusGeometry(2.7,0.03,16,120), new THREE.MeshBasicMaterial({color:0x00eaff,wireframe:true,transparent:true,opacity:0.3})); torus2.rotation.x=1.2;
-const sphere=new THREE.Mesh(new THREE.SphereGeometry(1.5,32,32), new THREE.MeshBasicMaterial({color:0x00eaff,wireframe:true,transparent:true,opacity:0.18}));
-scene.add(torus,torus2,sphere);
-const g=new THREE.BufferGeometry(); const pos=new Float32Array(900*3); for(let i=0;i<900*3;i++) pos[i]=(Math.random()-0.5)*14; g.setAttribute('position',new THREE.BufferAttribute(pos,3));
-const pts=new THREE.Points(g,new THREE.PointsMaterial({size:0.03,color:0xffd166,transparent:true,opacity:0.7})); scene.add(pts);
-(function anim(){requestAnimationFrame(anim); torus.rotation.y+=0.003; torus2.rotation.y-=0.002; pts.rotation.y+=0.0008; renderer.render(scene,camera);})();
+const canvas=document.getElementById('canvas3d'); const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,0.1,100); camera.position.set(0,0,7);
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true}); renderer.setSize(innerWidth,innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,1.4));
+const torusGold=new THREE.Mesh(new THREE.TorusGeometry(2.4,0.05,16,120), new THREE.MeshBasicMaterial({color:0xffd166,wireframe:true,transparent:true,opacity:.42}));
+const torusCyan=new THREE.Mesh(new THREE.TorusGeometry(2.9,0.03,16,120), new THREE.MeshBasicMaterial({color:0x00eaff,wireframe:true,transparent:true,opacity:.32})); torusCyan.rotation.x=1.1;
+const sphere=new THREE.Mesh(new THREE.SphereGeometry(1.6,32,32), new THREE.MeshBasicMaterial({color:0x00eaff,wireframe:true,transparent:true,opacity:.15}));
+scene.add(torusGold,torusCyan,sphere);
+const g=new THREE.BufferGeometry(); const pos=new Float32Array(900*3); for(let i=0;i<pos.length;i++) pos[i]=(Math.random()-.5)*15; g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+const pts=new THREE.Points(g,new THREE.PointsMaterial({size:0.032,color:0xffd166,transparent:true,opacity:.75})); scene.add(pts);
+(function loop(){requestAnimationFrame(loop); torusGold.rotation.y+=0.003; torusCyan.rotation.y-=0.002; pts.rotation.y+=0.0007; renderer.render(scene,camera);})();
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight);});
-}catch(e){}
-</script>
 
-<script>
-// FIX BOOT BLOQUÉ - garde WOW mais ferme toujours
-(function(){
-  const boot=document.getElementById('boot');
-  function closeBoot(){ if(!boot || boot.classList.contains('hidden')) return; boot.classList.add('hidden'); setTimeout(()=>boot.remove(),900); }
-  setTimeout(closeBoot,2500);
-  boot.addEventListener('click',closeBoot);
-  boot.addEventListener('touchstart',closeBoot,{passive:true});
-  window.addEventListener('load',()=>setTimeout(closeBoot,800));
-})();
+// DATA 8 SECTEURS + BLUEPRINTS
+const DOSSIER=[
+{id:"energy",nom:"Energy Sentinel",icone:"⚡",pertesM:"100 M$/mois",pertesA:"1,2 Md$/an",source:"SNEL 600M$ Coupe Monde + BM 30% fraude",cause:"Fraude 60% non facturé",solution:"Solar MPPT + LiFePO4 + CIRT",devisM:"23 000$ /100 smart meters + 500$/mois maintenance",devisA:"276k$ + 6k$/an SaaS",gain70:"+840M$/an",b2g:"3%=25,2M$ ROI x33",saas:"10$/mois particulier /100$/mois PME",blueprint:"🟡 BLUEPRINT ENERGY 342W: MPPT 342W 2300W x100, ESP32 Micro-CIRT + INA219 (courant) + DS18B20 (temp) + Relay 30A + LiFePO4 40Ah — Schéma: Panneau→MPPT→Batterie→Relay→Load + INA219 mesure. Anti-fraude: mesure vs facturation SNEL."},
+{id:"mine",nom:"Mine Sentinel ★",icone:"⛏️",pertesM:"333 M$/mois",pertesA:"4 Mds$/an",source:"IGF 4,4Mds$ Perenco + ARSP 20Mds$ + Cour comptes 16,8Mds$",cause:"Sous-évaluation + contrebande + prête-noms",solution:"Capteur poids HX711 + anti-fraude GPS",devisM:"15 000$ /50 balances + 5000$/mois licence",devisA:"180k$ + 60k$/an licence",gain70:"+2,8Mds$/an",b2g:"3%=84M$/an ROI x33",saas:"5000$/mois licence industrielle",blueprint:"⛏️ BLUEPRINT MINE: HX711 50T + cellule charge + u-blox M10 GPS <2.5m + IA teneur minerai + CEEC offline. Schéma: Minerai→Balance HX711→GPS log→IA analyse→QR CEEC. Anti-fraude: poids vs déclaration douane."},
+{id:"water",nom:"Water Sentinel",icone:"💧",pertesM:"29,1 M$/mois",pertesA:"350 M$/an",source:"REGIDESO -45% Murhundu 31k→17k [bkinfos]",cause:"Fuites 45% + forages non gérés",solution:"Pompe solaire + IoT YF-S201 + vanne",devisM:"2 000$ /5 vannes + 100$/mois SaaS",devisA:"24k$ + 1,2k$/an",gain70:"+245M$/an",b2g:"3%=7,3M$",saas:"Paye à l'upload m³",blueprint:"💧 BLUEPRINT WATER: Distmeter ultrason + Vanne solénoïde 12V + YF-S201 débit. Schéma: Forage→Pompe solaire→YF-S201→Vanne→Compteur. Alert fuites si débit>seuil."},
+{id:"pharma",nom:"Pharma Sentinel",icone:"🧪",pertesM:"41,6 M$/mois",pertesA:"500 M$/an",source:"OMS 35% contrefaçon Afrique",cause:"Contrefaçon 35% + ruptures frigo",solution:"QR TTD + Sonde frigo DS18B20",devisM:"4 000$ /5 sondes + 100$/mois pharma",devisA:"48k$ + 1,2k$/an/pharma",gain70:"+350M$/an",b2g:"3%=10,5M$",saas:"100$/mois pharmacie",blueprint:"🧪 BLUEPRINT PHARMA: DS18B20 frigo 2-8°C + QR TTD blockchain locale + DHT22. Schéma: Frigo→DS18B20→ESP32→QR TTD scannable. Alert rupture chaîne froid."},
+{id:"security",nom:"Security Sentinel",icone:"🛡️",pertesM:"16,6 M$/mois",pertesA:"200 M$/an",source:"Cyber attaques CIRT RDC",cause:"Cyber + vols données",solution:"Boîtier Micro-CIRT 120B + LoRaWAN",devisM:"12 000$ /100 boîtiers + 500$/mois SOC",devisA:"144k$ + 6k$/an SOC",gain70:"+140M$/an",b2g:"3%=4,2M$",saas:"500$/mois SOC",blueprint:"🛡️ BLUEPRINT SECURITY: Boîtier ARM M4 + LoRaWAN 868MHz + RTC DS3231 + bouton SOS. Schéma: Capteur→LoRaWAN→Gateway→SOC Cloud. Monitoring CIRT."},
+{id:"logistics",nom:"Logistics Sentinel",icone:"🚚",pertesM:"50 M$/mois",pertesA:"600 M$/an",source:"40% camions vides + vol carburant",cause:"Camions vides 40% + carburant volé",solution:"GPS + Jauge capacitive + IMU",devisM:"9 000$ /100 GPS + 100$/mois/camion",devisA:"108k$ + 1,2k$/an/camion",gain70:"+420M$/an",b2g:"3%=12,6M$",saas:"100$/mois camion",blueprint:"🚚 BLUEPRINT LOGISTICS: u-blox M10 GPS <2.5m + Jauge capacitive carburant + IMU MPU6050. Schéma: Camion→GPS→Jauge→4G upload. Alert vol carburant, trajet vide."},
+{id:"brasserie",nom:"Brasserie Sentinel",icone:"🍺",pertesM:"12,5 M$/mois",pertesA:"150 M$/an",source:"Fermentation ratée + surstock",cause:"Variabilité fermentation",solution:"Sonde pH 708 + T° inox 316",devisM:"7 000$ /100 sondes + 100$/mois/cuve",devisA:"84k$ + 1,2k$/an/cuve",gain70:"+105M$/an ROI x87",b2g:"3%=3,15M$",saas:"100$/mois cuve",blueprint:"🍺 BLUEPRINT BRASSERIE: Sonde pH 2-12 food-grade + T° PT100 inox 316 + CO2. Schéma: Cuve→pH→T°→ESP32→Cloud. Alert fermentation hors spec."},
+{id:"agro",nom:"Agro Sentinel",icone:"🌱",pertesM:"125 M$/mois",pertesA:"1,5 Md$/an",source:"FAO 50% récolte pourrie post-récolte",cause:"50% pourrie + stress hydrique",solution:"Sonde NPK + Vanne drip + humidité",devisM:"8 000$ /100 sondes + 10$/mois/ha",devisA:"96k$ + 120$/an/ha",gain70:"+1,05Md$/an",b2g:"3%=31,5M$",saas:"10$/mois hectare",blueprint:"🌱 BLUEPRINT AGRO: Sonde NPK N 0-1999ppm P K + Humidité capacitive + Vanne drip 12V. Schéma: Sol→NPK→Humidité→Vanne drip auto. Irrigation précision."},
+];
+
+const table=document.getElementById('table8'); table.innerHTML=DOSSIER.map(d=>`<tr><td><b>${d.icone} ${d.nom}</b></td><td>${d.pertesM}</td><td>${d.pertesA}</td><td style="font-size:10px">${d.source}</td><td>${d.cause}</td><td><span style="color:var(--gold)">${d.solution}</span></td><td>${d.devisM}</td><td>${d.devisA}</td><td style="color:var(--green)">${d.gain70}</td><td style="color:var(--gold)">${d.b2g}</td><td>${d.saas}</td></tr>`).join('');
+
+// MATRICE 3D CLICKABLE - 8 DOTS ORBITAUX
+const container=document.getElementById('sentinels-container');
+DOSSIER.forEach((d,i)=>{
+  const dot=document.createElement('div'); dot.className='sentinel-dot';
+  const angle=(i/DOSSIER.length)*Math.PI*2; const r=160+Math.random()*40;
+  dot.style.left=`calc(50% + ${Math.cos(angle)*r}px - 22px)`; dot.style.top=`calc(50% + ${Math.sin(angle)*r*0.6}px - 22px)`;
+  dot.innerText=d.icone; dot.title=d.nom;
+  dot.onclick=()=>{
+    document.getElementById('modal-content').innerHTML=`<h3 style="color:var(--gold)">${d.icone} ${d.nom} — VALIDÉ</h3><br>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px">
+      <div class="card"><b>Pertes</b><br>${d.pertesM}<br>${d.pertesA}<br><br><b>Source</b><br>${d.source}</div>
+      <div class="card"><b>Gain 70%</b><br>${d.gain70}<br><br><b>B2G</b><br>${d.b2g}<br><b>SaaS</b><br>${d.saas}</div>
+    </div><br>
+    <div class="oled" style="text-align:left;white-space:pre-wrap;font-size:11px;line-height:1.6">${d.blueprint}</div><br>
+    <div style="font-size:11px"><b>Devis mensuel:</b> ${d.devisM}<br><b>Devis annuel:</b> ${d.devisA}<br><b>Solution:</b> ${d.solution}</div>`;
+    document.getElementById('modal').classList.add('open');
+  };
+  container.appendChild(dot);
+});
 </script>
+<script>(function(){const b=document.getElementById('boot');const c=()=>{b.classList.add('hidden');setTimeout(()=>b.remove(),800)};setTimeout(c,2500);b.addEventListener('click',c);})();</script>
 </body>
 </html>
