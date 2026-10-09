@@ -1,7 +1,7 @@
 {
-  "name": "QUANTUM NEXUS v11.4 — WOW COMPLET | YANG-MILLS AFFIRMÉ | LIGO-BOX V1.2 LIVE • 8 Secteurs 8,5Mds$",
-  "short_name": "QN v11.4 WOW",
-  "description": "QUANTUM NEXUS v11.4 WOW COMPLET — LIGO-BOX V1.2 LIVE Yang-Mills ε=1e-5 RC ○ RO ○ RI = Id+T Tr(T)≠0 Δφ=0.0012rad @104.2Hz + 8 Secteurs 8,5Mds$/AN → 9Mds$/MOIS + 3 Apps FREE RC RO RI + Offline First + DOI 10.5281/zenodo.19852087 — FrancoTech Koh Pich 15 Nov 2026 — TOUTES INFOS CONSERVEES",
+  "name": "QUANTUM NEXUS v11.5 — VALIDE | 8 Secteurs 8,5Mds$ + Devis M/A + B2G SaaS + Protocole 90j + Matrice 3D Clickable",
+  "short_name": "QN v11.5 VALIDE",
+  "description": "QUANTUM NEXUS v11.5 VALIDE — LIGO-BOX V1.2 LIVE Yang-Mills ε=1e-5 RC ○ RO ○ RI = Id+T Tr(T)≠0 Δφ=0.0012rad @104.2Hz + 8 Secteurs VALIDÉS 8,5Mds$/AN → 9Mds$/MOIS + Tableaux Devis Mensuel/Annuel + B2G 3% ROI x33 + SaaS Upload + Protocole 90j J1-J90 + Matrice 3D Clickable Blueprints + DOI 10.5281/zenodo.19852087 — FrancoTech Koh Pich 15 Nov 2026",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#020812",
@@ -9,7 +9,7 @@
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "fr",
-  "id": "quantum-nexus-v11-4-wow-complet-fix",
+  "id": "quantum-nexus-v11-5-valide-8secteurs-matric-clickable",
   "launch_handler": { "client_mode": "navigate-existing" },
   "icons": [
     { "src": "/static/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
@@ -20,48 +20,48 @@
     {
       "name": "🧬 LIGO-BOX V1.2 LIVE • ε=1e-5",
       "short_name": "YANG-MILLS",
-      "description": "RC ○ RO ○ RI = Id + T ||T||=ε≈1e-5 Tr(T)≠0 Δφ=0.0012 rad @104.2Hz — DOI 10.5281/zenodo.19852087 — NOT FALSIFIED LIVE Lemba",
+      "description": "RC ○ RO ○ RI = Id + T ||T||=ε≈1e-5 Tr(T)≠0 Δφ=0.0012 rad @104.2Hz @1Gpc — DOI 10.5281/zenodo.19852087 — NOT FALSIFIED LIVE Lemba",
       "url": "/#ligo-demo",
       "icons": [{ "src": "/static/icon-1024.png", "sizes": "1024x1024" }]
     },
     {
-      "name": "💰 DOSSIER 8 SECTEURS — 8,5Mds$ → 9Mds$/mois",
+      "name": "💰 8 SECTEURS VALIDÉS — 8,5Mds$",
       "short_name": "8 SECTEURS",
-      "description": "8,5 Mds$/AN — Mine 333M$/mois + Energy 100M$/mois — Gain 70% 5,95Mds$ — B2G 3% ROI x33 — Sources IGF 4,4Mds$ Perenco ARSP 20Mds$",
+      "description": "8,5 Mds$/AN — Mine 333M$/mois + Energy 100M$/mois — Devis M/A + Gain 70% 5,95Mds$ — B2G 3% ROI x33 — IGF 4,4Mds$ Perenco ARSP 20Mds$",
       "url": "/#dossier-8-secteurs",
       "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
     },
     {
-      "name": "🧭 TRUE NORTH RC — GPS Lemba",
-      "short_name": "TRUE NORTH",
-      "description": "GPS -4.325°S 15.322°E Lemba LIVE 3D — ESP32 Micro-CIRT",
-      "url": "/#rc",
-      "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
+      "name": "🧬 MATRICE 3D CLICKABLE — Blueprints",
+      "short_name": "MATRICE 3D",
+      "description": "8 Sentinelles en lévitation 3D cliquables — Torus 2.2/2.9 Gold/Cyan + 900 pts — Clique → blueprint HX711 50T, 342W, NPK, pH708 — Three.js Pro Max",
+      "url": "/#matrice-3d",
+      "icons": [{ "src": "/static/icon-1024.png", "sizes": "1024x1024" }]
     },
     {
-      "name": "🔒 SUPERVPN RO — AES-256",
-      "short_name": "SUPERVPN",
-      "description": "VPN AES-256-GCM Tunnel 10.8.0.2 — Offline First",
-      "url": "/#ro",
-      "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
-    },
-    {
-      "name": "🏦 VAULT RI — Coffre Yang-Mills",
-      "short_name": "VAULT RI",
-      "description": "5 fichiers dont yang_mills_proof_TTD.pdf 420KB + blueprints 342W + HX711 — AES-256",
-      "url": "/#ri",
+      "name": "🏦 B2G 3% ROI x33 + SaaS Upload",
+      "short_name": "B2G + SaaS",
+      "description": "Modèle B2G 3%: Mine 2,8Mds$ →84M$/an ROI x33 — Total 8 ministères 297,5M$/an — 54 pays 2,1Mds$/an — SaaS 10$/mois à 5000$/mois — Pack 3204$ OIF 3000$ reste 204$",
+      "url": "/#modele",
       "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
+    },
+    {
+      "name": "🔬 PROTOCOLE 90J — J1-J90",
+      "short_name": "PROTOCOLE 90J",
+      "description": "J1-J7 INOX + J8-J15 REF + J16-J30 CAPTEURS + J31-J75 EXPLOIT Δφ 0.0012 rad + J76-J90 AUDIT Vérolis — DOI 10.5281/zenodo.19852087 — Falsifiable",
+      "url": "/#protocole",
+      "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "🏆 FrancoTech 15 Nov 2026 — Koh Pich",
       "short_name": "FrancoTech",
-      "description": "Koh Pich Convention Center — Pack $3204 — From Kinshasa to Cambodia, from CIRT to LIGO — 100% FREE JOUR J",
+      "description": "Koh Pich Convention Center Phnom Penh — Pack $3204 — From Kinshasa to Cambodia, from CIRT to LIGO — 100% FREE JOUR J — 5000 participants",
       "url": "/#francotech",
       "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
     }
   ],
   "screenshots": [
-    { "src": "/static/icon-1024.png", "sizes": "1024x1024", "type": "image/png", "form_factor": "narrow", "label": "QUANTUM NEXUS v11.4 WOW COMPLET — Yang-Mills ε=1e-5 + 8 Secteurs 8,5Mds$ + TORUS 3D" }
+    { "src": "/static/icon-1024.png", "sizes": "1024x1024", "type": "image/png", "form_factor": "narrow", "label": "QUANTUM NEXUS v11.5 VALIDE — 8 Secteurs Devis M/A + Matrice 3D Clickable + B2G ROI x33 + Protocole 90j + Yang-Mills ε=1e-5" }
   ],
   "categories": ["utilities", "productivity", "security", "science"],
   "edge_side_panel": { "preferred_width": 420 }
