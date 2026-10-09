@@ -1,15 +1,15 @@
 {
-  "name": "QUANTUM NEXUS v10.8.1 — GINOXCO SARL x VEROLIS | FrancoTech 15 Nov 2026 FREE",
-  "short_name": "QUANTUM NEXUS",
-  "description": "QUANTUM NEXUS v10.8.1 - 3 Apps Dashboard FREE: TRUE NORTH RC, SUPERVPN RO, VAULT RI + LIGO-BOX V1.2 LIVE EXPERIMENT - FrancoTech Koh Pich 15 Nov 2026 100% GRATUIT JOUR J - Offline First - Lemba Kinshasa",
-  "start_url": "/?v=10.8.1-francotech-free",
+  "name": "QUANTUM NEXUS v11.1 — YANG-MILLS AFFIRMÉ | GINOXCO x VEROLIS | LIGO-BOX V1.2 LIVE • 8 Secteurs 8,5Mds$",
+  "short_name": "QUANTUM NEXUS v11.1",
+  "description": "QUANTUM NEXUS v11.1 3D PRO MAX — LIGO-BOX V1.2 LIVE Yang-Mills ε=1e-5 RC ○ RO ○ RI = Id+T Tr(T)≠0 Δφ=0.0012rad @104.2Hz + 8 Secteurs 8,5Mds$/AN → 9Mds$/MOIS + 3 Apps Dashboard FREE TRUE NORTH RC SUPERVPN RO VAULT RI + Offline First + DOI 10.5281/zenodo.19852087 — FrancoTech Koh Pich 15 Nov 2026",
+  "start_url": "/?v=11.1-yang-mills-8-secteurs-3d-pro-max-francotech-free",
   "display": "standalone",
-  "background_color": "#020617",
-  "theme_color": "#ffd43b",
+  "background_color": "#020812",
+  "theme_color": "#ffd166",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "fr",
-  "id": "quantum-nexus-v1081-francotech-15nov2026-free-3apps",
+  "id": "quantum-nexus-v11-1-yang-mills-8-secteurs-3d-pro-max-15nov2026-francotech",
   "launch_handler": {
     "client_mode": "navigate-existing"
   },
@@ -35,37 +35,51 @@
   ],
   "shortcuts": [
     {
-      "name": "🧭 TRUE NORTH RC - Navigation",
+      "name": "🧬 LIGO-BOX V1.2 LIVE • Yang-Mills ε=1e-5",
+      "short_name": "YANG-MILLS",
+      "description": "Démonstration RC ○ RO ○ RI = Id + T ||T||=ε≈1e-5 Tr(T)≠0 Δφ=0.0012 rad @104.2Hz @1Gpc — DOI 10.5281/zenodo.19852087 — Falsifiable LIVE depuis Lemba",
+      "url": "/#ligo-demo",
+      "icons": [{ "src": "/static/icon-1024.png", "sizes": "1024x1024" }]
+    },
+    {
+      "name": "💰 DOSSIER 8 SECTEURS — 8,5Mds$ → 9Mds$/mois",
+      "short_name": "8 SECTEURS",
+      "description": "8,5 Mds$/AN pertes — Energy 100M$/mois, Mine 333M$/mois, Water 29M$/mois — Gain 70%→98% B2G 3% ROI x33 + SaaS Upload — Sources IGF 4,4Mds$ Perenco ARSP 20Mds$",
+      "url": "/#dossier-8-secteurs",
+      "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
+    },
+    {
+      "name": "🧭 TRUE NORTH RC — GPS Lemba LIVE 3D",
       "short_name": "TRUE NORTH",
-      "description": "Remote Control & Navigation - GPS Lemba Live - Monitoring temps réel",
+      "description": "Remote Control & Navigation GPS -4.325°S 15.322°E Lemba LIVE 3D — Monitoring temps réel — ESP32 Micro-CIRT Offline",
       "url": "/#rc",
       "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "🔒 SUPERVPN RO - VPN Sécurisé",
+      "name": "🔒 SUPERVPN RO — AES-256 3D",
       "short_name": "SUPERVPN",
-      "description": "Connexion chiffrée AES-256 - Accès réseau protégé",
+      "description": "VPN Sécurisé RO AES-256-GCM Tunnel 10.8.0.2 — Réseau protégé Offline First — Lemba Kinshasa",
       "url": "/#ro",
       "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "🏦 VAULT RI - Coffre Numérique",
+      "name": "🏦 VAULT RI — Coffre Yang-Mills",
       "short_name": "VAULT RI",
-      "description": "Stockage chiffré - Sauvegarde résiliente - 3 fichiers AES",
+      "description": "Stockage chiffré AES-256 — 5 fichiers dont yang_mills_proof_TTD.pdf + blueprints 342W + HX711 — Sauvegarde résiliente",
       "url": "/#ri",
       "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
     },
     {
-      "name": "🔬 LIGO-BOX V1.2 LIVE",
-      "short_name": "LIGO-BOX",
-      "description": "LIVE EXPERIMENT Yang-Mills ε=1e-5 - DOI 10.5281/zenodo.19852087",
-      "url": "/#ligo",
+      "name": "🧬 MATRICE 3D TRADIQUE — Torus quantique",
+      "short_name": "MATRICE 3D",
+      "description": "8 Sentinelles en lévitation 3D — Torus 2.2 doré + sphère cyan wireframe + 900 particules — Three.js Pro Max — Offline First",
+      "url": "/#matrice-3d",
       "icons": [{ "src": "/static/icon-1024.png", "sizes": "1024x1024" }]
     },
     {
-      "name": "🏆 FrancoTech 15 Nov 2026 FREE",
-      "short_name": "FrancoTech FREE",
-      "description": "Koh Pich Convention Center - 100% GRATUIT JOUR J - 5000 participants",
+      "name": "🏆 FrancoTech 15 Nov 2026 FREE — Koh Pich",
+      "short_name": "FrancoTech",
+      "description": "Koh Pich Convention Center Phnom Penh — 100% GRATUIT JOUR J — 5000 participants — Devis Pack $3204 — From Kinshasa to Cambodia, from CIRT to LIGO",
       "url": "/#francotech",
       "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
     }
@@ -76,11 +90,11 @@
       "sizes": "1024x1024",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "QUANTUM NEXUS v10.8.1 - 3 Apps Dashboard FREE - LIGO-BOX V1.2 LIVE"
+      "label": "QUANTUM NEXUS v11.1 3D PRO MAX — LIGO-BOX V1.2 LIVE Yang-Mills ε=1e-5 + 8 Secteurs 8,5Mds$ + 3 Apps FREE — FrancoTech"
     }
   ],
-  "categories": ["utilities", "productivity", "security"],
+  "categories": ["utilities", "productivity", "security", "science"],
   "edge_side_panel": {
-    "preferred_width": 400
+    "preferred_width": 420
   }
 }
