@@ -1,7 +1,6 @@
-"""QUANTUM NEXUS v10.8.1b — Flask FIX Deploy - FrancoTech FREE"""
+"""QUANTUM NEXUS v10.8.1c — Flask FIX TEMPLATES - FrancoTech FREE"""
 from datetime import datetime, timezone
 from pathlib import Path
-import json
 import logging
 import os
 import random
@@ -11,7 +10,7 @@ from flask import Flask, jsonify, request, send_from_directory
 BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = Path(os.getenv("SENTINEL_DB_PATH", str(BASE_DIR / "quantum_nexus_jury.db")))
 
-logging.basicConfig(level="INFO", format="[QN v10.8.1b] %(message)s")
+logging.basicConfig(level="INFO", format="[QN v10.8.1c] %(message)s")
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__, static_folder="static", static_url_path="/static")
@@ -46,7 +45,6 @@ def get_db():
     con = sqlite3.connect(DB_PATH, timeout=20)
     con.row_factory = sqlite3.Row
     return con
-
 def init_db():
     try:
         with get_db() as con:
@@ -59,14 +57,12 @@ def init_db():
                     con.execute("INSERT INTO vault_ri(filename,size_kb,ts) VALUES(?,?,?)",(f[0],f[1],now()))
             con.commit()
     except Exception as e: logger.error(f"DB init error: {e}")
-
 def log_event(event, details=""):
     try:
         with get_db() as con:
             con.execute("INSERT INTO events(event,details,ts) VALUES(?,?,?)",(event,details[:2000],now()))
             con.commit()
     except: pass
-
 def simulate():
     HW["ego"]["T"] = round(26+random.uniform(-0.5,0.8),1)
     HW["ego"]["Tr_T"] = round(0.0020+random.uniform(0,0.0005),5)
@@ -76,29 +72,33 @@ def simulate():
 
 init_db()
 
+# === FIX PRINCIPAL : Supporte templates/index.html ===
+def find_and_serve(filename, mimetype=None):
+    search_dirs = [BASE_DIR, BASE_DIR/"templates", BASE_DIR/"static", BASE_DIR/"templates"/"static"]
+    for d in search_dirs:
+        fp = d / filename
+        if fp.exists():
+            return send_from_directory(d, filename, mimetype=mimetype) if mimetype else send_from_directory(d, filename)
+    return None
+
 @app.get("/")
 def home():
-    if (BASE_DIR/"index.html").exists():
-        return send_from_directory(BASE_DIR, "index.html")
-    return jsonify(status="QUANTUM NEXUS v10.8.1b online - index.html manquant")
-
-@app.get("/health")
-def health():
-    return jsonify(status="ok", version="10.8.1b", app="QUANTUM NEXUS - 3 APPS FREE - FrancoTech 15 Nov 2026", mode=HW["mode"], timestamp=now())
+    res = find_and_serve("index.html")
+    if res: return res
+    return jsonify(status="QUANTUM NEXUS v10.8.1c online - index.html manquant", searched=[str(BASE_DIR), str(BASE_DIR/"templates")])
 
 @app.get("/manifest.json")
 def manifest():
-    if (BASE_DIR/"manifest.json").exists():
-        return send_from_directory(BASE_DIR, "manifest.json", mimetype="application/manifest+json")
-    return jsonify(name="QUANTUM NEXUS v10.8.1")
+    res = find_and_serve("manifest.json", mimetype="application/manifest+json")
+    if res: return res
+    return jsonify(name="QUANTUM NEXUS v10.8.1", short_name="QN v10.8.1")
 
 @app.get("/sw.js")
 @app.get("/service-worker.js")
 def sw():
-    for fn in ["sw.js","service-worker.js"]:
-        p=BASE_DIR/fn
-        if p.exists():
-            return send_from_directory(BASE_DIR, fn, mimetype="application/javascript")
+    for name in ["sw.js","service-worker.js"]:
+        res = find_and_serve(name, mimetype="application/javascript")
+        if res: return res
     return ("",204)
 
 @app.get("/api/sectors")
@@ -109,7 +109,7 @@ def oracle():
     simulate()
     f_hz=float(request.args.get("f_hz",1000)); D=float(request.args.get("D_gpc",1))
     dphi=HW["ttd"]["eps"]*(f_hz/100)*D
-    return jsonify(module="Ligo-Box V1.2", version="10.8.1b", parametres={"Tr_T":HW["ego"]["Tr_T"],"RC_RO":HW["ligo"]["imu"],"epsilon":HW["ttd"]["eps"],"delta_phi_rad":dphi,"doi":HW["ttd"]["doi"]}, hardware=HW, timestamp=now())
+    return jsonify(module="Ligo-Box V1.2", version="10.8.1c", parametres={"Tr_T":HW["ego"]["Tr_T"],"RC_RO":HW["ligo"]["imu"],"epsilon":HW["ttd"]["eps"],"delta_phi_rad":dphi,"doi":HW["ttd"]["doi"]}, hardware=HW, timestamp=now())
 
 @app.route("/api/hardware/pilot", methods=["GET","POST"])
 def pilot():
@@ -122,43 +122,3 @@ def pilot():
 @app.get("/api/francotech/apps")
 def francotech_apps():
     simulate()
-    return jsonify(event="FrancoTech 15 Nov 2026 FREE FOR ALL - Koh Pich", version="QUANTUM NEXUS v10.8.1b - 3 APPS", apps=[{"id":k,**v} for k,v in FRANCOTECH_APPS.items()], timestamp=now())
-
-@app.route("/api/rc/control", methods=["GET","POST"])
-def rc_control():
-    simulate(); data=request.get_json(silent=True) or request.args; action=str(data.get("action","status"))
-    log_event("TRUE_NORTH_RC",action)
-    return jsonify(app="TRUE NORTH RC", gps=HW["ego"]["gps"], status="Monitoring temps réel ACTIF", action=action, telemetry=HW["ego"], timestamp=now())
-
-@app.route("/api/ro/vpn", methods=["GET","POST"])
-def ro_vpn():
-    simulate(); log_event("SUPERVPN_RO","vpn")
-    return jsonify(app="SUPERVPN RO", tunnel="AES-256-GCM", ip_vpn=HW["ligo"]["ip"], ip_local="192.168.1.10", latency_ms=round(random.uniform(8,24),1), status="Connexion chiffrée - Réseau protégé", timestamp=now())
-
-@app.route("/api/ri/vault", methods=["GET","POST"])
-def ri_vault():
-    simulate()
-    try:
-        with get_db() as con:
-            files=[dict(r) for r in con.execute("SELECT * FROM vault_ri ORDER BY id DESC").fetchall()]
-    except: files=[{"filename":"rapport_snel_15nov.pdf","size_kb":245,"ts":now()}]
-    return jsonify(app="VAULT RI", files_count=len(files), files=files, encryption="AES-256 + SQLite chiffré", status="Stockage chiffré - Sauvegarde résiliente", timestamp=now())
-
-@app.get("/api/telemetry")
-def telemetry():
-    try:
-        with get_db() as con:
-            data=[dict(r) for r in con.execute("SELECT * FROM telemetry ORDER BY id DESC LIMIT 50").fetchall()]
-        return jsonify(data)
-    except Exception as e: return jsonify([])
-
-@app.get("/api/events")
-def events():
-    try:
-        with get_db() as con:
-            data=[dict(r) for r in con.execute("SELECT * FROM events ORDER BY id DESC LIMIT 100").fetchall()]
-        return jsonify(data)
-    except: return jsonify([])
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT",10000)))
