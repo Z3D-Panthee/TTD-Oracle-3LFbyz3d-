@@ -1,100 +1,68 @@
 {
-  "name": "QUANTUM NEXUS v11.1 — YANG-MILLS AFFIRMÉ | GINOXCO x VEROLIS | LIGO-BOX V1.2 LIVE • 8 Secteurs 8,5Mds$",
-  "short_name": "QUANTUM NEXUS v11.1",
-  "description": "QUANTUM NEXUS v11.1 3D PRO MAX — LIGO-BOX V1.2 LIVE Yang-Mills ε=1e-5 RC ○ RO ○ RI = Id+T Tr(T)≠0 Δφ=0.0012rad @104.2Hz + 8 Secteurs 8,5Mds$/AN → 9Mds$/MOIS + 3 Apps Dashboard FREE TRUE NORTH RC SUPERVPN RO VAULT RI + Offline First + DOI 10.5281/zenodo.19852087 — FrancoTech Koh Pich 15 Nov 2026",
-  "start_url": "/?v=11.1-yang-mills-8-secteurs-3d-pro-max-francotech-free",
+  "name": "QUANTUM NEXUS v11.4 — WOW COMPLET | YANG-MILLS AFFIRMÉ | LIGO-BOX V1.2 LIVE • 8 Secteurs 8,5Mds$",
+  "short_name": "QN v11.4 WOW",
+  "description": "QUANTUM NEXUS v11.4 WOW COMPLET — LIGO-BOX V1.2 LIVE Yang-Mills ε=1e-5 RC ○ RO ○ RI = Id+T Tr(T)≠0 Δφ=0.0012rad @104.2Hz + 8 Secteurs 8,5Mds$/AN → 9Mds$/MOIS + 3 Apps FREE RC RO RI + Offline First + DOI 10.5281/zenodo.19852087 — FrancoTech Koh Pich 15 Nov 2026 — TOUTES INFOS CONSERVEES",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#020812",
   "theme_color": "#ffd166",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "fr",
-  "id": "quantum-nexus-v11-1-yang-mills-8-secteurs-3d-pro-max-15nov2026-francotech",
-  "launch_handler": {
-    "client_mode": "navigate-existing"
-  },
+  "id": "quantum-nexus-v11-4-wow-complet-fix",
+  "launch_handler": { "client_mode": "navigate-existing" },
   "icons": [
-    {
-      "src": "/static/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/static/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/static/icon-1024.png",
-      "sizes": "1024x1024",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    { "src": "/static/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/static/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/static/icon-1024.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any maskable" }
   ],
   "shortcuts": [
     {
-      "name": "🧬 LIGO-BOX V1.2 LIVE • Yang-Mills ε=1e-5",
+      "name": "🧬 LIGO-BOX V1.2 LIVE • ε=1e-5",
       "short_name": "YANG-MILLS",
-      "description": "Démonstration RC ○ RO ○ RI = Id + T ||T||=ε≈1e-5 Tr(T)≠0 Δφ=0.0012 rad @104.2Hz @1Gpc — DOI 10.5281/zenodo.19852087 — Falsifiable LIVE depuis Lemba",
+      "description": "RC ○ RO ○ RI = Id + T ||T||=ε≈1e-5 Tr(T)≠0 Δφ=0.0012 rad @104.2Hz — DOI 10.5281/zenodo.19852087 — NOT FALSIFIED LIVE Lemba",
       "url": "/#ligo-demo",
       "icons": [{ "src": "/static/icon-1024.png", "sizes": "1024x1024" }]
     },
     {
       "name": "💰 DOSSIER 8 SECTEURS — 8,5Mds$ → 9Mds$/mois",
       "short_name": "8 SECTEURS",
-      "description": "8,5 Mds$/AN pertes — Energy 100M$/mois, Mine 333M$/mois, Water 29M$/mois — Gain 70%→98% B2G 3% ROI x33 + SaaS Upload — Sources IGF 4,4Mds$ Perenco ARSP 20Mds$",
+      "description": "8,5 Mds$/AN — Mine 333M$/mois + Energy 100M$/mois — Gain 70% 5,95Mds$ — B2G 3% ROI x33 — Sources IGF 4,4Mds$ Perenco ARSP 20Mds$",
       "url": "/#dossier-8-secteurs",
       "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
     },
     {
-      "name": "🧭 TRUE NORTH RC — GPS Lemba LIVE 3D",
+      "name": "🧭 TRUE NORTH RC — GPS Lemba",
       "short_name": "TRUE NORTH",
-      "description": "Remote Control & Navigation GPS -4.325°S 15.322°E Lemba LIVE 3D — Monitoring temps réel — ESP32 Micro-CIRT Offline",
+      "description": "GPS -4.325°S 15.322°E Lemba LIVE 3D — ESP32 Micro-CIRT",
       "url": "/#rc",
       "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "🔒 SUPERVPN RO — AES-256 3D",
+      "name": "🔒 SUPERVPN RO — AES-256",
       "short_name": "SUPERVPN",
-      "description": "VPN Sécurisé RO AES-256-GCM Tunnel 10.8.0.2 — Réseau protégé Offline First — Lemba Kinshasa",
+      "description": "VPN AES-256-GCM Tunnel 10.8.0.2 — Offline First",
       "url": "/#ro",
       "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "🏦 VAULT RI — Coffre Yang-Mills",
       "short_name": "VAULT RI",
-      "description": "Stockage chiffré AES-256 — 5 fichiers dont yang_mills_proof_TTD.pdf + blueprints 342W + HX711 — Sauvegarde résiliente",
+      "description": "5 fichiers dont yang_mills_proof_TTD.pdf 420KB + blueprints 342W + HX711 — AES-256",
       "url": "/#ri",
       "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
     },
     {
-      "name": "🧬 MATRICE 3D TRADIQUE — Torus quantique",
-      "short_name": "MATRICE 3D",
-      "description": "8 Sentinelles en lévitation 3D — Torus 2.2 doré + sphère cyan wireframe + 900 particules — Three.js Pro Max — Offline First",
-      "url": "/#matrice-3d",
-      "icons": [{ "src": "/static/icon-1024.png", "sizes": "1024x1024" }]
-    },
-    {
-      "name": "🏆 FrancoTech 15 Nov 2026 FREE — Koh Pich",
+      "name": "🏆 FrancoTech 15 Nov 2026 — Koh Pich",
       "short_name": "FrancoTech",
-      "description": "Koh Pich Convention Center Phnom Penh — 100% GRATUIT JOUR J — 5000 participants — Devis Pack $3204 — From Kinshasa to Cambodia, from CIRT to LIGO",
+      "description": "Koh Pich Convention Center — Pack $3204 — From Kinshasa to Cambodia, from CIRT to LIGO — 100% FREE JOUR J",
       "url": "/#francotech",
       "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
     }
   ],
   "screenshots": [
-    {
-      "src": "/static/icon-1024.png",
-      "sizes": "1024x1024",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "QUANTUM NEXUS v11.1 3D PRO MAX — LIGO-BOX V1.2 LIVE Yang-Mills ε=1e-5 + 8 Secteurs 8,5Mds$ + 3 Apps FREE — FrancoTech"
-    }
+    { "src": "/static/icon-1024.png", "sizes": "1024x1024", "type": "image/png", "form_factor": "narrow", "label": "QUANTUM NEXUS v11.4 WOW COMPLET — Yang-Mills ε=1e-5 + 8 Secteurs 8,5Mds$ + TORUS 3D" }
   ],
   "categories": ["utilities", "productivity", "security", "science"],
-  "edge_side_panel": {
-    "preferred_width": 420
-  }
+  "edge_side_panel": { "preferred_width": 420 }
 }
