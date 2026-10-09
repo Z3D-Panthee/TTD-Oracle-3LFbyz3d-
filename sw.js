@@ -1,7 +1,8 @@
-// === SENTINEL OS v10.7 - SERVICE WORKER QUANTUM NEXUS ===
-const CACHE_NAME = 'sentinel-os-v10.7-nexus-v4.0';
+// === QUANTUM NEXUS v10.7 - SERVICE WORKER - GINOXCO SARL x VEROLIS ===
+// FrancoTech Edition - 15 Novembre 2026 - 100% GRATUIT JOUR J
+const CACHE_NAME = 'quantum-nexus-v10.7-francotech-15nov2026-v5.0';
 
-// Actifs essentiels mis en cache pour le mode 100% hors-ligne
+// Actifs essentiels pour mode 100% hors-ligne - QUANTUM NEXUS
 const ASSETS = [
   './',
   './index.html',
@@ -11,28 +12,29 @@ const ASSETS = [
   './static/icon-1024.png'
 ];
 
-// Installation : Mise en cache sécurisée élément par élément
+// Installation : Mise en cache QUANTUM NEXUS v10.7
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('[ServiceWorker] Mise en cache des actifs essentiels v10.7');
+        console.log('[QUANTUM NEXUS v10.7] Mise en cache des actifs essentiels - FrancoTech 15 Nov 2026');
         return Promise.allSettled(
-          ASSETS.map(asset => cache.add(asset).catch(err => console.warn('[ServiceWorker] Fichier non trouvé ignoré :', asset)))
+          ASSETS.map(asset => cache.add(asset).catch(err => console.warn('[QN] Fichier ignoré :', asset)))
         );
       })
       .then(() => self.skipWaiting())
   );
 });
 
-// Activation : Nettoyage des anciens caches obsolètes
+// Activation : Nettoyage AGRESSIF des anciens caches SENTINEL v5.1
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys => {
       return Promise.all(
         keys.map(key => {
+          // SUPPRIME TOUT ce qui n'est pas le nouveau cache QUANTUM NEXUS
           if (key !== CACHE_NAME) {
-            console.log('[ServiceWorker] Suppression de l\'ancien cache :', key);
+            console.log('[QUANTUM NEXUS] Suppression ancien cache obsolète :', key, '- dont SENTINEL OS v5.1');
             return caches.delete(key);
           }
         })
@@ -41,23 +43,23 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Interception des requêtes : Double stratégie (API Hardware vs Interface Statique)
+// Fetch : Double stratégie QUANTUM NEXUS
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  // 1. STRATÉGIE NETWORK-FIRST POUR L'API & LE MATÉRIEL (LIGO-BOX, SQLite, Télémétrie)
+  // 1. NETWORK-FIRST pour API Hardware LIGO-BOX V1.2
   if (url.pathname.startsWith('/api/')) {
     event.respondWith(
       fetch(event.request)
         .catch(() => {
-          console.warn('[ServiceWorker] Réseau indisponible pour l\'API hardware, tentative cache...');
+          console.warn('[QN] Réseau API indisponible, fallback cache...');
           return caches.match(event.request);
         })
     );
     return;
   }
 
-  // 2. STRATÉGIE CACHE-FIRST POUR LES ACTIFS STATIQUES ET L'INTERFACE
+  // 2. CACHE-FIRST pour UI QUANTUM NEXUS
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
@@ -66,7 +68,6 @@ self.addEventListener('fetch', event => {
         if (cachedResponse) {
           return cachedResponse;
         }
-
         return fetch(event.request)
           .then(networkResponse => {
             if(networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
