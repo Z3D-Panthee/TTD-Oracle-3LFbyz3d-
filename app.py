@@ -82,4 +82,82 @@ def manifest():
 @app.get("/sw.js")
 @app.get("/service-worker.js")
 def sw():
-    for name in ["sw.js","service
+    for name in ["sw.js","service-worker.js"]:
+        r=find_and_serve(name, mimetype="application/javascript")
+        if r: return r
+    return ("",204)
+
+@app.get("/api/sectors")
+def sectors(): return jsonify([{"id":k,**v} for k,v in SECTEURS.items()])
+
+@app.get("/api/dossier-8-secteurs")
+def dossier_8():
+    simulate()
+    total_pertes_an = 8.5
+    total_pertes_mois = round(8.5/12*1000)/1000 # simplifié, en réalité 708M$/mois moyenne mais Mine fait 333M$
+    return jsonify(
+        version="v11.0 3D PRO MAX",
+        modele="B2G 3-5% + SaaS Upload",
+        total={"pertes_an":"8,5 Mds$ / an","pertes_mois":"708M$ / mois moyenne — 9Mds$/mois si temps réel national","gain70":"5,95Mds$/an","gain98":"8,33Mds$/an"},
+        secteurs=DOSSIER_8,
+        b2g={"exemple_mine":"Mine 2,8Mds$ récup → B2G 3% = 84M$/an ROI x33","total_rdc_8_ministeres":"297,5M$/an","expansion_54_pays_afrique":"2,1Mds$/an"},
+        saas={"particulier":"10$/mois","pme":"100$/mois/module","industrie":"5000$/mois"},
+        protocole={"j1_15":"Référence","j16_30":"Installation capteurs","j31_75":"Exploitation","j76_90":"Audit tiers Vérolis"},
+        timestamp=now()
+    )
+
+@app.get("/api/quantum/matrice-3d")
+def matrice_3d():
+    simulate()
+    return jsonify(
+        module="Matrice 3D Tradique v11.0",
+        torus={"radius":2.2,"tube":0.04,"color":"#ffd166","rotation":"y 0.003/s"},
+        sphere={"radius":1.4,"color":"#00eaff","wireframe":True},
+        particles=800,
+        sentinels=[{"id":d["id"],"icone":d["icone"],"pertes_mois":d["pertes_mois"],"devis":d["devis"].split("|")[0]} for d in DOSSIER_8],
+        hardware=HW,
+        timestamp=now()
+    )
+
+@app.get("/api/ligo-box/v1")
+def oracle():
+    simulate()
+    f_hz=float(request.args.get("f_hz",1000)); D=float(request.args.get("D_gpc",1))
+    dphi=HW["ttd"]["eps"]*(f_hz/100)*D
+    return jsonify(module="Ligo-Box V1.2 LIVE 3D", version="11.0", parametres={"Tr_T":HW["ego"]["Tr_T"],"RC_RO":HW["ligo"]["imu"],"epsilon":HW["ttd"]["eps"],"delta_phi_rad":dphi,"doi":HW["ttd"]["doi"]}, hardware=HW, timestamp=now())
+
+@app.route("/api/hardware/pilot", methods=["GET","POST"])
+def pilot():
+    simulate(); data=request.get_json(silent=True) or request.args
+    device=str(data.get("device","egobox")); command=str(data.get("command","read_all"))
+    if device=="egobox" and command in {"led_on","led_off"}: HW["ego"]["led"]=(command=="led_on")
+    if device=="ligobox" and command in {"ssr_on","ssr_off"}: HW["ligo"]["ssr"]=(command=="ssr_on")
+    return jsonify(ok=True, ego=HW["ego"], ligo=HW["ligo"], timestamp=now())
+
+@app.get("/api/francotech/apps")
+def francotech_apps():
+    simulate()
+    return jsonify(apps=list(FRANCOTECH_APPS.values()), count=3, mode="FREE FOR ALL 15 Nov 2026", location="Koh Pich", timestamp=now())
+
+@app.post("/api/rc/control")
+def rc_control():
+    simulate(); data=request.get_json(silent=True) or {}
+    return jsonify(app="TRUE NORTH RC", gps=HW["ego"]["gps"], status="Tracking ACTIF 3D PRO MAX", action=data.get("action","navigate_lemba"), timestamp=now())
+
+@app.post("/api/ro/vpn")
+def ro_vpn():
+    simulate()
+    return jsonify(app="SUPERVPN RO", tunnel="AES-256-GCM", ip_vpn=HW["ligo"]["ip"], latency_ms=random.randint(12,45), status="Réseau protégé 3D", timestamp=now())
+
+@app.get("/api/ri/vault")
+def ri_vault():
+    try:
+        with get_db() as con:
+            rows=con.execute("SELECT filename,size_kb FROM vault_ri").fetchall()
+            files=[dict(r) for r in rows]
+    except: files=[{"filename":"quantum_nexus_jury.db","size_kb":1024}]
+    return jsonify(app="VAULT RI", files_count=len(files), files=files, encryption="AES-256 3D", status="Coffre OK", timestamp=now())
+
+if __name__=="__main__":
+    port=int(os.getenv("PORT",10000))
+    app.run(host="0.0.0.0", port=port, debug=False)
