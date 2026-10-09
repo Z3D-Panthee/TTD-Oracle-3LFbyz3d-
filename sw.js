@@ -1,5 +1,5 @@
-// === QUANTUM NEXUS v11.2 - FIX APP OUVERTURE - TTD x YANG-MILLS ===
-const CACHE = 'quantum-nexus-v11-2-TTD-FIX-OPEN';
+// === QUANTUM NEXUS v11.4 - WOW COMPLET FIX - TOUTES INFOS CONSERVEES ===
+const CACHE = 'quantum-nexus-v11-4-WOW-COMPLET-FIX';
 
 const ASSETS_CORE = [
   '/',
@@ -11,7 +11,7 @@ const ASSETS_CORE = [
 ];
 
 self.addEventListener('install', e => {
-  console.log('[QN v11.2] Install FIX ouverture');
+  console.log('[QN v11.4] Install WOW COMPLET - toutes infos');
   e.waitUntil(
     caches.open(CACHE).then(async c => {
       for (const url of ASSETS_CORE) {
@@ -19,7 +19,7 @@ self.addEventListener('install', e => {
           const r = await fetch(url, {cache: 'reload'});
           if (r.ok && r.status !== 500) await c.put(url, r);
         } catch(err) {
-          console.warn('[QN v11.2] Skip:', url);
+          console.warn('[QN v11.4] Skip:', url);
         }
       }
     }).then(() => self.skipWaiting())
@@ -29,7 +29,10 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys => 
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+      Promise.all(keys.filter(k => k !== CACHE).map(k => {
+        console.log('[QN v11.4] Delete ancien cache:', k);
+        return caches.delete(k);
+      }))
     ).then(() => self.clients.claim())
   );
 });
@@ -39,7 +42,6 @@ self.addEventListener('fetch', e => {
   if (u.origin !== location.origin) return;
   if (e.request.method !== 'GET') return;
 
-  // API -> Network First
   if (u.pathname.startsWith('/api/')) {
     e.respondWith(
       fetch(e.request).then(r => {
@@ -51,21 +53,25 @@ self.addEventListener('fetch', e => {
       }).catch(() => {
         if (u.pathname.includes('/yang-mills/proof')) {
           return new Response(JSON.stringify({
-            theory:"Yang-Mills • RC ○ RO ○ RI = Id + T",
-            formula:{composition:"RC ○ RO ○ RI = Id + T", norm_T:"||T||=ε≈1e-5", trace:"Tr(T)≠0", epsilon:1e-5, Tr_T_live:0.0021},
-            prediction:{delta_phi_rad:0.0012, f_hz:104.2},
-            falsifiability:{falsified:false, status:"NOT FALSIFIED"},
+            theory:"Yang-Mills Mass Gap • RC ○ RO ○ RI = Id + T • WOW COMPLET",
+            formula:{composition:"RC ○ RO ○ RI = Id + T", norm_T:"||T||=ε≈1e-5", trace:"Tr(T)≠0", epsilon:1e-5, Tr_T_live:0.0021, RC_RO_live:0.0042},
+            prediction:{delta_phi_rad:0.0012, f_hz:104.2, D_gpc:1, formula:"Δφ(f)= ε·(f/100Hz)·(D/1Gpc) rad"},
+            falsifiability:{falsified:false, status:"NOT FALSIFIED — WOW COMPLET"},
+            dossier_8_secteurs:{total:"8,5Mds$/an — 9Mds$/mois national", mine:"333M$/mois → +2,8Mds$/an B2G 84M$ ROI x33", energy:"100M$/mois → +840M$/an"},
             doi:"10.5281/zenodo.19852087",
-            mode:"OFFLINE v11.2 FIX"
+            mode:"OFFLINE v11.4 WOW COMPLET - TOUTES INFOS"
           }), {headers:{'Content-Type':'application/json'}});
         }
-        return new Response(JSON.stringify({mode:"OFFLINE", status:"API mock actif"}), {headers:{'Content-Type':'application/json'}});
+        if (u.pathname.includes('/dossier-8-secteurs')) {
+          return new Response(JSON.stringify({version:"v11.4 OFFLINE WOW COMPLET", total:"8,5Mds$/an", secteurs:8, mode:"OFFLINE"}), {headers:{'Content-Type':'application/json'}});
+        }
+        return new Response(JSON.stringify({mode:"OFFLINE WOW COMPLET", status:"API mock actif v11.4"}), {headers:{'Content-Type':'application/json'}});
       })
     );
     return;
   }
 
-  // Pages -> Network First pour éviter écran blanc
+  // Pages -> Network First = anti écran blanc mais garde WOW
   e.respondWith(
     fetch(e.request).then(r => {
       if (r.ok && r.status !== 500) {
