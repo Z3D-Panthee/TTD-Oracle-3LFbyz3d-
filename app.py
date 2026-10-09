@@ -2,9 +2,11 @@ from flask import Flask, render_template, send_from_directory, request, jsonify
 import os, sqlite3, logging, json, random
 from datetime import datetime
 
-logging.basicConfig(level=logging.INFO, format='[SENTINEL OS v10.7] %(message)s')
+# === QUANTUM NEXUS v10.7 - GINOXCO SARL x VEROLIS SARL ===
+# FrancoTech Cambodia 2026 - 15 Novembre 2026 - FREE FOR ALL
+logging.basicConfig(level=logging.INFO, format='[QUANTUM NEXUS v10.7] %(message)s')
 app = Flask(__name__, static_folder='static', static_url_path='/static')
-DB_NAME = 'sentinel_jury.db'
+DB_NAME = 'quantum_nexus_jury.db'  # CHANGÉ - plus sentinel_jury.db
 
 SECTEURS = {
     "energie": {"nom": "Énergie & SNEL"},
@@ -52,17 +54,19 @@ def sim():
 @app.route("/")
 def home():
     sim()
-    return render_template("index.html")
+    return render_template("index.html", app_version="QUANTUM NEXUS v10.7", mode=HW.mode)
 
 @app.route("/health")
 def health():
     sim()
     return jsonify({
         "status": "ok",
-        "v": "10.7 QUANTUM NEXUS",
+        "v": "10.7 QUANTUM NEXUS - FrancoTech 15 Nov 2026",
+        "app": "QUANTUM NEXUS",
         "mode": HW.mode,
         "eps": 1e-5,
-        "demo_pilotable": True
+        "demo_pilotable": True,
+        "free_jour_j": "15 Novembre 2026 - FREE FOR ALL PARTICIPANTS"
     })
 
 @app.route("/api/ligo-box/v1")
@@ -73,7 +77,7 @@ def oracle():
     dphi = HW.ego["eps"] * (f / 100) * D
     return jsonify({
         "module": "Ligo-Box V1.2",
-        "v": "10.7",
+        "v": "10.7 QUANTUM NEXUS",
         "mode": HW.mode,
         "parametres": {
             "Tr_T": HW.ego["Tr_T"],
@@ -81,7 +85,8 @@ def oracle():
             "epsilon": 1e-5,
             "delta_phi_rad": dphi,
             "delta_phi_falsifiable": f"{dphi:.3e} rad",
-            "doi": HW.ttd["doi"]
+            "doi": HW.ttd["doi"],
+            "formula": "RC o RO o RI = Id + T | ||T||=eps~1e-5"
         },
         "hardware": {
             "egobox_94$": HW.ego,
@@ -112,7 +117,7 @@ def pilot():
         elif cmd == "ssr_off":
             HW.ligo["ssr"] = False
 
-    return jsonify({"ok": True, "mode": HW.mode, "ego": HW.ego, "ligo": HW.ligo})
+    return jsonify({"ok": True, "mode": HW.mode, "ego": HW.ego, "ligo": HW.ligo, "app": "QUANTUM NEXUS v10.7"})
 
 @app.route("/api/sector/<sid>", methods=["GET", "POST"])
 def sector(sid):
@@ -125,7 +130,6 @@ def sector(sid):
         if a == "ssr_on":
             HW.ligo["ssr"] = True
         
-        # Enregistrement traçabilité dans SQLite
         try:
             con = sqlite3.connect(DB_NAME)
             cur = con.cursor()
@@ -138,9 +142,9 @@ def sector(sid):
         except Exception as e:
             logging.error(f"Erreur écriture DB: {e}")
 
-        return jsonify({"ok": True, "sector": sid, "message": f"{sid} OK Tr(T)={HW.ego['Tr_T']} Mode {HW.mode}"})
+        return jsonify({"ok": True, "sector": sid, "message": f"{sid} OK Tr(T)={HW.ego['Tr_T']} Mode {HW.mode} - QUANTUM NEXUS v10.7"})
     
-    return jsonify({"sector": sid, "hw": HW.ego, "ligo": HW.ligo})
+    return jsonify({"sector": sid, "hw": HW.ego, "ligo": HW.ligo, "app": "QUANTUM NEXUS"})
 
 @app.route("/api/ask", methods=["POST"])
 def ask():
@@ -150,25 +154,35 @@ def ask():
     f = float(d.get("f_hz", 1000))
     D = float(d.get("D_gpc", 1))
     dphi = 1e-5 * (f / 100) * D
-    ans = f"Oracle v10.7: Egobox {HW.ego['T']}°C Tr(T)={HW.ego['Tr_T']} Ligo [RC][RO]={HW.ligo['imu']} Δφ={dphi:.3e} Q:{q} Mode {HW.mode} I_TTD 1.000"
+    ans = f"Oracle QUANTUM NEXUS v10.7: Egobox {HW.ego['T']}°C Tr(T)={HW.ego['Tr_T']} Ligo [RC][RO]={HW.ligo['imu']} Δφ={dphi:.3e} Q:{q} Mode {HW.mode} I_TTD 1.000 - FrancoTech 15 Nov 2026 FREE"
     return jsonify({"answer": ans, "delta_phi": dphi})
 
 @app.route("/manifest.json")
 def mf():
-    return send_from_directory(".", "manifest.json") if os.path.exists("manifest.json") else jsonify({
-        "name": "SENTINEL OS v10.7",
-        "short_name": "SENTINEL",
-        "start_url": "/",
-        "display": "standalone",
-        "background_color": "#020617",
-        "theme_color": "#FFD43B"
-    })
+    # FORCE le bon manifest.json QUANTUM NEXUS - pas de fallback SENTINEL
+    if os.path.exists("manifest.json"):
+        return send_from_directory(".", "manifest.json")
+    else:
+        return jsonify({
+            "name": "QUANTUM NEXUS v10.7 — GINOXCO SARL | FrancoTech Edition",
+            "short_name": "QUANTUM NEXUS v10.7",
+            "start_url": "./?v=10.7",
+            "display": "standalone",
+            "background_color": "#020617",
+            "theme_color": "#FFD43B",
+            "id": "quantum-nexus-v107-francotech-15nov2026"
+        })
 
 @app.route("/sw.js")
+@app.route("/service-worker.js")
 def sw():
-    return send_from_directory(".", "sw.js", mimetype="application/javascript") if os.path.exists("sw.js") else (
-        "self.addEventListener('install', e => { e.waitUntil(caches.open('ttd-v10.7').then(c => c.addAll(['/']))); });", 
-        200, 
+    # Sert ton nouveau service-worker.js QUANTUM NEXUS
+    for filename in ["service-worker.js", "sw.js", "service_worker.js"]:
+        if os.path.exists(filename):
+            return send_from_directory(".", filename, mimetype="application/javascript")
+    return (
+        "const CACHE='quantum-nexus-v10.7-francotech-v5.0';self.addEventListener('install', e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['/'])))});self.addEventListener('activate', e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.map(k=>{if(k!==CACHE)return caches.delete(k)}))))});",
+        200,
         {'Content-Type': 'application/javascript'}
     )
 
