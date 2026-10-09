@@ -1,15 +1,15 @@
 {
-  "name": "SENTINEL OS v10.7 — 3D QUANTUM NEXUS | FrancoTech Edition",
-  "short_name": "SENTINEL OS v10.7",
-  "description": "SENTINEL OS v10.7 Quantum Nexus - Moteur Holo-3D Triadique & Hardware V1.2 Integration - AgroSentinelles & Vérolis SARL - Kinshasa 2026 - FrancoTech",
-  "start_url": "./",
+  "name": "QUANTUM NEXUS v10.7 — GINOXCO SARL | FrancoTech Edition",
+  "short_name": "QUANTUM NEXUS v10.7",
+  "description": "QUANTUM NEXUS v10.7 - Moteur Holo-3D Triadique & Hardware V1.2 LIGO-BOX - GINOXCO SARL x VEROLIS SARL - Kinshasa 2026 - FrancoTech 15 Nov 2026",
+  "start_url": "./?v=10.7",
   "display": "fullscreen",
   "background_color": "#020617",
   "theme_color": "#ffd43b",
   "orientation": "portrait-primary",
   "scope": "./",
   "lang": "fr",
-  "id": "sentinel-os-v107-quantum-nexus-hw-v12",
+  "id": "quantum-nexus-v107-francotech-15nov2026",
   "launch_handler": {
     "client_mode": "navigate-existing"
   },
@@ -38,38 +38,25 @@
       "name": "🌐 Matrice 3D Holo",
       "short_name": "3D Nexus",
       "url": "./#matrix3d",
-      "description": "Visualiseur 3D Triadique & Télémétrie en Direct",
-      "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
+      "description": "Visualiseur 3D Triadique & Télémétrie en Direct"
     },
     {
       "name": "🏆 FrancoTech 2026",
       "short_name": "FrancoTech",
       "url": "./#francotech",
-      "description": "Dossier & Pilotage Industriel Vérolis",
-      "icons": [{ "src": "/static/icon-512.png", "sizes": "512x512" }]
+      "description": "Dossier & Pilotage Industriel Vérolis"
     },
     {
       "name": "⚖️ Mode Jury - 8 Secteurs",
       "short_name": "Jury",
       "url": "./#jury",
-      "description": "Inspection locale des 8 applications & SQLite",
-      "icons": [{ "src": "/static/icon-192.png", "sizes": "192x192" }]
+      "description": "Inspection locale des 8 applications & SQLite"
     },
     {
       "name": "🔬 Hardware V1.2 & LIGO",
       "short_name": "HW V1.2",
       "url": "./#hardware",
-      "description": "Banc de mesure physique & LIGO-BOX V1.2",
-      "icons": [{ "src": "/static/icon-1024.png", "sizes": "1024x1024" }]
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/static/icon-1024.png",
-      "sizes": "1024x1024",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "SENTINEL OS v10.7 Quantum Nexus - Application PWA & Matrice 3D"
+      "description": "Banc de mesure physique & LIGO-BOX V1.2"
     }
   ]
 }
