@@ -1,2 +1,5 @@
+# QUANTUM NEXUS v10.8.1 - FrancoTech 15 Nov 2026 FREE - 3 Apps Dashboard
+# TRUE NORTH RC + SUPERVPN RO + VAULT RI + LIGO-BOX V1.2 LIVE
 Flask>=3.0,<4
 gunicorn>=21.2,<24
+Werkzeug>=3.0.0
